@@ -1,0 +1,64 @@
+{
+  "projects": [
+    {
+      "id": "1775850832183",
+      "name": "adamdental",
+      "url": "adamdental.com.au",
+      "targetRegion": "au",
+      "businessName": "adamdental",
+      "serperApiKey": "",
+      "status": "active",
+      "schedule": "instant",
+      "lastCheck": 1776053159296
+    }
+  ],
+  "keywords": [
+    {
+      "id": "4z1eru",
+      "projectId": "1775563454924",
+      "text": "melbourne dj",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "location": "Melbourne",
+      "lat": 0,
+      "lng": 0,
+      "mapsStatus": "active",
+      "organicStatus": "active"
+    },
+    {
+      "id": "2r575t",
+      "projectId": "1775850832183",
+      "text": "adamdental",
+      "organic": 1,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//1"
+    },
+    {
+      "id": "kba2s",
+      "projectId": "1775850832183",
+      "text": "adam dental",
+      "organic": 1,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//1"
+    }
+  ],
+  "settings": {
+    "globalSerperApiKey": "2eea1fe244ac36c3e615255abf212f88857385cd",
+    "globalScrapingdogApiKey": "",
+    "globalSerpapiKey": "",
+    "scrapingMode": "browser_only"
+  }
+}

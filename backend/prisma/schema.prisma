@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Project {
+  id          String    @id @default(cuid())
+  name        String
+  websiteUrl  String
+  location    String?   
+  frequency   String    @default("daily") 
+  createdAt   DateTime  @default(now())
+  keywords    Keyword[]
+}
+
+model Keyword {
+  id               String       @id @default(cuid())
+  projectId        String
+  project          Project      @relation(fields: [projectId], references: [id])
+  text             String
+  isMapsTracking   Boolean      @default(false)
+  status           String       @default("active")
+  rankings         RankHistory[]
+  createdAt        DateTime     @default(now())
+}
+
+model RankHistory {
+  id              String   @id @default(cuid())
+  keywordId       String
+  keyword         Keyword  @relation(fields: [keywordId], references: [id])
+  organicRank     Int?     
+  mapsRank        Int?     
+  checkedAt       DateTime @default(now())
+}
