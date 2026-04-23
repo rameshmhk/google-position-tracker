@@ -1,0 +1,11 @@
+node_modules
+npm-debug.log
+dist
+.env
+local_db.json
+dev.db
+browser_data
+debug_scan_audit.log
+rankings.xlsx
+google_content.html
+google_search.png

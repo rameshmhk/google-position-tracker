@@ -1,15 +1,173 @@
 {
+  "users": [
+    {
+      "id": "1776349431674",
+      "name": "Test User",
+      "email": "test@example.com",
+      "password": "$2b$10$07TQPfcnv1/4VMP6YAQmpOVCn4MpRu.M4ohq36jvC9IXvrGAAg/em",
+      "createdAt": "2026-04-16T14:23:51.674Z",
+      "isVerified": true,
+      "verificationToken": null
+    },
+    {
+      "id": "1776349705175",
+      "name": "RAmesh",
+      "email": "rameshmjk@gmail.com",
+      "password": "$2b$10$oCMKRYB99R/vyXxCnTFzhu9KPEfMSeCtKEfw9GfVJMKF2IoCSKXiS",
+      "createdAt": "2026-04-16T14:28:25.175Z",
+      "isVerified": true,
+      "verificationToken": null
+    },
+    {
+      "id": "111499858881808739149",
+      "name": "Ramesh Kumar",
+      "email": "rameshwebseo@gmail.com",
+      "password": "",
+      "isVerified": true,
+      "verificationToken": null,
+      "picture": "https://lh3.googleusercontent.com/a/ACg8ocLXJI9opFjvVb52yhbhLOQFIyjXj5RumhauZ546ZXoDK73aU-gR=s96-c",
+      "createdAt": "2026-04-22T13:08:33.893Z"
+    }
+  ],
   "projects": [
     {
-      "id": "1775850832183",
-      "name": "adamdental",
-      "url": "adamdental.com.au",
-      "targetRegion": "au",
-      "businessName": "adamdental",
+      "id": "1776059828049",
+      "name": "Costumesinaustralia.com.au",
+      "url": "Costumesinaustralia.com.au",
+      "targetRegion": "in",
+      "businessName": "Costumesinaustralia",
       "serperApiKey": "",
       "status": "active",
       "schedule": "instant",
-      "lastCheck": 1776053159296
+      "lastCheck": 1776867316745,
+      "defaultLocation": "Mumba",
+      "scrapingStrategy": "api_only",
+      "scheduleDay": "Friday",
+      "lastChecked": "2026-04-22",
+      "device": "desktop",
+      "proxyUrl": "",
+      "defaultLat": "-37.8142454",
+      "defaultLng": "144.9631732",
+      "pincode": "3000",
+      "usePincode": true,
+      "userId": "1776349431674"
+    },
+    {
+      "id": "1776407544041",
+      "name": "are-corp.com updated",
+      "url": "are-corp.com",
+      "businessName": "Are Corp",
+      "serperApiKey": "",
+      "targetRegion": "us",
+      "schedule": "instant",
+      "scrapingStrategy": "direct_proxy",
+      "defaultLocation": "Kansas, United States",
+      "defaultLat": "38.27312",
+      "defaultLng": "-98.5821872",
+      "lastChecked": "2026-04-22",
+      "lastCheck": 1776855445547,
+      "status": "active",
+      "scheduleDay": "Friday",
+      "device": "desktop",
+      "proxyUrl": "",
+      "userId": "1776349431674"
+    },
+    {
+      "id": "1776867045499",
+      "userId": "1776349431674",
+      "name": "Final Test Updated",
+      "url": "final-test.com",
+      "businessName": "final",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "",
+      "defaultLat": 0,
+      "defaultLng": 0,
+      "pincode": "",
+      "usePincode": false,
+      "scrapingStrategy": "api_only",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": null,
+      "scheduleDay": "Friday"
+    },
+    {
+      "id": "1776868572373",
+      "userId": "1776349431674",
+      "name": "Verification Project",
+      "url": "https://example.com",
+      "businessName": "",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "Sydn",
+      "defaultLat": 0,
+      "defaultLng": 0,
+      "pincode": "",
+      "usePincode": false,
+      "scrapingStrategy": "api_only",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": null,
+      "scheduleDay": "Friday"
+    },
+    {
+      "id": "1776937143253",
+      "userId": "111499858881808739149",
+      "name": "abbagroup",
+      "url": "abbagroup.com.au",
+      "businessName": "Abba Group Business Brokers",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "2010, Surry Hills, New South Wales, Australia",
+      "defaultLat": -33.88289433526316,
+      "defaultLng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "scrapingStrategy": "api_only",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": "2026-04-23",
+      "lastCheck": 1776946337972,
+      "status": "active"
+    },
+    {
+      "id": "1776940075528",
+      "userId": "1776349431674",
+      "name": "abbagroup",
+      "url": "abbagroup.com.au",
+      "businessName": "abbagroup",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "Sydney, New South Wales, Australia",
+      "defaultLat": "-33.8698439",
+      "defaultLng": "151.2082848",
+      "pincode": "2000",
+      "usePincode": true,
+      "scrapingStrategy": "api_only",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": "2026-04-23",
+      "lastCheck": 1776942607553,
+      "status": "active"
+    },
+    {
+      "id": "1776946201535",
+      "userId": "111499858881808739149",
+      "name": "adamdental.com.au",
+      "url": "adamdental.com.au",
+      "businessName": "Adam Dental",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "3170, Mulgrave, Victoria, Australia",
+      "defaultLat": -37.92294097995951,
+      "defaultLng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "scrapingStrategy": "api_only",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": "2026-04-23",
+      "lastCheck": 1776946233447
     }
   ],
   "keywords": [
@@ -27,38 +185,1695 @@
       "organicStatus": "active"
     },
     {
-      "id": "2r575t",
-      "projectId": "1775850832183",
-      "text": "adamdental",
-      "organic": 1,
+      "id": "eo4cgd",
+      "projectId": "1776407544041",
+      "text": "rail bridge inspection",
+      "organic": 0,
       "maps": 0,
       "status": "active",
-      "mapsStatus": "active",
+      "mapsStatus": "paused",
       "organicStatus": "active",
-      "location": "Australia",
+      "location": "Kansas, USA",
       "lat": 0,
       "lng": 0,
-      "displayRank": "1//1"
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 9,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
     },
     {
-      "id": "kba2s",
-      "projectId": "1775850832183",
-      "text": "adam dental",
-      "organic": 1,
+      "id": "f0zqq",
+      "projectId": "1776407544041",
+      "text": "rail engineers",
+      "organic": 2,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//2",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 3,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 2,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "kwixc",
+      "projectId": "1776407544041",
+      "text": "railroad engineers",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "aqxhis",
+      "projectId": "1776407544041",
+      "text": "uas mapping services",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "3rf8jj",
+      "projectId": "1776407544041",
+      "text": "uas solutions",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "bs0a7l",
+      "projectId": "1776407544041",
+      "text": "bridge rating",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "7iiuq8",
+      "projectId": "1776407544041",
+      "text": "bridge health monitoring system",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "inkhyz",
+      "projectId": "1776407544041",
+      "text": "structural health monitoring of bridges",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "quajy",
+      "projectId": "1776407544041",
+      "text": "railroad bridge engineering",
+      "organic": 10,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//10",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 10,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "vludtj",
+      "projectId": "1776407544041",
+      "text": "railroad bridge inspection",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "abltpq",
+      "projectId": "1776407544041",
+      "text": "fra bridge inspection",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "lkt3ee",
+      "projectId": "1776407544041",
+      "text": "railroad bridge design",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "ihmzko",
+      "projectId": "1776059828049",
+      "text": "costumes australia",
+      "organic": 4,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Melbourne, Victoria, Australia",
+      "lat": -37.8142454,
+      "lng": 144.9631732,
+      "displayRank": "1//4",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 4,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 4,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "eu8t5k",
+      "projectId": "1776059828049",
+      "text": "1920s flapper costume",
+      "organic": 9,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Melbourne, Victoria, Australia",
+      "lat": -37.8142454,
+      "lng": 144.9631732,
+      "displayRank": "1//9",
+      "source": "Serper",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 9,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 9,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 9,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "7ugsiw",
+      "projectId": "1776059828049",
+      "text": "1920s flapper costumes",
+      "organic": 7,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Sydney, New South Wales, Australia",
+      "lat": -33.8698439,
+      "lng": 151.2082848,
+      "displayRank": "1//7",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 7,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "c16cir",
+      "projectId": "1776059828049",
+      "text": "oktoberfest costume",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "tydbs",
+      "projectId": "1776059828049",
+      "text": "oktoberfest costumes",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Melbourne, Victoria, Australia",
+      "lat": -37.8142454,
+      "lng": 144.9631732,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "i11t2",
+      "projectId": "1776059828049",
+      "text": "burlesque costumes",
+      "organic": 8,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//8",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 8,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "6tgf1k",
+      "projectId": "1776059828049",
+      "text": "halloween costumes australia",
+      "organic": 5,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//5",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 9,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 5,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "9btkkr",
+      "projectId": "1776059828049",
+      "text": "fancy dress australia",
+      "organic": 4,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//4",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 4,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 4,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "3fqrw7",
+      "projectId": "1776059828049",
+      "text": "halloween costume australia",
+      "organic": 7,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//7",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 7,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 7,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "kemg5l",
+      "projectId": "1776059828049",
+      "text": "zombie costume",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "61rhqi",
+      "projectId": "1776059828049",
+      "text": "fancy dress costumes",
+      "organic": 9,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//9",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 9,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "v9u7wq",
+      "projectId": "1776059828049",
+      "text": "school girl costume",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "lgtoo",
+      "projectId": "1776059828049",
+      "text": "seo result",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0
+    },
+    {
+      "id": "q402rk",
+      "projectId": "1776407544041",
+      "text": "news",
+      "organic": 0,
       "maps": 0,
       "status": "active",
       "mapsStatus": "active",
       "organicStatus": "active",
-      "location": "Australia",
+      "location": "Kansas, United States",
+      "lat": "38.27312",
+      "lng": "-98.5821872"
+    },
+    {
+      "id": "v8eu4bd",
+      "projectId": "1776059828049",
+      "text": "oktoberfest costume",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "AAMI Park, Melbourne, Victoria, Australia",
+      "lat": "-37.8251046",
+      "lng": "144.983743",
+      "history": [
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22"
+    },
+    {
+      "id": "0idqqcf",
+      "projectId": "1776937143253",
+      "text": "business broker sydney",
+      "organic": 9,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 9,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//9",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "iho0v7",
+      "projectId": "1776937143253",
+      "text": "business brokers canberra",
+      "organic": 6,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 6,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//6",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "1xz8fc",
+      "projectId": "1776937143253",
+      "text": "business brokers wollongong",
+      "organic": 6,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 6,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//6",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "vejp3",
+      "projectId": "1776937143253",
+      "text": "business broker",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "m8mbqn",
+      "projectId": "1776937143253",
+      "text": "business brokers australia",
+      "organic": 3,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 3,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//3",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "4af26",
+      "projectId": "1776937143253",
+      "text": "business sale brokers",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "arirw",
+      "projectId": "1776937143253",
+      "text": "sell a business",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "byihw",
+      "projectId": "1776937143253",
+      "text": "sell business sydney",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "kz96ea",
+      "projectId": "1776937143253",
+      "text": "sell your business",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "tj73en",
+      "projectId": "1776937143253",
+      "text": "business brokerage",
+      "organic": 5,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 5,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//5",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "uy6l",
+      "projectId": "1776937143253",
+      "text": "business brokers",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "02vcwa",
+      "projectId": "1776940075528",
+      "text": "business broker sydney",
+      "organic": 9,
+      "maps": 6,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney, New South Wales, Australia",
+      "lat": -33.8354519,
+      "lng": 151.2083011,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 9,
+          "maps": 6
+        }
+      ],
+      "displayRank": "1//9 LL 6",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "rjvqt",
+      "projectId": "1776940075528",
+      "text": "business brokers canberra",
+      "organic": 7,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney Council, North Sydney, New South Wales, Australia",
+      "lat": -33.8343157,
+      "lng": 151.2091974,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 7,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//7",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "fjlwyc",
+      "projectId": "1776940075528",
+      "text": "business brokers wollongong",
+      "organic": 6,
+      "maps": 8,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney Council, North Sydney, New South Wales, Australia",
+      "lat": -33.8343157,
+      "lng": 151.2091974,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 6,
+          "maps": 8
+        }
+      ],
+      "displayRank": "1//6 LL 8",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "xvhia7",
+      "projectId": "1776940075528",
+      "text": "business brokers newcastle",
+      "organic": 9,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney Council, North Sydney, New South Wales, Australia",
+      "lat": -33.8343157,
+      "lng": 151.2091974,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 9,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//9",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "n60k5r",
+      "projectId": "1776940075528",
+      "text": "business broker",
+      "organic": 9,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "",
       "lat": 0,
       "lng": 0,
-      "displayRank": "1//1"
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 9,
+          "maps": 1
+        }
+      ],
+      "displayRank": "1//9 LL 1",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "brqat",
+      "projectId": "1776940075528",
+      "text": "business brokers australia",
+      "organic": 10,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "",
+      "lat": 0,
+      "lng": 0,
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 10,
+          "maps": 1
+        }
+      ],
+      "displayRank": "1//10 LL 1",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "lsggll",
+      "projectId": "1776940075528",
+      "text": "business sale brokers",
+      "organic": 8,
+      "maps": 2,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "",
+      "lat": 0,
+      "lng": 0,
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 8,
+          "maps": 2
+        }
+      ],
+      "displayRank": "1//8 LL 2",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "7759li",
+      "projectId": "1776940075528",
+      "text": "sell a business",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney, New South Wales, Australia",
+      "lat": -33.8354519,
+      "lng": 151.2083011,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "rqjd9q",
+      "projectId": "1776940075528",
+      "text": "sell business sydney",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney, New South Wales, Australia",
+      "lat": -33.8354519,
+      "lng": 151.2083011,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "m3lhhs",
+      "projectId": "1776940075528",
+      "text": "sell your business",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney, New South Wales, Australia",
+      "lat": -33.8354519,
+      "lng": 151.2083011,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "l04yol",
+      "projectId": "1776940075528",
+      "text": "business brokerage",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney, New South Wales, Australia",
+      "lat": -33.8354519,
+      "lng": 151.2083011,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "cet82r",
+      "projectId": "1776940075528",
+      "text": "business brokers",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney Council, North Sydney, New South Wales, Australia",
+      "lat": -33.8343157,
+      "lng": 151.2091974,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "jws6eu",
+      "projectId": "1776940075528",
+      "text": "business brokers canberra",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Sydney, New South Wales, Australia",
+      "lat": "-33.8698439",
+      "lng": "151.2082848",
+      "pincode": "2000",
+      "usePincode": true
+    },
+    {
+      "id": "wfdnlp",
+      "projectId": "1776946201535",
+      "text": "dental supplies australia",
+      "organic": 1,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 1,
+          "maps": 1
+        }
+      ],
+      "displayRank": "1//1 LL 1",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "y8b5rg",
+      "projectId": "1776946201535",
+      "text": "dental needles",
+      "organic": 1,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 1,
+          "maps": 1
+        }
+      ],
+      "displayRank": "1//1 LL 1",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "4b692",
+      "projectId": "1776946201535",
+      "text": "dental supplies sydney",
+      "organic": 2,
+      "maps": 2,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 2,
+          "maps": 2
+        }
+      ],
+      "displayRank": "1//2 LL 2",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "66n06m",
+      "projectId": "1776946201535",
+      "text": "dental supplies brisbane",
+      "organic": 3,
+      "maps": 2,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 3,
+          "maps": 2
+        }
+      ],
+      "displayRank": "1//3 LL 2",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "qyvc6a",
+      "projectId": "1776946201535",
+      "text": "dental supplies melbourne",
+      "organic": 1,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 1,
+          "maps": 1
+        }
+      ],
+      "displayRank": "1//1 LL 1",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "uqczz7",
+      "projectId": "1776946201535",
+      "text": "dental supplies perth",
+      "organic": 2,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 2,
+          "maps": 1
+        }
+      ],
+      "displayRank": "1//2 LL 1",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "z8dp9c",
+      "projectId": "1776946201535",
+      "text": "dental supplies adelaide",
+      "organic": 2,
+      "maps": 3,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 2,
+          "maps": 3
+        }
+      ],
+      "displayRank": "1//2 LL 3",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "ixqf5g",
+      "projectId": "1776946201535",
+      "text": "dental equipment",
+      "organic": 2,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 2,
+          "maps": 1
+        }
+      ],
+      "displayRank": "1//2 LL 1",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "u831b6",
+      "projectId": "1776946201535",
+      "text": "powder free latex gloves",
+      "organic": 7,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 7,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//7",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "kw5p7p",
+      "projectId": "1776946201535",
+      "text": "autoclave bags",
+      "organic": 2,
+      "maps": 2,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 2,
+          "maps": 2
+        }
+      ],
+      "displayRank": "1//2 LL 2",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "ytsq7",
+      "projectId": "1776946201535",
+      "text": "scotchbond",
+      "organic": 3,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 3,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//3",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "bq16sa",
+      "projectId": "1776946201535",
+      "text": "nitrile gloves",
+      "organic": 6,
+      "maps": 4,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 6,
+          "maps": 4
+        }
+      ],
+      "displayRank": "1//6 LL 4",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
     }
   ],
   "settings": {
-    "globalSerperApiKey": "2eea1fe244ac36c3e615255abf212f88857385cd",
+    "globalSerperApiKey": "15e4117333b41e399dff5a3a9aed2b2a239730d7",
     "globalScrapingdogApiKey": "",
     "globalSerpapiKey": "",
-    "scrapingMode": "browser_only"
+    "globalProxyUrl": "",
+    "globalProxies": [],
+    "isRandomProxy": false,
+    "activeProxyIdx": null,
+    "serperQuotaActive": true
   }
 }

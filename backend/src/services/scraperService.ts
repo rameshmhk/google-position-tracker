@@ -9,29 +9,46 @@ import path from 'path';
 const puppeteerExtra = addExtra(puppeteer as any);
 puppeteerExtra.use(StealthPlugin());
 
-interface ScrapeOptions {
+const UULE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+
+export interface ScrapeOptions {
   keyword: string;
   targetUrl: string;
   region?: string;
   businessName?: string;
-  location?: string; // City name or area
+  location?: string;
   lat?: number;
   lng?: number;
-  proxy?: string;
-  apiKey?: string; // Serper.dev API Key
+  apiKey?: string;
   scrapingdogApiKey?: string;
   serpapiKey?: string;
   skipMaps?: boolean;
   skipOrganic?: boolean;
+  device?: 'desktop' | 'mobile';
+  proxyUrl?: string;
 }
 
 const BROWSER_DATA_DIR = path.join(process.cwd(), 'browser_data');
 
-const UULE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+export const REGION_TO_COUNTRY: Record<string, string> = {
+  'au': 'Australia',
+  'us': 'United States',
+  'gb': 'United Kingdom',
+  'uk': 'United Kingdom',
+  'in': 'India'
+};
 
-const getUULE = (location: string): string => {
-  // Use location as provided, assume it's a valid city/regin in Australia
-  const canonical = location.toLowerCase().includes('australia') ? location : `${location},Australia`;
+const REGION_TO_TLD: Record<string, string> = {
+  'au': 'google.com.au',
+  'us': 'google.com',
+  'gb': 'google.co.uk',
+  'uk': 'google.co.uk',
+  'in': 'google.co.in'
+};
+
+const getUULE = (location: string, region: string = 'au'): string => {
+  const country = REGION_TO_COUNTRY[region.toLowerCase()] || 'Australia';
+  const canonical = location.toLowerCase().includes(country.toLowerCase()) ? location : `${location}, ${country}`;
   const length = canonical.length;
   const key = UULE_CHARS[length] || 'A';
   const encoded = Buffer.from(canonical).toString('base64').replace(/=/g, '');
@@ -94,8 +111,18 @@ export const scrapeSerperBatch = async (optionsList: ScrapeOptions[]) => {
     
     // Create batch payload
     const batchPayload = results.map(r => {
+      const region = r.options.region || 'au';
+      const country = REGION_TO_COUNTRY[region.toLowerCase()] || 'Australia';
       const rawLocation = (r.options.location || '').toLowerCase().trim();
-      const useLocation = (rawLocation === 'australia') ? '' : (r.options.location || '');
+      
+      // IMPROVED: Strict mapping to ensure City + Country format (Matches Individual Check Logic)
+      let finalLocation = r.options.location || '';
+      if (finalLocation && !finalLocation.includes(',')) {
+        finalLocation = `${finalLocation}, ${country}`;
+      }
+
+      // If location is just the country name, leave it empty for Serper to use gl-region default
+      const useLocation = (rawLocation === country.toLowerCase()) ? '' : finalLocation;
       
       // LOG COORDINATES IF PRESENT
       if (r.options.lat || r.options.lng) {
@@ -104,7 +131,7 @@ export const scrapeSerperBatch = async (optionsList: ScrapeOptions[]) => {
 
       return {
         q: r.keyword,
-        gl: r.options.region || 'au',
+        gl: region,
         location: useLocation,
         num: 100 
       };
@@ -135,9 +162,16 @@ export const scrapeSerperBatch = async (optionsList: ScrapeOptions[]) => {
           const res = organic[i];
           if (!res) continue;
           const resLink = (res.link || '').toLowerCase();
-          const isMatch = resLink.includes(targetDomain) || (targetDomain.includes('.') && resLink.includes(targetDomain.split('.')[0] || ''));
+          const resTitle = (res.title || '').toLowerCase();
+          
+          // PHASE 1: DIRECT DOMAIN MATCH
+          const isDomainMatch = resLink.includes(targetDomain);
+          
+          // PHASE 2: BRAND MATCH (First part of domain, e.g. 'abbagroup')
+          const brand = targetDomain.split('.')[0] || '';
+          const isBrandMatch = brand.length > 3 && (resLink.includes(brand) || resTitle.includes(brand));
 
-          if (isMatch) {
+          if (isDomainMatch || isBrandMatch) {
             item.organicRank = res.position || (i + 1);
             item.foundUrl = res.link;
             item.found = true;
@@ -151,19 +185,17 @@ export const scrapeSerperBatch = async (optionsList: ScrapeOptions[]) => {
         item.found = true; // Mark as found to skip deep scan
       }
 
-      // 2. Deep Recovery Loop (Pages 2 to 10)
-      // If Page 1 returned exactly 10 but we asked for 100, or if not found, we scan iteratively
+      // 2. Deep Recovery Loop (Pages 11 to 20) - Since Page 1 (num:100) already checked up to 100
       if (!item.found) {
-        console.log(`\n⚠️ [DASHBOARD] NO MATCH for "${item.keyword}" in first wave. Retrying iterative Deep Scan...`);
+        console.log(`\n⚠️ [DASHBOARD] NO MATCH for "${item.keyword}" in first wave (Top 100). Retrying iterative Deep Scan for the next 100...`);
         
-        // Start from page 2. Since Page 1 might have only given 10 results, we check 11 onwards.
-        for (let p = 2; p <= 10; p++) {
+        // Start from page 11 (Pos 101 - 200)
+        for (let p = 11; p <= 20; p++) {
           if (item.found) break;
           try {
             const rawLoc = (item.options.location || '').toLowerCase().trim();
             const useLoc = (rawLoc === 'australia') ? '' : item.options.location;
 
-            // Use num: 10 for iterative scan to be safe and consistent
             const deepRes = await axios.post('https://google.serper.dev/search', {
               q: item.keyword,
               gl: item.options?.region || 'au',
@@ -184,13 +216,9 @@ export const scrapeSerperBatch = async (optionsList: ScrapeOptions[]) => {
               if (!dr) continue;
               const drLink = (dr.link || '').toLowerCase();
               
-              // DEBUG: Log every link checked in deep scan
-              console.log(`[DeepScan-Debug] Page ${p} Pos ${di + 1}: Checking "${drLink}" against "${targetDomain}"`);
-              
               const drMatch = drLink.includes(targetDomain) || (targetDomain.includes('.') && drLink.includes(targetDomain.split('.')[0] || ''));
 
               if (drMatch) {
-                // FORCE ABSOLUTE CALCULATION: (Position on page) + (Previous pages * 10)
                 item.organicRank = (di + 1 + ((p - 1) * 10));
                 item.foundUrl = dr.link;
                 item.found = true;
@@ -206,7 +234,7 @@ export const scrapeSerperBatch = async (optionsList: ScrapeOptions[]) => {
       }
       
       if (!item.found) {
-        fs.appendFileSync(ABS_LOG, `⚠ NO MATCH FOUND in Top 100 results for "${item.keyword}"\n`);
+        fs.appendFileSync(ABS_LOG, `⚠ NO MATCH FOUND in Top 200 results for "${item.keyword}"\n`);
       }
     }
 
@@ -256,7 +284,8 @@ export const scrapeSerperBatch = async (optionsList: ScrapeOptions[]) => {
       keyword: r.keyword,
       organicRank: r.organicRank,
       mapsRank: r.mapsRank,
-      foundUrl: r.foundUrl
+      foundUrl: r.foundUrl,
+      source: r.organicRank > 0 || r.mapsRank > 0 ? 'Serper' : ''
     }));
 
   } catch (err: any) {
@@ -265,7 +294,8 @@ export const scrapeSerperBatch = async (optionsList: ScrapeOptions[]) => {
       keyword: r.keyword,
       organicRank: r.organicRank,
       mapsRank: r.mapsRank,
-      foundUrl: r.foundUrl
+      foundUrl: r.foundUrl,
+      error: err.response?.status === 403 || err.message.includes('403') ? 'QUOTA_EXCEEDED' : undefined
     }));
   }
 };
@@ -281,14 +311,19 @@ export const scrapeSerperRank = async (options: ScrapeOptions) => {
       ?.split('?')[0]
       ?.trim() || '';
     
-    console.log(`[Serper] Analyzing: "${cleanTargetDomain}" for Keyword: "${keyword}"`);
+    // Canonicalize Locations for Serper Accuracy
+    const useLocation = (location || '').toLowerCase().trim();
+    const country = REGION_TO_COUNTRY[region?.toLowerCase() || 'au'] || 'Australia';
+    const finalLocation = (useLocation && !useLocation.includes(',')) ? `${location}, ${country}` : (location || '');
+
+    console.log(`[Serper] Analyzing: "${cleanTargetDomain}" for Keyword: "${keyword}" (Location: ${finalLocation})`);
 
     // 1. Organic Mapping (Pages 1-3)
     let foundOrganic = false;
     for (let page = 1; page <= 3; page++) {
       if (foundOrganic) break;
       
-      console.log(`[Serper] Scanning Page ${page}...`);
+      console.log(`[Serper] Scanning Page ${page} (num=100)...`);
       const searchRes = await axios.post('https://google.serper.dev/search', {
         q: keyword,
         gl: region || 'au',
@@ -304,19 +339,22 @@ export const scrapeSerperRank = async (options: ScrapeOptions) => {
         const item = organic[i];
         const itemLink = (item.link || '').toLowerCase();
         
-        const itemPos = item.position || (i + 1);
-        const absoluteRank = itemPos + ((page - 1) * 10);
+        // Serper returns absolute position in 'position' field
+        const absoluteRank = item.position || (i + 1 + ((page - 1) * 100));
 
-        // HYPER FLEXIBLE MATCHING
-        if (itemLink.includes(cleanTargetDomain)) {
+        // SUPER ROBUST MATCHING (Matches domain, brand, or even snippets)
+        const brandName = cleanTargetDomain.split('.')[0] || '';
+        const isMatch = itemLink.includes(cleanTargetDomain) || (brandName.length > 4 && itemLink.includes(brandName));
+
+        if (isMatch) {
           result.organicRank = absoluteRank;
-          result.foundUrl = item.link; // CAPTURE THE FULL EXACT URL
+          result.foundUrl = item.link;
           foundOrganic = true;
-          console.log(`[Serper] 🎯 ORGANIC HIT! Rank ${absoluteRank}`);
+          console.log(`[Serper] 🎯 ORGANIC HIT! Rank ${absoluteRank} for "${cleanTargetDomain}"`);
           break;
         }
       }
-      if (organic.length < 5) break; 
+      if (organic.length < 50) break; 
     }
 
     // 2. Maps Mapping
@@ -354,62 +392,64 @@ export const scrapeSerperRank = async (options: ScrapeOptions) => {
     console.log(`[Serper] Final Result:`, result);
     return result;
   } catch (err: any) {
-    console.error('[Serper] Error:', err.message);
+    if (err.response?.status === 403 || err.response?.data?.message?.includes('credit')) {
+      const QUOTA_MSG = `❌ [Serper] API QUOTA EXCEEDED! Please check your dashboard credit limit.`;
+      console.error(QUOTA_MSG);
+      fs.appendFileSync(path.join(process.cwd(), 'debug_scan_audit.log'), `${QUOTA_MSG}\n`);
+    } else {
+      console.error('[Serper] Error:', err.message);
+    }
     return result;
   }
 };
 
 /**
- * Main Scraper Function (Dual-Mode)
+ * Main Scraper Function (Strictly Puppeteer/Real Browser)
+ * Note: Serper API is handled by hybridScrape. This function is for browser fallback.
  */
-export const scrapeGoogleRank = async (options: ScrapeOptions) => {
-  // If API Key is provided, use Serper.dev (Much more reliable & faster)
-  if (options.apiKey) {
-    try {
-      return await scrapeSerperRank(options);
-    } catch (err) {
-      console.warn('[Scraper] Serper API failed, falling back to Puppeteer...');
-    }
-  }
+export const scrapeGoogleRank = async (options: ScrapeOptions, retryCount: number = 0) => {
+  const ABS_LOG = path.join(process.cwd(), 'debug_scan_audit.log');
+  fs.appendFileSync(ABS_LOG, `[Scraper-PUP] TRACE: Entering scrapeGoogleRank for "${options.keyword}"\n`);
 
   const { keyword, targetUrl, region, businessName, location, lat, lng, proxy } = options;
   
-  const browser = await (puppeteerExtra as any).launch({
-    headless: true,
-    userDataDir: BROWSER_DATA_DIR,
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-blink-features=AutomationControlled',
-      proxy ? `--proxy-server=${proxy}` : ''
-    ].filter(Boolean)
-  });
-
+  let browser: any = null;
   try {
-    const page = await browser.newPage();
+    fs.appendFileSync(ABS_LOG, `[Scraper-PUP] TRACE: Launching browser (Proxy: ${options.proxyUrl || 'None'})...\n`);
     
-    await page.setViewport({
-      width: 1280 + Math.floor(Math.random() * 100),
-      height: 800 + Math.floor(Math.random() * 100),
-      deviceScaleFactor: 1,
-    });
-
-    const ua = (USER_AGENTS[Math.floor(Math.random() * USER_AGENTS.length)] || USER_AGENTS[0]) as string;
-    await page.setUserAgent(ua);
-
-    const tld = region === 'au' ? 'google.com.au' : 'google.com';
-    const regionParam = region ? `&gl=${region}` : '';
-    let uuleParam = '';
-    if (location) {
-      const uule = getUULE(location);
-      uuleParam = `&uule=${uule}`;
+    const launchArgs = ['--no-sandbox', '--disable-setuid-sandbox'];
+    if (options.proxyUrl) {
+      launchArgs.push(`--proxy-server=${options.proxyUrl}`);
     }
 
+    browser = await (puppeteerExtra as any).launch({
+      headless: true,
+      userDataDir: BROWSER_DATA_DIR,
+      args: launchArgs
+    });
+    fs.appendFileSync(ABS_LOG, `[Scraper-PUP] TRACE: Browser launched successfully.\n`);
+
+    const page = await browser.newPage();
+    
+    // DEVICE EMULATION (MOBILE VS DESKTOP)
+    if (options.device === 'mobile') {
+      console.log(`[Puppeteer] 📱 Emulating Mobile Device (iPhone)...`);
+      await page.setUserAgent('Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1');
+      await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
+    } else {
+      await page.setViewport({ width: 1280, height: 800 });
+    }
+
+    const uuleParam = location ? `&uule=${getUULE(location, region)}` : '';
+    const tld = REGION_TO_TLD[region?.toLowerCase() || 'au'] || 'google.com';
+    const regionParam = region ? `&gl=${region}` : '';
+
+
     if (lat && lng) {
-      console.log(`[Puppeteer] Setting Geolocation: ${lat}, ${lng}`);
-      await page.setGeolocation({ latitude: Number(lat), longitude: Number(lng) });
+      console.log(`[Puppeteer] 📍 SENSOR MODE ACTIVE: Setting Geolocation to ${lat}, ${lng}`);
       const context = browser.defaultBrowserContext();
       await context.overridePermissions(`https://www.${tld}`, ['geolocation']);
+      await page.setGeolocation({ latitude: Number(lat), longitude: Number(lng), accuracy: 100 });
     }
 
     let finalResult = { organicRank: 0, mapsRank: 0, foundUrl: '' };
@@ -421,8 +461,9 @@ export const scrapeGoogleRank = async (options: ScrapeOptions) => {
         const start = (pageNum - 1) * 10;
         const searchUrl = `https://www.${tld}/search?q=${encodeURIComponent(keyword)}&start=${start}${regionParam}${uuleParam}`;
         
-        console.log(`[Puppeteer] Scanning Page ${pageNum}...`);
-        console.log(`[Puppeteer] URL: ${searchUrl}`);
+        const ABS_LOG = path.join(process.cwd(), 'debug_scan_audit.log');
+        fs.appendFileSync(ABS_LOG, `[Puppeteer] Scanning Page ${pageNum} for "${keyword}"...\n`);
+        fs.appendFileSync(ABS_LOG, `[Puppeteer] URL: ${searchUrl}\n`);
         
         await page.goto(searchUrl, { waitUntil: 'networkidle2', timeout: 60000 });
 
@@ -477,9 +518,22 @@ export const scrapeGoogleRank = async (options: ScrapeOptions) => {
             }
 
             if (!solved) {
-                console.error('❌ CAPTCHA solving timed out after 5 minutes.');
-                await interactiveBrowser.close();
-                return { organicRank: 0, mapsRank: 0, foundUrl: '' };
+                if (retryCount < 1) {
+                    console.log(`⚠️ CAPTCHA solving timed out after 5 minutes. Initializing IP Cooldown (5 mins) for "${keyword}"...`);
+                    fs.appendFileSync(ABS_LOG, `[Scraper-PUP] CAPTCHA Timeout for "${keyword}". Starting 5-min cooldown (Retry 1/1).\n`);
+                    await interactiveBrowser.close();
+                    
+                    // COOLDOWN WAIT
+                    await wait(5 * 60 * 1000); 
+                    
+                    console.log(`🔄 Cooldown finished. Retrying search for "${keyword}"...`);
+                    return await scrapeGoogleRank(options, retryCount + 1);
+                } else {
+                    console.error(`❌ CAPTCHA solving timed out AGAIN for "${keyword}". Skipping to avoid potential IP ban.`);
+                    fs.appendFileSync(ABS_LOG, `[Scraper-PUP] Final failure for "${keyword}" after retry.\n`);
+                    await interactiveBrowser.close();
+                    return { organicRank: 0, mapsRank: 0, foundUrl: '' };
+                }
             }
 
             // Verify and process results for the current page
@@ -509,9 +563,10 @@ export const scrapeGoogleRank = async (options: ScrapeOptions) => {
 
     return finalResult;
 
-  } catch (error) {
-    console.error('Scraping Error:', error);
-    throw error;
+  } catch (error: any) {
+    const ABS_LOG = path.join(process.cwd(), 'debug_scan_audit.log');
+    fs.appendFileSync(ABS_LOG, `❌ [Scraper-PUP] CRITICAL ERROR for "${options.keyword}": ${error.message}\n${error.stack}\n`);
+    return { organicRank: 0, mapsRank: 0, foundUrl: '' };
   } finally {
     if (browser) await browser.close();
   }
@@ -523,34 +578,74 @@ async function processOrganicResults($: any, targetUrl: string | undefined, busi
     let mapsRank = 0;
     let foundUrl = '';
 
-    const organicResults: string[] = [];
+    const organicResults: { link: string; title: string }[] = [];
+    const ABS_LOG = path.join(process.cwd(), 'debug_scan_audit.log');
     
-    // Broadest possible selector to avoid missing items
-    $('a[href^="http"]').each((_i: any, el: any) => {
-      const href = $(el).attr('href');
+    // 1. DYNAMIC MATCHING CONFIG
+    const cleanTarget = targetUrl ? targetUrl.toLowerCase().replace(/^(https?:\/\/)?(www\.)?/, '').split('/')[0] || '' : '';
+    const brandFragment = cleanTarget.split('.')[0] || '';
+    const formalBusinessName = businessName ? businessName.toLowerCase().trim() : '';
+
+    // 2. GREEDY LINK EXTRACTION (Captures EVERYTHING that looks like an organic result)
+    $('a').each((_i: any, el: any) => {
+      let href = $(el).attr('href');
       if (!href) return;
+
+      // Handle Relative Google Redirects
+      if (href.startsWith('/url?q=')) {
+        try {
+          const urlObj = new URL('https://www.google.com' + href);
+          const q = urlObj.searchParams.get('q');
+          if (q) href = q;
+        } catch (e) {}
+      }
+
+      if (!href.startsWith('http')) return;
       
-      if (href.includes('google.com') || href.includes('gstatic.com') || href.includes('youtube.com') || href.includes('facebook.com')) return;
+      // Strict filter for system/social noise (but keep candidate links)
+      if (href.includes('google.com') || href.includes('gstatic.com') || href.includes('youtube.com') || 
+          href.includes('facebook.com') || href.includes('instagram.com') || href.includes('linkedin.com')) return;
       
-      const hasTitle = $(el).find('h3').length > 0 || $(el).closest('div.g, .tF2Cxc, .BYM6Wc').length > 0;
+      const title = $(el).find('h3, .lc20lb').text().trim() || $(el).text().trim();
+      const inContainer = $(el).closest('div.g, .tF2Cxc, .MjjYud, .v55uic, .g.mnr-c, .kvH3mc').length > 0;
       
-      if (hasTitle && !organicResults.includes(href)) {
-        organicResults.push(href);
+      // If it's in a container OR has a real title, it's a candidate
+      if ((title || inContainer) && !organicResults.some(r => r.link === href)) {
+        organicResults.push({ link: href, title });
       }
     });
 
-    if (targetUrl) {
-      const cleanTarget = targetUrl.toLowerCase().replace(/^(https?:\/\/)?(www\.)?/, '').split('/')[0] || '';
-      const brandName = cleanTarget.split('.')[0] || '';
+    if (organicResults.length > 0) {
+        fs.appendFileSync(ABS_LOG, `[Scraper-PUP] Page ${pageNum}: Extracted ${organicResults.length} candidate results.\n`);
+    }
 
-      const foundIdx = organicResults.findIndex(link => {
-        const cleanLink = link.toLowerCase();
-        return cleanLink.includes(cleanTarget) || (brandName.length > 3 && cleanLink.includes(brandName));
+    // 3. MULTI-STAGE MATCHING (Mirroring human intelligence)
+    if (cleanTarget) {
+      const foundIdx = organicResults.findIndex(res => {
+        const link = res.link.toLowerCase();
+        const title = res.title.toLowerCase();
+
+        // Stage A: Domain Match (Direct)
+        const domainMatch = link.includes(cleanTarget);
+        
+        // Stage B: Brand Fragment Match (e.g., 'are-corp' in URL)
+        const fragmentMatch = brandFragment.length > 3 && link.includes(brandFragment);
+
+        // Stage C: Title-Level Brand Match (e.g., 'Are Corp' in result title)
+        const titleMatch = formalBusinessName.length > 3 && title.includes(formalBusinessName);
+
+        const isHit = domainMatch || fragmentMatch || titleMatch;
+
+        if (isHit) {
+            fs.appendFileSync(ABS_LOG, `[Parser-PUP] 🎯 HIT! Matched "${link}" (Title: "${title}")\n`);
+            fs.appendFileSync(ABS_LOG, `   Rationale: Domain:${domainMatch}, Fragment:${fragmentMatch}, Title:${titleMatch}\n`);
+        }
+        return isHit;
       });
 
       if (foundIdx !== -1) {
           organicRank = (pageNum - 1) * 10 + (foundIdx + 1);
-          foundUrl = organicResults[foundIdx] || '';
+          foundUrl = organicResults[foundIdx].link || '';
       }
     }
 
@@ -631,13 +726,15 @@ export const scrapeSerpApi = async (options: ScrapeOptions) => {
  * HYBRID SCRAPER: API Tiered Fallback → Puppeteer
  */
 export const hybridScrape = async (options: ScrapeOptions & { strategy?: string }) => {
-    const ABS_LOG = 'C:\\Users\\natas\\OneDrive\\Desktop\\Google Position Tracter\\backend\\debug_scan_audit.log';
-    fs.appendFileSync(ABS_LOG, `\n--- [HYBRID START] Keyword: "${options.keyword}" ---\n`);
+    const ABS_LOG = path.join(process.cwd(), 'debug_scan_audit.log');
+    fs.appendFileSync(ABS_LOG, `\n--- [HYBRID START] Keyword: "${options.keyword}" (Strategy: ${options.strategy || 'hybrid'}) ---\n`);
     
-    console.log(`\n🚀 [HYBRID] Starting scan for: "${options.keyword}"`);
+    console.log(`\n🚀 [HYBRID] Starting scan for: "${options.keyword}" using Strategy: ${options.strategy || 'hybrid'}`);
+
+    const useApis = options.strategy !== 'browser_only';
 
     // 1. Try Serper API (Primary)
-    if (options.apiKey) {
+    if (useApis && options.apiKey) {
       const serperRes = await scrapeSerperRank(options);
       if (serperRes.organicRank > 0 || (serperRes.mapsRank > 0 && options.skipOrganic)) {
           console.log(`✅ [HYBRID] Found via Serper API.`);
@@ -646,8 +743,8 @@ export const hybridScrape = async (options: ScrapeOptions & { strategy?: string 
     }
     
     // 2. Try Scrapingdog (Secondary)
-    if (options.scrapingdogApiKey) {
-      console.log(`🔄 [HYBRID] Serper missed. Trying Scrapingdog...`);
+    if (useApis && options.scrapingdogApiKey) {
+      console.log(`🔄 [HYBRID] Serper missed or skipped. Trying Scrapingdog...`);
       const sdogRes = await scrapeScrapingdog(options);
       if (sdogRes.organicRank > 0) {
           console.log(`✅ [HYBRID] Found via Scrapingdog.`);
@@ -656,17 +753,24 @@ export const hybridScrape = async (options: ScrapeOptions & { strategy?: string 
     }
 
     // 3. Try SerpApi (Tertiary)
-    if (options.serpapiKey) {
-      console.log(`🔄 [HYBRID] Scrapingdog missed. Trying SerpApi...`);
+    if (useApis && options.serpapiKey) {
+      console.log(`🔄 [HYBRID] Scrapingdog missed or skipped. Trying SerpApi...`);
       const serpRes = await scrapeSerpApi(options);
       if (serpRes.organicRank > 0) {
           console.log(`✅ [HYBRID] Found via SerpApi.`);
           return serpRes;
       }
     }
+ 
+    // NEW: API Only Mode - Strictly skip browser fallback
+    if (options.strategy === 'api_only') {
+      console.log(`⏹️ [HYBRID] Strategy is 'API Only'. Skipping browser fallback.`);
+      fs.appendFileSync(ABS_LOG, `⏹️ Strategy is 'API Only'. Skipping browser fallback.\n`);
+      return { organicRank: 0, mapsRank: 0, foundUrl: '', source: 'API (None)' };
+    }
     
     // 4. Fallback to Puppeteer (Real Browser)
-    console.log(`⚠️ [HYBRID] All APIs missed. Falling back to Real Browser...`);
+    console.log(`⚠️ [HYBRID] ${useApis ? 'All APIs missed' : 'API phase skipped'}. Falling back to Real Browser...`);
     fs.appendFileSync(ABS_LOG, `⚠️ FALLBACK to Puppeteer triggered...\n`);
     
     const pupResult = await scrapeGoogleRank(options);
@@ -677,5 +781,5 @@ export const hybridScrape = async (options: ScrapeOptions & { strategy?: string 
     }
     
     console.log(`❌ [HYBRID] No rank found even in Real Browser.`);
-    return { ...pupResult, source: 'None' };
+    return { ...pupResult, source: '' };
 };

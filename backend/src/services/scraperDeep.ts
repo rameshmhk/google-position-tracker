@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { REGION_TO_COUNTRY } from './scraperService.js';
 
 export interface ScrapeOptions {
   keyword: string;
@@ -23,9 +24,10 @@ export const scrapeSerperRankDeep = async (options: ScrapeOptions) => {
       
     console.log(`[DeepScraper] Targeting: "${cleanTargetDomain}" for Keyword: "${keyword}"`);
 
-    // SMART LOCATION LOGIC: Skip "Australia" (case-insensitive) for organic broad searches 
+    // SMART LOCATION LOGIC: Skip country name (case-insensitive) for organic broad searches 
     const rawLoc = (location || '').toLowerCase().trim();
-    const useLocation = (rawLoc === 'australia') ? '' : (location || '');
+    const country = REGION_TO_COUNTRY[region?.toLowerCase() || 'au'] || 'Australia';
+    const useLocation = (rawLoc === country.toLowerCase()) ? '' : (location || '');
 
     // 1. Organic Mapping (Pages 1-3)
     let foundOrganic = false;
