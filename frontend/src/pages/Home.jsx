@@ -1,12 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { motion } from 'framer-motion';
 
 const Home = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "RankTracker Pro",
+    "operatingSystem": "Web",
+    "applicationCategory": "BusinessApplication",
+    "description": "All-in-one SEO toolset for rank tracking, site audits, and competitive intelligence.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
+
   return (
     <div className="landing-page">
+      <Helmet>
+        <title>RankTracker Pro - Professional SEO Ranking & Audit Software</title>
+        <meta name="description" content="All-in-one SEO toolset for rank tracking, site audits, and competitive intelligence. Trusted by leading SEO professionals." />
+        <meta name="keywords" content="seo tracker, rank tracker, google rank, keyword rank, local seo" />
+        <script type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      </Helmet>
+      
       <Navbar />
       
       <header className="hero" style={{ background: '#1D2B44', padding: '120px 24px', color: '#fff', textAlign: 'center', display: 'block' }}>

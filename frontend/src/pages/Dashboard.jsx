@@ -1,9 +1,14 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import API_BASE_URL from '../config/apiConfig';
+import { 
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
+  BarChart, Bar, Cell, Legend, AreaChart, Area
+} from 'recharts';
 
 // Persistent cache for city autocomplete in dashboard
 const cityAutocompleteCache = new Map();
@@ -30,6 +35,9 @@ const Dashboard = () => {
   const [showKeyModal, setShowKeyModal] = useState(false);
   const [showEditKeyModal, setShowEditKeyModal] = useState(false);
   const [serperQuotaActive, setSerperQuotaActive] = useState(true);
+  const [sdogQuotaActive, setSdogQuotaActive] = useState(true);
+  const [serpapiQuotaActive, setSerpapiQuotaActive] = useState(true);
+  const [proxyActive, setProxyActive] = useState(true);
   const [scanProgress, setScanProgress] = useState({ current: 0, total: 0, status: '', estimate: 0 });
   const [editingKey, setEditingKey] = useState(null);
   const [newKeys, setNewKeys] = useState('');
@@ -37,6 +45,29 @@ const Dashboard = () => {
   const [isManualLocationSearch, setIsManualLocationSearch] = useState(false);
   const [expandedKeyIds, setExpandedKeyIds] = useState([]);
   const [visibleCounts, setVisibleCounts] = useState({}); // { keyId: { p: 5, m: 5, map: 5 } }
+
+
+  const getRankChange = (history, type) => {
+    if (!history || history.length < 2) return { diff: 0, trend: 'stable' };
+    
+    // History is usually sorted by date in backend, but let's be sure
+    const sorted = [...history].sort((a, b) => new Date(b.date) - new Date(a.date));
+    
+    const latest = sorted[0][type] || 0;
+    const previous = sorted[1][type] || 0;
+
+    if (latest === 0 && previous === 0) return { diff: 0, trend: 'stable' };
+    
+    // If it wasn't ranked before but is now
+    if (previous === 0 && latest > 0) return { diff: latest, trend: 'up', isNew: true };
+    // If it was ranked but lost it
+    if (latest === 0 && previous > 0) return { diff: previous, trend: 'down', isLost: true };
+
+    const diff = previous - latest; // Lower number is better rank (e.g., 10 -> 7 is +3)
+    if (diff > 0) return { diff, trend: 'up' };
+    if (diff < 0) return { diff: Math.abs(diff), trend: 'down' };
+    return { diff: 0, trend: 'stable' };
+  };
 
   // AHREFS DESIGN TOKEN: Status labels
   const STATUS_LABELS = {
@@ -79,6 +110,8 @@ const Dashboard = () => {
     } catch (err) { console.error('Keywords fetch error:', err); }
   };
 
+
+
   const fetchSettings = async () => {
     try {
       const res = await fetch(`${API_BASE}/settings`, {
@@ -86,7 +119,18 @@ const Dashboard = () => {
       });
       const data = await res.json();
       setSerperQuotaActive(data.serperQuotaActive !== false);
+      setSdogQuotaActive(data.scrapingdogQuotaActive !== false);
+      setSerpapiQuotaActive(data.serpapiQuotaActive !== false);
+      setProxyActive(data.proxyActive !== false);
     } catch (err) { console.error('Settings fetch error:', err); }
+  };
+
+  const handleQuotaErrors = (quotaErrors) => {
+    if (!quotaErrors || quotaErrors.length === 0) return;
+    if (quotaErrors.includes('QUOTA_EXCEEDED')) setSerperQuotaActive(false);
+    if (quotaErrors.includes('SDOG_QUOTA_EXCEEDED')) setSdogQuotaActive(false);
+    if (quotaErrors.includes('SERPAPI_QUOTA_EXCEEDED')) setSerpapiQuotaActive(false);
+    if (quotaErrors.includes('PROXY_FAILURE')) setProxyActive(false);
   };
 
   const handleDeleteProject = async (id) => {
@@ -289,6 +333,7 @@ const Dashboard = () => {
       const data = await res.json();
       if (data.success) {
         fetchKeywords(selectedId);
+        if (data.quotaErrors) handleQuotaErrors(data.quotaErrors);
       }
     } catch (err) { console.error('Check project error:', err); }
     finally { setIsChecking(false); setCheckingIds([]); }
@@ -312,6 +357,7 @@ const Dashboard = () => {
       if (data.success) {
         fetchKeywords(selectedId);
         setSelectedKeyIds([]);
+        if (data.quotaErrors) handleQuotaErrors(data.quotaErrors);
       }
     } catch (err) { console.error('Selective check error:', err); }
     finally { setIsChecking(false); setCheckingIds([]); }
@@ -328,6 +374,7 @@ const Dashboard = () => {
       const data = await res.json();
       if (data.success) {
         fetchKeywords(selectedId);
+        if (data.quotaErrors) handleQuotaErrors(data.quotaErrors);
       }
     } catch (err) { console.error('Individual check error:', err); }
     finally { setIsChecking(false); setCheckingIds(prev => prev.filter(cid => cid !== id)); }
@@ -419,11 +466,39 @@ const Dashboard = () => {
 
   return (
     <div className="app-container" style={{ background: '#f8f9fa', height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
+      <Helmet>
+        <title>Dashboard | RankTracker Pro</title>
+      </Helmet>
+
       {!serperQuotaActive && (
         <div style={{ background: 'linear-gradient(90deg, #ef4444, #b91c1c)', color: '#fff', padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px', fontWeight: '800', fontSize: '13px', boxShadow: '0 4px 15px rgba(239, 68, 68, 0.3)', zIndex: 1000 }}>
           <span style={{fontSize: '20px'}}>⚠️</span>
           <span>CRITICAL: YOUR SERPER API QUOTA HAS BEEN DEPLETED. SCANS WILL FAIL UNTIL CREDITS ARE ADDED.</span>
           <button onClick={() => navigate('/settings')} style={{ background: '#fff', color: '#ef4444', border: 'none', padding: '6px 16px', borderRadius: '4px', fontWeight: '900', fontSize: '11px', cursor: 'pointer', marginLeft: '20px' }}>PROFILE SETTINGS</button>
+        </div>
+      )}
+
+      {!sdogQuotaActive && (
+        <div style={{ background: 'linear-gradient(90deg, #f97316, #ea580c)', color: '#fff', padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px', fontWeight: '800', fontSize: '13px', boxShadow: '0 4px 15px rgba(249, 115, 22, 0.3)', zIndex: 999 }}>
+          <span style={{fontSize: '20px'}}>🚨</span>
+          <span>SCRAPINGDOG QUOTA DEPLETED: HTML FALLBACK SCANNING IS NOW DISABLED.</span>
+          <button onClick={() => navigate('/settings')} style={{ background: '#fff', color: '#f97316', border: 'none', padding: '6px 16px', borderRadius: '4px', fontWeight: '900', fontSize: '11px', cursor: 'pointer', marginLeft: '20px' }}>UPDATE KEY</button>
+        </div>
+      )}
+
+      {!serpapiQuotaActive && (
+        <div style={{ background: 'linear-gradient(90deg, #8b5cf6, #6d28d9)', color: '#fff', padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px', fontWeight: '800', fontSize: '13px', boxShadow: '0 4px 15px rgba(139, 92, 246, 0.3)', zIndex: 998 }}>
+          <span style={{fontSize: '20px'}}>🛡️</span>
+          <span>SERPAPI QUOTA DEPLETED: SECONDARY BACKUP SCANNING IS DISABLED.</span>
+          <button onClick={() => navigate('/settings')} style={{ background: '#fff', color: '#8b5cf6', border: 'none', padding: '6px 16px', borderRadius: '4px', fontWeight: '900', fontSize: '11px', cursor: 'pointer', marginLeft: '20px' }}>UPDATE KEY</button>
+        </div>
+      )}
+
+      {!proxyActive && (
+        <div style={{ background: 'linear-gradient(90deg, #3b82f6, #1d4ed8)', color: '#fff', padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px', fontWeight: '800', fontSize: '13px', boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)', zIndex: 997 }}>
+          <span style={{fontSize: '20px'}}>🌐</span>
+          <span>PROXY CLUSTER FAILURE: REAL BROWSER FALLBACK IS CURRENTLY UNAVAILABLE.</span>
+          <button onClick={() => navigate('/settings')} style={{ background: '#fff', color: '#3b82f6', border: 'none', padding: '6px 16px', borderRadius: '4px', fontWeight: '900', fontSize: '11px', cursor: 'pointer', marginLeft: '20px' }}>CHECK PROXIES</button>
         </div>
       )}
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
@@ -477,8 +552,15 @@ const Dashboard = () => {
               </div>
             </div>
             <div style={{ display: 'flex', gap: '15px' }}>
-              <button onClick={() => setShowKeyModal(true)} style={{ padding: '12px 20px', borderRadius: '4px', fontWeight: '800', fontSize: '11px', border: '1px solid #e1e1e1', background: '#fff', cursor: 'pointer' }}>+ ADD KEYWORDS</button>
-              <button className="pro-button" onClick={handleCheck} disabled={isChecking || !selectedId || activeProject?.status === 'paused'}>{isChecking ? '⏳ SCANNING...' : '🚀 CHECK RANKINGS'}</button>
+              <button 
+                onClick={() => navigate(`/project-insights/${selectedId}`)}
+                className="pro-badge-status active clickable"
+                style={{ background: 'rgba(255, 153, 0, 0.1)', border: '1px solid rgba(255, 153, 0, 0.3)', color: '#f97316', padding: '5px 10px', fontSize: '9px', fontWeight: '900', letterSpacing: '0.5px' }}
+              >
+                📊 INSIGHTS NODE
+              </button>
+              <button onClick={() => setShowKeyModal(true)} style={{ padding: '6px 12px', borderRadius: '4px', fontWeight: '800', fontSize: '10px', border: '1px solid #e2e8f0', background: '#fff', cursor: 'pointer', color: '#64748b' }}>+ KEYWORDS</button>
+              <button className="pro-button" style={{ padding: '8px 16px', fontSize: '10px', minWidth: '130px' }} onClick={handleCheck} disabled={isChecking || !selectedId || activeProject?.status === 'paused'}>{isChecking ? '⏳ SCANNING...' : '🚀 CHECK RANKINGS'}</button>
             </div>
           </header>
           {selectedKeyIds.length > 0 && (
@@ -524,12 +606,32 @@ const Dashboard = () => {
                         <td style={{ padding: '12px 16px', fontWeight: '600', color: '#1e293b' }}>{k.text}</td>
                         <td style={{ padding: '12px 16px', fontSize: '11px', color: '#64748b' }}>{k.location || 'Default'}</td>
                         <td style={{ padding: '12px 16px' }}>
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                               <span style={{ fontSize: '18px', fontWeight: '900', color: (k.rank || k.organic) && (k.rank || k.organic) <= 10 ? '#10b981' : (k.rank || k.organic) ? '#f97316' : '#94a3b8' }}>
-                                 {(k.rank || k.organic) ? `#${k.rank || k.organic}` : 'DNS'}
-                               </span>
-                               <button onClick={() => handleCheckIndividual(k.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '12px', opacity: 0.5 }}>🔄</button>
+                               <div style={{ 
+                                 padding: '4px 10px', 
+                                 borderRadius: '6px', 
+                                 background: (() => {
+                                    const rank = k.rank || k.organic || 0;
+                                    if (rank > 0 && rank <= 3) return 'rgba(16, 185, 129, 0.1)';
+                                    if (rank > 0 && rank <= 10) return 'rgba(52, 211, 153, 0.05)';
+                                    return '#f8fafc';
+                                 })(),
+                                 display: 'flex',
+                                 alignItems: 'center',
+                                 gap: '6px'
+                               }}>
+                                  <span style={{ fontSize: '16px', fontWeight: '900', color: (k.rank || k.organic) && (k.rank || k.organic) <= 10 ? '#10b981' : (k.rank || k.organic) ? '#f97316' : '#94a3b8' }}>
+                                    {(k.rank || k.organic) ? `#${k.rank || k.organic}` : 'DNS'}
+                                  </span>
+                                  {(() => {
+                                    const { diff, trend } = getRankChange(k.history, 'organic');
+                                    if (trend === 'up') return <span style={{ color: '#10b981', fontSize: '10px', fontWeight: '900', background: 'rgba(16, 185, 129, 0.1)', padding: '2px 4px', borderRadius: '4px' }}>▲{diff}</span>;
+                                    if (trend === 'down') return <span style={{ color: '#ef4444', fontSize: '10px', fontWeight: '900', background: 'rgba(239, 68, 68, 0.1)', padding: '2px 4px', borderRadius: '4px' }}>▼{diff}</span>;
+                                    return null;
+                                  })()}
+                               </div>
+                               <button className={checkingIds.includes(k.id) && k.organicStatus === 'active' ? 'checking-spin' : ''} onClick={() => handleCheckIndividual(k.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '12px', opacity: checkingIds.includes(k.id) && k.organicStatus === 'active' ? 1 : 0.5 }}>🔄</button>
                             </div>
                             <button onClick={() => handleToggleOrganic(k.id)} className={`elite-mini-toggle-pill ${k.organicStatus === 'active' ? 'active' : ''}`}>
                               {k.organicStatus === 'active' ? 'ACTIVE' : 'PAUSED'}
@@ -537,12 +639,32 @@ const Dashboard = () => {
                           </div>
                         </td>
                         <td style={{ padding: '12px 16px' }}>
-                          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                               <span style={{ fontSize: '18px', fontWeight: '900', color: (k.mapsRank || k.maps) && (k.mapsRank || k.maps) <= 10 ? '#10b981' : (k.mapsRank || k.maps) ? '#f97316' : '#94a3b8' }}>
-                                 {(k.mapsRank || k.maps) ? `#${k.mapsRank || k.maps}` : 'DNS'}
-                               </span>
-                               <button onClick={() => handleCheckIndividual(k.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '12px', opacity: 0.5 }}>🔄</button>
+                               <div style={{ 
+                                 padding: '4px 10px', 
+                                 borderRadius: '6px', 
+                                 background: (() => {
+                                    const rank = k.mapsRank || k.maps || 0;
+                                    if (rank > 0 && rank <= 3) return 'rgba(16, 185, 129, 0.1)';
+                                    if (rank > 0 && rank <= 10) return 'rgba(52, 211, 153, 0.05)';
+                                    return '#f8fafc';
+                                 })(),
+                                 display: 'flex',
+                                 alignItems: 'center',
+                                 gap: '6px'
+                               }}>
+                                  <span style={{ fontSize: '16px', fontWeight: '900', color: (k.mapsRank || k.maps) && (k.mapsRank || k.maps) <= 10 ? '#10b981' : (k.mapsRank || k.maps) ? '#f97316' : '#94a3b8' }}>
+                                    {(k.mapsRank || k.maps) ? `#${k.mapsRank || k.maps}` : 'DNS'}
+                                  </span>
+                                  {(() => {
+                                    const { diff, trend } = getRankChange(k.history, 'maps');
+                                    if (trend === 'up') return <span style={{ color: '#10b981', fontSize: '10px', fontWeight: '900', background: 'rgba(16, 185, 129, 0.1)', padding: '2px 4px', borderRadius: '4px' }}>▲{diff}</span>;
+                                    if (trend === 'down') return <span style={{ color: '#ef4444', fontSize: '10px', fontWeight: '900', background: 'rgba(239, 68, 68, 0.1)', padding: '2px 4px', borderRadius: '4px' }}>▼{diff}</span>;
+                                    return null;
+                                  })()}
+                               </div>
+                               <button className={checkingIds.includes(k.id) && k.mapsStatus === 'active' ? 'checking-spin' : ''} onClick={() => handleCheckIndividual(k.id)} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '12px', opacity: checkingIds.includes(k.id) && k.mapsStatus === 'active' ? 1 : 0.5 }}>🔄</button>
                             </div>
                             <button onClick={() => handleToggleMaps(k.id)} className={`elite-mini-toggle-pill ${k.mapsStatus === 'active' ? 'active' : ''}`}>
                               {k.mapsStatus === 'active' ? 'ACTIVE' : 'PAUSED'}

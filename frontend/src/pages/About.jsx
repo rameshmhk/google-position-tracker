@@ -1,10 +1,29 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const About = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About RankTracker Pro",
+    "description": "Learn about our enterprise-grade SEO tracking software and our data transparency philosophy.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "RankTracker Pro"
+    }
+  };
+
   return (
     <div className="info-page">
+      <Helmet>
+        <title>About Us | RankTracker Pro SEO Engine</title>
+        <meta name="description" content="Discover the technology behind RankTracker Pro. Professional-grade data, global scanning, and 100% precision for SEO professionals." />
+        <script type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      </Helmet>
       <Navbar />
       <div className="info-content" style={{ maxWidth: '1000px', margin: '0 auto', padding: '100px 24px' }}>
         <div style={{ textAlign: 'center', marginBottom: '80px' }}>

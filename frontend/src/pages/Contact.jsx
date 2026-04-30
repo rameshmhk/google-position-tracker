@@ -1,10 +1,30 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const Contact = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact RankTracker Pro Support",
+    "description": "Technical assistance and enterprise sales for world-class SEO operations.",
+    "mainEntity": {
+      "@type": "LocalBusiness",
+      "name": "RankTracker Pro",
+      "email": "support@ranktrackerpro.com"
+    }
+  };
+
   return (
     <div className="info-page">
+      <Helmet>
+        <title>Contact Support | RankTracker Pro</title>
+        <meta name="description" content="Get in touch with the RankTracker Pro engineering and support team for technical assistance, enterprise sales, and API access." />
+        <script type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      </Helmet>
       <Navbar />
       <div className="info-content" style={{ maxWidth: '1000px', margin: '0 auto', padding: '100px 24px' }}>
         <div style={{ textAlign: 'center', marginBottom: '80px' }}>

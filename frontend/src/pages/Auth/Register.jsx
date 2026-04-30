@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { GoogleLogin } from '@react-oauth/google';
@@ -13,7 +13,41 @@ const Register = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [resendCountdown, setResendCountdown] = useState(0);
+  const [resending, setResending] = useState(false);
   const { login } = useAuth();
+
+  useEffect(() => {
+    let timer;
+    if (success && resendCountdown > 0) {
+      timer = setInterval(() => {
+        setResendCountdown((prev) => prev - 1);
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [success, resendCountdown]);
+
+  const handleResend = async () => {
+    setError('');
+    setResending(true);
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/auth/resend-verification`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setResendCountdown(30);
+      } else {
+        setError(data.error || 'Failed to resend email');
+      }
+    } catch (err) {
+      setError('Connection error while resending');
+    } finally {
+      setResending(false);
+    }
+  };
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -30,6 +64,7 @@ const Register = () => {
       const data = await res.json();
       if (data.success) {
         setSuccess(true);
+        setResendCountdown(30);
       } else {
         setError(data.error || 'Registration failed');
       }
@@ -71,8 +106,26 @@ const Register = () => {
           <div style={{maxWidth:'500px'}}>
             <h2 style={{color:'var(--accent-cyan)', marginBottom:'20px'}}>Check Your Inbox! 📧</h2>
             <p style={{fontSize:'18px', lineHeight:'1.6'}}>We have sent an activation link to <strong>{email}</strong>. Please click the link in the email to verify your account.</p>
-            <div style={{marginTop:'30px'}}>
-              <Link to="/login" className="btn-primary-large">Go to Login</Link>
+            {error && <div className="auth-error" style={{ background: '#fef2f2', border: '1px solid #fee2e2', color: '#b91c1c', padding: '12px', borderRadius: '4px', marginTop: '20px', fontSize: '13px' }}>{error}</div>}
+            <div style={{marginTop:'30px', display: 'flex', gap: '15px', justifyContent: 'center'}}>
+              <Link to="/login" className="btn-primary-large" style={{flex: 1}}>Go to Login</Link>
+              <button 
+                onClick={handleResend} 
+                disabled={resendCountdown > 0 || resending}
+                style={{
+                  flex: 1,
+                  background: (resendCountdown > 0 || resending) ? '#e2e8f0' : 'transparent',
+                  color: (resendCountdown > 0 || resending) ? '#94a3b8' : 'var(--accent-cyan)',
+                  border: (resendCountdown > 0 || resending) ? '1px solid #cbd5e1' : '1px solid var(--accent-cyan)',
+                  borderRadius: '4px',
+                  fontWeight: '700',
+                  cursor: (resendCountdown > 0 || resending) ? 'not-allowed' : 'pointer',
+                  padding: '0 20px',
+                  fontSize: '16px'
+                }}
+              >
+                {resending ? 'Sending...' : resendCountdown > 0 ? `Resend in ${resendCountdown}s` : 'Resend Email'}
+              </button>
             </div>
           </div>
         </div>
@@ -95,7 +148,16 @@ const Register = () => {
             <h2 style={{ fontSize: '1.8rem', fontWeight: '900', color: '#1D2B44', marginBottom: '10px' }}>Create Account</h2>
             <p style={{ color: '#64748b', marginBottom: '40px', fontSize: '15px' }}>Register your professional profile to start tracking.</p>
             
-            {error && <div className="auth-error" style={{ background: '#fef2f2', border: '1px solid #fee2e2', color: '#b91c1c', padding: '12px', borderRadius: '4px', marginBottom: '20px', fontSize: '13px' }}>{error}</div>}
+            {error && (
+              <div className="auth-error" style={{ background: '#fef2f2', border: '1px solid #fee2e2', color: '#b91c1c', padding: '12px', borderRadius: '4px', marginBottom: '20px', fontSize: '13px' }}>
+                {error}
+                {error.toLowerCase().includes('already exists') && (
+                  <span style={{ display: 'block', marginTop: '8px' }}>
+                    <Link to="/forgot-password" style={{ color: '#b91c1c', fontWeight: 'bold', textDecoration: 'underline' }}>Forgot your password?</Link>
+                  </span>
+                )}
+              </div>
+            )}
             
             <div className="form-group" style={{ marginBottom: '24px' }}>
               <label style={{ display: 'block', fontSize: '12px', fontWeight: '900', color: '#1D2B44', marginBottom: '8px', textTransform: 'uppercase' }}>Full Name</label>

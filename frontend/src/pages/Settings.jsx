@@ -427,6 +427,7 @@ const Settings = () => {
                         const proj = projects.find(p => String(p.id) === String(id));
                         if (proj) setTmpProjStrategy({ 
                           scrapingStrategy: proj.scrapingStrategy || 'api_only', 
+                          preferredApi: proj.preferredApi || 'hybrid',
                           device: proj.device || 'desktop', 
                           proxyUrl: proj.proxyUrl || '' 
                         });
@@ -462,6 +463,26 @@ const Settings = () => {
                              <div style={{ fontWeight: '800', fontSize: '13px' }}>Direct Proxy</div>
                            </div>
                          </div>
+
+                         {tmpProjStrategy.scrapingStrategy === 'api_only' && (
+                            <div style={{ marginTop: '20px', animation: 'fadeIn 0.3s ease-out' }}>
+                              <label style={{ display: 'block', fontSize: '11px', fontWeight: '800', color: '#94a3b8', marginBottom: '10px' }}>PREFERRED API PROVIDER</label>
+                              <select 
+                                className="elite-select"
+                                style={{ width: '100%' }}
+                                value={tmpProjStrategy.preferredApi}
+                                onChange={e => setTmpProjStrategy({...tmpProjStrategy, preferredApi: e.target.value})}
+                              >
+                                <option value="hybrid">Hybrid (Automatic Fallback)</option>
+                                <option value="serper">Serper.dev (Ultra-Fast)</option>
+                                <option value="scrapingdog">ScrapingDog (Direct HTML)</option>
+                                <option value="serpapi">SerpApi (Tier-1 Results)</option>
+                              </select>
+                              <p style={{ marginTop: '8px', color: '#64748b', fontSize: '11px', fontStyle: 'italic' }}>
+                                Choose a specific API to bypass auto-fallback or use Hybrid for maximum reliability.
+                              </p>
+                            </div>
+                          )}
                        </div>
                        <div>
                          <label style={{ display: 'block', fontSize: '11px', fontWeight: '800', color: '#94a3b8', marginBottom: '15px' }}>EMULATED ENGINE</label>

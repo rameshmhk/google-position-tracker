@@ -137,6 +137,105 @@ app.get('/api/auth/verify', (req: any, res: any) => {
   res.json({ success: true, message: 'Account verified successfully! You can now log in.' });
 });
 
+app.post('/api/auth/resend-verification', async (req: any, res: any) => {
+  const { email } = req.body;
+  const db = getDB();
+  const user = db.users.find((u: any) => u.email === email);
+
+  if (!user) return res.status(400).json({ error: 'User not found' });
+  if (user.isVerified) return res.status(400).json({ error: 'User is already verified' });
+
+  const verificationToken = user.verificationToken || (Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15));
+  user.verificationToken = verificationToken;
+  persistDB();
+
+  const verificationLink = `${process.env.APP_URL}/verify?token=${verificationToken}`;
+  console.log('-----------------------------------------');
+  console.log('📧 [RESEND] Activation Email sent to:', email);
+  console.log('🔗 Link:', verificationLink);
+  console.log('-----------------------------------------');
+
+  try {
+    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+      await transporter.sendMail({
+        from: `"RankTracker Pro" <${process.env.EMAIL_USER}>`,
+        to: email,
+        subject: "Activate Your SEO Tracker Account (Resend)",
+        html: `
+          <h1>Welcome back to RankTracker Pro!</h1>
+          <p>Hi ${user.name},</p>
+          <p>Here is your new activation link. Please click the link below to verify your email address and activate your account:</p>
+          <a href="${verificationLink}" style="padding: 10px 20px; background: #00f2fe; color: #000; text-decoration: none; border-radius: 5px;">Verify My Account</a>
+          <p>If the button doesn't work, copy and paste this link into your browser:</p>
+          <p>${verificationLink}</p>
+        `
+      });
+    }
+  } catch (err) {
+    console.error('❌ Email resend failed:', err);
+    return res.status(500).json({ error: 'Failed to send email' });
+  }
+
+  res.json({ success: true, message: 'Verification email resent successfully' });
+});
+
+app.post('/api/auth/forgot-password', async (req: any, res: any) => {
+  const { email } = req.body;
+  const db = getDB();
+  const user = db.users.find((u: any) => u.email === email);
+
+  if (!user) return res.json({ success: true, message: 'If this email exists, a reset link has been sent.' });
+
+  const resetToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  user.resetToken = resetToken;
+  user.resetTokenExpiry = Date.now() + 3600000; // 1 hour
+  persistDB();
+
+  const resetLink = `${process.env.APP_URL}/reset-password?token=${resetToken}`;
+  console.log('-----------------------------------------');
+  console.log('📧 [RESET] Password Reset Email sent to:', email);
+  console.log('🔗 Link:', resetLink);
+  console.log('-----------------------------------------');
+
+  try {
+    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+      await transporter.sendMail({
+        from: `"RankTracker Pro" <${process.env.EMAIL_USER}>`,
+        to: email,
+        subject: "Reset Your Password - RankTracker Pro",
+        html: `
+          <h1>Password Reset Request</h1>
+          <p>Hi ${user.name},</p>
+          <p>You requested to reset your password. Please click the link below to set a new password:</p>
+          <br/>
+          <a href="${resetLink}" style="padding: 10px 20px; background: #00f2fe; color: #000; text-decoration: none; border-radius: 5px;">Reset Password</a>
+          <br/><br/>
+          <p>If you didn't request this, you can safely ignore this email.</p>
+        `
+      });
+    }
+  } catch (err) {
+    console.error('❌ Reset email sending failed:', err);
+  }
+
+  res.json({ success: true, message: 'If this email exists, a reset link has been sent.' });
+});
+
+app.post('/api/auth/reset-password', async (req: any, res: any) => {
+  const { token, newPassword } = req.body;
+  const db = getDB();
+  const user = db.users.find((u: any) => u.resetToken === token && u.resetTokenExpiry > Date.now());
+
+  if (!user) return res.status(400).json({ error: 'Invalid or expired reset token' });
+
+  user.password = await bcrypt.hash(newPassword, 10);
+  user.resetToken = null;
+  user.resetTokenExpiry = null;
+  persistDB();
+
+  res.json({ success: true, message: 'Password has been reset successfully.' });
+});
+
 app.post('/api/auth/google', async (req: any, res: any) => {
   const { idToken } = req.body;
   try {
@@ -304,6 +403,7 @@ app.post('/api/projects', authenticateToken, (req: any, res: any) => {
     pincode: pincode || '',
     usePincode: !!usePincode,
     scrapingStrategy: req.body.scrapingStrategy || 'api_only',
+    preferredApi: req.body.preferredApi || 'hybrid',
     device: req.body.device || 'desktop',
     proxyUrl: req.body.proxyUrl || '',
     lastChecked: null
@@ -549,7 +649,10 @@ app.post('/api/settings', (req, res) => {
     globalProxyUrl: globalProxyUrl || '',
     globalProxies: globalProxies || [],
     isRandomProxy: !!isRandomProxy,
-    activeProxyIdx: activeProxyIdx !== undefined ? activeProxyIdx : null
+    activeProxyIdx: activeProxyIdx !== undefined ? activeProxyIdx : null,
+    scrapingdogQuotaActive: db.settings.scrapingdogQuotaActive !== false,
+    serpapiQuotaActive: db.settings.serpapiQuotaActive !== false,
+    proxyActive: db.settings.proxyActive !== false
   };
   persistDB();
   res.json(db.settings);
@@ -832,6 +935,7 @@ async function performCheckForKeywords(keywordIds: string[], projectId: string) 
 
   const results: any[] = [];
   const excelUpdates: any[] = [];
+  let quotaErrors: string[] = [];
 
   const BATCH_SIZE = 10;
   for (let i = 0; i < keywordsToCheck.length; i += BATCH_SIZE) {
@@ -868,7 +972,8 @@ async function performCheckForKeywords(keywordIds: string[], projectId: string) 
           const k = batch[idx];
           const res = await hybridScrape({
             ...batchOptions[idx],
-            strategy: 'browser_only'
+            strategy: 'browser_only',
+            preferredApi: project.preferredApi || 'hybrid'
           } as any);
           
           k.organic = res.organicRank; 
@@ -891,6 +996,8 @@ async function performCheckForKeywords(keywordIds: string[], projectId: string) 
           } else {
             db.settings.serperQuotaActive = true;
           }
+          if (res.errors) quotaErrors.push(...res.errors);
+          if (res.error) quotaErrors.push(res.error);
         }
       } else {
         const batchResults = await scrapeSerperBatch(batchOptions);
@@ -898,6 +1005,7 @@ async function performCheckForKeywords(keywordIds: string[], projectId: string) 
         // Check for batch-level quota error
         if (batchResults.some(r => r.error === 'QUOTA_EXCEEDED')) {
           db.settings.serperQuotaActive = false;
+          quotaErrors.push('QUOTA_EXCEEDED');
         } else {
           db.settings.serperQuotaActive = true;
         }
@@ -914,6 +1022,7 @@ async function performCheckForKeywords(keywordIds: string[], projectId: string) 
               scrapingdogApiKey: db.settings?.globalScrapingdogApiKey || '',
               serpapiKey: db.settings?.globalSerpapiKey || '',
               strategy: strategy,
+              preferredApi: project.preferredApi || 'hybrid',
               device: project.device || 'desktop',
               proxyUrl: project.proxyUrl || resolveProxy(db.settings)
             } as any);
@@ -934,6 +1043,8 @@ async function performCheckForKeywords(keywordIds: string[], projectId: string) 
           k.lastChecked = today;
           results.push({ keywordId: k.id, ...res });
           excelUpdates.push({ projectName: project.name, keyword: k.text, rank: k.displayRank, date: today });
+          if (res.errors) quotaErrors.push(...res.errors);
+          if (res.error) quotaErrors.push(res.error);
         }
       }
       persistDB();
@@ -953,8 +1064,15 @@ async function performCheckForKeywords(keywordIds: string[], projectId: string) 
       console.error('[CheckEngine] Excel update failed:', excelErr);
     }
   }
+
+  // Process unique quota errors
+  quotaErrors = [...new Set(quotaErrors.filter(Boolean))];
+  if (quotaErrors.includes('SDOG_QUOTA_EXCEEDED')) db.settings.scrapingdogQuotaActive = false;
+  if (quotaErrors.includes('SERPAPI_QUOTA_EXCEEDED')) db.settings.serpapiQuotaActive = false;
+  if (quotaErrors.includes('PROXY_FAILURE')) db.settings.proxyActive = false;
+  persistDB();
   
-  return { success: true, count: results.length };
+  return { success: true, count: results.length, quotaErrors };
 }
 
 app.post('/api/check-project/:id', authenticateToken, async (req: any, res: any) => {

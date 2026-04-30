@@ -90,7 +90,10 @@ const Login = () => {
               />
             </div>
             <div className="form-group" style={{ marginBottom: '30px' }}>
-              <label style={{ display: 'block', fontSize: '12px', fontWeight: '900', color: '#1D2B44', marginBottom: '8px', textTransform: 'uppercase' }}>Password</label>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                <label style={{ fontSize: '12px', fontWeight: '900', color: '#1D2B44', textTransform: 'uppercase', margin: 0 }}>Password</label>
+                <Link to="/forgot-password" style={{ fontSize: '12px', color: 'var(--primary)', fontWeight: '700', textDecoration: 'none' }}>Forgot password?</Link>
+              </div>
               <input 
                 type="password" 
                 required 

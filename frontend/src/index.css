@@ -2978,3 +2978,13 @@ textarea.input-styled {
 }
 .elite-mini-toggle-pill { padding: 4px 8px; border-radius: 4px; font-size: 9px; font-weight: 900; border: 1px solid #e2e8f0; background: #f8fafc; color: #94a3b8; cursor: pointer; transition: 0.2s; text-transform: uppercase; width: fit-content; }
 .elite-mini-toggle-pill.active { background: rgba(16, 185, 129, 0.1); color: #10b981; border-color: rgba(16, 185, 129, 0.3); }
+
+@keyframes rotate-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.checking-spin {
+  animation: rotate-spin 1s linear infinite;
+  opacity: 1 !important;
+}

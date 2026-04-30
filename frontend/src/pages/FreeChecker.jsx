@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import '../index.css';
@@ -243,42 +244,10 @@ const FreeChecker = () => {
     };
     document.addEventListener('mousedown', handleClickOutside);
     
-    // SEO: Set Page Metadata
-    document.title = "Google Location Changer | Free Advanced SERP Investigator";
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", "The ultimate Google Location Changer tool. Change your search location to any city or ZIP code globally with 100% precision. Free advanced SERP investigator for SEO professionals.");
-    }
+    // Removed manual SEO settings in favor of React Helmet
 
-    // SEO: Inject Schema Markup (JSON-LD)
-    const schemaScriptId = 'og-location-changer-schema';
-    let schemaScript = document.getElementById(schemaScriptId);
-    if (!schemaScript) {
-      schemaScript = document.createElement('script');
-      schemaScript.id = schemaScriptId;
-      schemaScript.type = 'application/ld+json';
-      document.head.appendChild(schemaScript);
-    }
-    const schemaData = {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Google Location Changer",
-      "operatingSystem": "Web",
-      "applicationCategory": "SEO Tool",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "featureList": [
-        "Change Google Search Location",
-        "Real-time SERP Investigation",
-        "Global SEO Node Access",
-        "Mobile & Desktop Positioning"
-      ]
-    };
-    schemaScript.textContent = JSON.stringify(schemaData);
-    
+    // Schema handles by React Helmet in render
+
     return () => {
       window.removeEventListener('resize', handleResize);
       document.removeEventListener('mousedown', handleClickOutside);
@@ -471,8 +440,31 @@ const FreeChecker = () => {
     setExpandedRows({...expandedRows, [`${keyword}_${category}`]: nextStep});
   };
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Google Location Changer",
+    "url": "https://www.ranktrackerpro.com/free-check",
+    "description": "Free advanced SERP investigator and Google Location Changer. View search results from any city or ZIP code globally.",
+    "applicationCategory": "SEO Tool",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  };
+
   return (
     <div className="landing-page" style={{ minHeight: '100vh', background: 'var(--bg-main)', color: '#1D2B44' }}>
+      <Helmet>
+        <title>Google Location Changer | Free Advanced SERP Investigator</title>
+        <meta name="description" content="The ultimate Google Location Changer tool. Change your search location to any city or ZIP code globally with 100% precision. Free advanced SERP investigator for SEO professionals." />
+        <meta name="keywords" content="google location changer, change google search location, local seo checker, serp investigator" />
+        <script type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      </Helmet>
       <style>{`
         @keyframes ping { 75%, 100% { transform: scale(2); opacity: 0; } }
         .ping-animate { animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; }

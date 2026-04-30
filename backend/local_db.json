@@ -27,6 +27,26 @@
       "verificationToken": null,
       "picture": "https://lh3.googleusercontent.com/a/ACg8ocLXJI9opFjvVb52yhbhLOQFIyjXj5RumhauZ546ZXoDK73aU-gR=s96-c",
       "createdAt": "2026-04-22T13:08:33.893Z"
+    },
+    {
+      "id": "1776995697246",
+      "name": "sssdsda",
+      "email": "rameshmjkk@gmail.com",
+      "password": "$2b$10$wy38lJ5YFw725FzUxemfbuQVZWJiuOwHcq9ZafizoNjre4PBrhPe6",
+      "isVerified": false,
+      "verificationToken": "fa5zueatv4v5s1mw92hhg",
+      "createdAt": "2026-04-24T01:54:57.246Z"
+    },
+    {
+      "id": "1777540553932",
+      "name": "dddd",
+      "email": "mehruramg@gmail.com",
+      "password": "$2b$10$1Ylmnx5J2GVly8Bvb66l0u/me.DpBjXo1JZaRje.xRrzodhgDiy9m",
+      "isVerified": true,
+      "verificationToken": null,
+      "createdAt": "2026-04-30T09:15:53.932Z",
+      "resetToken": null,
+      "resetTokenExpiry": null
     }
   ],
   "projects": [
@@ -126,9 +146,10 @@
       "scrapingStrategy": "api_only",
       "device": "desktop",
       "proxyUrl": "",
-      "lastChecked": "2026-04-23",
-      "lastCheck": 1776946337972,
-      "status": "active"
+      "lastChecked": "2026-04-30",
+      "lastCheck": 1777556710986,
+      "status": "active",
+      "scheduleDay": "Friday"
     },
     {
       "id": "1776940075528",
@@ -148,7 +169,8 @@
       "proxyUrl": "",
       "lastChecked": "2026-04-23",
       "lastCheck": 1776942607553,
-      "status": "active"
+      "status": "active",
+      "scheduleDay": "Friday"
     },
     {
       "id": "1776946201535",
@@ -157,17 +179,19 @@
       "url": "adamdental.com.au",
       "businessName": "Adam Dental",
       "targetRegion": "au",
-      "schedule": "instant",
-      "defaultLocation": "3170, Mulgrave, Victoria, Australia",
-      "defaultLat": -37.92294097995951,
-      "defaultLng": 145.1786773001012,
+      "schedule": "daily",
+      "defaultLocation": "Mulgrave, Victoria, Australia",
+      "defaultLat": "-37.9261741",
+      "defaultLng": "145.1723107",
       "pincode": "3170",
-      "usePincode": false,
+      "usePincode": true,
       "scrapingStrategy": "api_only",
       "device": "desktop",
       "proxyUrl": "",
-      "lastChecked": "2026-04-23",
-      "lastCheck": 1776946233447
+      "lastChecked": "2026-04-30",
+      "lastCheck": 1777563224165,
+      "status": "active",
+      "scheduleDay": "Friday"
     }
   ],
   "keywords": [
@@ -979,7 +1003,7 @@
       "id": "0idqqcf",
       "projectId": "1776937143253",
       "text": "business broker sydney",
-      "organic": 9,
+      "organic": 7,
       "maps": 0,
       "status": "active",
       "mapsStatus": "paused",
@@ -994,11 +1018,21 @@
           "date": "2026-04-23",
           "organic": 9,
           "maps": 0
+        },
+        {
+          "date": "2026-04-29",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 7,
+          "maps": 0
         }
       ],
-      "displayRank": "1//9",
+      "displayRank": "1//7",
       "source": "Serper",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "iho0v7",
@@ -1019,11 +1053,21 @@
           "date": "2026-04-23",
           "organic": 6,
           "maps": 0
+        },
+        {
+          "date": "2026-04-29",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 6,
+          "maps": 0
         }
       ],
       "displayRank": "1//6",
       "source": "Serper",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "1xz8fc",
@@ -1044,17 +1088,27 @@
           "date": "2026-04-23",
           "organic": 6,
           "maps": 0
+        },
+        {
+          "date": "2026-04-29",
+          "organic": 4,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 6,
+          "maps": 0
         }
       ],
       "displayRank": "1//6",
       "source": "Serper",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "vejp3",
       "projectId": "1776937143253",
       "text": "business broker",
-      "organic": 0,
+      "organic": 8,
       "maps": 0,
       "status": "active",
       "mapsStatus": "paused",
@@ -1069,17 +1123,22 @@
           "date": "2026-04-23",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 8,
+          "maps": 0
         }
       ],
-      "displayRank": "N/A",
-      "source": "",
-      "lastChecked": "2026-04-23"
+      "displayRank": "1//8",
+      "source": "Serper",
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "m8mbqn",
       "projectId": "1776937143253",
       "text": "business brokers australia",
-      "organic": 3,
+      "organic": 0,
       "maps": 0,
       "status": "active",
       "mapsStatus": "paused",
@@ -1094,17 +1153,27 @@
           "date": "2026-04-23",
           "organic": 3,
           "maps": 0
+        },
+        {
+          "date": "2026-04-29",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 0,
+          "maps": 0
         }
       ],
-      "displayRank": "1//3",
-      "source": "Serper",
-      "lastChecked": "2026-04-23"
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "4af26",
       "projectId": "1776937143253",
       "text": "business sale brokers",
-      "organic": 0,
+      "organic": 8,
       "maps": 0,
       "status": "active",
       "mapsStatus": "paused",
@@ -1119,11 +1188,21 @@
           "date": "2026-04-23",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-04-29",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 8,
+          "maps": 0
         }
       ],
-      "displayRank": "N/A",
-      "source": "",
-      "lastChecked": "2026-04-23"
+      "displayRank": "1//8",
+      "source": "Serper",
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "arirw",
@@ -1144,11 +1223,16 @@
           "date": "2026-04-23",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "byihw",
@@ -1169,11 +1253,16 @@
           "date": "2026-04-23",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "kz96ea",
@@ -1194,17 +1283,22 @@
           "date": "2026-04-23",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "tj73en",
       "projectId": "1776937143253",
       "text": "business brokerage",
-      "organic": 5,
+      "organic": 0,
       "maps": 0,
       "status": "active",
       "mapsStatus": "paused",
@@ -1219,11 +1313,16 @@
           "date": "2026-04-23",
           "organic": 5,
           "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 0,
+          "maps": 0
         }
       ],
-      "displayRank": "1//5",
-      "source": "Serper",
-      "lastChecked": "2026-04-23"
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "uy6l",
@@ -1244,11 +1343,16 @@
           "date": "2026-04-23",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "02vcwa",
@@ -1574,21 +1678,26 @@
       "status": "active",
       "mapsStatus": "active",
       "organicStatus": "active",
-      "location": "3170, Mulgrave, Victoria, Australia",
-      "lat": -37.92294097995951,
-      "lng": 145.1786773001012,
-      "pincode": "3170",
+      "location": "Australian Capital Territory, Australia",
+      "lat": -35.4883502,
+      "lng": 149.0026942,
+      "pincode": "",
       "usePincode": false,
       "history": [
         {
           "date": "2026-04-23",
+          "organic": 1,
+          "maps": 2
+        },
+        {
+          "date": "2026-04-30",
           "organic": 1,
           "maps": 1
         }
       ],
       "displayRank": "1//1 LL 1",
       "source": "Serper",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "y8b5rg",
@@ -1607,68 +1716,173 @@
       "history": [
         {
           "date": "2026-04-23",
+          "organic": 7,
+          "maps": 1
+        },
+        {
+          "date": "2026-04-30",
           "organic": 1,
           "maps": 1
         }
       ],
       "displayRank": "1//1 LL 1",
       "source": "Serper",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "4b692",
       "projectId": "1776946201535",
       "text": "dental supplies sydney",
       "organic": 2,
-      "maps": 2,
+      "maps": 0,
       "status": "active",
       "mapsStatus": "active",
       "organicStatus": "active",
-      "location": "3170, Mulgrave, Victoria, Australia",
-      "lat": -37.92294097995951,
-      "lng": 145.1786773001012,
-      "pincode": "3170",
+      "location": "Sydney, New South Wales, Australia",
+      "lat": -33.8698439,
+      "lng": 151.2082848,
+      "pincode": "",
       "usePincode": false,
       "history": [
         {
           "date": "2026-04-23",
           "organic": 2,
-          "maps": 2
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 2,
+          "maps": 0
         }
       ],
-      "displayRank": "1//2 LL 2",
+      "displayRank": "1//2",
       "source": "Serper",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "66n06m",
       "projectId": "1776946201535",
       "text": "dental supplies brisbane",
-      "organic": 3,
-      "maps": 2,
+      "organic": 4,
+      "maps": 0,
       "status": "active",
       "mapsStatus": "active",
       "organicStatus": "active",
-      "location": "3170, Mulgrave, Victoria, Australia",
-      "lat": -37.92294097995951,
-      "lng": 145.1786773001012,
-      "pincode": "3170",
+      "location": "Brisbane, Queensland, Australia",
+      "lat": -27.4689623,
+      "lng": 153.0235009,
+      "pincode": "",
       "usePincode": false,
       "history": [
         {
           "date": "2026-04-23",
           "organic": 3,
-          "maps": 2
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 4,
+          "maps": 0
         }
       ],
-      "displayRank": "1//3 LL 2",
+      "displayRank": "1//4",
       "source": "Serper",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "qyvc6a",
       "projectId": "1776946201535",
       "text": "dental supplies melbourne",
+      "organic": 1,
+      "maps": 7,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Melbourne, Victoria, Australia",
+      "lat": -37.8142454,
+      "lng": 144.9631732,
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 1,
+          "maps": 7
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 1,
+          "maps": 7
+        }
+      ],
+      "displayRank": "1//1 LL 7",
+      "source": "Serper",
+      "lastChecked": "2026-04-30"
+    },
+    {
+      "id": "uqczz7",
+      "projectId": "1776946201535",
+      "text": "dental supplies perth",
+      "organic": 1,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Perth, Western Australia, Australia",
+      "lat": -31.9558967,
+      "lng": 115.8605784,
+      "pincode": "6000",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 2,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 1,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//1",
+      "source": "Serper",
+      "lastChecked": "2026-04-30"
+    },
+    {
+      "id": "z8dp9c",
+      "projectId": "1776946201535",
+      "text": "dental supplies adelaide",
+      "organic": 2,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Adelaide, South Australia, Australia",
+      "lat": -34.9281805,
+      "lng": 138.5999312,
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 5,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 2,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//2",
+      "source": "Serper",
+      "lastChecked": "2026-04-30"
+    },
+    {
+      "id": "ixqf5g",
+      "projectId": "1776946201535",
+      "text": "dental equipment",
       "organic": 1,
       "maps": 1,
       "status": "active",
@@ -1682,94 +1896,24 @@
       "history": [
         {
           "date": "2026-04-23",
+          "organic": 2,
+          "maps": 1
+        },
+        {
+          "date": "2026-04-30",
           "organic": 1,
           "maps": 1
         }
       ],
       "displayRank": "1//1 LL 1",
       "source": "Serper",
-      "lastChecked": "2026-04-23"
-    },
-    {
-      "id": "uqczz7",
-      "projectId": "1776946201535",
-      "text": "dental supplies perth",
-      "organic": 2,
-      "maps": 1,
-      "status": "active",
-      "mapsStatus": "active",
-      "organicStatus": "active",
-      "location": "3170, Mulgrave, Victoria, Australia",
-      "lat": -37.92294097995951,
-      "lng": 145.1786773001012,
-      "pincode": "3170",
-      "usePincode": false,
-      "history": [
-        {
-          "date": "2026-04-23",
-          "organic": 2,
-          "maps": 1
-        }
-      ],
-      "displayRank": "1//2 LL 1",
-      "source": "Serper",
-      "lastChecked": "2026-04-23"
-    },
-    {
-      "id": "z8dp9c",
-      "projectId": "1776946201535",
-      "text": "dental supplies adelaide",
-      "organic": 2,
-      "maps": 3,
-      "status": "active",
-      "mapsStatus": "active",
-      "organicStatus": "active",
-      "location": "3170, Mulgrave, Victoria, Australia",
-      "lat": -37.92294097995951,
-      "lng": 145.1786773001012,
-      "pincode": "3170",
-      "usePincode": false,
-      "history": [
-        {
-          "date": "2026-04-23",
-          "organic": 2,
-          "maps": 3
-        }
-      ],
-      "displayRank": "1//2 LL 3",
-      "source": "Serper",
-      "lastChecked": "2026-04-23"
-    },
-    {
-      "id": "ixqf5g",
-      "projectId": "1776946201535",
-      "text": "dental equipment",
-      "organic": 2,
-      "maps": 1,
-      "status": "active",
-      "mapsStatus": "active",
-      "organicStatus": "active",
-      "location": "3170, Mulgrave, Victoria, Australia",
-      "lat": -37.92294097995951,
-      "lng": 145.1786773001012,
-      "pincode": "3170",
-      "usePincode": false,
-      "history": [
-        {
-          "date": "2026-04-23",
-          "organic": 2,
-          "maps": 1
-        }
-      ],
-      "displayRank": "1//2 LL 1",
-      "source": "Serper",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "u831b6",
       "projectId": "1776946201535",
       "text": "powder free latex gloves",
-      "organic": 7,
+      "organic": 3,
       "maps": 0,
       "status": "active",
       "mapsStatus": "active",
@@ -1784,11 +1928,16 @@
           "date": "2026-04-23",
           "organic": 7,
           "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 3,
+          "maps": 0
         }
       ],
-      "displayRank": "1//7",
+      "displayRank": "1//3",
       "source": "Serper",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "kw5p7p",
@@ -1809,11 +1958,16 @@
           "date": "2026-04-23",
           "organic": 2,
           "maps": 2
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 2,
+          "maps": 2
         }
       ],
       "displayRank": "1//2 LL 2",
       "source": "Serper",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "ytsq7",
@@ -1834,18 +1988,23 @@
           "date": "2026-04-23",
           "organic": 3,
           "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 3,
+          "maps": 0
         }
       ],
       "displayRank": "1//3",
       "source": "Serper",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     },
     {
       "id": "bq16sa",
       "projectId": "1776946201535",
       "text": "nitrile gloves",
-      "organic": 6,
-      "maps": 4,
+      "organic": 8,
+      "maps": 8,
       "status": "active",
       "mapsStatus": "active",
       "organicStatus": "active",
@@ -1859,11 +2018,16 @@
           "date": "2026-04-23",
           "organic": 6,
           "maps": 4
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 8,
+          "maps": 8
         }
       ],
-      "displayRank": "1//6 LL 4",
+      "displayRank": "1//8 LL 8",
       "source": "Serper",
-      "lastChecked": "2026-04-23"
+      "lastChecked": "2026-04-30"
     }
   ],
   "settings": {

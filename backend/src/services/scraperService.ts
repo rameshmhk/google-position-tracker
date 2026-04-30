@@ -396,6 +396,7 @@ export const scrapeSerperRank = async (options: ScrapeOptions) => {
       const QUOTA_MSG = `❌ [Serper] API QUOTA EXCEEDED! Please check your dashboard credit limit.`;
       console.error(QUOTA_MSG);
       fs.appendFileSync(path.join(process.cwd(), 'debug_scan_audit.log'), `${QUOTA_MSG}\n`);
+      return { ...result, error: 'QUOTA_EXCEEDED' };
     } else {
       console.error('[Serper] Error:', err.message);
     }
@@ -566,6 +567,13 @@ export const scrapeGoogleRank = async (options: ScrapeOptions, retryCount: numbe
   } catch (error: any) {
     const ABS_LOG = path.join(process.cwd(), 'debug_scan_audit.log');
     fs.appendFileSync(ABS_LOG, `❌ [Scraper-PUP] CRITICAL ERROR for "${options.keyword}": ${error.message}\n${error.stack}\n`);
+    const msg = (error.message || '').toLowerCase();
+    if (msg.includes('err_no_supported_proxies') || 
+        msg.includes('err_tunnel_connection_failed') || 
+        msg.includes('proxy authentication required') ||
+        msg.includes('err_proxy_connection_failed')) {
+        return { organicRank: 0, mapsRank: 0, foundUrl: '', error: 'PROXY_FAILURE' };
+    }
     return { organicRank: 0, mapsRank: 0, foundUrl: '' };
   } finally {
     if (browser) await browser.close();
@@ -682,8 +690,12 @@ export const scrapeScrapingdog = async (options: ScrapeOptions) => {
       }
     }
     return { organicRank: 0, mapsRank: 0, foundUrl: '' };
-  } catch (error) {
-    console.error('[Scrapingdog] Error:', error);
+  } catch (error: any) {
+    console.error('[Scrapingdog] Error:', error.message);
+    const errStatus = error.response?.status;
+    if (errStatus === 401 || errStatus === 403 || errStatus === 429) {
+      return { organicRank: 0, mapsRank: 0, foundUrl: '', error: 'SDOG_QUOTA_EXCEEDED' };
+    }
     return { organicRank: 0, mapsRank: 0, foundUrl: '' };
   }
 };
@@ -716,8 +728,12 @@ export const scrapeSerpApi = async (options: ScrapeOptions) => {
       }
     }
     return { organicRank: 0, mapsRank: 0, foundUrl: '' };
-  } catch (error) {
-    console.error('[SerpApi] Error:', error);
+  } catch (error: any) {
+    console.error('[SerpApi] Error:', error.message);
+    const errStatus = error.response?.status;
+    if (errStatus === 401 || errStatus === 403 || errStatus === 429) {
+      return { organicRank: 0, mapsRank: 0, foundUrl: '', error: 'SERPAPI_QUOTA_EXCEEDED' };
+    }
     return { organicRank: 0, mapsRank: 0, foundUrl: '' };
   }
 };
@@ -725,61 +741,70 @@ export const scrapeSerpApi = async (options: ScrapeOptions) => {
 /**
  * HYBRID SCRAPER: API Tiered Fallback → Puppeteer
  */
-export const hybridScrape = async (options: ScrapeOptions & { strategy?: string }) => {
+export const hybridScrape = async (options: ScrapeOptions & { strategy?: string, preferredApi?: string }) => {
     const ABS_LOG = path.join(process.cwd(), 'debug_scan_audit.log');
-    fs.appendFileSync(ABS_LOG, `\n--- [HYBRID START] Keyword: "${options.keyword}" (Strategy: ${options.strategy || 'hybrid'}) ---\n`);
+    fs.appendFileSync(ABS_LOG, `\n--- [HYBRID START] Keyword: "${options.keyword}" (Strategy: ${options.strategy || 'hybrid'}, Pref: ${options.preferredApi || 'hybrid'}) ---\n`);
     
-    console.log(`\n🚀 [HYBRID] Starting scan for: "${options.keyword}" using Strategy: ${options.strategy || 'hybrid'}`);
+    console.log(`\n🚀 [HYBRID] Starting scan for: "${options.keyword}" using Strategy: ${options.strategy || 'hybrid'} (Pref: ${options.preferredApi || 'hybrid'})`);
 
     const useApis = options.strategy !== 'browser_only';
+    let accumulatedErrors: string[] = [];
+    const pref = options.preferredApi || 'hybrid';
 
-    // 1. Try Serper API (Primary)
-    if (useApis && options.apiKey) {
-      const serperRes = await scrapeSerperRank(options);
+    // 1. Try Serper API
+    if (useApis && options.apiKey && (pref === 'hybrid' || pref === 'serper')) {
+      const serperRes: any = await scrapeSerperRank(options);
+      if (serperRes.error) accumulatedErrors.push(serperRes.error);
       if (serperRes.organicRank > 0 || (serperRes.mapsRank > 0 && options.skipOrganic)) {
           console.log(`✅ [HYBRID] Found via Serper API.`);
-          return { ...serperRes, source: 'Serper' };
+          return { ...serperRes, source: 'Serper', errors: accumulatedErrors };
       }
+      if (pref === 'serper') return { organicRank: 0, mapsRank: 0, foundUrl: '', source: 'Serper (Miss)', errors: accumulatedErrors };
     }
     
-    // 2. Try Scrapingdog (Secondary)
-    if (useApis && options.scrapingdogApiKey) {
-      console.log(`🔄 [HYBRID] Serper missed or skipped. Trying Scrapingdog...`);
-      const sdogRes = await scrapeScrapingdog(options);
+    // 2. Try Scrapingdog
+    if (useApis && options.scrapingdogApiKey && (pref === 'hybrid' || pref === 'scrapingdog')) {
+      console.log(`🔄 [HYBRID] Trying Scrapingdog...`);
+      const sdogRes: any = await scrapeScrapingdog(options);
+      if (sdogRes.error) accumulatedErrors.push(sdogRes.error);
       if (sdogRes.organicRank > 0) {
           console.log(`✅ [HYBRID] Found via Scrapingdog.`);
-          return sdogRes;
+          return { ...sdogRes, errors: accumulatedErrors };
       }
+      if (pref === 'scrapingdog') return { organicRank: 0, mapsRank: 0, foundUrl: '', source: 'Scrapingdog (Miss)', errors: accumulatedErrors };
     }
 
-    // 3. Try SerpApi (Tertiary)
-    if (useApis && options.serpapiKey) {
-      console.log(`🔄 [HYBRID] Scrapingdog missed or skipped. Trying SerpApi...`);
-      const serpRes = await scrapeSerpApi(options);
+    // 3. Try SerpApi
+    if (useApis && options.serpapiKey && (pref === 'hybrid' || pref === 'serpapi')) {
+      console.log(`🔄 [HYBRID] Trying SerpApi...`);
+      const serpRes: any = await scrapeSerpApi(options);
+      if (serpRes.error) accumulatedErrors.push(serpRes.error);
       if (serpRes.organicRank > 0) {
           console.log(`✅ [HYBRID] Found via SerpApi.`);
-          return serpRes;
+          return { ...serpRes, errors: accumulatedErrors };
       }
+      if (pref === 'serpapi') return { organicRank: 0, mapsRank: 0, foundUrl: '', source: 'SerpApi (Miss)', errors: accumulatedErrors };
     }
  
     // NEW: API Only Mode - Strictly skip browser fallback
     if (options.strategy === 'api_only') {
       console.log(`⏹️ [HYBRID] Strategy is 'API Only'. Skipping browser fallback.`);
       fs.appendFileSync(ABS_LOG, `⏹️ Strategy is 'API Only'. Skipping browser fallback.\n`);
-      return { organicRank: 0, mapsRank: 0, foundUrl: '', source: 'API (None)' };
+      return { organicRank: 0, mapsRank: 0, foundUrl: '', source: 'API (None)', errors: accumulatedErrors };
     }
     
     // 4. Fallback to Puppeteer (Real Browser)
     console.log(`⚠️ [HYBRID] ${useApis ? 'All APIs missed' : 'API phase skipped'}. Falling back to Real Browser...`);
     fs.appendFileSync(ABS_LOG, `⚠️ FALLBACK to Puppeteer triggered...\n`);
     
-    const pupResult = await scrapeGoogleRank(options);
+    const pupResult: any = await scrapeGoogleRank(options);
+    if (pupResult.error) accumulatedErrors.push(pupResult.error);
     
     if (pupResult.organicRank > 0 || pupResult.mapsRank > 0) {
         console.log(`🎯 [HYBRID] Found via Real Browser.`);
-        return { ...pupResult, source: 'Browser' };
+        return { ...pupResult, source: 'Browser', errors: accumulatedErrors };
     }
     
     console.log(`❌ [HYBRID] No rank found even in Real Browser.`);
-    return { ...pupResult, source: '' };
+    return { ...pupResult, source: '', errors: accumulatedErrors };
 };

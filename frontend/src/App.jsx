@@ -10,10 +10,13 @@ import Terms from './pages/Terms';
 import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import Verify from './pages/Auth/Verify';
+import ForgotPassword from './pages/Auth/ForgotPassword';
+import ResetPassword from './pages/Auth/ResetPassword';
 import Dashboard from './pages/Dashboard';
 import FreeChecker from './pages/FreeChecker';
 import Settings from './pages/Settings';
 import ProjectSettings from './pages/ProjectSettings';
+import ProjectInsights from './pages/ProjectInsights';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -37,6 +40,8 @@ const App = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/verify" element={<Verify />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
 
       {/* Private Dashboard Route */}
       <Route 
@@ -60,6 +65,14 @@ const App = () => {
         element={
           <ProtectedRoute>
             <ProjectSettings />
+          </ProtectedRoute>
+        } 
+      />
+      <Route 
+        path="/project-insights/:id" 
+        element={
+          <ProtectedRoute>
+            <ProjectInsights />
           </ProtectedRoute>
         } 
       />
