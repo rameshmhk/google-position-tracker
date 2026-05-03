@@ -7,19 +7,19 @@ const About = () => {
   const schema = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": "About RankTracker Pro",
+    "name": "About Ranking Anywhere",
     "description": "Learn about our enterprise-grade SEO tracking software and our data transparency philosophy.",
     "publisher": {
       "@type": "Organization",
-      "name": "RankTracker Pro"
+      "name": "Ranking Anywhere"
     }
   };
 
   return (
     <div className="info-page">
       <Helmet>
-        <title>About Us | RankTracker Pro SEO Engine</title>
-        <meta name="description" content="Discover the technology behind RankTracker Pro. Professional-grade data, global scanning, and 100% precision for SEO professionals." />
+        <title>About Us | Ranking Anywhere SEO Engine</title>
+        <meta name="description" content="Discover the technology behind Ranking Anywhere. Professional-grade data, global scanning, and 100% precision for SEO professionals." />
         <script type="application/ld+json">
           {JSON.stringify(schema)}
         </script>
@@ -34,7 +34,7 @@ const About = () => {
         <div style={{ display: 'grid', gap: '30px' }}>
           <section style={{ background: '#fff', border: '1px solid #e1e1e1', padding: '40px', borderRadius: '4px' }}>
             <h2 style={{ fontSize: '1.4rem', fontWeight: '900', color: '#1D2B44', marginBottom: '20px' }}>Global Scan Infrastructure</h2>
-            <p style={{ color: '#64748b', lineHeight: '1.8' }}>RankTracker Pro is built on the philosophy of data transparency. We utilize high-precision GPS metadata to deliver the most accurate keyword positions available in the enterprise SEO space.</p>
+            <p style={{ color: '#64748b', lineHeight: '1.8' }}>Ranking Anywhere is built on the philosophy of data transparency. We utilize high-precision GPS metadata to deliver the most accurate keyword positions available in the enterprise SEO space.</p>
           </section>
 
           <section style={{ background: '#fff', border: '1px solid #e1e1e1', padding: '40px', borderRadius: '4px' }}>

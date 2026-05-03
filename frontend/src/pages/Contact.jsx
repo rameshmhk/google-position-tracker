@@ -35,7 +35,7 @@ const Contact = () => {
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px', marginBottom: '60px' }}>
           <div className="contact-info" style={{ background: '#1D2B44', padding: '40px', borderRadius: '4px', color: '#fff' }}>
             <h3 style={{ fontSize: '1.2rem', fontWeight: '900', marginBottom: '15px' }}>Technical Support</h3>
-            <p style={{ color: '#94a3b8', marginBottom: '10px' }}>✉️ support@ranktrackerpro.com</p>
+            <p style={{ color: '#94a3b8', marginBottom: '10px' }}>✉️ support@rankinganywhere.com</p>
             <p style={{ color: '#94a3b8' }}>💬 Live Node (9 AM - 5 PM AEST)</p>
           </div>
           <div className="contact-info" style={{ background: '#f8f9fa', border: '1px solid #e1e1e1', padding: '40px', borderRadius: '4px' }}>

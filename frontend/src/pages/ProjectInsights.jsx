@@ -95,32 +95,93 @@ const ProjectInsights = () => {
     })).slice(-30);
   }, [keywords]);
 
-  const matrixData = useMemo(() => {
-    // Generate last 10 days range leading up to today
-    const sortedDates = [];
-    for (let i = 9; i >= 0; i--) {
-      const d = new Date();
-      d.setDate(d.getDate() - i);
-      sortedDates.push(d.toISOString().split('T')[0]);
-    }
+  const [matrixView, setMatrixView] = useState('daily'); // 'daily' or 'weekly'
 
-    const rows = keywords.map(k => {
-      const dateColumns = sortedDates.map(date => {
-        const entry = k.history?.find(h => h.date === date);
-        if (!entry || !entry.organic) return '—';
-        const page = Math.floor((entry.organic - 1) / 10) + 1;
-        const pos = ((entry.organic - 1) % 10) + 1;
-        return `${page} // ${pos}`;
+  const matrixData = useMemo(() => {
+    if (matrixView === 'daily') {
+      // Generate last 10 days range leading up to today
+      const sortedDates = [];
+      for (let i = 9; i >= 0; i--) {
+        const d = new Date();
+        d.setDate(d.getDate() - i);
+        sortedDates.push(d.toISOString().split('T')[0]);
+      }
+
+      const rows = keywords.map(k => {
+        const dateColumns = sortedDates.map(date => {
+          const entry = k.history?.find(h => h.date === date);
+          if (!entry || !entry.organic) return '—';
+          const page = Math.floor((entry.organic - 1) / 10) + 1;
+          const pos = ((entry.organic - 1) % 10) + 1;
+          return `${page} // ${pos}`;
+        });
+
+        return {
+          text: k.text,
+          columns: dateColumns
+        };
       });
 
-      return {
-        text: k.text,
-        columns: dateColumns
-      };
-    });
+      return { headers: sortedDates, rows, isWeekly: false };
+    } else {
+      // Weekly Logic: Last 8 weeks aligned with user's scan day
+      const weeklyHeaders = [];
+      const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const customDayName = project?.scanDay || 'Monday'; // Default to Monday if not set
+      const targetDayIndex = daysOfWeek.indexOf(customDayName);
 
-    return { headers: sortedDates, rows };
-  }, [keywords]);
+      for (let i = 7; i >= 0; i--) {
+        const d = new Date();
+        d.setDate(d.getDate() - (i * 7));
+        
+        // Snap to the target day of that week
+        const currentDayIndex = d.getDay();
+        let diff = targetDayIndex - currentDayIndex;
+        // If we are looking for a day that hasn't happened yet this week, go back to last week's that day
+        if (i === 0 && diff > 0) diff -= 7; 
+        
+        d.setDate(d.getDate() + diff);
+        weeklyHeaders.push(d.toISOString().split('T')[0]);
+      }
+
+      const rows = keywords.map(k => {
+        const weekColumns = weeklyHeaders.map((targetDateStr, i) => {
+          const targetDate = new Date(targetDateStr);
+          const nextWeekDate = new Date(targetDate);
+          nextWeekDate.setDate(nextWeekDate.getDate() + 7);
+
+          // Find the entry EXACTLY on that day, or the closest one in that week range
+          const exactEntry = k.history?.find(h => h.date === targetDateStr);
+          if (exactEntry?.organic) {
+            const page = Math.floor((exactEntry.organic - 1) / 10) + 1;
+            const pos = ((exactEntry.organic - 1) % 10) + 1;
+            return `${page} // ${pos}`;
+          }
+
+          // Fallback: Find the latest entry in the 7 days LEADING UP to this date
+          const rangeEntries = k.history?.filter(h => {
+            const hDate = new Date(h.date);
+            const sevenDaysAgo = new Date(targetDate);
+            sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+            return hDate > sevenDaysAgo && hDate <= targetDate;
+          }).sort((a, b) => new Date(b.date) - new Date(a.date));
+
+          const entry = rangeEntries?.[0];
+          if (!entry || !entry.organic) return '—';
+          const page = Math.floor((entry.organic - 1) / 10) + 1;
+          const pos = ((entry.organic - 1) % 10) + 1;
+          return `${page} // ${pos}`;
+        });
+
+        return {
+          text: k.text,
+          columns: weekColumns
+        };
+      });
+
+      return { headers: weeklyHeaders, rows, isWeekly: true };
+    }
+  }, [keywords, matrixView]);
 
   const dailyBreakdown = useMemo(() => {
     const dates = new Set();
@@ -309,22 +370,36 @@ const ProjectInsights = () => {
 
           {/* Matrix Comparison Table (Spreadsheet Style) */}
           <div style={{ background: '#fff', borderRadius: '24px', border: '1px solid #e2e8f0', overflow: 'hidden', marginTop: '40px' }}>
-            <div style={{ padding: '25px 30px', borderBottom: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#f8fafc' }}>
-               <h3 style={{ margin: 0, fontSize: '14px', fontWeight: '900', color: '#1e293b' }}>📊 KEYWORD COMPARISON MATRIX</h3>
-               <div style={{ fontSize: '11px', color: '#64748b', fontWeight: '800' }}>PAGE // POSITION FORMAT</div>
-            </div>
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px' }}>
-                <thead>
-                  <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
-                    <th style={{ padding: '12px 20px', textAlign: 'left', background: '#f8fafc', fontSize: '10px', fontWeight: '900', color: '#64748b', borderRight: '1px solid #f1f5f9', width: '200px', letterSpacing: '1px' }}>TARGETED KEYWORDS</th>
-                    {matrixData.headers.map((date, i) => (
-                      <th key={i} style={{ padding: '12px 10px', textAlign: 'center', background: i === matrixData.headers.length - 1 ? 'rgba(16, 185, 129, 0.05)' : 'transparent', fontSize: '10px', fontWeight: '900', color: i === matrixData.headers.length - 1 ? '#10b981' : '#94a3b8', borderRight: '1px solid #f1f5f9' }}>
-                        {new Date(date).toLocaleDateString('en-US', { day: '2-digit', month: 'short' }).toUpperCase()}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
+             <div style={{ padding: '25px 30px', borderBottom: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#f8fafc' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                  <h3 style={{ margin: 0, fontSize: '14px', fontWeight: '900', color: '#1e293b' }}>📊 KEYWORD COMPARISON MATRIX</h3>
+                  <select 
+                    value={matrixView} 
+                    onChange={(e) => setMatrixView(e.target.value)}
+                    style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '6px', padding: '4px 12px', fontSize: '11px', fontWeight: '800', color: '#64748b', cursor: 'pointer', outline: 'none' }}
+                  >
+                    <option value="daily">Daily View</option>
+                    <option value="weekly">Weekly View</option>
+                  </select>
+                </div>
+                <div style={{ fontSize: '11px', color: '#64748b', fontWeight: '800' }}>PAGE // POSITION FORMAT</div>
+             </div>
+             <div style={{ overflowX: 'auto' }}>
+               <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: '700px' }}>
+                 <thead>
+                   <tr style={{ borderBottom: '1px solid #e2e8f0' }}>
+                     <th style={{ padding: '12px 20px', textAlign: 'left', background: '#f8fafc', fontSize: '10px', fontWeight: '900', color: '#64748b', borderRight: '1px solid #f1f5f9', width: '200px', letterSpacing: '1px' }}>TARGETED KEYWORDS</th>
+                     {matrixData.headers.map((date, i) => (
+                       <th key={i} style={{ padding: '12px 10px', textAlign: 'center', background: i === matrixData.headers.length - 1 ? 'rgba(16, 185, 129, 0.05)' : 'transparent', fontSize: '10px', fontWeight: '900', color: i === matrixData.headers.length - 1 ? '#10b981' : '#94a3b8', borderRight: '1px solid #f1f5f9' }}>
+                         {matrixView === 'daily' 
+                           ? new Date(date).toLocaleDateString('en-US', { day: '2-digit', month: 'short' }).toUpperCase()
+                           : `WK ${i + 1}`
+                         }
+                         {matrixView === 'weekly' && <div style={{ fontSize: '8px', opacity: 0.6, marginTop: '2px' }}>{new Date(date).toLocaleDateString('en-US', { day: '2-digit', month: 'short' })}</div>}
+                       </th>
+                     ))}
+                   </tr>
+                 </thead>
                 <tbody>
                   {matrixData.rows.map((row, idx) => (
                     <tr key={idx} style={{ borderBottom: '1px solid #f1f5f9' }}>

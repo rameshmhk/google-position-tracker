@@ -9,10 +9,10 @@ const Home = () => {
   const schema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "RankTracker Pro",
+    "name": "Ranking Anywhere",
     "operatingSystem": "Web",
     "applicationCategory": "BusinessApplication",
-    "description": "All-in-one SEO toolset for rank tracking, site audits, and competitive intelligence.",
+    "description": "Ranking Anywhere provides hyper-accurate, real-time SEO intelligence and keyword tracking for global enterprises.",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -23,7 +23,7 @@ const Home = () => {
   return (
     <div className="landing-page">
       <Helmet>
-        <title>RankTracker Pro - Professional SEO Ranking & Audit Software</title>
+        <title>Ranking Anywhere - Professional SEO Ranking & Audit Software</title>
         <meta name="description" content="All-in-one SEO toolset for rank tracking, site audits, and competitive intelligence. Trusted by leading SEO professionals." />
         <meta name="keywords" content="seo tracker, rank tracker, google rank, keyword rank, local seo" />
         <script type="application/ld+json">
@@ -60,7 +60,6 @@ const Home = () => {
             style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}
           >
             <Link to="/register" className="btn-primary-large" style={{ background: 'var(--accent)', color: '#fff', borderRadius: '4px', border: 'none', padding: '20px 50px', fontSize: '1.2rem', fontWeight: '900' }}>Start for Free</Link>
-            <Link to="/about" className="btn-secondary-large" style={{ background: 'transparent', border: '2px solid rgba(255,255,255,0.2)', color: '#fff', borderRadius: '4px', padding: '18px 48px', fontSize: '1.2rem' }}>Learn More</Link>
           </motion.div>
         </div>
       </header>
@@ -89,15 +88,15 @@ const Home = () => {
           whileHover={{ translateY: -5 }}
           style={{ background: '#fff', border: '1px solid #e1e1e1', padding: '50px 40px', borderRadius: '4px', textAlign: 'left', boxShadow: 'none' }}
         >
-          <div className="feature-icon" style={{ fontSize: '32px', marginBottom: '24px', opacity: 0.8 }}>📈</div>
-          <h3 style={{ fontSize: '20px', fontWeight: '900', marginBottom: '16px', color: '#1D2B44' }}>Rank Tracker Pro</h3>
-          <p style={{ color: '#64748b', lineHeight: '1.6', fontSize: '15px' }}>Generate professional audit reports with one click. Real-time data sync for high-stakes SEO management.</p>
+          <div className="feature-icon" style={{ fontSize: '32px', marginBottom: '24px', opacity: 0.8 }}>📊</div>
+          <h3 style={{ fontSize: '20px', fontWeight: '900', marginBottom: '16px', color: '#1D2B44' }}>Competitive Intel</h3>
+          <p style={{ color: '#64748b', lineHeight: '1.6', fontSize: '15px' }}>Analyze competitor positions and market trends with our real-time synchronization engine.</p>
         </motion.div>
       </section>
 
       <section className="cta-section">
         <h2>Ready to boost your SEO?</h2>
-        <p>Join hundreds of SEO pros who trust RankTracker Pro for their daily audits.</p>
+        <p>Join hundreds of SEO pros who trust Ranking Anywhere for their daily audits.</p>
         <Link to="/register" className="btn-primary-large">Create Your Account</Link>
       </section>
 

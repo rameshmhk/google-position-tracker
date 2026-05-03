@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "RankTracker Pro Assistant",
+  "version": "1.0.0",
+  "description": "Distributed SEO Ranking Assistant. Track your Google positions accurately from your own browser.",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "scripting",
+    "alarms",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://www.google.com/search*",
+    "https://www.google.co.in/search*",
+    "https://www.google.com.au/search*",
+    "https://www.google.co.uk/search*",
+    "http://localhost:5000/*",
+    "http://127.0.0.1:5000/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

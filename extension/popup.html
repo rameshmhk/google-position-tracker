@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      width: 320px;
+      padding: 20px;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f8fafc;
+      color: #1e293b;
+      margin: 0;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+    h2 { margin: 0; font-size: 16px; font-weight: 700; }
+    
+    .status-card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #ef4444;
+      box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+    }
+    .status-text {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group { margin-bottom: 15px; }
+    label { display: block; font-size: 11px; font-weight: 600; color: #64748b; margin-bottom: 5px; text-transform: uppercase; }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 13px;
+      transition: border 0.2s;
+    }
+    input[type="text"]:focus { outline: none; border-color: #3b82f6; }
+
+    .toggle-group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #e2e8f0;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #cbd5e1;
+      transition: .4s;
+      border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px; width: 18px;
+      left: 3px; bottom: 3px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider { background-color: #3b82f6; }
+    input:checked + .slider:before { transform: translateX(20px); }
+
+    .btn-primary {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background: #1e293b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #0f172a; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">R</div>
+    <h2>RankTracker Pro</h2>
+  </div>
+
+  <div class="status-card">
+    <div id="statusDot" class="dot"></div>
+    <div id="statusText" class="status-text">DISCONNECTED</div>
+  </div>
+
+  <div class="form-group">
+    <label>Your Account UserID</label>
+    <input type="text" id="userId" placeholder="Enter ID from Dashboard">
+  </div>
+
+  <div class="toggle-group">
+    <label>Assistant Active</label>
+    <label class="switch">
+      <input type="checkbox" id="activeToggle">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <button id="saveBtn" class="btn-primary">SAVE SETTINGS</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -7,12 +7,14 @@ export interface ScrapeOptions {
   region?: string;
   businessName?: string;
   location?: string;
+  lat?: number;
+  lng?: number;
   apiKey?: string;
   skipMaps?: boolean;
 }
 
 export const scrapeSerperRankDeep = async (options: ScrapeOptions) => {
-  const { keyword, targetUrl, region, businessName, location, apiKey } = options;
+  const { keyword, targetUrl, region, businessName, location, lat, lng, apiKey } = options;
   const result = { organicRank: 0, mapsRank: 0, foundUrl: '' };
   
   try {
@@ -20,26 +22,41 @@ export const scrapeSerperRankDeep = async (options: ScrapeOptions) => {
       .replace(/^(https?:\/\/)?(www\.)?/, '')
       .split('/')[0]
       ?.split('?')[0]
+      ?.replace(/\/$/, '')
       ?.trim() || '';
       
     console.log(`[DeepScraper] Targeting: "${cleanTargetDomain}" for Keyword: "${keyword}"`);
 
-    // SMART LOCATION LOGIC: Skip country name (case-insensitive) for organic broad searches 
-    const rawLoc = (location || '').toLowerCase().trim();
-    const country = REGION_TO_COUNTRY[region?.toLowerCase() || 'au'] || 'Australia';
-    const useLocation = (rawLoc === country.toLowerCase()) ? '' : (location || '');
+    // UULE CALCULATION (Exact Sync with Browser)
+    const UULE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+    const getUULE = (loc: string) => {
+      const country = REGION_TO_COUNTRY[region?.toLowerCase() || 'au'] || 'Australia';
+      const canonical = loc.toLowerCase().includes(country.toLowerCase()) ? loc : `${loc}, ${country}`;
+      const key = UULE_CHARS[canonical.length] || 'A';
+      const encoded = Buffer.from(canonical).toString('base64').replace(/=/g, '');
+      return `w+CAIQICI${key}${encoded}`;
+    };
 
-    // 1. Organic Mapping (Pages 1-3)
+    // SMART LOCATION LOGIC
+    const useLocation = (location || '').toLowerCase().trim();
+    const country = REGION_TO_COUNTRY[region?.toLowerCase() || 'au'] || 'Australia';
+    const finalLocation = (useLocation && !useLocation.includes(',')) ? `${location}, ${country}` : (location || '');
+    const uule = finalLocation ? getUULE(finalLocation) : '';
+
+    const useLocParam = (useLocation === country.toLowerCase()) ? '' : finalLocation;
+
+    // 1. Organic Mapping (Pages 1-10)
     let foundOrganic = false;
-    for (let page = 1; page <= 3; page++) {
+    for (let page = 1; page <= 10; page++) {
       if (foundOrganic) break;
       
-      console.log(`[DeepScraper] Scanning Page ${page}...`);
+      console.log(`[DeepScraper] Scanning Page ${page} (num: 10)...`);
       const searchRes = await axios.post('https://google.serper.dev/search', {
         q: keyword,
         gl: region || 'au',
-        location: useLocation,
-        num: 100,
+        location: useLocParam,
+        uule: uule, // SYNC PRECISION
+        num: 10,
         page: page
       }, {
         headers: { 'X-API-KEY': apiKey || '', 'Content-Type': 'application/json' }
@@ -48,12 +65,15 @@ export const scrapeSerperRankDeep = async (options: ScrapeOptions) => {
       const organic = searchRes.data.organic || [];
       for (let i = 0; i < organic.length; i++) {
         const item = organic[i];
-        const itemLink = (item.link || '').toLowerCase();
+        const itemLink = (item.link || '').toLowerCase().replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/$/, '');
         
-        const absoluteRank = item.position || (i + 1 + ((page - 1) * 10));
+        const absoluteRank = item.position || (i + 1 + ((page - 1) * 100));
 
-        // HYPER FLEXIBLE MATCHING
-        if (itemLink.includes(cleanTargetDomain)) {
+        // HYPER FLEXIBLE MATCHING (Synced with main scraper)
+        const brandName = cleanTargetDomain.split('.')[0] || '';
+        const isMatch = itemLink.includes(cleanTargetDomain) || (brandName.length > 4 && itemLink.includes(brandName));
+
+        if (isMatch) {
           result.organicRank = absoluteRank;
           result.foundUrl = item.link; 
           foundOrganic = true;
@@ -70,7 +90,8 @@ export const scrapeSerperRankDeep = async (options: ScrapeOptions) => {
       const placesRes = await axios.post('https://google.serper.dev/places', {
         q: keyword,
         gl: region || 'au',
-        location: location || ''
+        location: finalLocation || '',
+        uule: uule || ''
       }, {
         headers: { 'X-API-KEY': apiKey || '', 'Content-Type': 'application/json' }
       });

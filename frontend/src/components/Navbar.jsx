@@ -13,7 +13,7 @@ const Navbar = () => {
     <nav className="navbar" style={{ background: '#1D2B44', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
       <div className="navbar-container">
         <Link to="/" className="navbar-logo" style={{ color: '#fff', fontWeight: '900', letterSpacing: '-0.8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ color: 'var(--accent)', fontSize: '24px' }}>▲</span> RankTracker <span style={{ fontWeight: '400', opacity: 0.7, fontStyle: 'normal', fontSize: '14px', marginLeft: '4px' }}>PRO</span>
+          <span style={{ color: 'var(--accent)', fontSize: '24px' }}>▲</span> Ranking Anywhere <span style={{ fontWeight: '400', opacity: 0.7, fontStyle: 'normal', fontSize: '14px', marginLeft: '4px' }}>PRO</span>
         </Link>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>

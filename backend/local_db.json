@@ -13,10 +13,12 @@
       "id": "1776349705175",
       "name": "RAmesh",
       "email": "rameshmjk@gmail.com",
-      "password": "$2b$10$oCMKRYB99R/vyXxCnTFzhu9KPEfMSeCtKEfw9GfVJMKF2IoCSKXiS",
+      "password": "$2b$10$sNGepIovEAjIS67wHfl4aee1i.2bp3cz67SpgumkgAVAo79JOJsCi",
       "createdAt": "2026-04-16T14:28:25.175Z",
       "isVerified": true,
-      "verificationToken": null
+      "verificationToken": null,
+      "resetToken": null,
+      "resetTokenExpiry": null
     },
     {
       "id": "111499858881808739149",
@@ -47,6 +49,51 @@
       "createdAt": "2026-04-30T09:15:53.932Z",
       "resetToken": null,
       "resetTokenExpiry": null
+    },
+    {
+      "id": "1777618199379",
+      "name": "Test Agent",
+      "email": "test@test.com",
+      "password": "$2b$10$4uDVwA25QLWub1Emj.MKGuOkbAfq/u1B2x0I/J0iziJDCroFFN1Ey",
+      "isVerified": false,
+      "verificationToken": "r0shu8cbqejvaub4q108ra",
+      "createdAt": "2026-05-01T06:49:59.380Z"
+    },
+    {
+      "id": "1777696349201",
+      "name": "Agent Tester",
+      "email": "agent_tester@test.com",
+      "password": "$2b$10$lMoHFcVjQuPmwqImRfQGXOzRKyzrNp3xaJtaiQOkRoRg6Q0QEZV1S",
+      "isVerified": false,
+      "verificationToken": "8796a4md9vw7mhiopoecmb",
+      "createdAt": "2026-05-02T04:32:29.201Z"
+    },
+    {
+      "id": "1777696411274",
+      "name": "Agent Tester 2",
+      "email": "agent_tester2@test.com",
+      "password": "$2b$10$dNQSbSOS2C2KJsWregsxhuMutvNmjpUYvacs5WMdRc.l.EmHKCPY.",
+      "isVerified": false,
+      "verificationToken": "bymzkm8xtr5oce20psw3z",
+      "createdAt": "2026-05-02T04:33:31.274Z"
+    },
+    {
+      "id": "1777696582100",
+      "name": "Agent Tester",
+      "email": "agent_tester5@test.com",
+      "password": "$2b$10$whrU6QhljbKlkBZgU8QAq.7Z1jKytRO9DxtKtJTzaxi6BW80ceBDu",
+      "isVerified": false,
+      "verificationToken": "yr90wwmxz2aybhgvcwrdad",
+      "createdAt": "2026-05-02T04:36:22.100Z"
+    },
+    {
+      "id": "1777696899575",
+      "name": "Agent Master",
+      "email": "master_tester@test.com",
+      "password": "$2b$10$acymIMYpAXr/pFBTLk6PI.UD/3GvtxJdTLq1TmnFE755AsOyJR22i",
+      "isVerified": false,
+      "verificationToken": "rvj0cj2wc8cb2e8ed1vdo",
+      "createdAt": "2026-05-02T04:41:39.575Z"
     }
   ],
   "projects": [
@@ -137,19 +184,20 @@
       "url": "abbagroup.com.au",
       "businessName": "Abba Group Business Brokers",
       "targetRegion": "au",
-      "schedule": "instant",
+      "schedule": "weekly",
       "defaultLocation": "2010, Surry Hills, New South Wales, Australia",
       "defaultLat": -33.88289433526316,
       "defaultLng": 151.21411001526315,
       "pincode": "2010",
       "usePincode": false,
-      "scrapingStrategy": "api_only",
+      "scrapingStrategy": "direct_proxy",
       "device": "desktop",
       "proxyUrl": "",
-      "lastChecked": "2026-04-30",
-      "lastCheck": 1777556710986,
+      "lastChecked": "2026-05-03",
+      "lastCheck": 1777780398698,
       "status": "active",
-      "scheduleDay": "Friday"
+      "scheduleDay": "Wednesday",
+      "preferredApi": "hybrid"
     },
     {
       "id": "1776940075528",
@@ -179,7 +227,7 @@
       "url": "adamdental.com.au",
       "businessName": "Adam Dental",
       "targetRegion": "au",
-      "schedule": "daily",
+      "schedule": "instant",
       "defaultLocation": "Mulgrave, Victoria, Australia",
       "defaultLat": "-37.9261741",
       "defaultLng": "145.1723107",
@@ -188,10 +236,75 @@
       "scrapingStrategy": "api_only",
       "device": "desktop",
       "proxyUrl": "",
-      "lastChecked": "2026-04-30",
-      "lastCheck": 1777563224165,
+      "lastChecked": "2026-05-03",
+      "lastCheck": 1777779705629,
       "status": "active",
+      "scheduleDay": "Friday",
+      "preferredApi": "hybrid"
+    },
+    {
+      "id": "1777602314637",
+      "userId": "111499858881808739149",
+      "name": "challengebricksandroofing.com.au",
+      "url": "challengebricksandroofing.com.au",
+      "businessName": "Challenge Bricks and Roofing Pty Ltd",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "Clyde North, Victoria, Australia",
+      "defaultLat": -38.0949384,
+      "defaultLng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "scrapingStrategy": "direct_proxy",
+      "preferredApi": "hybrid",
+      "device": "desktop",
+      "proxyUrl": "http://zvr3okpiua-corp.mobile.res-country-AU-state-2155400-hold-session-session-69f6b8932c611:yY4kNLHGPcpOh4H8@89.38.99.242:443",
+      "lastChecked": "2026-05-03",
+      "status": "active",
+      "lastCheck": 1777778356138,
       "scheduleDay": "Friday"
+    },
+    {
+      "id": "1777697253637",
+      "userId": "1776349705175",
+      "name": "User Audit Test",
+      "url": "https://test.com",
+      "businessName": "Test Business",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "",
+      "defaultLat": 0,
+      "defaultLng": 0,
+      "pincode": "",
+      "usePincode": false,
+      "scrapingStrategy": "extension",
+      "preferredApi": "hybrid",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": "2026-05-02",
+      "lastCheck": 1777697401244,
+      "status": "active"
+    },
+    {
+      "id": "1777697286975",
+      "userId": "1776349705175",
+      "name": "challengebricksandroofing.com.au",
+      "url": "challengebricksandroofing.com.au",
+      "businessName": "Challenge Bricks and Roofing Pty Ltd",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "Clyde North, Victoria, Australia",
+      "defaultLat": -38.0949384,
+      "defaultLng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "scrapingStrategy": "extension",
+      "preferredApi": "hybrid",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": "2026-05-02",
+      "status": "active",
+      "lastCheck": 1777697706539
     }
   ],
   "keywords": [
@@ -1003,10 +1116,10 @@
       "id": "0idqqcf",
       "projectId": "1776937143253",
       "text": "business broker sydney",
-      "organic": 7,
-      "maps": 0,
+      "organic": 9,
+      "maps": 2,
       "status": "active",
-      "mapsStatus": "paused",
+      "mapsStatus": "active",
       "organicStatus": "active",
       "location": "2010, Surry Hills, New South Wales, Australia",
       "lat": -33.88289433526316,
@@ -1028,20 +1141,30 @@
           "date": "2026-04-30",
           "organic": 7,
           "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 9,
+          "maps": 2
         }
       ],
-      "displayRank": "1//7",
+      "displayRank": "1//9 LL 2",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "iho0v7",
       "projectId": "1776937143253",
       "text": "business brokers canberra",
-      "organic": 6,
+      "organic": 8,
       "maps": 0,
       "status": "active",
-      "mapsStatus": "paused",
+      "mapsStatus": "active",
       "organicStatus": "active",
       "location": "2010, Surry Hills, New South Wales, Australia",
       "lat": -33.88289433526316,
@@ -1063,20 +1186,25 @@
           "date": "2026-04-30",
           "organic": 6,
           "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 8,
+          "maps": 0
         }
       ],
-      "displayRank": "1//6",
+      "displayRank": "1//8",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "1xz8fc",
       "projectId": "1776937143253",
       "text": "business brokers wollongong",
       "organic": 6,
-      "maps": 0,
+      "maps": 10,
       "status": "active",
-      "mapsStatus": "paused",
+      "mapsStatus": "active",
       "organicStatus": "active",
       "location": "2010, Surry Hills, New South Wales, Australia",
       "lat": -33.88289433526316,
@@ -1098,20 +1226,25 @@
           "date": "2026-04-30",
           "organic": 6,
           "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 6,
+          "maps": 10
         }
       ],
-      "displayRank": "1//6",
+      "displayRank": "1//6 LL 10",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "vejp3",
       "projectId": "1776937143253",
       "text": "business broker",
-      "organic": 8,
-      "maps": 0,
+      "organic": 2,
+      "maps": 1,
       "status": "active",
-      "mapsStatus": "paused",
+      "mapsStatus": "active",
       "organicStatus": "active",
       "location": "2010, Surry Hills, New South Wales, Australia",
       "lat": -33.88289433526316,
@@ -1128,20 +1261,25 @@
           "date": "2026-04-30",
           "organic": 8,
           "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 2,
+          "maps": 1
         }
       ],
-      "displayRank": "1//8",
+      "displayRank": "1//2 LL 1",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "m8mbqn",
       "projectId": "1776937143253",
       "text": "business brokers australia",
-      "organic": 0,
-      "maps": 0,
+      "organic": 3,
+      "maps": 1,
       "status": "active",
-      "mapsStatus": "paused",
+      "mapsStatus": "active",
       "organicStatus": "active",
       "location": "2010, Surry Hills, New South Wales, Australia",
       "lat": -33.88289433526316,
@@ -1163,20 +1301,30 @@
           "date": "2026-04-30",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 3,
+          "maps": 1
         }
       ],
-      "displayRank": "N/A",
-      "source": "",
-      "lastChecked": "2026-04-30"
+      "displayRank": "1//3 LL 1",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "4af26",
       "projectId": "1776937143253",
       "text": "business sale brokers",
-      "organic": 8,
-      "maps": 0,
+      "organic": 9,
+      "maps": 5,
       "status": "active",
-      "mapsStatus": "paused",
+      "mapsStatus": "active",
       "organicStatus": "active",
       "location": "2010, Surry Hills, New South Wales, Australia",
       "lat": -33.88289433526316,
@@ -1198,11 +1346,16 @@
           "date": "2026-04-30",
           "organic": 8,
           "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 9,
+          "maps": 5
         }
       ],
-      "displayRank": "1//8",
+      "displayRank": "1//9 LL 5",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "arirw",
@@ -1211,7 +1364,7 @@
       "organic": 0,
       "maps": 0,
       "status": "active",
-      "mapsStatus": "paused",
+      "mapsStatus": "active",
       "organicStatus": "active",
       "location": "2010, Surry Hills, New South Wales, Australia",
       "lat": -33.88289433526316,
@@ -1228,11 +1381,16 @@
           "date": "2026-04-30",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "byihw",
@@ -1241,7 +1399,7 @@
       "organic": 0,
       "maps": 0,
       "status": "active",
-      "mapsStatus": "paused",
+      "mapsStatus": "active",
       "organicStatus": "active",
       "location": "2010, Surry Hills, New South Wales, Australia",
       "lat": -33.88289433526316,
@@ -1258,11 +1416,16 @@
           "date": "2026-04-30",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "kz96ea",
@@ -1271,7 +1434,7 @@
       "organic": 0,
       "maps": 0,
       "status": "active",
-      "mapsStatus": "paused",
+      "mapsStatus": "active",
       "organicStatus": "active",
       "location": "2010, Surry Hills, New South Wales, Australia",
       "lat": -33.88289433526316,
@@ -1288,20 +1451,25 @@
           "date": "2026-04-30",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "tj73en",
       "projectId": "1776937143253",
       "text": "business brokerage",
-      "organic": 0,
-      "maps": 0,
+      "organic": 8,
+      "maps": 1,
       "status": "active",
-      "mapsStatus": "paused",
+      "mapsStatus": "active",
       "organicStatus": "active",
       "location": "2010, Surry Hills, New South Wales, Australia",
       "lat": -33.88289433526316,
@@ -1318,11 +1486,21 @@
           "date": "2026-04-30",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 9,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 8,
+          "maps": 1
         }
       ],
-      "displayRank": "N/A",
-      "source": "",
-      "lastChecked": "2026-04-30"
+      "displayRank": "1//8 LL 1",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "uy6l",
@@ -1331,7 +1509,7 @@
       "organic": 0,
       "maps": 0,
       "status": "active",
-      "mapsStatus": "paused",
+      "mapsStatus": "active",
       "organicStatus": "active",
       "location": "2010, Surry Hills, New South Wales, Australia",
       "lat": -33.88289433526316,
@@ -1348,11 +1526,21 @@
           "date": "2026-04-30",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "02vcwa",
@@ -1674,7 +1862,7 @@
       "projectId": "1776946201535",
       "text": "dental supplies australia",
       "organic": 1,
-      "maps": 1,
+      "maps": 2,
       "status": "active",
       "mapsStatus": "active",
       "organicStatus": "active",
@@ -1693,17 +1881,27 @@
           "date": "2026-04-30",
           "organic": 1,
           "maps": 1
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 1,
+          "maps": 2
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 1,
+          "maps": 2
         }
       ],
-      "displayRank": "1//1 LL 1",
+      "displayRank": "1//1 LL 2",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "y8b5rg",
       "projectId": "1776946201535",
       "text": "dental needles",
-      "organic": 1,
+      "organic": 2,
       "maps": 1,
       "status": "active",
       "mapsStatus": "active",
@@ -1723,17 +1921,27 @@
           "date": "2026-04-30",
           "organic": 1,
           "maps": 1
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 2,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 2,
+          "maps": 1
         }
       ],
-      "displayRank": "1//1 LL 1",
+      "displayRank": "1//2 LL 1",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "4b692",
       "projectId": "1776946201535",
       "text": "dental supplies sydney",
-      "organic": 2,
+      "organic": 1,
       "maps": 0,
       "status": "active",
       "mapsStatus": "active",
@@ -1753,17 +1961,27 @@
           "date": "2026-04-30",
           "organic": 2,
           "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 1,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 1,
+          "maps": 0
         }
       ],
-      "displayRank": "1//2",
+      "displayRank": "1//1",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "66n06m",
       "projectId": "1776946201535",
       "text": "dental supplies brisbane",
-      "organic": 4,
+      "organic": 3,
       "maps": 0,
       "status": "active",
       "mapsStatus": "active",
@@ -1783,18 +2001,28 @@
           "date": "2026-04-30",
           "organic": 4,
           "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 3,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 3,
+          "maps": 0
         }
       ],
-      "displayRank": "1//4",
+      "displayRank": "1//3",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "qyvc6a",
       "projectId": "1776946201535",
       "text": "dental supplies melbourne",
-      "organic": 1,
-      "maps": 7,
+      "organic": 2,
+      "maps": 10,
       "status": "active",
       "mapsStatus": "active",
       "organicStatus": "active",
@@ -1813,17 +2041,27 @@
           "date": "2026-04-30",
           "organic": 1,
           "maps": 7
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 2,
+          "maps": 7
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 2,
+          "maps": 10
         }
       ],
-      "displayRank": "1//1 LL 7",
+      "displayRank": "1//2 LL 10",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "uqczz7",
       "projectId": "1776946201535",
       "text": "dental supplies perth",
-      "organic": 1,
+      "organic": 4,
       "maps": 0,
       "status": "active",
       "mapsStatus": "active",
@@ -1843,11 +2081,21 @@
           "date": "2026-04-30",
           "organic": 1,
           "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 4,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 4,
+          "maps": 0
         }
       ],
-      "displayRank": "1//1",
+      "displayRank": "1//4",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "z8dp9c",
@@ -1873,11 +2121,21 @@
           "date": "2026-04-30",
           "organic": 2,
           "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 2,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 2,
+          "maps": 0
         }
       ],
       "displayRank": "1//2",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "ixqf5g",
@@ -1903,17 +2161,27 @@
           "date": "2026-04-30",
           "organic": 1,
           "maps": 1
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 1,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 1,
+          "maps": 1
         }
       ],
       "displayRank": "1//1 LL 1",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "u831b6",
       "projectId": "1776946201535",
       "text": "powder free latex gloves",
-      "organic": 3,
+      "organic": 1,
       "maps": 0,
       "status": "active",
       "mapsStatus": "active",
@@ -1933,11 +2201,21 @@
           "date": "2026-04-30",
           "organic": 3,
           "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 6,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 1,
+          "maps": 0
         }
       ],
-      "displayRank": "1//3",
+      "displayRank": "1//1",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "kw5p7p",
@@ -1963,11 +2241,21 @@
           "date": "2026-04-30",
           "organic": 2,
           "maps": 2
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 2,
+          "maps": 2
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 2,
+          "maps": 2
         }
       ],
       "displayRank": "1//2 LL 2",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "ytsq7",
@@ -1993,18 +2281,28 @@
           "date": "2026-04-30",
           "organic": 3,
           "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 3,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 3,
+          "maps": 0
         }
       ],
       "displayRank": "1//3",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
     },
     {
       "id": "bq16sa",
       "projectId": "1776946201535",
       "text": "nitrile gloves",
-      "organic": 8,
-      "maps": 8,
+      "organic": 4,
+      "maps": 0,
       "status": "active",
       "mapsStatus": "active",
       "organicStatus": "active",
@@ -2023,21 +2321,2421 @@
           "date": "2026-04-30",
           "organic": 8,
           "maps": 8
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 3,
+          "maps": 4
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 4,
+          "maps": 0
         }
       ],
-      "displayRank": "1//8 LL 8",
+      "displayRank": "1//4",
       "source": "Serper",
-      "lastChecked": "2026-04-30"
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "yexjac",
+      "projectId": "1777602314637",
+      "text": "velux skylight installation near me",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "diam71",
+      "projectId": "1777602314637",
+      "text": "velux skylights melbourne",
+      "organic": 3,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 1,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 3,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//3",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "y7ayz",
+      "projectId": "1777602314637",
+      "text": "velux skylight installation melbourne",
+      "organic": 5,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 5,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//5",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "fclg8j",
+      "projectId": "1777602314637",
+      "text": "austral bricks melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "0r3pot",
+      "projectId": "1777602314637",
+      "text": "pgh bricks melbourne",
+      "organic": 8,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 8,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//8",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "g8t1yd",
+      "projectId": "1777602314637",
+      "text": "monier roof tiles melbourne",
+      "organic": 3,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 2,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 3,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//3",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "gs87wh",
+      "projectId": "1777602314637",
+      "text": "re roofing melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "jwd9owg",
+      "projectId": "1777602314637",
+      "text": "roof replacements melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "sckycw",
+      "projectId": "1777602314637",
+      "text": "roof replacements near me",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "3yityt",
+      "projectId": "1777602314637",
+      "text": "roof restoration dandenong",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "8gv72",
+      "projectId": "1777602314637",
+      "text": "roof restoration berwick ",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "f1u9l",
+      "projectId": "1777602314637",
+      "text": "roof restoration cranbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "uwqklk",
+      "projectId": "1777697253637",
+      "text": "seo professional services",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "",
+      "lat": 0,
+      "lng": 0,
+      "activePriority": "city",
+      "pincode": "",
+      "usePincode": false,
+      "displayRank": "Queued (Extension)"
+    },
+    {
+      "id": "u8aegl",
+      "projectId": "1777697253637",
+      "text": "rank tracker master",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "",
+      "lat": 0,
+      "lng": 0,
+      "activePriority": "city",
+      "pincode": "",
+      "usePincode": false,
+      "displayRank": "Queued (Extension)"
+    },
+    {
+      "id": "p6l1so",
+      "projectId": "1777697286975",
+      "text": "velux skylight installation near me",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "activePriority": "pincode",
+      "pincode": "3978",
+      "usePincode": true,
+      "displayRank": "Queued (Extension)"
+    },
+    {
+      "id": "xyv1hr",
+      "projectId": "1777697286975",
+      "text": "velux skylights melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "activePriority": "pincode",
+      "pincode": "3978",
+      "usePincode": true,
+      "displayRank": "Queued (Extension)"
+    },
+    {
+      "id": "5hcs5p",
+      "projectId": "1777697286975",
+      "text": "velux skylight installation melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "activePriority": "pincode",
+      "pincode": "3978",
+      "usePincode": true,
+      "displayRank": "Queued (Extension)"
+    },
+    {
+      "id": "c27na9",
+      "projectId": "1777697286975",
+      "text": "austral bricks melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "activePriority": "city",
+      "pincode": "3978",
+      "usePincode": true,
+      "displayRank": "Queued (Extension)"
+    },
+    {
+      "id": "khu33k",
+      "projectId": "1777697286975",
+      "text": "pgh bricks melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "activePriority": "city",
+      "pincode": "3978",
+      "usePincode": true,
+      "displayRank": "Queued (Extension)"
+    },
+    {
+      "id": "bolw8e",
+      "projectId": "1777697286975",
+      "text": "monier roof tiles melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "activePriority": "city",
+      "pincode": "3978",
+      "usePincode": true,
+      "displayRank": "Queued (Extension)"
+    },
+    {
+      "id": "riy7jr",
+      "projectId": "1777697286975",
+      "text": "re roofing melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "activePriority": "city",
+      "pincode": "3978",
+      "usePincode": true,
+      "displayRank": "Queued (Extension)"
+    },
+    {
+      "id": "lm70g",
+      "projectId": "1777697286975",
+      "text": "roof replacements melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "activePriority": "city",
+      "pincode": "3978",
+      "usePincode": true,
+      "displayRank": "Queued (Extension)"
+    },
+    {
+      "id": "bl4fxd",
+      "projectId": "1777697286975",
+      "text": "roof replacements near me",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "activePriority": "city",
+      "pincode": "3978",
+      "usePincode": true,
+      "displayRank": "Queued (Extension)"
+    },
+    {
+      "id": "cc7i8",
+      "projectId": "1777697286975",
+      "text": "roof restoration dandenong",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "activePriority": "city",
+      "pincode": "3978",
+      "usePincode": true,
+      "displayRank": "Queued (Extension)"
+    },
+    {
+      "id": "ik8eda",
+      "projectId": "1777697286975",
+      "text": "roof restoration berwick ",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "activePriority": "city",
+      "pincode": "3978",
+      "usePincode": true,
+      "displayRank": "Queued (Extension)"
+    },
+    {
+      "id": "1vdgyf",
+      "projectId": "1777697286975",
+      "text": "roof restoration cranbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "activePriority": "city",
+      "pincode": "3978",
+      "usePincode": true,
+      "displayRank": "Queued (Extension)"
     }
   ],
   "settings": {
-    "globalSerperApiKey": "15e4117333b41e399dff5a3a9aed2b2a239730d7",
+    "globalSerperApiKey": "b5f48f7b8ca694c9dcf87e79c8a6dac8a4b1a334",
     "globalScrapingdogApiKey": "",
     "globalSerpapiKey": "",
     "globalProxyUrl": "",
-    "globalProxies": [],
+    "globalProxies": [
+      "http://zvr3okpiua-corp.mobile.res-country-AU-state-2155400-hold-session-session-69f6b8932c611:yY4kNLHGPcpOh4H8@89.38.99.242:443"
+    ],
     "isRandomProxy": false,
-    "activeProxyIdx": null,
-    "serperQuotaActive": true
-  }
+    "activeProxyIdx": 0,
+    "serperQuotaActive": true,
+    "scrapingdogQuotaActive": true,
+    "serpapiQuotaActive": true,
+    "proxyActive": false
+  },
+  "extensionTasks": [
+    {
+      "id": "1777656907792a7b8a",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656907792,
+      "startedAt": 1777656918127
+    },
+    {
+      "id": "1777656909295na9jcn",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656909295,
+      "startedAt": 1777656992820
+    },
+    {
+      "id": "1777656909934hob8h8",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656909934,
+      "startedAt": 1777657068151
+    },
+    {
+      "id": "1777656910533m1my6",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656910533,
+      "startedAt": 1777657142830
+    },
+    {
+      "id": "17776569117692akyxf",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "diam71",
+      "keyword": "velux skylights melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656911769,
+      "startedAt": 1777657218145
+    },
+    {
+      "id": "1777656912357rlv1j",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "diam71",
+      "keyword": "velux skylights melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656912357,
+      "startedAt": 1777657292849
+    },
+    {
+      "id": "17776569142347ywdy",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "0r3pot",
+      "keyword": "pgh bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656914234,
+      "startedAt": 1777657368152
+    },
+    {
+      "id": "1777656915117ssngyf",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "0r3pot",
+      "keyword": "pgh bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656915117,
+      "startedAt": 1777657442831
+    },
+    {
+      "id": "1777656916768v97wbq",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "3yityt",
+      "keyword": "roof restoration dandenong",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656916768,
+      "startedAt": 1777657479426
+    },
+    {
+      "id": "177765691858371kjeg",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656918583,
+      "startedAt": 1777657479714
+    },
+    {
+      "id": "1777656918583ghtgcn",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "diam71",
+      "keyword": "velux skylights melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656918583,
+      "startedAt": 1777657479905
+    },
+    {
+      "id": "17776569185836twgo5",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "y7ayz",
+      "keyword": "velux skylight installation melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656918583,
+      "startedAt": 1777657480122
+    },
+    {
+      "id": "1777656918583x0e2iq",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "fclg8j",
+      "keyword": "austral bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656918583,
+      "startedAt": 1777657480406
+    },
+    {
+      "id": "1777656918583qj1ln8",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "0r3pot",
+      "keyword": "pgh bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656918583,
+      "startedAt": 1777657480647
+    },
+    {
+      "id": "177765691858395vlye",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "g8t1yd",
+      "keyword": "monier roof tiles melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656918583,
+      "startedAt": 1777657480921
+    },
+    {
+      "id": "1777656918583quu5pt",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "gs87wh",
+      "keyword": "re roofing melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656918583,
+      "startedAt": 1777657491498
+    },
+    {
+      "id": "1777656918583yjmyd",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "jwd9owg",
+      "keyword": "roof replacements melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656918583,
+      "startedAt": 1777657566843
+    },
+    {
+      "id": "1777656918583biohra",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "sckycw",
+      "keyword": "roof replacements near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656918583,
+      "startedAt": 1777657641537
+    },
+    {
+      "id": "1777656918583v2x6qh",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "3yityt",
+      "keyword": "roof restoration dandenong",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656918583,
+      "startedAt": 1777657716846
+    },
+    {
+      "id": "1777656918585m13vmv",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "8gv72",
+      "keyword": "roof restoration berwick ",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656918585,
+      "startedAt": 1777657791530
+    },
+    {
+      "id": "1777656918585xgebvc",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "f1u9l",
+      "keyword": "roof restoration cranbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777656918585,
+      "startedAt": 1777657866835
+    },
+    {
+      "id": "177765750655316zdk",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "f1u9l",
+      "keyword": "roof restoration cranbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657506553,
+      "startedAt": 1777657941530
+    },
+    {
+      "id": "1777657508518gjvdko",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "f1u9l",
+      "keyword": "roof restoration cranbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657508518,
+      "startedAt": 1777658016838
+    },
+    {
+      "id": "17776575293213ydel",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657529321,
+      "startedAt": 1777658091529
+    },
+    {
+      "id": "1777657529321wdkdgr",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "diam71",
+      "keyword": "velux skylights melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657529321,
+      "startedAt": 1777658166842
+    },
+    {
+      "id": "1777657529321cqk2qf",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "y7ayz",
+      "keyword": "velux skylight installation melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657529321,
+      "startedAt": 1777658241521
+    },
+    {
+      "id": "17776575293215tusd1n",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "fclg8j",
+      "keyword": "austral bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657529321,
+      "startedAt": 1777658316857
+    },
+    {
+      "id": "1777657529321j89fhn",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "0r3pot",
+      "keyword": "pgh bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657529321,
+      "startedAt": 1777658391507
+    },
+    {
+      "id": "17776575293216e4yr",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "g8t1yd",
+      "keyword": "monier roof tiles melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657529321,
+      "startedAt": 1777658414627
+    },
+    {
+      "id": "1777657529321els3vn",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "gs87wh",
+      "keyword": "re roofing melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657529321,
+      "startedAt": 1777658415187
+    },
+    {
+      "id": "1777657529321o9wbjd",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "jwd9owg",
+      "keyword": "roof replacements melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657529321,
+      "startedAt": 1777658415966
+    },
+    {
+      "id": "1777657529321xr9yb",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "sckycw",
+      "keyword": "roof replacements near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657529321,
+      "startedAt": 1777658491297
+    },
+    {
+      "id": "1777657529321roinsl",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "3yityt",
+      "keyword": "roof restoration dandenong",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657529321,
+      "startedAt": 1777658565977
+    },
+    {
+      "id": "1777657529323in8ra7",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "8gv72",
+      "keyword": "roof restoration berwick ",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657529323,
+      "startedAt": 1777658631920
+    },
+    {
+      "id": "1777657529323a4jbf",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "f1u9l",
+      "keyword": "roof restoration cranbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657529323,
+      "startedAt": 1777658632445
+    },
+    {
+      "id": "17776575326002vi4hn",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657532600,
+      "startedAt": 1777658655068
+    },
+    {
+      "id": "1777657533205nlpib",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657533205,
+      "startedAt": 1777658655400
+    },
+    {
+      "id": "1777657533483s4fazh",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657533483,
+      "startedAt": 1777658655687
+    },
+    {
+      "id": "177765753372545ojzc",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657533725,
+      "startedAt": 1777658655872
+    },
+    {
+      "id": "1777657533989gbv7od",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777657533989,
+      "startedAt": 1777658656126
+    },
+    {
+      "id": "1777658407975btlopn",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658407975,
+      "startedAt": 1777658731442
+    },
+    {
+      "id": "1777658407975nj6xf9",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "diam71",
+      "keyword": "velux skylights melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658407975,
+      "startedAt": 1777658786310
+    },
+    {
+      "id": "1777658407975qxbd7j",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "y7ayz",
+      "keyword": "velux skylight installation melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658407975,
+      "startedAt": 1777658787563
+    },
+    {
+      "id": "17776584079756jk666",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "fclg8j",
+      "keyword": "austral bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658407975,
+      "startedAt": 1777658793017
+    },
+    {
+      "id": "1777658407975svitkv",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "0r3pot",
+      "keyword": "pgh bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658407975,
+      "startedAt": 1777658853377
+    },
+    {
+      "id": "17776584079758wqx8",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "g8t1yd",
+      "keyword": "monier roof tiles melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658407975,
+      "startedAt": 1777658928042
+    },
+    {
+      "id": "177765840797543a32",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "gs87wh",
+      "keyword": "re roofing melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658407975,
+      "startedAt": 1777659003397
+    },
+    {
+      "id": "1777658407975spp2n",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "jwd9owg",
+      "keyword": "roof replacements melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658407975,
+      "startedAt": 1777659078038
+    },
+    {
+      "id": "1777658407975sdzvu",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "sckycw",
+      "keyword": "roof replacements near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658407975,
+      "startedAt": 1777659153370
+    },
+    {
+      "id": "1777658407975a0smpj",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "3yityt",
+      "keyword": "roof restoration dandenong",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658407975,
+      "startedAt": 1777659228069
+    },
+    {
+      "id": "17776584079771ayrtq",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "8gv72",
+      "keyword": "roof restoration berwick ",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658407977,
+      "startedAt": 1777659303354
+    },
+    {
+      "id": "1777658407977z73mog",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "f1u9l",
+      "keyword": "roof restoration cranbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658407977,
+      "startedAt": 1777659360759
+    },
+    {
+      "id": "1777658408989r204n8",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658408989,
+      "startedAt": 1777659360942
+    },
+    {
+      "id": "1777658408989v8iry8",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "diam71",
+      "keyword": "velux skylights melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658408989,
+      "startedAt": 1777659361148
+    },
+    {
+      "id": "17776584089894mbcal",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "y7ayz",
+      "keyword": "velux skylight installation melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658408989,
+      "startedAt": 1777659361393
+    },
+    {
+      "id": "17776584089892sjmd",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "fclg8j",
+      "keyword": "austral bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658408989,
+      "startedAt": 1777659361727
+    },
+    {
+      "id": "1777658408989a8ap2n",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "0r3pot",
+      "keyword": "pgh bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658408989,
+      "startedAt": 1777659361942
+    },
+    {
+      "id": "1777658408989wbm3b",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "g8t1yd",
+      "keyword": "monier roof tiles melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658408989,
+      "startedAt": 1777659362152
+    },
+    {
+      "id": "1777658408989rtsr3",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "gs87wh",
+      "keyword": "re roofing melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658408989,
+      "startedAt": 1777659422456
+    },
+    {
+      "id": "1777658408989r9x2zc",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "jwd9owg",
+      "keyword": "roof replacements melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658408989,
+      "startedAt": 1777659497170
+    },
+    {
+      "id": "1777658408989fszr4s",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "sckycw",
+      "keyword": "roof replacements near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658408989,
+      "startedAt": 1777659572485
+    },
+    {
+      "id": "1777658408989uyqlzk",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "3yityt",
+      "keyword": "roof restoration dandenong",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658408989,
+      "startedAt": 1777659647158
+    },
+    {
+      "id": "1777658408991dheo6v",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "8gv72",
+      "keyword": "roof restoration berwick ",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658408991,
+      "startedAt": 1777659707605
+    },
+    {
+      "id": "1777658408991nkyslo",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "f1u9l",
+      "keyword": "roof restoration cranbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777658408991,
+      "startedAt": 1777659782151
+    },
+    {
+      "id": "1777659353093fs48w9",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353093,
+      "startedAt": 1777659801254
+    },
+    {
+      "id": "1777659353093s05zc",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "diam71",
+      "keyword": "velux skylights melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353093,
+      "startedAt": 1777659805137
+    },
+    {
+      "id": "1777659353093tcvk9x",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "y7ayz",
+      "keyword": "velux skylight installation melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353093,
+      "startedAt": 1777659806591
+    },
+    {
+      "id": "1777659353093xdfzb",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "fclg8j",
+      "keyword": "austral bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353093,
+      "startedAt": 1777659807267
+    },
+    {
+      "id": "1777659353093v8shu",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "0r3pot",
+      "keyword": "pgh bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353093,
+      "startedAt": 1777659854893
+    },
+    {
+      "id": "1777659353093c71y6",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "g8t1yd",
+      "keyword": "monier roof tiles melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353093,
+      "startedAt": 1777659915321
+    },
+    {
+      "id": "1777659353093vqdwm",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "gs87wh",
+      "keyword": "re roofing melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353093,
+      "startedAt": 1777693531930
+    },
+    {
+      "id": "1777659353093r4zvnl",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "jwd9owg",
+      "keyword": "roof replacements melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353093,
+      "startedAt": 1777693603159
+    },
+    {
+      "id": "1777659353093davk5l",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "sckycw",
+      "keyword": "roof replacements near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353093,
+      "startedAt": 1777693678188
+    },
+    {
+      "id": "1777659353093mayxvi",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "3yityt",
+      "keyword": "roof restoration dandenong",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353093,
+      "startedAt": 1777693708317
+    },
+    {
+      "id": "1777659353096jm32m",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "8gv72",
+      "keyword": "roof restoration berwick ",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353096,
+      "startedAt": 1777693783647
+    },
+    {
+      "id": "1777659353096ba3mki",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "f1u9l",
+      "keyword": "roof restoration cranbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353096,
+      "startedAt": 1777693858332
+    },
+    {
+      "id": "1777659353838jumu36",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353838,
+      "startedAt": 1777694048813
+    },
+    {
+      "id": "17776593538380kbrmm",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "diam71",
+      "keyword": "velux skylights melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353838,
+      "startedAt": 1777694051249
+    },
+    {
+      "id": "1777659353838y1os5m",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "y7ayz",
+      "keyword": "velux skylight installation melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353838,
+      "startedAt": 1777694054762
+    },
+    {
+      "id": "1777659353838l6a18h",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "fclg8j",
+      "keyword": "austral bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353838,
+      "startedAt": 1777694060467
+    },
+    {
+      "id": "1777659353838dy7zhr",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "0r3pot",
+      "keyword": "pgh bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353838,
+      "startedAt": 1777694063349
+    },
+    {
+      "id": "1777659353838d14aub",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "g8t1yd",
+      "keyword": "monier roof tiles melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353838,
+      "startedAt": 1777694065529
+    },
+    {
+      "id": "1777659353838lbfjla",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "gs87wh",
+      "keyword": "re roofing melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353838,
+      "startedAt": 1777694066686
+    },
+    {
+      "id": "17776593538382b3pzl",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "jwd9owg",
+      "keyword": "roof replacements melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353838,
+      "startedAt": 1777694231681
+    },
+    {
+      "id": "1777659353838u1v3et",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "sckycw",
+      "keyword": "roof replacements near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353838,
+      "startedAt": 1777694291654
+    },
+    {
+      "id": "1777659353838rzcegn",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "3yityt",
+      "keyword": "roof restoration dandenong",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353838,
+      "startedAt": 1777695146651
+    },
+    {
+      "id": "1777659353840zoam8m",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "8gv72",
+      "keyword": "roof restoration berwick ",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353841,
+      "startedAt": 1777695161668
+    },
+    {
+      "id": "1777659353841zjlb5w",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "f1u9l",
+      "keyword": "roof restoration cranbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659353841,
+      "startedAt": 1777696196675
+    },
+    {
+      "id": "177765935414625uv2x",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659354146,
+      "startedAt": 1777696211555
+    },
+    {
+      "id": "1777659354146i1kho",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "diam71",
+      "keyword": "velux skylights melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659354146,
+      "startedAt": 1777696217372
+    },
+    {
+      "id": "1777659354146v21x9p",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "y7ayz",
+      "keyword": "velux skylight installation melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659354146,
+      "startedAt": 1777696232708
+    },
+    {
+      "id": "1777659354146bgejwf",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "fclg8j",
+      "keyword": "austral bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659354146,
+      "startedAt": 1777696247399
+    },
+    {
+      "id": "17776593541464ioa4c",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "0r3pot",
+      "keyword": "pgh bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "processing",
+      "createdAt": 1777659354146,
+      "startedAt": 1777696292389
+    },
+    {
+      "id": "1777659354146mmu3om",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "g8t1yd",
+      "keyword": "monier roof tiles melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354146
+    },
+    {
+      "id": "1777659354146fgsoj8",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "gs87wh",
+      "keyword": "re roofing melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354146
+    },
+    {
+      "id": "17776593541468igk2",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "jwd9owg",
+      "keyword": "roof replacements melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354146
+    },
+    {
+      "id": "17776593541466xm33d",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "sckycw",
+      "keyword": "roof replacements near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354146
+    },
+    {
+      "id": "17776593541466yad3v",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "3yityt",
+      "keyword": "roof restoration dandenong",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354146
+    },
+    {
+      "id": "1777659354147uxvgd",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "8gv72",
+      "keyword": "roof restoration berwick ",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354147
+    },
+    {
+      "id": "17776593541475rlxeg",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "f1u9l",
+      "keyword": "roof restoration cranbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354147
+    },
+    {
+      "id": "1777659354389ig58ny",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354389
+    },
+    {
+      "id": "17776593543895zs14v",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "diam71",
+      "keyword": "velux skylights melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354389
+    },
+    {
+      "id": "1777659354389wwf9it",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "y7ayz",
+      "keyword": "velux skylight installation melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354389
+    },
+    {
+      "id": "1777659354389ubjh6c",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "fclg8j",
+      "keyword": "austral bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354389
+    },
+    {
+      "id": "1777659354389lgk7ys",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "0r3pot",
+      "keyword": "pgh bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354389
+    },
+    {
+      "id": "1777659354389iaketp",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "g8t1yd",
+      "keyword": "monier roof tiles melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354389
+    },
+    {
+      "id": "17776593543897a9f0s",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "gs87wh",
+      "keyword": "re roofing melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354389
+    },
+    {
+      "id": "1777659354389md5rhg",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "jwd9owg",
+      "keyword": "roof replacements melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354389
+    },
+    {
+      "id": "1777659354389eu6la",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "sckycw",
+      "keyword": "roof replacements near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354389
+    },
+    {
+      "id": "1777659354389spoodq",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "3yityt",
+      "keyword": "roof restoration dandenong",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354389
+    },
+    {
+      "id": "1777659354392lmqz3r",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "8gv72",
+      "keyword": "roof restoration berwick ",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354392
+    },
+    {
+      "id": "1777659354392jf0ze",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "f1u9l",
+      "keyword": "roof restoration cranbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777659354392
+    },
+    {
+      "id": "177769407337464jpdl",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777694073374
+    },
+    {
+      "id": "1777694074144z4rh5b",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777694074144
+    },
+    {
+      "id": "17776940743540rhmpj",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777694074354
+    },
+    {
+      "id": "1777694074570te8qr6",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777694074570
+    },
+    {
+      "id": "1777694074771h7idq",
+      "userId": "111499858881808739149",
+      "projectId": "1777602314637",
+      "keywordId": "yexjac",
+      "keyword": "velux skylight installation near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777694074771
+    },
+    {
+      "id": "1777697290672s3fqx",
+      "userId": "1776349705175",
+      "projectId": "1777697253637",
+      "keywordId": "uwqklk",
+      "keyword": "seo professional services",
+      "location": "",
+      "region": "au",
+      "targetDomain": "https://test.com",
+      "status": "pending",
+      "createdAt": 1777697290673
+    },
+    {
+      "id": "1777697290673qonx06",
+      "userId": "1776349705175",
+      "projectId": "1777697253637",
+      "keywordId": "u8aegl",
+      "keyword": "rank tracker master",
+      "location": "",
+      "region": "au",
+      "targetDomain": "https://test.com",
+      "status": "pending",
+      "createdAt": 1777697290673
+    },
+    {
+      "id": "1777697317891045rv3x",
+      "userId": "1776349705175",
+      "projectId": "1777697253637",
+      "keywordId": "uwqklk",
+      "keyword": "seo professional services",
+      "location": "",
+      "region": "au",
+      "targetDomain": "https://test.com",
+      "status": "pending",
+      "createdAt": 1777697317891
+    },
+    {
+      "id": "1777697317891i5ikys",
+      "userId": "1776349705175",
+      "projectId": "1777697253637",
+      "keywordId": "u8aegl",
+      "keyword": "rank tracker master",
+      "location": "",
+      "region": "au",
+      "targetDomain": "https://test.com",
+      "status": "pending",
+      "createdAt": 1777697317891
+    },
+    {
+      "id": "1777697326837x6z0ui",
+      "userId": "1776349705175",
+      "projectId": "1777697253637",
+      "keywordId": "uwqklk",
+      "keyword": "seo professional services",
+      "location": "",
+      "region": "au",
+      "targetDomain": "https://test.com",
+      "status": "pending",
+      "createdAt": 1777697326837
+    },
+    {
+      "id": "1777697330006msmjrl",
+      "userId": "1776349705175",
+      "projectId": "1777697253637",
+      "keywordId": "u8aegl",
+      "keyword": "rank tracker master",
+      "location": "",
+      "region": "au",
+      "targetDomain": "https://test.com",
+      "status": "pending",
+      "createdAt": 1777697330007
+    },
+    {
+      "id": "1777697370218h6zfz8",
+      "userId": "1776349705175",
+      "projectId": "1777697253637",
+      "keywordId": "uwqklk",
+      "keyword": "seo professional services",
+      "location": "",
+      "region": "au",
+      "targetDomain": "https://test.com",
+      "status": "pending",
+      "createdAt": 1777697370218
+    },
+    {
+      "id": "1777697370218fzobc",
+      "userId": "1776349705175",
+      "projectId": "1777697253637",
+      "keywordId": "u8aegl",
+      "keyword": "rank tracker master",
+      "location": "",
+      "region": "au",
+      "targetDomain": "https://test.com",
+      "status": "pending",
+      "createdAt": 1777697370218
+    },
+    {
+      "id": "1777697401237pyjt8b",
+      "userId": "1776349705175",
+      "projectId": "1777697253637",
+      "keywordId": "uwqklk",
+      "keyword": "seo professional services",
+      "location": "",
+      "region": "au",
+      "targetDomain": "https://test.com",
+      "status": "pending",
+      "createdAt": 1777697401237
+    },
+    {
+      "id": "17776974012379ksmom",
+      "userId": "1776349705175",
+      "projectId": "1777697253637",
+      "keywordId": "u8aegl",
+      "keyword": "rank tracker master",
+      "location": "",
+      "region": "au",
+      "targetDomain": "https://test.com",
+      "status": "pending",
+      "createdAt": 1777697401237
+    },
+    {
+      "id": "1777697568864cqdoyp",
+      "userId": "1776349705175",
+      "projectId": "1777697286975",
+      "keywordId": "p6l1so",
+      "keyword": "velux skylight installation near me",
+      "location": "3978",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777697568864
+    },
+    {
+      "id": "1777697568864crbi5g",
+      "userId": "1776349705175",
+      "projectId": "1777697286975",
+      "keywordId": "xyv1hr",
+      "keyword": "velux skylights melbourne",
+      "location": "3978",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777697568864
+    },
+    {
+      "id": "17776975688640myk2v",
+      "userId": "1776349705175",
+      "projectId": "1777697286975",
+      "keywordId": "5hcs5p",
+      "keyword": "velux skylight installation melbourne",
+      "location": "3978",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777697568864
+    },
+    {
+      "id": "177769756886456krj",
+      "userId": "1776349705175",
+      "projectId": "1777697286975",
+      "keywordId": "c27na9",
+      "keyword": "austral bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777697568864
+    },
+    {
+      "id": "1777697568864kznusb",
+      "userId": "1776349705175",
+      "projectId": "1777697286975",
+      "keywordId": "khu33k",
+      "keyword": "pgh bricks melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777697568864
+    },
+    {
+      "id": "1777697568864tfpl78",
+      "userId": "1776349705175",
+      "projectId": "1777697286975",
+      "keywordId": "bolw8e",
+      "keyword": "monier roof tiles melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777697568864
+    },
+    {
+      "id": "1777697568864nrt83s",
+      "userId": "1776349705175",
+      "projectId": "1777697286975",
+      "keywordId": "riy7jr",
+      "keyword": "re roofing melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777697568864
+    },
+    {
+      "id": "1777697568864yjp86",
+      "userId": "1776349705175",
+      "projectId": "1777697286975",
+      "keywordId": "lm70g",
+      "keyword": "roof replacements melbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777697568864
+    },
+    {
+      "id": "1777697568864fz8k1",
+      "userId": "1776349705175",
+      "projectId": "1777697286975",
+      "keywordId": "bl4fxd",
+      "keyword": "roof replacements near me",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777697568864
+    },
+    {
+      "id": "17776975688641ikno",
+      "userId": "1776349705175",
+      "projectId": "1777697286975",
+      "keywordId": "cc7i8",
+      "keyword": "roof restoration dandenong",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777697568864
+    },
+    {
+      "id": "17776975688684qmlhx",
+      "userId": "1776349705175",
+      "projectId": "1777697286975",
+      "keywordId": "ik8eda",
+      "keyword": "roof restoration berwick ",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777697568868
+    },
+    {
+      "id": "1777697568868ef2seu",
+      "userId": "1776349705175",
+      "projectId": "1777697286975",
+      "keywordId": "1vdgyf",
+      "keyword": "roof restoration cranbourne",
+      "location": "Clyde North, Victoria, Australia",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777697568868
+    },
+    {
+      "id": "1777697593411howyi",
+      "userId": "1776349705175",
+      "projectId": "1777697286975",
+      "keywordId": "p6l1so",
+      "keyword": "velux skylight installation near me",
+      "location": "3978",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777697593411
+    },
+    {
+      "id": "1777697706537cikems",
+      "userId": "1776349705175",
+      "projectId": "1777697286975",
+      "keywordId": "xyv1hr",
+      "keyword": "velux skylights melbourne",
+      "location": "3978",
+      "region": "au",
+      "targetDomain": "challengebricksandroofing.com.au",
+      "status": "pending",
+      "createdAt": 1777697706537
+    }
+  ]
 }

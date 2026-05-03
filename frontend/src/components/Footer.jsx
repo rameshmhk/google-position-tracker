@@ -48,7 +48,7 @@ const Footer = () => {
         {/* BRANDING SECTION */}
         <div className="footer-section">
           <div style={{ color: '#fff', fontSize: '22px', fontWeight: '900', letterSpacing: '-0.8px', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ color: 'var(--accent)', fontSize: '24px' }}>▲</span> RankTracker <span style={{ fontWeight: '400', opacity: 0.4, fontSize: '11px', background: 'rgba(255,255,255,0.05)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '1px' }}>ELITE</span>
+            <span style={{ color: 'var(--accent)', fontSize: '24px' }}>▲</span> Ranking Anywhere <span style={{ fontWeight: '400', opacity: 0.4, fontSize: '11px', background: 'rgba(255,255,255,0.05)', padding: '2px 8px', borderRadius: '4px', letterSpacing: '1px' }}>ELITE</span>
           </div>
           <p style={{ color: '#64748b', fontSize: '14px', lineHeight: '1.7', marginBottom: '30px', maxWidth: '280px' }}>
             The definitive SEO intelligence engine for global enterprises and performance-obsessed marketing teams.
@@ -88,7 +88,7 @@ const Footer = () => {
         <div className="footer-section">
           <h4 style={{ fontSize: '11px', fontWeight: '900', color: '#fff', marginBottom: '30px', letterSpacing: '1.5px', textTransform: 'uppercase', opacity: 0.9 }}>About Us</h4>
           <p style={{ color: '#64748b', fontSize: '13px', lineHeight: '1.7', marginBottom: '20px' }}>
-            RankTracker Elite provides hyper-accurate, real-time SEO intelligence. Our global anycast network ensures you see the SERP exactly as your local customers do, anywhere in the world.
+            Ranking Anywhere Elite provides hyper-accurate, real-time SEO intelligence. Our global anycast network ensures you see the SERP exactly as your local customers do, anywhere in the world.
           </p>
         </div>
 
@@ -106,7 +106,7 @@ const Footer = () => {
         flexWrap: 'wrap'
       }}>
         <p style={{ color: '#475569', fontSize: '11px', margin: 0, textAlign: 'center' }}>
-          &copy; {currentYear} RankTracker Elite Global. All ranking and audit data is fully encrypted and real-time.
+          &copy; {currentYear} Ranking Anywhere Elite Global. All ranking and audit data is fully encrypted and real-time.
         </p>
       </div>
     </footer>

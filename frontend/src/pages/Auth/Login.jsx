@@ -125,7 +125,7 @@ const Login = () => {
             </div>
             
             <div className="auth-footer" style={{ marginTop: '40px', textAlign: 'center', fontSize: '14px', color: '#64748b' }}>
-              New to RankTracker?{' '}<Link to="/register" style={{ color: 'var(--primary)', fontWeight: '700' }}>Create an account</Link>
+              New to Ranking Anywhere?{' '}<Link to="/register" style={{ color: 'var(--primary)', fontWeight: '700' }}>Create an account</Link>
             </div>
           </form>
         </div>

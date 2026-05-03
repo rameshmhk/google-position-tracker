@@ -48,9 +48,14 @@ const REGION_TO_TLD: Record<string, string> = {
 
 const getUULE = (location: string, region: string = 'au'): string => {
   const country = REGION_TO_COUNTRY[region.toLowerCase()] || 'Australia';
-  const canonical = location.toLowerCase().includes(country.toLowerCase()) ? location : `${location}, ${country}`;
+  // If the location already has commas or mentions the country, use it as is.
+  const canonical = (location.includes(',') || location.toLowerCase().includes(country.toLowerCase())) 
+    ? location 
+    : `${location}, ${country}`;
+    
   const length = canonical.length;
   const key = UULE_CHARS[length] || 'A';
+  // Use UTF-8 safe base64 encoding
   const encoded = Buffer.from(canonical).toString('base64').replace(/=/g, '');
   return `w+CAIQICI${key}${encoded}`;
 };
@@ -115,24 +120,27 @@ export const scrapeSerperBatch = async (optionsList: ScrapeOptions[]) => {
       const country = REGION_TO_COUNTRY[region.toLowerCase()] || 'Australia';
       const rawLocation = (r.options.location || '').toLowerCase().trim();
       
-      // IMPROVED: Strict mapping to ensure City + Country format (Matches Individual Check Logic)
+      // USER REQUEST: Use the exact location string passed from the backend.
       let finalLocation = r.options.location || '';
-      if (finalLocation && !finalLocation.includes(',')) {
+      // Only append country if it's a single word (like just a city name) and doesn't contain country
+      if (finalLocation && !finalLocation.includes(',') && !finalLocation.toLowerCase().includes(country.toLowerCase())) {
         finalLocation = `${finalLocation}, ${country}`;
       }
 
       // If location is just the country name, leave it empty for Serper to use gl-region default
       const useLocation = (rawLocation === country.toLowerCase()) ? '' : finalLocation;
+      const uule = finalLocation ? getUULE(finalLocation, region) : '';
       
       // LOG COORDINATES IF PRESENT
       if (r.options.lat || r.options.lng) {
-        console.log(`[Batch-GPS] Keyword "${r.keyword}" has coordinates: ${r.options.lat}, ${r.options.lng}. These will be used in Browser Fallback if needed.`);
+        console.log(`[Batch-GPS] Keyword "${r.keyword}" has coordinates: ${r.options.lat}, ${r.options.lng}.`);
       }
 
       return {
         q: r.keyword,
         gl: region,
         location: useLocation,
+        uule: uule, // SYNC WITH BROWSER PRECISION
         num: 100 
       };
     });
@@ -161,15 +169,15 @@ export const scrapeSerperBatch = async (optionsList: ScrapeOptions[]) => {
         for (let i = 0; i < organic.length; i++) {
           const res = organic[i];
           if (!res) continue;
-          const resLink = (res.link || '').toLowerCase();
+          const resLink = (res.link || '').toLowerCase().replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/$/, '');
           const resTitle = (res.title || '').toLowerCase();
           
-          // PHASE 1: DIRECT DOMAIN MATCH
-          const isDomainMatch = resLink.includes(targetDomain);
+          // PHASE 1: DIRECT DOMAIN MATCH (Robust check for subfolder/exact match)
+          const isDomainMatch = resLink.startsWith(targetDomain) || resLink.includes('.' + targetDomain) || resLink === targetDomain;
           
           // PHASE 2: BRAND MATCH (First part of domain, e.g. 'abbagroup')
           const brand = targetDomain.split('.')[0] || '';
-          const isBrandMatch = brand.length > 3 && (resLink.includes(brand) || resTitle.includes(brand));
+          const isBrandMatch = brand.length > 4 && (resLink.includes(brand) || resTitle.includes(brand));
 
           if (isDomainMatch || isBrandMatch) {
             item.organicRank = res.position || (i + 1);
@@ -189,17 +197,23 @@ export const scrapeSerperBatch = async (optionsList: ScrapeOptions[]) => {
       if (!item.found) {
         console.log(`\n⚠️ [DASHBOARD] NO MATCH for "${item.keyword}" in first wave (Top 100). Retrying iterative Deep Scan for the next 100...`);
         
-        // Start from page 11 (Pos 101 - 200)
-        for (let p = 11; p <= 20; p++) {
+        // DEEP RECOVERY LOOP: Start from page 2 (Pos 11 - 200) 
+        // We start from 2 instead of 11 because num:100 in wave 1 might only return 10 results
+        for (let p = 2; p <= 20; p++) {
           if (item.found) break;
           try {
+            const region = item.options.region || 'au';
             const rawLoc = (item.options.location || '').toLowerCase().trim();
-            const useLoc = (rawLoc === 'australia') ? '' : item.options.location;
+            const country = REGION_TO_COUNTRY[region.toLowerCase()] || 'Australia';
+            const finalLocation = (rawLoc && !rawLoc.includes(',')) ? `${rawLoc}, ${country}` : (rawLoc || '');
+            const uule = finalLocation ? getUULE(finalLocation, region) : '';
+            const useLoc = (rawLoc === country.toLowerCase()) ? '' : finalLocation;
 
             const deepRes = await axios.post('https://google.serper.dev/search', {
               q: item.keyword,
-              gl: item.options?.region || 'au',
-              location: useLoc || '',
+              gl: region,
+              location: useLoc,
+              uule: uule, // SYNC PRECISION
               num: 10,
               page: p
             }, {
@@ -214,12 +228,15 @@ export const scrapeSerperBatch = async (optionsList: ScrapeOptions[]) => {
             for (let di = 0; di < deepOrganic.length; di++) {
               const dr = deepOrganic[di];
               if (!dr) continue;
-              const drLink = (dr.link || '').toLowerCase();
+              const drLink = (dr.link || '').toLowerCase().replace(/^(https?:\/\/)?(www\.)?/, '').replace(/\/$/, '');
               
-              const drMatch = drLink.includes(targetDomain) || (targetDomain.includes('.') && drLink.includes(targetDomain.split('.')[0] || ''));
+              // NEW ROBUST MATCHING
+              const drMatch = drLink.startsWith(targetDomain) || 
+                              drLink.includes('.' + targetDomain) || 
+                              drLink === targetDomain;
 
               if (drMatch) {
-                item.organicRank = (di + 1 + ((p - 1) * 10));
+                item.organicRank = dr.position || (di + 1 + ((p - 1) * 10));
                 item.foundUrl = dr.link;
                 item.found = true;
                 console.log(`\n🔥 [DEEP RECOVERY] 🎯 MATCH FOUND on Page ${p}! Absolute Rank: ${item.organicRank} for "${item.keyword}"`);
@@ -245,7 +262,17 @@ export const scrapeSerperBatch = async (optionsList: ScrapeOptions[]) => {
       const mapsPayload = pendingMaps.map(r => ({
         q: r.keyword,
         gl: r.options.region || 'au',
-        location: r.options.location || ''
+        location: (() => {
+          const loc = r.options.location || '';
+          const country = REGION_TO_COUNTRY[(r.options.region || 'au').toLowerCase()] || 'Australia';
+          return (loc && !loc.includes(',')) ? `${loc}, ${country}` : loc;
+        })(),
+        uule: (() => {
+          const loc = r.options.location || '';
+          const country = REGION_TO_COUNTRY[(r.options.region || 'au').toLowerCase()] || 'Australia';
+          const finalLoc = (loc && !loc.includes(',')) ? `${loc}, ${country}` : loc;
+          return finalLoc ? getUULE(finalLoc, r.options.region || 'au') : '';
+        })()
       }));
 
       const mapsRes = await axios.post('https://google.serper.dev/places', mapsPayload, {
@@ -315,20 +342,22 @@ export const scrapeSerperRank = async (options: ScrapeOptions) => {
     const useLocation = (location || '').toLowerCase().trim();
     const country = REGION_TO_COUNTRY[region?.toLowerCase() || 'au'] || 'Australia';
     const finalLocation = (useLocation && !useLocation.includes(',')) ? `${location}, ${country}` : (location || '');
+    const uule = finalLocation ? getUULE(finalLocation, region || 'au') : '';
 
-    console.log(`[Serper] Analyzing: "${cleanTargetDomain}" for Keyword: "${keyword}" (Location: ${finalLocation})`);
+    console.log(`[Serper] Analyzing: "${cleanTargetDomain}" for Keyword: "${keyword}" (Location: ${finalLocation}, UULE: ${uule})`);
 
-    // 1. Organic Mapping (Pages 1-3)
+    // 1. Organic Mapping (Pages 1-20)
     let foundOrganic = false;
-    for (let page = 1; page <= 3; page++) {
+    for (let page = 1; page <= 20; page++) {
       if (foundOrganic) break;
       
-      console.log(`[Serper] Scanning Page ${page} (num=100)...`);
+      console.log(`[Serper] Scanning Page ${page} (num: 10)...`);
       const searchRes = await axios.post('https://google.serper.dev/search', {
         q: keyword,
         gl: region || 'au',
-        location: location || '',
-        num: 100,
+        location: finalLocation,
+        uule: uule,
+        num: 10,
         page: page
       }, {
         headers: { 'X-API-KEY': apiKey || '', 'Content-Type': 'application/json' }
@@ -363,7 +392,8 @@ export const scrapeSerperRank = async (options: ScrapeOptions) => {
       const placesRes = await axios.post('https://google.serper.dev/places', {
         q: keyword,
         gl: region || 'au',
-        location: location || ''
+        location: finalLocation || '',
+        uule: uule || ''
       }, {
         headers: { 'X-API-KEY': apiKey || '', 'Content-Type': 'application/json' }
       });
@@ -419,8 +449,20 @@ export const scrapeGoogleRank = async (options: ScrapeOptions, retryCount: numbe
     fs.appendFileSync(ABS_LOG, `[Scraper-PUP] TRACE: Launching browser (Proxy: ${options.proxyUrl || 'None'})...\n`);
     
     const launchArgs = ['--no-sandbox', '--disable-setuid-sandbox'];
+    let proxyAuth = null;
+
     if (options.proxyUrl) {
-      launchArgs.push(`--proxy-server=${options.proxyUrl}`);
+      try {
+        // Handle http://user:pass@host:port format
+        const url = new URL(options.proxyUrl);
+        launchArgs.push(`--proxy-server=${url.protocol}//${url.host}`);
+        if (url.username && url.password) {
+          proxyAuth = { username: url.username, password: url.password };
+        }
+      } catch (e) {
+        // Fallback for simple host:port
+        launchArgs.push(`--proxy-server=${options.proxyUrl}`);
+      }
     }
 
     browser = await (puppeteerExtra as any).launch({
@@ -431,6 +473,12 @@ export const scrapeGoogleRank = async (options: ScrapeOptions, retryCount: numbe
     fs.appendFileSync(ABS_LOG, `[Scraper-PUP] TRACE: Browser launched successfully.\n`);
 
     const page = await browser.newPage();
+    
+    // Authenticate proxy if needed
+    if (proxyAuth) {
+      await page.authenticate(proxyAuth);
+      fs.appendFileSync(ABS_LOG, `[Scraper-PUP] TRACE: Proxy Authentication configured for ${proxyAuth.username}\n`);
+    }
     
     // DEVICE EMULATION (MOBILE VS DESKTOP)
     if (options.device === 'mobile') {

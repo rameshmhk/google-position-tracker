@@ -18,6 +18,23 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [extensionOnline, setExtensionOnline] = useState(false);
+
+  /* HIDING EXTENSION STATUS CHECK
+  useEffect(() => {
+    if (!user?.id) return;
+    const checkStatus = async () => {
+      try {
+        const res = await fetch(`${API_BASE}/extension/status?userId=${user.id}`);
+        const data = await res.json();
+        setExtensionOnline(data.isOnline);
+      } catch (err) { console.error("Extension status check failed", err); }
+    };
+    checkStatus();
+    const timer = setInterval(checkStatus, 15000); // Check every 15s
+    return () => clearInterval(timer);
+  }, [user?.id]);
+  */
   const [projects, setProjects] = useState([]);
 
   const [selectedId, setSelectedId] = useState(null);
@@ -304,7 +321,8 @@ const Dashboard = () => {
           lat: editingKey.lat,
           lng: editingKey.lng,
           pincode: editingKey.pincode,
-          usePincode: editingKey.usePincode
+          usePincode: editingKey.activePriority === 'pincode',
+          activePriority: editingKey.activePriority || 'city'
         })
       });
       const updated = await res.json();
@@ -332,6 +350,7 @@ const Dashboard = () => {
       });
       const data = await res.json();
       if (data.success) {
+        // Essential: Re-fetch keywords to show "QUEUED (EXTENSION)" status in the table
         fetchKeywords(selectedId);
         if (data.quotaErrors) handleQuotaErrors(data.quotaErrors);
       }
@@ -373,6 +392,7 @@ const Dashboard = () => {
       });
       const data = await res.json();
       if (data.success) {
+        // Refresh keywords to show "QUEUED" status for extension tasks
         fetchKeywords(selectedId);
         if (data.quotaErrors) handleQuotaErrors(data.quotaErrors);
       }
@@ -389,23 +409,40 @@ const Dashboard = () => {
     const query = encodeURIComponent(k.text);
     
     let uuleParam = '';
-    // Use keyword override location OR project location
-    const location = k.location || project.location;
-    
-    if (location) {
+    const priority = k.activePriority || 'city';
+    const kwPincode = k.pincode || project.pincode || '';
+    const baseLoc = k.location || project.defaultLocation || '';
+
+    let finalLocation = '';
+    if (priority === 'pincode' && kwPincode) {
+      finalLocation = kwPincode;
+    } else if (priority === 'city' && baseLoc) {
+      const kwUsePincode = k.usePincode !== undefined ? k.usePincode : project.usePincode;
+      if (kwUsePincode && kwPincode && !baseLoc.includes(kwPincode)) {
+        finalLocation = `${baseLoc}, ${kwPincode}`;
+      } else {
+        finalLocation = baseLoc;
+      }
+    } else {
+      finalLocation = baseLoc || kwPincode || '';
+    }
+
+    if (finalLocation) {
       const REGION_TO_COUNTRY = { 'au': 'Australia', 'us': 'United States', 'gb': 'United Kingdom', 'uk': 'United Kingdom', 'in': 'India' };
       const country = REGION_TO_COUNTRY[project.targetRegion] || 'Australia';
-      const canonical = location.toLowerCase().includes(country.toLowerCase()) ? location : `${location}, ${country}`;
+      const canonical = finalLocation.toLowerCase().includes(country.toLowerCase()) ? finalLocation : `${finalLocation}, ${country}`;
       
       const UULE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
       const key = UULE_CHARS[canonical.length] || 'A';
+      // Use UTF-8 compatible base64 encoding (matches Node.js Buffer behavior)
       const uuleEncoded = btoa(unescape(encodeURIComponent(canonical))).replace(/=/g, '');
       uuleParam = `&uule=w+CAIQICI${key}${uuleEncoded}`;
     }
 
     const start = page * 10;
     const deviceParam = device === 'mobile' ? '&adtest=on' : '';
-    const url = `https://www.${tld}/search?q=${query}${uuleParam}&gl=${project.targetRegion || 'au'}&start=${start}${deviceParam}&pws=0&hl=en`;
+    const typeParam = device === 'maps' ? '&tbm=lcl' : '';
+    const url = `https://www.${tld}/search?q=${query}${uuleParam}&gl=${project.targetRegion || 'au'}&start=${start}${deviceParam}${typeParam}&pws=0&hl=en`;
     window.open(url, '_blank');
   };
 
@@ -467,7 +504,7 @@ const Dashboard = () => {
   return (
     <div className="app-container" style={{ background: '#f8f9fa', height: '100vh', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
       <Helmet>
-        <title>Dashboard | RankTracker Pro</title>
+        <title>Dashboard | Ranking Anywhere</title>
       </Helmet>
 
       {!serperQuotaActive && (
@@ -494,17 +531,36 @@ const Dashboard = () => {
         </div>
       )}
 
-      {!proxyActive && (
+      {false && !proxyActive && (
         <div style={{ background: 'linear-gradient(90deg, #3b82f6, #1d4ed8)', color: '#fff', padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '15px', fontWeight: '800', fontSize: '13px', boxShadow: '0 4px 15px rgba(59, 130, 246, 0.3)', zIndex: 997 }}>
           <span style={{fontSize: '20px'}}>🌐</span>
           <span>PROXY CLUSTER FAILURE: REAL BROWSER FALLBACK IS CURRENTLY UNAVAILABLE.</span>
           <button onClick={() => navigate('/settings')} style={{ background: '#fff', color: '#3b82f6', border: 'none', padding: '6px 16px', borderRadius: '4px', fontWeight: '900', fontSize: '11px', cursor: 'pointer', marginLeft: '20px' }}>CHECK PROXIES</button>
         </div>
       )}
+
+      {/* HIDING EXTENSION ASSISTANT BANNER
+      <div style={{ background: 'rgba(29, 43, 68, 0.95)', borderBottom: '1px solid rgba(255,153,0,0.2)', padding: '10px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <span style={{ background: 'var(--accent)', color: '#fff', padding: '2px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: '900' }}>NEW</span>
+          <span style={{ color: '#fff', fontSize: '12px', fontWeight: '600' }}>Want to save API credits? Download the Browser Extension to track rankings for free.</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: extensionOnline ? '#10b981' : '#ef4444', boxShadow: extensionOnline ? '0 0 10px #10b981' : 'none' }}></span>
+             <span style={{ color: extensionOnline ? '#10b981' : '#ef4444', fontSize: '10px', fontWeight: '900', textTransform: 'uppercase' }}>
+               {extensionOnline ? 'Extension Connected' : 'Extension Offline'}
+             </span>
+          </div>
+          <span style={{ color: '#94a3b8', fontSize: '11px' }}>Your User ID: <code style={{ color: '#fff', background: 'rgba(255,255,255,0.1)', padding: '2px 6px', borderRadius: '4px' }}>{user?.id}</code></span>
+          <a href="/extension.zip" download style={{ background: 'var(--accent)', color: '#fff', textDecoration: 'none', padding: '5px 15px', borderRadius: '4px', fontSize: '11px', fontWeight: '900' }}>DOWNLOAD ADD-ON</a>
+        </div>
+      </div>
+      */}
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         <aside className={`sidebar ${isMobileMenuOpen ? 'active' : ''}`} style={{ background: '#1D2B44', borderRight: '1px solid rgba(255,255,255,0.05)', color: '#fff', width: '280px', padding: '24px', display: 'flex', flexDirection: 'column' }}>
           <div className="logo" style={{ color: '#fff', fontSize: '20px', fontWeight: '900', letterSpacing: '-0.8px', marginBottom: '40px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ color: 'var(--accent)', fontSize: '22px' }}>▲</span> RankTracker <span style={{ fontWeight: '400', opacity: 0.5, fontSize: '12px' }}>PRO</span>
+            <span style={{ color: 'var(--accent)', fontSize: '22px' }}>▲</span> Ranking Anywhere <span style={{ fontWeight: '400', opacity: 0.5, fontSize: '12px' }}>PRO</span>
           </div>
           <div className="sidebar-header" style={{ color: '#94a3b8', fontSize: '10px', fontWeight: '900', letterSpacing: '1.5px', marginBottom: '15px' }}>
             PROJECT INTELLIGENCE
@@ -546,8 +602,28 @@ const Dashboard = () => {
         <main className="main-content" style={{ flex: 1, background: '#f8f9fa', overflowY: 'auto', padding: '30px' }}>
           <header className="dashboard-header" style={{ marginBottom: '30px', background: '#fff', padding: '24px', borderRadius: '4px', border: '1px solid #e1e1e1', display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
                 <h1 style={{ margin: 0, fontSize: '1.5rem', fontWeight: '900', color: '#1D2B44' }}>{activeProject?.name || 'Select Project'}</h1>
+                
+                {activeProject?.scrapingStrategy === 'api_only' && (
+                  <div 
+                    onClick={() => navigate('/settings')}
+                    style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#059669', padding: '4px 10px', borderRadius: '100px', fontSize: '9px', fontWeight: '900', display: 'flex', alignItems: 'center', gap: '5px', border: '1px solid rgba(16, 185, 129, 0.2)', cursor: 'pointer' }}
+                    title="API Stream Mode - Click to Manage"
+                  >
+                    🚀 API STREAM
+                  </div>
+                )}
+                {activeProject?.scrapingStrategy === 'direct_proxy' && (
+                  <div 
+                    onClick={() => navigate('/settings')}
+                    style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#2563eb', padding: '4px 10px', borderRadius: '100px', fontSize: '9px', fontWeight: '900', display: 'flex', alignItems: 'center', gap: '5px', border: '1px solid rgba(59, 130, 246, 0.2)', cursor: 'pointer' }}
+                    title="Direct Proxy Mode - Click to Manage"
+                  >
+                    🌐 DIRECT PROXY
+                  </div>
+                )}
+
                 {activeProject && <button onClick={() => handleToggleProjectStatus(activeProject.id, activeProject.status)} style={{ fontSize: '10px', padding: '4px 10px' }} className={`pro-badge-status clickable ${activeProject.status}`}>{activeProject.status === 'active' ? '● LIVE' : '○ PAUSED'}</button>}
               </div>
             </div>
@@ -621,9 +697,14 @@ const Dashboard = () => {
                                  alignItems: 'center',
                                  gap: '6px'
                                }}>
-                                  <span style={{ fontSize: '16px', fontWeight: '900', color: (k.rank || k.organic) && (k.rank || k.organic) <= 10 ? '#10b981' : (k.rank || k.organic) ? '#f97316' : '#94a3b8' }}>
-                                    {(k.rank || k.organic) ? `#${k.rank || k.organic}` : 'DNS'}
-                                  </span>
+                                  <span style={{ 
+                                     fontSize: (k.rank || k.organic || k.displayRank === 'Queued (Extension)') ? '16px' : '16px', 
+                                     fontWeight: '900', 
+                                     color: k.displayRank === 'Queued (Extension)' ? '#3b82f6' : ((k.rank || k.organic) && (k.rank || k.organic) <= 10 ? '#10b981' : (k.rank || k.organic) ? '#f97316' : '#94a3b8') 
+                                   }}>
+                                     {/* HIDING EXTENSION QUEUED TEXT */}
+                                     {((k.rank || k.organic) ? `#${k.rank || k.organic}` : 'DNS')}
+                                   </span>
                                   {(() => {
                                     const { diff, trend } = getRankChange(k.history, 'organic');
                                     if (trend === 'up') return <span style={{ color: '#10b981', fontSize: '10px', fontWeight: '900', background: 'rgba(16, 185, 129, 0.1)', padding: '2px 4px', borderRadius: '4px' }}>▲{diff}</span>;
@@ -713,7 +794,7 @@ const Dashboard = () => {
                                      <div style={{ fontSize: '9px', fontWeight: '900', color: '#94a3b8', marginBottom: '10px', letterSpacing: '1px' }}>📍 LOCAL MAP PACK</div>
                                      <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', maxWidth: '300px' }}>
                                         {Array.from({ length: visibleCounts[k.id]?.map || 5 }).map((_, i) => (
-                                           <button key={i} onClick={() => handleVerify(k, 0, 'desktop')} style={{ background: '#f97316', color: '#fff', border: 'none', borderRadius: '4px', padding: '5px 8px', fontSize: '10px', fontWeight: '900', cursor: 'pointer' }}>MAP {i+1}</button>
+                                           <button key={i} onClick={() => handleVerify(k, 0, 'maps')} style={{ background: '#f97316', color: '#fff', border: 'none', borderRadius: '4px', padding: '5px 8px', fontSize: '10px', fontWeight: '900', cursor: 'pointer' }}>MAP {i+1}</button>
                                         ))}
                                         {(visibleCounts[k.id]?.map || 5) < 20 && (
                                           <button onClick={() => setVisibleCounts(prev => ({ ...prev, [k.id]: { ...(prev[k.id] || {p:5, m:5, map:5}), map: (prev[k.id]?.map || 5) + 5 } }))} style={{ background: '#f1f5f9', color: '#64748b', border: '1px dashed #cbd5e1', borderRadius: '4px', padding: '4px 8px', fontSize: '12px', fontWeight: '900', cursor: 'pointer' }}>+</button>

@@ -340,9 +340,22 @@ const ProjectSettings = () => {
                 </div>
               </div>
 
+              <div style={{ marginTop: '20px' }}>
+                <label style={{ display: 'block', fontSize: '11px', fontWeight: '800', color: '#94a3b8', marginBottom: '8px' }}>SCRAPING HARDWARE STRATEGY</label>
+                <select 
+                  className="elite-select" style={{ width: '100%' }}
+                  value={project.scrapingStrategy || 'api_only'} 
+                  onChange={e => setProject({...project, scrapingStrategy: e.target.value})}
+                >
+                  <option value="api_only">Cloud API (Serper.dev)</option>
+                  {/* <option value="extension">Browser Extension (Local IP)</option> */}
+                </select>
+              </div>
+
               <div style={{ marginTop: '30px', padding: '15px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
                  <p style={{ margin: 0, fontSize: '11px', color: '#64748b', fontWeight: '600' }}>
-                   System automates ranking checks based on this schedule. Use 'Manual Only' to preserve API credits.
+                   <b>Cloud API:</b> Fast but costs credits. <br/>
+                   {/* <b>Extension:</b> Uses your browser. Zero cost, maximum accuracy. */}
                  </p>
               </div>
             </div>

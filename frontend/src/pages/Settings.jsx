@@ -2,10 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const API_BASE = 'http://localhost:5000/api';
+const API_BASE = '/api';
 
 const Settings = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, updateUser } = useAuth();
   const navigate = useNavigate();
   
   // States from the old Modal
@@ -24,9 +24,44 @@ const Settings = () => {
   const [proxyBulkText, setProxyBulkText] = useState('');
   const [isTestingApi, setIsTestingApi] = useState(false);
   const [saveStatus, setSaveStatus] = useState('');
+  
+  const cleanProxyUrl = (url) => {
+    if (!url) return '';
+    let clean = url.trim();
+    if (clean.toLowerCase().startsWith('curl')) {
+      const parts = clean.split(' ');
+      const proxyPart = parts.find(p => p.startsWith('http'));
+      if (proxyPart) clean = proxyPart;
+    }
+    return clean;
+  };
 
   // Tabs for the new page layout
   const [activeTab, setActiveTab] = useState('profile');
+
+  // Profile Edit States
+  const [newName, setNewName] = useState(user?.name || '');
+  const [newEmail, setNewEmail] = useState(user?.email || '');
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [isUpdatingProfile, setIsUpdatingProfile] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      setNewName(user.name);
+      setNewEmail(user.email);
+    }
+  }, [user]);
 
   useEffect(() => {
     fetchSettings();
@@ -74,8 +109,8 @@ const Settings = () => {
           globalSerperApiKey: globalApiKey,
           globalScrapingdogApiKey: globalScrapingdogApiKey,
           globalSerpapiKey: globalSerpapiKey,
-          globalProxyUrl: globalProxyUrl,
-          globalProxies,
+          globalProxyUrl: cleanProxyUrl(globalProxyUrl),
+          globalProxies: globalProxies.map(p => cleanProxyUrl(p)),
           isRandomProxy,
           activeProxyIdx
         })
@@ -89,7 +124,10 @@ const Settings = () => {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           },
-          body: JSON.stringify(tmpProjStrategy)
+          body: JSON.stringify({
+           ...tmpProjStrategy,
+           proxyUrl: cleanProxyUrl(tmpProjStrategy.proxyUrl)
+         })
         });
       }
       
@@ -121,6 +159,93 @@ const Settings = () => {
       }
     } catch (err) { alert('API Test Error'); }
     setIsTestingApi(false);
+  };
+
+  const handleProfileUpdate = async (e) => {
+    e.preventDefault();
+    if (newPassword && newPassword !== confirmPassword) {
+      alert("New passwords do not match!");
+      return;
+    }
+    
+    setIsUpdatingProfile(true);
+    try {
+      const res = await fetch(`${API_BASE}/auth/profile`, {
+        method: 'PUT',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({ name: newName, email: newEmail, currentPassword, newPassword })
+      });
+      const data = await res.json();
+        if (data.success) {
+          alert("✅ Profile updated successfully!");
+          setCurrentPassword('');
+          setNewPassword('');
+          setConfirmPassword('');
+          updateUser(data.user);
+        } else {
+        alert(`❌ Update failed: ${data.error}`);
+      }
+    } catch (err) { alert('Profile Update Error'); }
+    setIsUpdatingProfile(false);
+  };
+
+  const handlePictureUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('picture', file);
+
+    setIsUploading(true);
+    try {
+      const res = await fetch(`${API_BASE}/auth/upload-picture`, {
+        method: 'POST',
+        headers: { 
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: formData
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert("✅ Picture updated!");
+        updateUser({ picture: data.picture });
+      } else {
+        alert(`❌ Upload failed: ${data.error}`);
+      }
+    } catch (err) { alert('Picture Upload Error'); }
+    setIsUploading(false);
+  };
+
+  const handleTestProxyNode = async (proxyUrl) => {
+    try {
+      const res = await fetch(`${API_BASE}/settings/test-proxy`, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({ proxyUrl })
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert(`✅ PROXY ACTIVE\nReal IP: ${data.ip}`);
+      } else {
+        alert(`❌ PROXY FAILED\nError: ${data.error}`);
+      }
+    } catch (err) { alert('Proxy Test Error'); }
+  };
+
+  const parseProxyLabel = (url) => {
+    if (!url) return 'Unknown';
+    try {
+      const u = new URL(url);
+      return `${u.hostname}:${u.port}`;
+    } catch (e) {
+      return url;
+    }
   };
 
   return (
@@ -198,12 +323,25 @@ const Settings = () => {
       </aside>
 
       {/* Main Content Area */}
-      <main style={{ marginLeft: '280px', flex: 1, padding: '40px' }}>
-        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+      <main style={{ 
+        marginLeft: windowWidth > 1000 ? '280px' : '0', 
+        flex: 1, 
+        padding: windowWidth > 600 ? '40px' : '20px',
+        paddingBottom: '100px',
+        width: '100%'
+      }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '40px' }}>
+          <div style={{ 
+            display: 'flex', 
+            flexDirection: windowWidth > 700 ? 'row' : 'column',
+            justifyContent: 'space-between', 
+            alignItems: windowWidth > 700 ? 'flex-end' : 'flex-start', 
+            marginBottom: '40px',
+            gap: '20px'
+          }}>
             <div>
-              <h1 style={{ margin: 0, fontSize: '32px', fontWeight: '900', color: '#1D2B44', letterSpacing: '-1px' }}>Profile Settings</h1>
+              <h1 style={{ margin: 0, fontSize: windowWidth > 600 ? '32px' : '24px', fontWeight: '900', color: '#1D2B44', letterSpacing: '-1px' }}>Profile Settings</h1>
               <p style={{ margin: '8px 0 0', color: '#64748b', fontWeight: '500' }}>Manage your global search infrastructure and identity</p>
             </div>
             
@@ -214,7 +352,8 @@ const Settings = () => {
                 background: saveStatus === 'success' ? '#10b981' : 'var(--accent)', 
                 color: '#fff', border: 'none', padding: '14px 40px', borderRadius: '12px', 
                 fontWeight: '900', cursor: 'pointer', boxShadow: '0 10px 25px rgba(255, 153, 0, 0.2)',
-                transition: '0.3s'
+                transition: '0.3s',
+                width: windowWidth > 700 ? 'auto' : '100%'
               }}
             >
               {saveStatus === 'saving' ? 'SYNCING DATA...' : saveStatus === 'success' ? '✓ CHANGES PERSISTED' : 'COMMIT ALL UPDATES'}
@@ -224,8 +363,8 @@ const Settings = () => {
           {/* TAB: PROFILE */}
           {activeTab === 'profile' && (
             <div style={{ animation: 'fadeIn 0.3s ease-out' }}>
-               <div style={{ background: '#fff', padding: '40px', borderRadius: '24px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)', display: 'flex', alignItems: 'center', gap: '40px' }}>
-                  <div style={{ position: 'relative' }}>
+               <div style={{ background: '#fff', padding: '40px', borderRadius: '24px', border: '1px solid #e2e8f0', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)', display: 'flex', flexDirection: windowWidth > 800 ? 'row' : 'column', alignItems: 'center', gap: '40px' }}>
+                  <div style={{ position: 'relative', cursor: 'pointer' }} onClick={() => fileInputRef.current.click()}>
                     {user?.picture ? (
                       <img 
                         src={user.picture} 
@@ -256,25 +395,94 @@ const Settings = () => {
                         return user.name.substring(0, 2).toUpperCase();
                       })()}
                     </div>
-                    <div style={{ position: 'absolute', bottom: '-10px', right: '-10px', background: '#10b981', color: '#fff', width: '36px', height: '36px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '4px solid #fff' }}>
-                      ✓
+                    <div style={{ position: 'absolute', bottom: '-10px', right: '-10px', background: 'var(--accent)', color: '#fff', width: '36px', height: '36px', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '4px solid #fff', boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}>
+                      📷
                     </div>
+                    <input 
+                      type="file" 
+                      ref={fileInputRef} 
+                      onChange={handlePictureUpload} 
+                      style={{ display: 'none' }} 
+                      accept="image/*" 
+                    />
+                    {isUploading && (
+                      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)', borderRadius: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '12px', fontWeight: '800' }}>
+                        UPLOADING...
+                      </div>
+                    )}
                   </div>
-                  <div>
-                    <span style={{ background: 'rgba(255, 153, 0, 0.1)', color: 'var(--accent)', padding: '6px 16px', borderRadius: '100px', fontSize: '11px', fontWeight: '900', textTransform: 'uppercase', letterSpacing: '1px' }}>Authenticated User</span>
-                    <h2 style={{ margin: '15px 0 5px', fontSize: '28px', color: '#0f172a', fontWeight: '900' }}>{user?.name}</h2>
-                    <p style={{ margin: 0, color: '#64748b', fontSize: '16px' }}>{user?.email}</p>
-                    
-                    <div style={{ marginTop: '25px', display: 'flex', gap: '15px' }}>
-                      <div style={{ padding: '12px 20px', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-                        <div style={{ fontSize: '10px', fontWeight: '800', color: '#94a3b8', textTransform: 'uppercase', marginBottom: '4px' }}>Account ID</div>
-                        <div style={{ fontSize: '13px', fontWeight: '700', color: '#475569', fontFamily: 'monospace' }}>{user?.id}</div>
+                  
+                  <div style={{ flex: 1 }}>
+                    <form onSubmit={handleProfileUpdate}>
+                      <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 600 ? '1fr 1fr' : '1fr', gap: '20px', marginBottom: '20px' }}>
+                        <div>
+                          <label style={{ display: 'block', fontSize: '11px', fontWeight: '800', color: '#94a3b8', marginBottom: '8px', textTransform: 'uppercase' }}>Full Name</label>
+                          <input 
+                            className="elite-input" 
+                            style={{ width: '100%', padding: '12px' }}
+                            value={newName} 
+                            onChange={e => setNewName(e.target.value)} 
+                          />
+                        </div>
+                        <div>
+                          <label style={{ display: 'block', fontSize: '11px', fontWeight: '800', color: '#94a3b8', marginBottom: '8px', textTransform: 'uppercase' }}>Email Address</label>
+                          <input 
+                            className="elite-input" 
+                            style={{ width: '100%', padding: '12px' }}
+                            value={newEmail} 
+                            onChange={e => setNewEmail(e.target.value)} 
+                          />
+                        </div>
                       </div>
-                      <div style={{ padding: '12px 20px', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-                        <div style={{ fontSize: '10px', fontWeight: '800', color: '#94a3b8', textTransform: 'uppercase', marginBottom: '4px' }}>Member Since</div>
-                        <div style={{ fontSize: '13px', fontWeight: '700', color: '#475569' }}>{user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}</div>
+
+                      <div style={{ padding: '20px', background: '#f8fafc', borderRadius: '16px', border: '1px solid #e2e8f0', marginBottom: '20px' }}>
+                         <h4 style={{ margin: '0 0 15px', fontSize: '12px', fontWeight: '900', color: '#1e293b', textTransform: 'uppercase', letterSpacing: '0.5px' }}>🛡️ Security & Authentication</h4>
+                         
+                         <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 700 ? 'repeat(3, 1fr)' : '1fr', gap: '15px' }}>
+                            <div>
+                              <label style={{ display: 'block', fontSize: '10px', fontWeight: '800', color: '#64748b', marginBottom: '6px' }}>CURRENT PASSWORD</label>
+                              <input 
+                                type="password"
+                                className="elite-input" 
+                                style={{ width: '100%', padding: '10px', fontSize: '13px' }}
+                                value={currentPassword}
+                                onChange={e => setCurrentPassword(e.target.value)}
+                                placeholder="Required to save"
+                              />
+                            </div>
+                            <div>
+                              <label style={{ display: 'block', fontSize: '10px', fontWeight: '800', color: '#64748b', marginBottom: '6px' }}>NEW PASSWORD</label>
+                              <input 
+                                type="password"
+                                className="elite-input" 
+                                style={{ width: '100%', padding: '10px', fontSize: '13px' }}
+                                value={newPassword}
+                                onChange={e => setNewPassword(e.target.value)}
+                                placeholder="Min 6 chars"
+                              />
+                            </div>
+                            <div>
+                              <label style={{ display: 'block', fontSize: '10px', fontWeight: '800', color: '#64748b', marginBottom: '6px' }}>CONFIRM NEW</label>
+                              <input 
+                                type="password"
+                                className="elite-input" 
+                                style={{ width: '100%', padding: '10px', fontSize: '13px' }}
+                                value={confirmPassword}
+                                onChange={e => setConfirmPassword(e.target.value)}
+                                placeholder="Repeat new"
+                              />
+                            </div>
+                         </div>
                       </div>
-                    </div>
+
+                      <button 
+                        type="submit"
+                        disabled={isUpdatingProfile}
+                        style={{ background: '#1D2B44', color: '#fff', border: 'none', padding: '12px 25px', borderRadius: '10px', fontWeight: '800', fontSize: '13px', cursor: 'pointer', transition: '0.2s' }}
+                      >
+                        {isUpdatingProfile ? 'SAVING PROFILE...' : 'UPDATE PROFILE IDENTITY'}
+                      </button>
+                    </form>
                   </div>
                </div>
             </div>
@@ -367,7 +575,7 @@ const Settings = () => {
                          className="btn-primary" 
                          style={{ width: '100%', marginTop: '15px', padding: '15px' }}
                          onClick={() => {
-                           const list = proxyBulkText.split('\n').map(p => p.trim()).filter(p => p);
+                           const list = proxyBulkText.split('\n').map(p => cleanProxyUrl(p.trim())).filter(p => p);
                            if (list.length > 0) {
                              setGlobalProxies([...globalProxies, ...list]);
                              setProxyBulkText('');
@@ -386,18 +594,41 @@ const Settings = () => {
                               key={idx} 
                               onClick={() => !isRandomProxy && setActiveProxyIdx(activeProxyIdx === idx ? null : idx)}
                               style={{
-                                display: 'flex', alignItems: 'center', gap: '12px', padding: '10px 15px', borderRadius: '10px', marginBottom: '6px',
-                                background: activeProxyIdx === idx ? 'rgba(255,153,0,0.1)' : '#fff',
-                                border: `1px solid ${activeProxyIdx === idx ? 'rgba(255,153,0,0.3)' : '#e2e8f0'}`,
-                                cursor: isRandomProxy ? 'not-allowed' : 'pointer'
+                                display: 'flex', alignItems: 'center', gap: '15px', padding: '10px 15px', borderRadius: '12px', marginBottom: '8px',
+                                background: activeProxyIdx === idx ? 'rgba(255,153,0,0.06)' : '#fff',
+                                border: `1px solid ${activeProxyIdx === idx ? 'var(--accent)' : '#e2e8f0'}`,
+                                cursor: isRandomProxy ? 'not-allowed' : 'pointer',
+                                transition: '0.2s',
+                                overflow: 'hidden'
                               }}
                             >
-                              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: activeProxyIdx === idx ? '#FF9900' : '#e2e8f0' }}></div>
-                              <span style={{ fontSize: '12px', fontFamily: 'monospace', color: activeProxyIdx === idx ? '#0f172a' : '#64748b', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p}</span>
-                              <button 
-                                onClick={(e) => { e.stopPropagation(); setGlobalProxies(globalProxies.filter((_, i) => i !== idx)); }}
-                                style={{ background: 'none', border: 'none', color: '#ef4444', cursor: 'pointer', fontSize: '16px' }}
-                              >×</button>
+                              <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: activeProxyIdx === idx ? 'var(--accent)' : '#cbd5e1', flexShrink: 0 }}></div>
+                              
+                              <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
+                                <span style={{ fontSize: '13px', fontWeight: '800', color: '#1e293b', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                                  {parseProxyLabel(p)}
+                                </span>
+                                {p !== parseProxyLabel(p) && (
+                                  <span style={{ 
+                                    fontSize: '11px', color: '#94a3b8', opacity: 0.5, 
+                                    whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+                                    maxWidth: '200px' // HARD LIMIT
+                                  }}>
+                                    {p}
+                                  </span>
+                                )}
+                              </div>
+
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+                                <button 
+                                  onClick={(e) => { e.stopPropagation(); handleTestProxyNode(p); }}
+                                  style={{ background: '#f8fafc', border: '1px solid #e2e8f0', padding: '6px 12px', borderRadius: '8px', fontSize: '10px', fontWeight: '900', cursor: 'pointer', color: '#64748b' }}
+                                >TEST</button>
+                                <button 
+                                  onClick={(e) => { e.stopPropagation(); setGlobalProxies(globalProxies.filter((_, i) => i !== idx)); }}
+                                  style={{ background: 'none', border: 'none', color: '#ef4444', cursor: 'pointer', padding: '5px', fontSize: '18px', lineHeight: 1 }}
+                                >×</button>
+                              </div>
                             </div>
                           ))
                         )}
@@ -455,6 +686,15 @@ const Settings = () => {
                              <div style={{ fontSize: '24px', marginBottom: '10px' }}>🚀</div>
                              <div style={{ fontWeight: '800', fontSize: '13px' }}>API Stream</div>
                            </div>
+                           {/* 
+                           <div 
+                             onClick={() => setTmpProjStrategy({...tmpProjStrategy, scrapingStrategy: 'extension'})}
+                             style={{ flex: 1, padding: '20px', borderRadius: '16px', border: '2px solid', borderColor: tmpProjStrategy.scrapingStrategy === 'extension' ? 'var(--accent)' : '#e2e8f0', background: tmpProjStrategy.scrapingStrategy === 'extension' ? 'rgba(255, 153, 0, 0.05)' : '#fff', cursor: 'pointer', textAlign: 'center' }}
+                           >
+                             <div style={{ fontSize: '24px', marginBottom: '10px' }}>🧩</div>
+                             <div style={{ fontWeight: '800', fontSize: '13px' }}>Extension Hub</div>
+                           </div>
+                           */}
                            <div 
                              onClick={() => setTmpProjStrategy({...tmpProjStrategy, scrapingStrategy: 'direct_proxy'})}
                              style={{ flex: 1, padding: '20px', borderRadius: '16px', border: '2px solid', borderColor: tmpProjStrategy.scrapingStrategy === 'direct_proxy' ? 'var(--accent)' : '#e2e8f0', background: tmpProjStrategy.scrapingStrategy === 'direct_proxy' ? 'rgba(255, 153, 0, 0.05)' : '#fff', cursor: 'pointer', textAlign: 'center' }}
@@ -463,6 +703,16 @@ const Settings = () => {
                              <div style={{ fontWeight: '800', fontSize: '13px' }}>Direct Proxy</div>
                            </div>
                          </div>
+
+                         {/* 
+                         {tmpProjStrategy.scrapingStrategy === 'extension' && (
+                            <div style={{ marginTop: '20px', padding: '15px', background: 'rgba(16, 185, 129, 0.05)', borderRadius: '12px', border: '1px solid rgba(16, 185, 129, 0.1)', animation: 'fadeIn 0.3s ease-out' }}>
+                               <p style={{ margin: 0, fontSize: '12px', color: '#059669', fontWeight: '600' }}>
+                                 🧩 <b>Extension Hub Active:</b> Zero API costs. This project will use your local browser and IP address for the highest possible accuracy. Make sure your extension is "Connected" on the dashboard.
+                               </p>
+                            </div>
+                          )}
+                          */}
 
                          {tmpProjStrategy.scrapingStrategy === 'api_only' && (
                             <div style={{ marginTop: '20px', animation: 'fadeIn 0.3s ease-out' }}>
