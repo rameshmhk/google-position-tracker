@@ -188,6 +188,7 @@ const COUNTRY_DB = [
   { code: 'tr', name: 'Turkey', flag: '🇹🇷', tld: 'google.com.tr' },
   { code: 'tm', name: 'Turkmenistan', flag: '🇹🇲', tld: 'google.tm' },
   { code: 'vi', name: 'U.S. Virgin Islands', flag: '🇻🇮', tld: 'google.co.vi' },
+  { code: 'vi', name: 'U.S. Virgin Islands', flag: '🇻🇮', tld: 'google.co.vi' },
   { code: 'ug', name: 'Uganda', flag: '🇺🇬', tld: 'google.co.ug' },
   { code: 'ua', name: 'Ukraine', flag: '🇺🇦', tld: 'google.com.ua' },
   { code: 'ae', name: 'United Arab Emirates', flag: '🇦🇪', tld: 'google.ae', aliases: ['UAE'] },
@@ -202,7 +203,6 @@ const COUNTRY_DB = [
   { code: 'zw', name: 'Zimbabwe', flag: '🇿🇼', tld: 'google.co.zw' }
 ];
 
-// Persistent cache for city autocomplete to reduce API calls and improve performance
 const cityAutocompleteCache = new Map();
 
 const FreeChecker = () => {
@@ -218,17 +218,15 @@ const FreeChecker = () => {
   const [expandedRows, setExpandedRows] = useState({});
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   
-  // Search Region States
   const [regionSearch, setRegionSearch] = useState('');
   const [showRegionDropdown, setShowRegionDropdown] = useState(false);
   const dropdownRef = useRef(null);
 
-  // City Autocomplete States
   const [citySuggestions, setCitySuggestions] = useState([]);
   const [showCityDropdown, setShowCityDropdown] = useState(false);
   const cityDropdownRef = useRef(null);
   const [isCityLoading, setIsCityLoading] = useState(false);
-  const [isCityLinked, setIsCityLinked] = useState(false); // Flag to lock canonical string
+  const [isCityLinked, setIsCityLinked] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -244,42 +242,30 @@ const FreeChecker = () => {
     };
     document.addEventListener('mousedown', handleClickOutside);
     
-    // Removed manual SEO settings in favor of React Helmet
-
-    // Schema handles by React Helmet in render
-
     return () => {
       window.removeEventListener('resize', handleResize);
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
-  // Photon City Fetch Logic with Advanced Caching
   useEffect(() => {
     if (city.length < 2) {
       setCitySuggestions([]);
       return;
     }
-
-    // Check Cache First
     const cacheKey = `${city.toLowerCase().trim()}_${region}`;
     if (cityAutocompleteCache.has(cacheKey)) {
       setCitySuggestions(cityAutocompleteCache.get(cacheKey));
       setIsCityLoading(false);
       return;
     }
-
     const timer = setTimeout(async () => {
       setIsCityLoading(true);
       try {
-        // STRICT BIASING: Filter cities by the selected search region node
         const countryParam = region ? `&countrycode=${region}` : '';
-        // Optimization: Added osm_tag=place for better geographic focus
         const res = await fetch(`https://photon.komoot.io/api/?q=${encodeURIComponent(city)}${countryParam}&limit=15&lang=en&osm_tag=place`);
         const data = await res.json();
-        
         if (!data.features) throw new Error("Invalid data format");
-
         const suggestions = data.features.map(f => {
           const p = f.properties;
           const parts = [p.name, p.district, p.city, p.state, p.country].filter(Boolean);
@@ -292,19 +278,14 @@ const FreeChecker = () => {
             postcode: p.postcode
           };
         });
-
-        // Store in Cache
         cityAutocompleteCache.set(cacheKey, suggestions);
-        
         setCitySuggestions(suggestions);
       } catch (err) {
         console.error("City fetch failed", err);
-        // Fallback to empty if failed, but don't cache failures
       } finally {
         setIsCityLoading(false);
       }
-    }, 400); // Increased debounce to 400ms to reduce rapid-fire requests
-
+    }, 400);
     return () => clearTimeout(timer);
   }, [city, region]);
 
@@ -314,33 +295,25 @@ const FreeChecker = () => {
       alert("❌ Please enter at least one keyword.");
       return;
     }
-
     const selectedCountry = COUNTRY_DB.find(c => c.code === region) || COUNTRY_DB[0];
-
     const newResults = keyArray.map(k => {
       const countryName = selectedCountry.name;
       let canonical = '';
       if (activePriority === 'coordinates' && lat && lng) {
-        // Google UULE requires a canonical name. Raw coordinates are unreliable.
-        // We prefer the city name if available, even when GPS node is active.
         canonical = city ? city : `${lat}, ${lng}, ${countryName}`;
       } else if (activePriority === 'pincode' && pincode) {
         canonical = `${pincode}, ${countryName}`;
       } else {
         canonical = city ? city : countryName;
       }
-
       const UULE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
       const key = UULE_CHARS[canonical.length] || 'A';
       const uuleEncoded = btoa(unescape(encodeURIComponent(canonical))).replace(/=/g, '');
       const uule = `&uule=w+CAIQICI${key}${uuleEncoded}`;
-
       const tld = selectedCountry.tld || 'google.com';
       const query = encodeURIComponent(k.trim());
-      // Added &near param for extra hinting when coordinates are used
       const nearParam = (activePriority === 'coordinates' && lat && lng) ? `&near=${encodeURIComponent(city || countryName)}` : '';
       const baseSearchUrl = `https://www.${tld}/search?q=${query}${uule}${nearParam}&gl=${region}`;
-
       return {
         keyword: k.trim(),
         baseUrl: baseSearchUrl,
@@ -349,7 +322,6 @@ const FreeChecker = () => {
         priorityUsed: activePriority
       };
     });
-
     setResults(newResults);
     setIsGenerated(true);
   };
@@ -357,7 +329,6 @@ const FreeChecker = () => {
   const openVerify = (baseUrl, posIndex, device = 'desktop') => {
     const start = posIndex;
     const deviceParam = device === 'mobile' ? '&adtest=on' : '';
-    // Use &pws=0 for non-personalized results and hl=en for consistent language
     const finalUrl = `${baseUrl}&start=${start}${deviceParam}&pws=0&hl=en`;
     window.open(finalUrl, '_blank');
   };
@@ -368,7 +339,6 @@ const FreeChecker = () => {
     const name = c.name.toLowerCase();
     const code = c.code.toLowerCase();
     const aliases = (c.aliases || []).map(a => a.toLowerCase());
-
     if (code === s) return 5;
     if (aliases.includes(s)) return 4;
     if (name.startsWith(s)) return 3;
@@ -387,18 +357,15 @@ const FreeChecker = () => {
     setRegion(c.code);
     setRegionSearch(c.name);
     setShowRegionDropdown(false);
-    setCity(''); // Clear city when country changes for fresh intent
+    setCity('');
     setLat('');
     setLng('');
-    // INSTANT FEEDBACK: Clear stale suggestions
     setCitySuggestions([]);
   };
 
   const selectCity = (s) => {
     setCity(s.display);
-    setIsCityLinked(true); // LOCK CANONICAL
-    
-    // Clear and update coordinates
+    setIsCityLinked(true);
     if (s.lat && s.lng) {
       setLat(s.lat.toString());
       setLng(s.lng.toString());
@@ -406,28 +373,20 @@ const FreeChecker = () => {
       setLat('');
       setLng('');
     }
-
-    // Clear and update pincode
     if (s.postcode) {
       setPincode(s.postcode);
     } else {
       setPincode('');
     }
-
     setShowCityDropdown(false);
     setActivePriority('city'); 
-
-    // INTELLIGENT NODE SWITCHING: 
-    // Automatically switch the search region node if the city belongs to a different country
     const cityParts = s.display.split(',').map(p => p.trim());
     const countryName = cityParts[cityParts.length - 1];
-    
     if (countryName) {
       const matchingCountry = COUNTRY_DB.find(c => 
         c.name.toLowerCase() === countryName.toLowerCase() || 
         (c.aliases && c.aliases.some(a => a.toLowerCase() === countryName.toLowerCase()))
       );
-      
       if (matchingCountry && matchingCountry.code !== region) {
         setRegion(matchingCountry.code);
         setRegionSearch(matchingCountry.name);
@@ -480,22 +439,13 @@ const FreeChecker = () => {
         .autocomplete-item:last-child { border-bottom: none; }
         .pill-button { background: #fff; border: 1px solid #e1e7ef; padding: 6px 12px; borderRadius: 20px; fontSize: 10px; fontWeight: 900; cursor: pointer; transition: 0.2s; minWidth: 45px; textAlign: center; display: flex; flexDirection: column; gap: 2px; flex: 1; minWidth: 55px; box-sizing: border-box; }
         .pill-button:hover { border-color: var(--accent); color: var(--accent); background: rgba(255,153,0,0.05); }
-        
-        /* New SEO Styles */
         .seo-section { padding: 100px 25px; max-width: 1100px; margin: 0 auto; line-height: 1.7; color: #334155; }
         .seo-title { font-size: 38px; fontWeight: 900; color: #1e293b; letterSpacing: -1px; marginBottom: 30px; lineHeight: 1.2; position: relative; }
         .seo-title::after { content: ''; position: absolute; left: 0; bottom: -10px; width: 60px; height: 4px; background: var(--accent); border-radius: 2px; }
-        .seo-card { background: #fff; padding: 40px; borderRadius: 24px; border: 1px solid #f1f5f9; boxShadow: 0 10px 40px rgba(0,0,0,0.02); height: 100%; transition: 0.3s; text-align: center; display: flex; flex-direction: column; align-items: center; }
-        .seo-card:hover { transform: translateY(-5px); boxShadow: 0 20px 50px rgba(0,0,0,0.04); }
-        .seo-feature-icon { width: 70px; height: 70px; background: rgba(255, 153, 0, 0.1); border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 32px; margin-bottom: 25px; color: var(--accent); border: 1px solid rgba(255, 153, 0, 0.15); line-height: 1; }
-        .faq-item { background: #fff; border-radius: 16px; border: 1px solid #f1f5f9; marginBottom: 15px; overflow: hidden; }
-        .faq-question { padding: 20px 30px; fontSize: 16px; fontWeight: 800; color: #1e293b; cursor: pointer; display: flex; alignItems: center; justifyContent: space-between; }
-        .faq-answer { padding: 0 30px 25px; fontSize: 14px; color: #64748b; }
       `}</style>
       <Navbar />
       
       <div className="pro-containers" style={{ paddingTop: '50px', paddingBottom: '40px', maxWidth: '900px', margin: '0 auto' }}>
-        {/* --- PROFESSIONAL HEADER --- */}
         <div style={{ textAlign: 'center', marginBottom: '35px' }}>
           <div style={{ margin: '0 auto 15px', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', padding: '6px 15px', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', gap: '8px', fontSize: '10px', fontWeight: '900', letterSpacing: '1px' }}>
             <span style={{ fontSize: '14px' }}>🛡️</span> ENTERPRISE NODE ACTIVE
@@ -506,215 +456,108 @@ const FreeChecker = () => {
           <p style={{ fontSize: '1.05rem', color: '#64748b', fontWeight: '500' }}>Precision Search Engine Position Tracking & Intelligence</p>
         </div>
 
-        {/* --- COMPACT RANK CONSOLE --- */}
         <div className="elite-card" style={{ background: '#fff', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 10px 30px rgba(0,0,0,0.04)', border: '1px solid #f1f5f9' }}>
           <div style={{ background: '#1D2B44', padding: '15px 30px', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
              <h2 style={{ margin: 0, fontSize: '1.1rem', fontWeight: '900' }}>Google Rank Investigation Console</h2>
           </div>
-
           <div style={{ padding: '25px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 700 ? '1.2fr 1fr' : '1fr', gap: '25px', marginBottom: '25px' }}>
               <div className="param-field">
-                <span style={{ fontSize: '10px', fontWeight: '900', color: '#64748b', textTransform: 'uppercase', marginBottom: '10px', display: 'block' }}>
-                   📋 Keywords for Analysis
-                </span>
-                <textarea 
-                  className="elite-input-compact"
-                  style={{ height: '110px', background: '#f8f9fa' }}
-                  placeholder="Insert keywords (one per line)..." 
-                  value={keywords} 
-                  onChange={e => setKeywords(e.target.value)}
-                ></textarea>
+                <span style={{ fontSize: '10px', fontWeight: '900', color: '#64748b', textTransform: 'uppercase', marginBottom: '10px', display: 'block' }}>📋 Keywords for Analysis</span>
+                <textarea className="elite-input-compact" style={{ height: '110px', background: '#f8f9fa' }} placeholder="Insert keywords (one per line)..." value={keywords} onChange={e => setKeywords(e.target.value)}></textarea>
               </div>
-
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <div className="param-field" style={{ position: 'relative' }} ref={dropdownRef}>
-                  <span style={{ fontSize: '10px', fontWeight: '900', color: '#64748b', textTransform: 'uppercase', marginBottom: '10px', display: 'block' }}>1. Choose Search Region (Google Node)</span>
+                  <span style={{ fontSize: '10px', fontWeight: '900', color: '#64748b', textTransform: 'uppercase', marginBottom: '10px', display: 'block' }}>1. Choose Search Region</span>
                   <div style={{ position: 'relative' }}>
-                    <input 
-                      className="elite-input-compact" 
-                      style={{ background: '#f8f9fa', paddingRight: '40px' }} 
-                      placeholder="e.g. India (google.co.in)"
-                      value={regionSearch}
-                      onFocus={() => setShowRegionDropdown(true)}
-                      onChange={e => { setRegionSearch(e.target.value); setShowRegionDropdown(true); }}
-                    />
+                    <input className="elite-input-compact" style={{ background: '#f8f9fa', paddingRight: '40px' }} placeholder="e.g. India" value={regionSearch} onFocus={() => setShowRegionDropdown(true)} onChange={e => { setRegionSearch(e.target.value); setShowRegionDropdown(true); }} />
                     <div style={{ position: 'absolute', right: '15px', top: '50%', transform: 'translateY(-50%)', opacity: 0.5 }}>🔍</div>
-                    
                     {showRegionDropdown && (
                       <div className="autocomplete-list">
-                        {filteredCountries.length > 0 ? (
-                          filteredCountries.map(c => (
-                            <div key={c.code} className="autocomplete-item" onClick={() => selectCountry(c)}>
-                              <span>{c.flag}</span>
-                              <span style={{ flex: 1 }}>{c.name}</span>
-                              <span style={{ opacity: 0.4, textTransform: 'uppercase', fontSize: '10px' }}>({c.code})</span>
-                            </div>
-                          ))
-                        ) : (
-                          <div style={{ padding: '15px', textAlign: 'center', fontSize: '12px', color: '#94a3b8' }}>No countries found...</div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div className="param-field" style={{ position: 'relative' }} ref={cityDropdownRef}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }} onClick={() => setActivePriority('city')}>
-                    <div className={`tick-box ${activePriority === 'city' ? 'active' : ''}`}>
-                      {activePriority === 'city' && <span style={{ color: '#fff', fontSize: '12px' }}>✓</span>}
-                    </div>
-                    <span className={`tick-label ${activePriority === 'city' ? 'active' : ''}`}>
-                      2. Target Geographic City Area
-                    </span>
-                  </div>
-                  <div style={{ position: 'relative' }}>
-                    <input 
-                      className="elite-input-compact" 
-                      placeholder={region ? "Search cities within selected region..." : "Choose country first..."}
-                      value={city} 
-                      onFocus={() => { setActivePriority('city'); setShowCityDropdown(true); }} 
-                      onChange={e => { 
-                        setCity(e.target.value); 
-                        setIsCityLoading(true); // Instant visual feedback
-                        setShowCityDropdown(true);
-                        setIsCityLinked(false); // BREAK LINK ON TYPE
-                        // PROACTIVE CLEARANCE: Reset dependent fields to prevent stale data
-                        setLat('');
-                        setLng('');
-                        setPincode('');
-                      }} 
-                      style={{ background: '#f8f9fa' }} 
-                    />
-                    {isCityLoading && (
-                      <div style={{ position: 'absolute', right: '15px', top: '50%', transform: 'translateY(-50%)' }}>
-                         <div className="ping-animate" style={{ width: '8px', height: '8px', background: 'var(--accent)', borderRadius: '50%' }}></div>
-                      </div>
-                    )}
-                    {showCityDropdown && citySuggestions.length > 0 && (
-                      <div className="autocomplete-list">
-                        {citySuggestions.map((s, i) => (
-                          <div key={i} className="autocomplete-item" onClick={() => selectCity(s)}>
-                             <span style={{ fontSize: '14px' }}>📍</span>
-                             <span style={{ flex: 1, fontSize: '12px' }}>{s.display}</span>
+                        {filteredCountries.map(c => (
+                          <div key={c.code} className="autocomplete-item" onClick={() => selectCountry(c)}>
+                            <span>{c.flag}</span><span style={{ flex: 1 }}>{c.name}</span><span style={{ opacity: 0.4, fontSize: '10px' }}>({c.code})</span>
                           </div>
                         ))}
                       </div>
                     )}
                   </div>
-                  <div style={{ marginTop: '5px', fontSize: '10px', color: '#64748b', fontWeight: '600' }}>
-                     *City suggestions are filtered by the region selected above.
+                </div>
+                <div className="param-field" style={{ position: 'relative' }} ref={cityDropdownRef}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }} onClick={() => setActivePriority('city')}>
+                    <div className={`tick-box ${activePriority === 'city' ? 'active' : ''}`}>{activePriority === 'city' && <span style={{ color: '#fff', fontSize: '12px' }}>✓</span>}</div>
+                    <span className={`tick-label ${activePriority === 'city' ? 'active' : ''}`}>2. Target City Area</span>
                   </div>
+                  <input className="elite-input-compact" placeholder="Search cities..." value={city} onFocus={() => { setActivePriority('city'); setShowCityDropdown(true); }} onChange={e => { setCity(e.target.value); setIsCityLoading(true); setShowCityDropdown(true); setIsCityLinked(false); }} style={{ background: '#f8f9fa' }} />
+                  {isCityLoading && <div style={{ position: 'absolute', right: '15px', top: '50%', transform: 'translateY(-50%)' }}><div className="ping-animate" style={{ width: '8px', height: '8px', background: 'var(--accent)', borderRadius: '50%' }}></div></div>}
+                  {showCityDropdown && citySuggestions.length > 0 && (
+                    <div className="autocomplete-list">
+                      {citySuggestions.map((s, i) => (
+                        <div key={i} className="autocomplete-item" onClick={() => selectCity(s)}>📍 <span style={{ flex: 1, fontSize: '12px' }}>{s.display}</span></div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-
             <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 700 ? '1fr 1fr' : '1fr', gap: '25px', borderTop: '1px solid #f1f5f9', paddingTop: '25px' }}>
               <div className="param-field">
                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }} onClick={() => setActivePriority('pincode')}>
-                    <div className={`tick-box ${activePriority === 'pincode' ? 'active' : ''}`}>
-                      {activePriority === 'pincode' && <span style={{ color: '#fff', fontSize: '12px' }}>✓</span>}
-                    </div>
-                    <span className={`tick-label ${activePriority === 'pincode' ? 'active' : ''}`}>Target Postal / Zip Code</span>
+                    <div className={`tick-box ${activePriority === 'pincode' ? 'active' : ''}`}>{activePriority === 'pincode' && <span style={{ color: '#fff', fontSize: '12px' }}>✓</span>}</div>
+                    <span className={`tick-label ${activePriority === 'pincode' ? 'active' : ''}`}>Target Pincode</span>
                  </div>
-                 <input className="elite-input-compact" placeholder="e.g. 2000" value={pincode} onFocus={() => setActivePriority('pincode')} onChange={e => setPincode(e.target.value)} style={{ width: '100%', background: '#f8f9fa' }} />
+                 <input className="elite-input-compact" placeholder="e.g. 2000" value={pincode} onFocus={() => setActivePriority('pincode')} onChange={e => setPincode(e.target.value)} style={{ background: '#f8f9fa' }} />
               </div>
               <div className="param-field">
                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }} onClick={() => setActivePriority('coordinates')}>
-                    <div className={`tick-box ${activePriority === 'coordinates' ? 'active' : ''}`}>
-                      {activePriority === 'coordinates' && <span style={{ color: '#fff', fontSize: '12px' }}>✓</span>}
-                    </div>
-                    <span className={`tick-label ${activePriority === 'coordinates' ? 'active' : ''}`}>High Precision GPS Node</span>
+                    <div className={`tick-box ${activePriority === 'coordinates' ? 'active' : ''}`}>{activePriority === 'coordinates' && <span style={{ color: '#fff', fontSize: '12px' }}>✓</span>}</div>
+                    <span className={`tick-label ${activePriority === 'coordinates' ? 'active' : ''}`}>GPS Node</span>
                  </div>
                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                   <input className="elite-input-compact" placeholder="Lat" value={lat} onChange={e => setLat(e.target.value)} style={{ background: '#f8f9fa' }} onFocus={() => setActivePriority('coordinates')} />
-                   <input className="elite-input-compact" placeholder="Lng" value={lng} onChange={e => setLng(e.target.value)} style={{ background: '#f8f9fa' }} onFocus={() => setActivePriority('coordinates')} />
+                   <input className="elite-input-compact" placeholder="Lat" value={lat} onChange={e => setLat(e.target.value)} onFocus={() => setActivePriority('coordinates')} style={{ background: '#f8f9fa' }} />
+                   <input className="elite-input-compact" placeholder="Lng" value={lng} onChange={e => setLng(e.target.value)} onFocus={() => setActivePriority('coordinates')} style={{ background: '#f8f9fa' }} />
                  </div>
               </div>
             </div>
-
             <div style={{ marginTop: '25px', display: 'flex', justifyContent: 'flex-end' }}>
-               <button 
-                className="pro-button" 
-                onClick={handleUniversalCheck} 
-                style={{ padding: '0 50px', height: '52px', fontSize: '14px', fontWeight: '900', letterSpacing: '1px', textTransform: 'uppercase', borderRadius: '8px', boxShadow: '0 8px 30px rgba(255, 153, 0, 0.3)' }}
-              >
-                ⚡ Start Live Search
-              </button>
+               <button className="pro-button" onClick={handleUniversalCheck} style={{ padding: '0 50px', height: '52px', borderRadius: '8px' }}>⚡ Start Live Search</button>
             </div>
           </div>
         </div>
 
-        {/* --- COMPACT RESULTS SECTION --- */}
         {isGenerated && (
           <div className="results-section" style={{ marginTop: '50px' }}>
             <div className="results-grid" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               {results.map((r, idx) => (
-                <div key={idx} className="elite-card" style={{ background: '#fff', borderRadius: '12px', border: '1px solid #f1f5f9', boxShadow: '0 5px 20px rgba(0,0,0,0.02)', overflow: 'hidden' }}>
-                  
-                  {/* CARD HEADER - COMPACT */}
-                  <div style={{ padding: '8px 20px', background: 'rgba(29, 43, 68, 0.02)', borderBottom: '1px solid #f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <div style={{ position: 'relative' }}>
-                        <div style={{ width: '6px', height: '6px', background: '#10b981', borderRadius: '50%' }}></div>
-                        <div className="ping-animate" style={{ position: 'absolute', top: 0, left: 0, width: '6px', height: '6px', background: '#10b981', borderRadius: '50%', opacity: 0.6 }}></div>
-                      </div>
-                      <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: '900', color: '#1D2B44' }}>{r.keyword}</h4>
-                    </div>
+                <div key={idx} className="elite-card" style={{ background: '#fff', borderRadius: '12px', border: '1px solid #f1f5f9', overflow: 'hidden' }}>
+                  <div style={{ padding: '8px 20px', background: 'rgba(29, 43, 68, 0.02)', borderBottom: '1px solid #f1f5f9', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div style={{ width: '6px', height: '6px', background: '#10b981', borderRadius: '50%' }}></div>
+                    <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: '900' }}>{r.keyword}</h4>
                   </div>
-
-                  {/* DATA HUB GRID - HORIZONTAL ELITE */}
                   <div style={{ padding: '12px 20px' }}>
                     <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 800 ? 'repeat(3, 1fr)' : '1fr', gap: '25px' }}>
-                      {/* DESKTOP */}
                       <div style={{ textAlign: 'center' }}>
-                        <div style={{ fontSize: '10px', fontWeight: '900', color: '#1D2B44', textTransform: 'uppercase', marginBottom: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
-                          🖥️ Desktop
-                        </div>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px', justifyItems: 'center' }}>
+                        <div style={{ fontSize: '10px', fontWeight: '900', marginBottom: '10px' }}>🖥️ Desktop</div>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px' }}>
                           {Array.from({ length: expandedRows[`${r.keyword}_desktop`] || 5 }).map((_, i) => (
-                            <button key={i} onClick={() => openVerify(r.baseUrl, i * 10, 'desktop')} className="pill-button" style={{ background: '#3b82f6', color: '#fff', border: 'none', boxShadow: '0 4px 10px rgba(59, 130, 246, 0.2)' }}>
-                              <span style={{ fontSize: '11px', fontWeight: '900' }}>P{i + 1}</span>
-                            </button>
+                            <button key={i} onClick={() => openVerify(r.baseUrl, i * 10, 'desktop')} className="pill-button" style={{ background: '#3b82f6', color: '#fff', border: 'none' }}>P{i + 1}</button>
                           ))}
-                          {(expandedRows[`${r.keyword}_desktop`] || 5) < 20 && (
-                            <button onClick={() => handleIncrementExpansion(r.keyword, 'desktop', expandedRows[`${r.keyword}_desktop`] || 5)} style={{ background: '#f8f9fa', border: '1px dashed #cbd5e1', borderRadius: '20px', fontSize: '12px', fontWeight: '900', color: '#94a3b8', cursor: 'pointer', height: '32px', width: '100%', maxWidth: '55px' }}>+</button>
-                          )}
                         </div>
                       </div>
-
-                      {/* MOBILE */}
                       <div style={{ textAlign: 'center' }}>
-                        <div style={{ fontSize: '10px', fontWeight: '900', color: '#1D2B44', textTransform: 'uppercase', marginBottom: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
-                          📱 Mobile
-                        </div>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px', justifyItems: 'center' }}>
+                        <div style={{ fontSize: '10px', fontWeight: '900', marginBottom: '10px' }}>📱 Mobile</div>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px' }}>
                           {Array.from({ length: expandedRows[`${r.keyword}_mobile`] || 5 }).map((_, i) => (
-                            <button key={i} onClick={() => openVerify(r.baseUrl, i * 10, 'mobile')} className="pill-button" style={{ background: '#10b981', color: '#fff', border: 'none', boxShadow: '0 4px 10px rgba(16, 185, 129, 0.2)' }}>
-                              <span style={{ fontSize: '11px', fontWeight: '900' }}>M{i + 1}</span>
-                            </button>
+                            <button key={i} onClick={() => openVerify(r.baseUrl, i * 10, 'mobile')} className="pill-button" style={{ background: '#10b981', color: '#fff', border: 'none' }}>M{i + 1}</button>
                           ))}
-                          {(expandedRows[`${r.keyword}_mobile`] || 5) < 20 && (
-                            <button onClick={() => handleIncrementExpansion(r.keyword, 'mobile', expandedRows[`${r.keyword}_mobile`] || 5)} style={{ background: '#f8f9fa', border: '1px dashed #cbd5e1', borderRadius: '20px', fontSize: '12px', fontWeight: '900', color: '#94a3b8', cursor: 'pointer', height: '32px', width: '100%', maxWidth: '55px' }}>+</button>
-                          )}
                         </div>
                       </div>
-
-                      {/* MAPS */}
                       <div style={{ textAlign: 'center' }}>
-                        <div style={{ fontSize: '10px', fontWeight: '900', color: '#1D2B44', textTransform: 'uppercase', marginBottom: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
-                          📍 Map Pack
-                        </div>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px', justifyItems: 'center' }}>
+                        <div style={{ fontSize: '10px', fontWeight: '900', marginBottom: '10px' }}>📍 Map Pack</div>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '8px' }}>
                           {Array.from({ length: expandedRows[`${r.keyword}_maps`] || 5 }).map((_, i) => (
-                            <button key={i} onClick={() => window.open(`${r.baseUrl}&udm=1&start=${i * 20}`, '_blank')} className="pill-button" style={{ color: '#fff', border: 'none', background: '#f97316', boxShadow: '0 4px 10px rgba(249, 115, 22, 0.2)' }}>
-                              <span style={{ fontSize: '11px', fontWeight: '900' }}>MAP {i + 1}</span>
-                            </button>
+                            <button key={i} onClick={() => window.open(`${r.baseUrl}&udm=1&start=${i * 20}`, '_blank')} className="pill-button" style={{ color: '#fff', border: 'none', background: '#f97316' }}>MAP {i + 1}</button>
                           ))}
-                          {(expandedRows[`${r.keyword}_maps`] || 5) < 20 && (
-                            <button onClick={() => handleIncrementExpansion(r.keyword, 'maps', expandedRows[`${r.keyword}_maps`] || 5)} style={{ background: '#f8f9fa', border: '1px dashed #cbd5e1', borderRadius: '20px', fontSize: '12px', fontWeight: '900', color: '#94a3b8', cursor: 'pointer', height: '32px', width: '100%', maxWidth: '55px' }}>+</button>
-                          )}
-                          <button onClick={() => window.open(`https://www.google.com/maps/search/${encodeURIComponent(r.keyword)}/@${r.lat},${r.lng},15z`)} style={{ background: '#1D2B44', color: '#fff', border: 'none', padding: '6px 12px', borderRadius: '20px', fontSize: '8px', fontWeight: '900', cursor: 'pointer', gridColumn: 'span 5', width: '100%', marginTop: '5px', boxShadow: '0 4px 10px rgba(29, 43, 68, 0.2)' }}>EXPLORE MAPS</button>
                         </div>
                       </div>
                     </div>
@@ -726,264 +569,52 @@ const FreeChecker = () => {
         )}
       </div>
 
-      {/* --- NEW SEO CONTENT SECTIONS (Inspired by SE Ranking) --- */}
-      
-      {/* SECTION 1: ADVANCED SERP OVERVIEW */}
-      <section className="seo-section" style={{ background: '#fff' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 900 ? '1fr 1fr' : '1fr', gap: '60px', alignItems: 'center' }}>
-          <div>
-            <h1 className="seo-title">Google <span style={{ color: 'var(--accent)' }}>Location Changer</span> <br/>& SERP Investigator</h1>
-            <p style={{ marginBottom: '20px', fontSize: '18px', fontWeight: '600', color: '#1e293b' }}>
-              Gain 100% accurate insights into how your website performs in any city or region globally.
-            </p>
-            <p style={{ marginBottom: '25px' }}>
-              Our platform goes beyond basic rank tracking by simulating real-user behavior through our proprietary search nodes. The <strong>Google Location Changer</strong> provides the precise data needed to dominate local search results by spoofing your location at the Google hardware node level.
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-              {[
-                "Real-time Google Maps local pack detection",
-                "Mobile vs. Desktop indexing analysis",
-                "UULE-encoded precise location spoofing",
-                "Deep-link verification for position validation"
-              ].map((item, idx) => (
-                <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '15px', fontWeight: '700' }}>
-                  <span style={{ color: '#10b981' }}>✓</span> {item}
-                </div>
-              ))}
-            </div>
-          </div>
-          <div style={{ position: 'relative' }}>
-             <div style={{ background: '#1D2B44', padding: '40px', borderRadius: '30px', border: '1px solid rgba(255,255,255,0.1)', boxShadow: '0 20px 60px rgba(0,0,0,0.4)', color: '#fff' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '35px' }}>
-                  <div style={{ fontSize: '12px', fontWeight: '900', color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '2px' }}>Live Satellite Telemetry</div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <div className="ping-animate" style={{ width: '10px', height: '10px', background: '#10b981', borderRadius: '50%' }}></div>
-                    <span style={{ fontSize: '11px', fontWeight: '900', color: '#10b981', letterSpacing: '1px' }}>CONNECTED</span>
-                  </div>
-                </div>
-
-                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '25px', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)', marginBottom: '20px' }}>
-                  <div style={{ fontSize: '11px', fontWeight: '900', color: '#94a3b8', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '1px' }}>Position #1 Canonical Detection</div>
-                  <div style={{ fontSize: '14px', fontWeight: '700', color: (city && isCityLinked) ? '#fff' : '#64748b', fontFamily: 'monospace', letterSpacing: '0.5px' }}>
-                    {city && isCityLinked ? (
-                       `s.display_${city.toLowerCase().replace(/[^a-z0-9]/g, '_').replace(/_+/g, '_').replace(/^_|_$/g, '')}`
-                    ) : (
-                       "> Awaiting Geographic Uplink..."
-                    )}
-                  </div>
-                </div>
-
-                <div style={{ background: 'rgba(0,0,0,0.2)', padding: '30px', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.05)', transition: '0.3s' }}>
-                  <div style={{ fontSize: '11px', fontWeight: '900', color: '#94a3b8', marginBottom: '15px', textTransform: 'uppercase', letterSpacing: '1px' }}>High-Precision GPS Node</div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: '20px', alignItems: 'center' }}>
-                    <div style={{ textAlign: 'center' }}>
-                       <div style={{ fontSize: '10px', fontWeight: '900', color: 'var(--accent)', marginBottom: '8px' }}>LATITUDE</div>
-                       <div style={{ fontSize: '16px', fontWeight: '800', fontFamily: 'monospace', color: lat ? '#10b981' : '#fff' }}>{lat ? parseFloat(lat).toFixed(6) : "00.000000"}</div>
-                    </div>
-                    <div style={{ width: '2px', height: '30px', background: 'rgba(255,255,255,0.1)' }}></div>
-                    <div style={{ textAlign: 'center' }}>
-                       <div style={{ fontSize: '10px', fontWeight: '900', color: 'var(--accent)', marginBottom: '8px' }}>LONGITUDE</div>
-                       <div style={{ fontSize: '16px', fontWeight: '800', fontFamily: 'monospace', color: lng ? '#10b981' : '#fff' }}>{lng ? parseFloat(lng).toFixed(6) : "00.000000"}</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div style={{ marginTop: '30px', textAlign: 'center', background: 'rgba(16, 185, 129, 0.05)', padding: '10px', borderRadius: '12px' }}>
-                   <div style={{ fontSize: '11px', fontWeight: '800', color: '#10b981', textTransform: 'uppercase', letterSpacing: '1px' }}>Signal Integrity: <span style={{ fontWeight: '900' }}>Verified - 98.4ms</span></div>
-                </div>
-             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 2: GLOBAL STRATEGY & NODES */}
-      <section className="seo-section" style={{ background: '#f8fafc' }}>
-        <div style={{ textAlign: 'center', marginBottom: '70px' }}>
-          <h2 className="seo-title" style={{ margin: '0 auto 20px', display: 'inline-block' }}>Global Rank Strategy & <span style={{ color: 'var(--accent)' }}>Search Nodes</span></h2>
-          <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '16px' }}>
-            We utilize a sophisticated network of geographically distributed search nodes to ensure your ranking data is never filtered or localized incorrectly.
-          </p>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 800 ? 'repeat(3, 1fr)' : '1fr', gap: '30px' }}>
-          {[
-            { icon: '🌐', title: 'Global Node Network', desc: 'Securely verify rankings across 200+ countries and 10,000+ local cities with dedicated node clusters.' },
-            { icon: '📱', title: 'Mobile-First Indexing', desc: 'Simulate high-end mobile devices to see your search presence as it appears on the latest iOS and Android units.' },
-            { icon: '🛡️', title: 'CORS-Secure Logic', desc: 'Our infrastructure bypasses regional blocks and browser limitations to provide direct, unfiltered SERP access.' }
-          ].map((feature, idx) => (
-            <div key={idx} className="seo-card">
-              <div className="seo-feature-icon">{feature.icon}</div>
-              <h3 style={{ fontSize: '18px', fontWeight: '900', marginBottom: '15px' }}>{feature.title}</h3>
-              <p style={{ fontSize: '14px', lineHeight: '1.6' }}>{feature.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* SECTION 3: CORE LOCATION INTELLIGENCE */}
-      <section className="seo-section" style={{ background: '#fff' }}>
-        <div style={{ background: '#1D2B44', padding: '80px', borderRadius: '40px', color: '#fff' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 900 ? '1fr 1.2fr' : '1fr', gap: '60px', alignItems: 'center' }}>
-            <div>
-              <div style={{ fontSize: '12px', fontWeight: '900', color: 'var(--accent)', textTransform: 'uppercase', marginBottom: '20px' }}>Enterprise SEO Architecture</div>
-              <h2 style={{ fontSize: '36px', fontWeight: '900', marginBottom: '25px', lineHeight: '1.1' }}>Professional Local SEO <br/>Intelligence Command</h2>
-              <p style={{ marginBottom: '30px', opacity: 0.8 }}>
-                The Advanced Investigator is just the start. Manage tens of thousands of keywords, automate daily scans, and generate professional reports through our unified SEO command center.
-              </p>
-              <button style={{ background: 'var(--accent)', color: '#fff', border: 'none', padding: '15px 35px', borderRadius: '12px', fontWeight: '900', cursor: 'pointer', boxShadow: '0 10px 30px rgba(255,153,0,0.3)' }}>
-                 Deploy Fully Managed Node
-              </button>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-               {[
-                 { label: 'Instant', value: '250ms', sub: 'Average Response' },
-                 { label: 'Accuracy', value: '100%', sub: 'Verified Data' },
-                 { label: 'Uptime', value: '99.9%', sub: 'Node Stability' },
-                 { label: 'Global', value: '1M+', sub: 'Geo Locations' }
-               ].map((stat, idx) => (
-                 <div key={idx} style={{ background: 'rgba(255,255,255,0.05)', padding: '25px', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
-                    <div style={{ fontSize: '10px', fontWeight: '900', opacity: 0.5, marginBottom: '5px' }}>{stat.label}</div>
-                    <div style={{ fontSize: '24px', fontWeight: '900', color: 'var(--accent)' }}>{stat.value}</div>
-                    <div style={{ fontSize: '11px', opacity: 0.6 }}>{stat.sub}</div>
-                 </div>
-               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 4: FAQ HUB */}
-      <section className="seo-section" style={{ background: '#f8fafc' }}>
-        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <h2 className="seo-title" style={{ margin: '0 auto 20px', display: 'inline-block' }}>Ranking Intelligence <span style={{ color: 'var(--accent)' }}>FAQ</span></h2>
-          <p>Common questions about local SEO tracking and our Advanced Investigatory tool.</p>
-        </div>
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          {[
-            { q: "What is a Google Location Changer?", a: "A Google Location Changer is an advanced tool that allows SEO professionals to view search engine results as if they were physically located in a different city, state, or country. This is essential for local SEO audits and competitive analysis." },
-            { q: "How accurate is the Advanced SERP Investigator?", a: "Our tool utilizes UULE encoding and high-precision GPS coordinates to spoof your location at the Google node level, providing 100% accuracy that matches what a real user in that location would see." },
-            { q: "Do you support Google Maps (Local Pack) results?", a: "Yes. Our tool specifically detects and highlights Map Pack rankings, ensuring you can track your business's impact on Google My Business and local map results globally." },
-            { q: "Why should I use this over a standard VPN?", a: "VPNS only change your IP address, which Google often ignores in favor of browser-level location data. Our tool changes your actual search intent coordinates, which is significantly more powerful and accurate for regional SEO." }
-          ].map((item, idx) => (
-            <div key={idx} className="faq-item">
-              <div className="faq-question">
-                {item.q}
-                <span>+</span>
-              </div>
-              <div className="faq-answer">
-                {item.a}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* --- COMMUNITY COMMENTS SECTION --- */}
       <section className="seo-section" style={{ background: '#fff', borderTop: '1px solid #f1f5f9' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-            <h2 style={{ fontSize: '32px', fontWeight: '900', color: '#0f172a', letterSpacing: '-1px' }}>Community Feedback</h2>
-            <p style={{ color: '#64748b', fontSize: '16px' }}>Share your ranking success and tips with our global community.</p>
+            <h2 style={{ fontSize: '32px', fontWeight: '900', color: '#0f172a' }}>Community Feedback</h2>
+            <p style={{ color: '#64748b' }}>Share your ranking success with our global community.</p>
           </div>
-
-          {/* Comment Form */}
           <div style={{ background: '#f8fafc', padding: '35px', borderRadius: '24px', border: '1px solid #e2e8f0', marginBottom: '60px' }}>
-            <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#1e293b', marginBottom: '20px' }}>Join the Discussion</h3>
+            <h3 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '20px' }}>Join the Discussion</h3>
             <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 600 ? '1fr 1fr' : '1fr', gap: '20px', marginBottom: '20px' }}>
-              <input type="text" placeholder="Your Name" style={{ padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none' }} />
-              <input type="email" placeholder="Email Address" style={{ padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none' }} />
+              <input type="text" placeholder="Your Name" style={{ padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0' }} />
+              <input type="email" placeholder="Email Address" style={{ padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0' }} />
             </div>
-            
-            {/* Social Links Row */}
-            <div style={{ fontSize: '11px', fontWeight: '900', color: '#94a3b8', marginBottom: '10px', textTransform: 'uppercase' }}>Social Profiles (Optional)</div>
             <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 600 ? '1fr 1fr 1fr' : '1fr', gap: '15px', marginBottom: '20px' }}>
               <input type="text" placeholder="Facebook URL" style={{ padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '13px' }} />
               <input type="text" placeholder="Instagram URL" style={{ padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '13px' }} />
               <input type="text" placeholder="LinkedIn URL" style={{ padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '13px' }} />
             </div>
-
-            <textarea 
-              placeholder="Write your ranking tip or feedback here..." 
-              style={{ width: '100%', height: '100px', padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none', marginBottom: '20px', boxSizing: 'border-box' }}
-            ></textarea>
-            <button style={{ background: '#1D2B44', color: '#fff', padding: '12px 35px', borderRadius: '8px', fontWeight: '900', border: 'none', cursor: 'pointer' }}>
-              Submit Review
-            </button>
+            <textarea placeholder="Your feedback..." style={{ width: '100%', height: '100px', padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', marginBottom: '20px' }}></textarea>
+            <button style={{ background: '#1D2B44', color: '#fff', padding: '12px 35px', borderRadius: '8px', fontWeight: '900', border: 'none' }}>Submit Review</button>
           </div>
-
-          {/* Dynamic Social Comments */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
             {[
-              { 
-                name: "John SEO", 
-                comment: "The UULE precision here is unmatched. I tracked my local bakery's rank from 3 different streets and it was spot on.", 
-                socials: { fb: "https://facebook.com/rankinganywhere", ig: "https://instagram.com/rankinganywhere", li: "https://linkedin.com/company/rankinganywhere" }, 
-                date: "2 hours ago" 
-              },
-              { 
-                name: "Sarah Miller", 
-                comment: "Dashboard is super clean. I love how M1 and P1 codes are separated. Great tool for local agencies.", 
-                socials: { fb: "https://facebook.com/rankinganywhere", li: "https://linkedin.com/company/rankinganywhere" }, 
-                date: "5 hours ago" 
-              },
-              { 
-                name: "Digital Pulse", 
-                comment: "Testing the Direct Proxy node today. The results are extremely honest and transparent.", 
-                socials: { ig: "https://instagram.com/rankinganywhere" }, 
-                date: "1 day ago" 
-              },
-              { name: "Local SEO Pro", comment: "The GPS override feature is a game changer for my clients in London.", socials: { fb: "#" }, date: "2 days ago" },
-              { name: "Market Guru", comment: "Accurate results even for very competitive niches. Highly recommended.", socials: { li: "#" }, date: "2 days ago" },
-              { name: "Site Auditor", comment: "Fast scans and reliable data. The best free investigator I've used.", socials: { ig: "#" }, date: "3 days ago" },
-              { name: "Ranking Expert", comment: "I use this daily to check my main keywords. Never fails.", socials: { fb: "#", li: "#" }, date: "3 days ago" },
-              { name: "SEO Agency", comment: "Great for quick spot checks before meeting clients.", socials: { ig: "#" }, date: "4 days ago" },
-              { name: "Web Master", comment: "Integration with maps is perfect. M1 spot detected correctly.", socials: { fb: "#" }, date: "4 days ago" },
-              { name: "Search Analyst", comment: "Very impressive UULE encoding logic. 100% precision.", socials: { li: "#" }, date: "5 days ago" },
-              { name: "Community User", comment: "Joining the discussion! Great tool for the SEO community.", socials: { fb: "#", ig: "#" }, date: "6 days ago" },
-              { name: "Growth Hacker", comment: "The speed of the API Stream is incredible.", socials: { li: "#" }, date: "1 week ago" }
+              { name: "John SEO", comment: "The UULE precision here is unmatched.", socials: { fb: "https://facebook.com/rankinganywhere", ig: "https://instagram.com/rankinganywhere", li: "https://linkedin.com/company/rankinganywhere" }, date: "2 hours ago" },
+              { name: "Sarah Miller", comment: "Dashboard is super clean.", socials: { fb: "https://facebook.com/rankinganywhere", li: "https://linkedin.com/company/rankinganywhere" }, date: "5 hours ago" },
+              { name: "Digital Pulse", comment: "Testing the Direct Proxy node today.", socials: { ig: "https://instagram.com/rankinganywhere" }, date: "1 day ago" },
+              { name: "Local SEO Pro", comment: "Great tool!", socials: { fb: "#" }, date: "2 days ago" }
             ].map((c, i) => (
-              <div key={i} style={{ borderBottom: '1px solid #f1f5f9', paddingBottom: '30px', display: i >= 10 ? 'none' : 'block' }}>
+              <div key={i} style={{ borderBottom: '1px solid #f1f5f9', paddingBottom: '30px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-                    <div style={{ width: '45px', height: '45px', background: 'linear-gradient(135deg, #1e293b, #0f172a)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: '900', fontSize: '18px' }}>
-                      {c.name[0]}
-                    </div>
-                    <div>
-                      <div style={{ fontWeight: '900', fontSize: '16px', color: '#0f172a' }}>{c.name}</div>
-                      <div style={{ fontSize: '12px', color: '#94a3b8' }}>{c.date}</div>
-                    </div>
+                    <div style={{ width: '45px', height: '45px', background: '#1e293b', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: '900' }}>{c.name[0]}</div>
+                    <div><div style={{ fontWeight: '900', color: '#0f172a' }}>{c.name}</div><div style={{ fontSize: '12px', color: '#94a3b8' }}>{c.date}</div></div>
                   </div>
-                  
                   <div style={{ display: 'flex', gap: '12px' }}>
-                    {c.socials.fb && (
-                      <a href={c.socials.fb} target="_blank" rel="noreferrer" style={{ color: '#1877F2' }} title="Facebook">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                      </a>
-                    )}
-                    {c.socials.ig && (
-                      <a href={c.socials.ig} target="_blank" rel="noreferrer" style={{ color: '#E4405F' }} title="Instagram">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.811.247 2.23.408.556.215.957.47 1.372.884.414.414.67.815.884 1.372.162.42.355 1.061.408 2.23.058 1.265.069 1.645.069 4.849s-.011 3.584-.069 4.849c-.054 1.17-.247 1.812-.408 2.23-.215.557-.47.958-.884 1.372-.414.414-.815.67-1.372.884-.42.162-1.061.355-2.23.408-1.265.058-1.645.07-4.849.07s-3.584-.011-4.849-.07c-1.17-.054-1.812-.247-2.23-.408-.557-.215-.958-.47-1.372-.884-.414-.414-.815-.67-1.372-.884-.42-.162-1.061-.355-2.23-.408-1.265-.058-1.645-.07-4.849-.07s-3.584.011-4.849.07c-1.17.054-1.812.247-2.23.408-.557.215-.958.47-1.372.884-.414.414-.815.67-1.372.884-.42-.162-1.061-.355-2.23-.408-1.265-.058-1.645-.07-4.849-.07zM12 0C8.741 0 8.333.014 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.741 0 12s.012 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.303 1.636.504 2.913.56 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.277-.06 2.148-.262 2.913-.56.788-.306 1.459-.718 2.126-1.384s1.079-1.338 1.384-2.126c.303-.765.504-1.636.56-2.913.058-1.28.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.06-1.277-.262-2.149-.56-2.913-.306-.789-.718-1.459-1.384-2.126s-1.338-1.079-2.126-1.384c-.765-.303-1.636-.504-2.913-.56C15.667.012 15.259 0 12 0zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                      </a>
-                    )}
-                    {c.socials.li && (
-                      <a href={c.socials.li} target="_blank" rel="noreferrer" style={{ color: '#0077B5' }} title="LinkedIn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.2225 0z"/></svg>
-                      </a>
-                    )}
+                    {c.socials.fb && <a href={c.socials.fb} target="_blank" rel="noreferrer" style={{ color: '#1877F2' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>}
+                    {c.socials.ig && <a href={c.socials.ig} target="_blank" rel="noreferrer" style={{ color: '#E4405F' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.811.247 2.23.408.556.215.957.47 1.372.884.414.414.67.815.884 1.372.162.42.355 1.061.408 2.23.058 1.265.069 1.645.069 4.849s-.011 3.584-.069 4.849c-.054 1.17-.247 1.812-.408 2.23-.215.557-.47.958-.884 1.372-.414.414-.815.67-1.372.884-.42.162-1.061.355-2.23.408-1.265.058-1.645.07-4.849.07s-3.584-.011-4.849-.07c-1.17-.054-1.812-.247-2.23-.408-.557-.215-.958-.47-1.372-.884-.414-.414-.815-.67-1.372-.884-.42-.162-1.061-.355-2.23-.408-1.265-.058-1.645-.07-4.849-.07s-3.584.011-4.849.07c-1.17.054-1.812.247-2.23.408-.557.215-.958.47-1.372.884-.414.414-.815.67-1.372.884-.42-.162-1.061-.355-2.23-.408-1.265-.058-1.645-.07-4.849-.07zM12 0C8.741 0 8.333.014 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.741 0 12s.012 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.303 1.636.504 2.913.56 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.277-.06 2.148-.262 2.913-.56.788-.306 1.459-.718 2.126-1.384s1.079-1.338 1.384-2.126c.303-.765.504-1.636.56-2.913.058-1.28.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.06-1.277-.262-2.149-.56-2.913-.306-.789-.718-1.459-1.384-2.126s-1.338-1.079-2.126-1.384c-.765-.303-1.636-.504-2.913-.56C15.667.012 15.259 0 12 0zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>}
+                    {c.socials.li && <a href={c.socials.li} target="_blank" rel="noreferrer" style={{ color: '#0077B5' }}><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.2225 0z"/></svg></a>}
                   </div>
                 </div>
                 <p style={{ color: '#475569', fontSize: '15px', lineHeight: '1.8', paddingLeft: '60px' }}>{c.comment}</p>
               </div>
             ))}
           </div>
-
-          {/* View More Button */}
           <div style={{ textAlign: 'center', marginTop: '50px' }}>
-             <button style={{ background: '#fff', border: '1px solid #e2e8f0', color: '#64748b', padding: '12px 30px', borderRadius: '100px', fontWeight: '800', cursor: 'pointer', transition: '0.3s' }}>
-                View More Discussions (12+)
-             </button>
+             <button style={{ background: '#fff', border: '1px solid #e2e8f0', color: '#64748b', padding: '12px 30px', borderRadius: '100px', fontWeight: '800', cursor: 'pointer' }}>View More Discussions (12+)</button>
           </div>
-        </div>
-      </section>
         </div>
       </section>
 
