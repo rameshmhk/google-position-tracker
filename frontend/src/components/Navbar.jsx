@@ -21,6 +21,7 @@ const Navbar = () => {
             <ul className="nav-menu">
               <li><Link to="/" style={{ color: '#cbd5e1' }} onClick={() => setIsMenuOpen(false)}>Site Explorer</Link></li>
               <li><Link to="/about" style={{ color: '#cbd5e1' }} onClick={() => setIsMenuOpen(false)}>Keywords Explorer</Link></li>
+              <li><Link to="/guide" style={{ color: '#cbd5e1' }} onClick={() => setIsMenuOpen(false)}>Master Guide</Link></li>
               <li><Link to="/free-check" style={{ color: 'var(--accent)', fontWeight: '700' }} onClick={() => setIsMenuOpen(false)}>Live Rank Tracker</Link></li>
               {user ? (
                 <>

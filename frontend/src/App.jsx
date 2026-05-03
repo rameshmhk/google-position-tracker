@@ -19,6 +19,7 @@ import ProjectSettings from './pages/ProjectSettings';
 import ProjectInsights from './pages/ProjectInsights';
 import SiteAudit from './pages/SiteAudit';
 import HowToUse from './pages/HowToUse';
+import UserGuide from './pages/UserGuide';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -45,6 +46,7 @@ const App = () => {
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="/how-to-use" element={<HowToUse />} />
+      <Route path="/guide" element={<UserGuide />} />
       {/* <Route path="/site-audit" element={<SiteAudit />} /> */}
 
       {/* Private Dashboard Route */}
