@@ -107,17 +107,27 @@ const AdminPortal = () => {
   };
 
   const deleteBlog = async (id) => {
-    if (!window.confirm("Trash this post?")) return;
+    if (!window.confirm("Are you sure you want to trash this post?")) return;
+    
     try {
       const token = localStorage.getItem('token');
       const res = await fetch(`http://localhost:5000/api/admin/blogs/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
+      
       if (res.ok) {
-        fetchBlogs();
+        // Optimistic Update for UI speed
+        setBlogs(prev => prev.filter(b => b.id !== id));
+        alert("🗑️ Post removed successfully.");
+      } else {
+        const errData = await res.json();
+        alert("Failed to delete: " + (errData.error || "Server Error"));
       }
-    } catch (err) { console.error(err); }
+    } catch (err) { 
+      alert("Network Error. Check if backend is running.");
+      console.error(err); 
+    }
   };
 
   const startEdit = (post) => {
