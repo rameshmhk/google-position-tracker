@@ -47,10 +47,11 @@ const AdminPortal = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (credentials.email === MASTER_ADMIN && credentials.password.length >= 8) {
+    const MASTER_PASS = "Admin@123456";
+    if (credentials.email === MASTER_ADMIN && credentials.password === MASTER_PASS) {
       setIsLoggedIn(true);
     } else {
-      alert("Unauthorized Access! Only rameshmjk@gmail.com is permitted.");
+      alert("Unauthorized Access! Invalid Credentials.");
     }
   };
 
