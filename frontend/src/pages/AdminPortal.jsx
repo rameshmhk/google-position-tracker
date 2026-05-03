@@ -10,10 +10,13 @@ const AdminPortal = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
   
-  // Blog Form State
+  // Blog CMS States
+  const [isEditing, setIsEditing] = useState(false);
+  const [editId, setEditId] = useState(null);
   const [blogForm, setBlogForm] = useState({ title: '', content: '', author: 'Admin', category: 'SEO Tips', image: '' });
 
   const MASTER_ADMIN = "rameshmjk@gmail.com";
+  const MASTER_PASS = "admin@12345";
 
   const fetchPending = async () => {
     setLoading(true);
@@ -47,7 +50,6 @@ const AdminPortal = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const MASTER_PASS = "admin@12345";
     if (credentials.email === MASTER_ADMIN && credentials.password === MASTER_PASS) {
       setIsLoggedIn(true);
     } else {
@@ -69,12 +71,31 @@ const AdminPortal = () => {
     } catch (err) { alert("Approval failed."); }
   };
 
-  const handleBlogSubmit = async (e) => {
-    e.preventDefault();
+  const handleCommentDelete = async (id) => {
+    if (!window.confirm("Delete this comment permanently?")) return;
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/admin/blogs', {
-        method: 'POST',
+      const res = await fetch(`http://localhost:5000/api/admin/comments/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        setPendingComments(pendingComments.filter(c => c.id !== id));
+      }
+    } catch (err) { alert("Delete failed."); }
+  };
+
+  const handleBlogSubmit = async (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('token');
+    const url = isEditing 
+      ? `http://localhost:5000/api/admin/blogs/${editId}` 
+      : 'http://localhost:5000/api/admin/blogs';
+    const method = isEditing ? 'PUT' : 'POST';
+
+    try {
+      const res = await fetch(url, {
+        method,
         headers: { 
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}` 
@@ -82,11 +103,34 @@ const AdminPortal = () => {
         body: JSON.stringify(blogForm)
       });
       if (res.ok) {
-        alert("Blog Post Published Successfully!");
+        alert(isEditing ? "Post Updated!" : "Post Published!");
         setBlogForm({ title: '', content: '', author: 'Admin', category: 'SEO Tips', image: '' });
+        setIsEditing(false);
+        setEditId(null);
         fetchBlogs();
       }
-    } catch (err) { alert("Blog post failed."); }
+    } catch (err) { alert("Action failed."); }
+  };
+
+  const handleBlogDelete = async (id) => {
+    if (!window.confirm("Are you sure? This will remove the blog post forever.")) return;
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`http://localhost:5000/api/admin/blogs/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        fetchBlogs();
+      }
+    } catch (err) { alert("Delete failed."); }
+  };
+
+  const startEdit = (post) => {
+    setBlogForm({ title: post.title, content: post.content, author: post.author, category: post.category, image: post.image || '' });
+    setEditId(post.id);
+    setIsEditing(true);
+    window.scrollTo(0, 0);
   };
 
   if (!isLoggedIn) {
@@ -128,7 +172,7 @@ const AdminPortal = () => {
         <div style={{ display: 'flex', gap: '30px' }}>
           <div style={{ width: '250px' }}>
             {['comments', 'blogs', 'community', 'settings'].map(tab => (
-              <div key={tab} onClick={() => setActiveTab(tab)} style={{ padding: '15px 20px', borderRadius: '10px', marginBottom: '10px', cursor: 'pointer', background: activeTab === tab ? '#1D2B44' : 'transparent', color: activeTab === tab ? '#fff' : '#64748b', fontWeight: '700', textTransform: 'capitalize' }}>{tab}</div>
+              <div key={tab} onClick={() => { setActiveTab(tab); setIsEditing(false); }} style={{ padding: '15px 20px', borderRadius: '10px', marginBottom: '10px', cursor: 'pointer', background: activeTab === tab ? '#1D2B44' : 'transparent', color: activeTab === tab ? '#fff' : '#64748b', fontWeight: '700', textTransform: 'capitalize' }}>{tab}</div>
             ))}
           </div>
 
@@ -145,9 +189,12 @@ const AdminPortal = () => {
                             <div style={{ fontWeight: '800' }}>{c.name}</div>
                             <div style={{ fontSize: '12px', color: '#94a3b8' }}>{new Date(c.date).toLocaleString()}</div>
                           </div>
-                          <button onClick={() => handleApprove(c.id)} style={{ background: '#10b981', color: '#fff', border: 'none', padding: '8px 15px', borderRadius: '6px', cursor: 'pointer', fontWeight: '700' }}>Approve</button>
+                          <div style={{ display: 'flex', gap: '10px' }}>
+                             <button onClick={() => handleApprove(c.id)} style={{ background: '#10b981', color: '#fff', border: 'none', padding: '8px 15px', borderRadius: '6px', cursor: 'pointer', fontWeight: '700' }}>Approve</button>
+                             <button onClick={() => handleCommentDelete(c.id)} style={{ background: '#fee2e2', color: '#ef4444', border: 'none', padding: '8px 15px', borderRadius: '6px', cursor: 'pointer', fontWeight: '700' }}>Reject</button>
+                          </div>
                         </div>
-                        <p style={{ color: '#475569', fontSize: '14px' }}>{c.text}</p>
+                        <p style={{ color: '#475569', fontSize: '14px', marginTop: '10px' }}>{c.text}</p>
                       </div>
                     ))
                   )
@@ -157,37 +204,60 @@ const AdminPortal = () => {
 
             {activeTab === 'blogs' && (
               <div>
-                <h2 style={{ fontSize: '20px', fontWeight: '900', marginBottom: '25px' }}>Blog CMS</h2>
-                <form onSubmit={handleBlogSubmit} style={{ background: '#f8fafc', padding: '25px', borderRadius: '12px', marginBottom: '40px' }}>
-                  <div style={{ marginBottom: '15px' }}>
-                    <label style={{ fontSize: '12px', fontWeight: '800', display: 'block', marginBottom: '5px' }}>TITLE</label>
-                    <input type="text" value={blogForm.title} onChange={e => setBlogForm({...blogForm, title: e.target.value})} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0' }} placeholder="e.g. 10 Local SEO Tips for 2026" required />
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '25px' }}>
+                   <h2 style={{ fontSize: '20px', fontWeight: '900', margin: 0 }}>{isEditing ? "✏️ Edit Blog Post" : "✍️ WordPress-Style CMS"}</h2>
+                   {isEditing && <button onClick={() => {setIsEditing(false); setBlogForm({ title: '', content: '', author: 'Admin', category: 'SEO Tips', image: '' });}} style={{ background: '#f1f5f9', border: 'none', padding: '8px 15px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' }}>Cancel Edit</button>}
+                </div>
+
+                <form onSubmit={handleBlogSubmit} style={{ background: '#f8fafc', padding: '25px', borderRadius: '16px', marginBottom: '40px', border: '2px solid #e2e8f0' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '15px' }}>
+                    <div>
+                      <label style={{ fontSize: '11px', fontWeight: '900', display: 'block', marginBottom: '5px', color: '#64748b' }}>POST TITLE</label>
+                      <input type="text" value={blogForm.title} onChange={e => setBlogForm({...blogForm, title: e.target.value})} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontWeight: '600' }} placeholder="Enter title..." required />
+                    </div>
+                    <div>
+                      <label style={{ fontSize: '11px', fontWeight: '900', display: 'block', marginBottom: '5px', color: '#64748b' }}>CATEGORY</label>
+                      <select value={blogForm.category} onChange={e => setBlogForm({...blogForm, category: e.target.value})} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontWeight: '600' }}>
+                        <option>SEO Tips</option>
+                        <option>News</option>
+                        <option>Product Updates</option>
+                        <option>Case Studies</option>
+                      </select>
+                    </div>
                   </div>
+                  
                   <div style={{ marginBottom: '15px' }}>
-                    <label style={{ fontSize: '12px', fontWeight: '800', display: 'block', marginBottom: '5px' }}>CATEGORY</label>
-                    <select value={blogForm.category} onChange={e => setBlogForm({...blogForm, category: e.target.value})} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                      <option>SEO Tips</option>
-                      <option>News</option>
-                      <option>Product Updates</option>
-                      <option>Case Studies</option>
-                    </select>
+                    <label style={{ fontSize: '11px', fontWeight: '900', display: 'block', marginBottom: '5px', color: '#64748b' }}>FEATURED IMAGE URL (OPTIONAL)</label>
+                    <input type="text" value={blogForm.image} onChange={e => setBlogForm({...blogForm, image: e.target.value})} style={{ width: '100%', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0' }} placeholder="https://..." />
                   </div>
-                  <div style={{ marginBottom: '15px' }}>
-                    <label style={{ fontSize: '12px', fontWeight: '800', display: 'block', marginBottom: '5px' }}>CONTENT (HTML Supported)</label>
-                    <textarea value={blogForm.content} onChange={e => setBlogForm({...blogForm, content: e.target.value})} style={{ width: '100%', height: '200px', padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0' }} placeholder="Write your blog post here..." required></textarea>
+
+                  <div style={{ marginBottom: '20px' }}>
+                    <label style={{ fontSize: '11px', fontWeight: '900', display: 'block', marginBottom: '5px', color: '#64748b' }}>POST CONTENT (RICH HTML SUPPORTED)</label>
+                    <textarea value={blogForm.content} onChange={e => setBlogForm({...blogForm, content: e.target.value})} style={{ width: '100%', height: '300px', padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', fontSize: '15px', lineHeight: '1.6' }} placeholder="Write your masterpiece here..." required></textarea>
                   </div>
-                  <button type="submit" style={{ background: '#1D2B44', color: '#fff', padding: '12px 30px', borderRadius: '8px', border: 'none', fontWeight: '900', cursor: 'pointer' }}>Publish Post</button>
+                  
+                  <button type="submit" style={{ background: isEditing ? '#f59e0b' : '#1D2B44', color: '#fff', padding: '15px 40px', borderRadius: '10px', border: 'none', fontWeight: '900', cursor: 'pointer', fontSize: '16px', boxShadow: '0 4px 15px rgba(0,0,0,0.1)' }}>
+                    {isEditing ? "Update WordPress Post" : "Publish to Journal"}
+                  </button>
                 </form>
 
-                <h3 style={{ fontSize: '16px', fontWeight: '900', marginBottom: '20px' }}>Published Posts</h3>
+                <h3 style={{ fontSize: '18px', fontWeight: '900', marginBottom: '20px', borderBottom: '2px solid #f1f5f9', paddingBottom: '10px' }}>All Published Posts ({blogs.length})</h3>
                 <div style={{ display: 'grid', gap: '15px' }}>
-                  {blogs.map(b => (
-                    <div key={b.id} style={{ padding: '15px', border: '1px solid #f1f5f9', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <div>
-                        <div style={{ fontWeight: '800' }}>{b.title}</div>
-                        <div style={{ fontSize: '11px', color: '#94a3b8' }}>{b.category} • {new Date(b.date).toLocaleDateString()}</div>
+                  {blogs.length === 0 ? <p style={{ color: '#94a3b8' }}>No posts found. Start writing!</p> : blogs.map(b => (
+                    <div key={b.id} style={{ padding: '20px', border: '1px solid #e2e8f0', borderRadius: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#fff' }}>
+                      <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                         <div style={{ width: '50px', height: '50px', background: '#f1f5f9', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px' }}>📄</div>
+                         <div>
+                            <div style={{ fontWeight: '800', color: '#1e293b' }}>{b.title}</div>
+                            <div style={{ fontSize: '12px', color: '#94a3b8', marginTop: '4px' }}>
+                               <span style={{ color: 'var(--accent)', fontWeight: '900' }}>{b.category}</span> • Published {new Date(b.date).toLocaleDateString()}
+                            </div>
+                         </div>
                       </div>
-                      <button style={{ color: '#ef4444', background: 'none', border: 'none', fontWeight: '700', cursor: 'pointer' }}>Remove</button>
+                      <div style={{ display: 'flex', gap: '10px' }}>
+                        <button onClick={() => startEdit(b)} style={{ background: '#f1f5f9', border: 'none', padding: '8px 15px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700', color: '#1e293b' }}>Edit</button>
+                        <button onClick={() => handleBlogDelete(b.id)} style={{ background: '#fee2e2', color: '#ef4444', border: 'none', padding: '8px 15px', borderRadius: '8px', cursor: 'pointer', fontWeight: '700' }}>Trash</button>
+                      </div>
                     </div>
                   ))}
                 </div>

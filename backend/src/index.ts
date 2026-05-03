@@ -591,6 +591,29 @@ app.get('/api/blogs', (req: any, res: any) => {
   res.json(db.blogs || []);
 });
 
+// 8. ADMIN: Blog CMS - Update Post
+app.put('/api/admin/blogs/:id', authenticateToken, (req: any, res: any) => {
+  if (req.user.email !== "rameshmjk@gmail.com") return res.status(403).json({ error: 'Access Denied' });
+  const { id } = req.params;
+  const { title, content, category, image } = req.body;
+  const db = getDB();
+  const idx = db.blogs.findIndex((b: any) => b.id === id);
+  if (idx === -1) return res.status(404).json({ error: 'Post not found' });
+  db.blogs[idx] = { ...db.blogs[idx], title, content, category, image, updatedAt: new Date().toISOString() };
+  persistDB();
+  res.json(db.blogs[idx]);
+});
+
+// 9. ADMIN: Blog CMS - Delete Post
+app.delete('/api/admin/blogs/:id', authenticateToken, (req: any, res: any) => {
+  if (req.user.email !== "rameshmjk@gmail.com") return res.status(403).json({ error: 'Access Denied' });
+  const { id } = req.params;
+  const db = getDB();
+  db.blogs = db.blogs.filter((b: any) => b.id !== id);
+  persistDB();
+  res.json({ success: true });
+});
+
 // Helper to Load/Save Local JSON DB
 const loadDB = () => {
   if (!fs.existsSync(DB_FILE)) {
