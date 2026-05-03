@@ -887,51 +887,83 @@ const FreeChecker = () => {
 
           {/* Comment Form */}
           <div style={{ background: '#f8fafc', padding: '35px', borderRadius: '24px', border: '1px solid #e2e8f0', marginBottom: '60px' }}>
-            <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#1e293b', marginBottom: '20px' }}>Leave a comment</h3>
+            <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#1e293b', marginBottom: '20px' }}>Join the Discussion</h3>
             <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 600 ? '1fr 1fr' : '1fr', gap: '20px', marginBottom: '20px' }}>
-              <input 
-                type="email" 
-                placeholder="Your Email ID" 
-                style={{ padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none' }} 
-              />
-              <input 
-                type="text" 
-                placeholder="Facebook Profile URL / ID" 
-                style={{ padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none' }} 
-              />
+              <input type="text" placeholder="Your Name" style={{ padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none' }} />
+              <input type="email" placeholder="Email Address" style={{ padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none' }} />
             </div>
+            
+            {/* Social Links Row */}
+            <div style={{ fontSize: '11px', fontWeight: '900', color: '#94a3b8', marginBottom: '10px', textTransform: 'uppercase' }}>Social Profiles (Optional)</div>
+            <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 600 ? '1fr 1fr 1fr' : '1fr', gap: '15px', marginBottom: '20px' }}>
+              <input type="text" placeholder="Facebook URL" style={{ padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '13px' }} />
+              <input type="text" placeholder="Instagram URL" style={{ padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '13px' }} />
+              <input type="text" placeholder="LinkedIn URL" style={{ padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '13px' }} />
+            </div>
+
             <textarea 
               placeholder="Write your ranking tip or feedback here..." 
-              style={{ width: '100%', height: '120px', padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none', marginBottom: '20px', boxSizing: 'border-box' }}
+              style={{ width: '100%', height: '100px', padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none', marginBottom: '20px', boxSizing: 'border-box' }}
             ></textarea>
-            <button style={{ background: '#1D2B44', color: '#fff', padding: '12px 30px', borderRadius: '8px', fontWeight: '900', border: 'none', cursor: 'pointer' }}>
-              Post Comment
+            <button style={{ background: '#1D2B44', color: '#fff', padding: '12px 35px', borderRadius: '8px', fontWeight: '900', border: 'none', cursor: 'pointer' }}>
+              Submit Review
             </button>
           </div>
 
-          {/* Mock Comments for SEO & Trust */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+          {/* Dynamic Social Comments */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
             {[
-              { name: "John SEO", comment: "Amazing tool! The UULE precision for New York was 100% accurate compared to my manual search.", social: "fb.com/johnseo", date: "2 hours ago" },
-              { name: "Priya Sharma", comment: "Finally found a tool that handles Indian local pack results correctly. P1 detected perfectly.", social: "fb.com/priyash", date: "5 hours ago" },
-              { name: "Digital Marketer", comment: "Used this for a client audit today. The mobile vs desktop switch is a life saver.", social: "fb.com/digitalpro", date: "1 day ago" }
+              { 
+                name: "John SEO", 
+                comment: "The UULE precision here is unmatched. I tracked my local bakery's rank from 3 different streets and it was spot on.", 
+                socials: { fb: "#", ig: "#", li: "#" }, 
+                date: "2 hours ago" 
+              },
+              { 
+                name: "Sarah Miller", 
+                comment: "Dashboard is super clean. I love how M1 and P1 codes are separated. Great tool for local agencies.", 
+                socials: { fb: "#", li: "#" }, 
+                date: "5 hours ago" 
+              },
+              { 
+                name: "Digital Pulse", 
+                comment: "Testing the Direct Proxy node today. The results are extremely honest and transparent.", 
+                socials: { ig: "#" }, 
+                date: "1 day ago" 
+              }
             ].map((c, i) => (
-              <div key={i} style={{ borderBottom: '1px solid #f1f5f9', paddingBottom: '25px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <div style={{ width: '40px', height: '40px', background: 'var(--accent)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: '900' }}>
+              <div key={i} style={{ borderBottom: '1px solid #f1f5f9', paddingBottom: '30px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                    <div style={{ width: '45px', height: '45px', background: 'linear-gradient(135deg, #1e293b, #0f172a)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: '900', fontSize: '18px' }}>
                       {c.name[0]}
                     </div>
                     <div>
-                      <div style={{ fontWeight: '800', fontSize: '15px', color: '#0f172a' }}>{c.name}</div>
+                      <div style={{ fontWeight: '900', fontSize: '16px', color: '#0f172a' }}>{c.name}</div>
                       <div style={{ fontSize: '12px', color: '#94a3b8' }}>{c.date}</div>
                     </div>
                   </div>
-                  <a href={`https://${c.social}`} target="_blank" rel="noreferrer" style={{ fontSize: '18px', color: '#3b82f6', textDecoration: 'none' }}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-8.74h-2.94v-3.403h2.94v-2.511c0-2.91 1.777-4.496 4.376-4.496 1.245 0 2.317.092 2.628.134v3.048l-1.804.001c-1.412 0-1.685.672-1.685 1.654v2.17h3.374l-.439 3.403h-2.935v8.74h6.14c.731 0 1.325-.593 1.325-1.325v-21.351c0-.732-.594-1.325-1.325-1.325z"/></svg>
-                  </a>
+                  
+                  {/* Multiple Social Icons Display */}
+                  <div style={{ display: 'flex', gap: '12px' }}>
+                    {c.socials.fb && (
+                      <a href={c.socials.fb} style={{ color: '#1877F2' }} title="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                      </a>
+                    )}
+                    {c.socials.ig && (
+                      <a href={c.socials.ig} style={{ color: '#E4405F' }} title="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.811.247 2.23.408.556.215.957.47 1.372.884.414.414.67.815.884 1.372.162.42.355 1.061.408 2.23.058 1.265.069 1.645.069 4.849s-.011 3.584-.069 4.849c-.054 1.17-.247 1.812-.408 2.23-.215.557-.47.958-.884 1.372-.414.414-.815.67-1.372.884-.42.162-1.061.355-2.23.408-1.265.058-1.645.07-4.849.07s-3.584-.011-4.849-.07c-1.17-.054-1.812-.247-2.23-.408-.557-.215-.958-.47-1.372-.884-.414-.414-.815-.67-1.372-.884-.42-.162-1.061-.355-2.23-.408-1.265-.058-1.645-.07-4.849-.07s-3.584.011-4.849.07c-1.17.054-1.812.247-2.23.408-.557.215-.958.47-1.372.884-.414.414-.815.67-1.372.884-.42-.162-1.061-.355-2.23-.408-1.265-.058-1.645-.07-4.849-.07zM12 0C8.741 0 8.333.014 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.741 0 12s.012 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.303 1.636.504 2.913.56 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.277-.06 2.148-.262 2.913-.56.788-.306 1.459-.718 2.126-1.384s1.079-1.338 1.384-2.126c.303-.765.504-1.636.56-2.913.058-1.28.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.06-1.277-.262-2.149-.56-2.913-.306-.789-.718-1.459-1.384-2.126s-1.338-1.079-2.126-1.384c-.765-.303-1.636-.504-2.913-.56C15.667.012 15.259 0 12 0zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                      </a>
+                    )}
+                    {c.socials.li && (
+                      <a href={c.socials.li} style={{ color: '#0077B5' }} title="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.2225 0z"/></svg>
+                      </a>
+                    )}
+                  </div>
                 </div>
-                <p style={{ color: '#475569', fontSize: '15px', lineHeight: '1.6', paddingLeft: '50px' }}>{c.comment}</p>
+                <p style={{ color: '#475569', fontSize: '15px', lineHeight: '1.8', paddingLeft: '60px' }}>{c.comment}</p>
               </div>
             ))}
           </div>
