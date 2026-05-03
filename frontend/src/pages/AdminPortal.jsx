@@ -47,7 +47,7 @@ const AdminPortal = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const MASTER_PASS = "Admin@123456";
+    const MASTER_PASS = "admin@12345";
     if (credentials.email === MASTER_ADMIN && credentials.password === MASTER_PASS) {
       setIsLoggedIn(true);
     } else {
