@@ -283,7 +283,8 @@
       "proxyUrl": "",
       "lastChecked": "2026-05-02",
       "lastCheck": 1777697401244,
-      "status": "active"
+      "status": "active",
+      "scheduleDay": "Friday"
     },
     {
       "id": "1777697286975",
@@ -304,7 +305,8 @@
       "proxyUrl": "",
       "lastChecked": "2026-05-02",
       "status": "active",
-      "lastCheck": 1777697706539
+      "lastCheck": 1777697706539,
+      "scheduleDay": "Friday"
     }
   ],
   "keywords": [

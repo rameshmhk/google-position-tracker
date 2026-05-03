@@ -667,7 +667,35 @@ const loadDB = () => {
       extensionTasks: [],
       pendingComments: [],
       approvedComments: [],
-      blogs: [],
+      blogs: [
+        {
+          id: "demo-1",
+          title: "10 Secret Ways to Boost Local SEO in 2026",
+          content: "<h2>Mastering the Local SERPs</h2><p>Local SEO is no longer just about keywords. It's about geographic authority and user trust. In this post, we explore how UULE technology and precise location tracking can give you an edge over competitors who are still using outdated scraping methods.</p><h3>Why Geo-Targeting Matters</h3><p>When a user searches for a service 'near me', Google uses complex triangulation. By mastering local signals, you ensure your business is the first one they see.</p>",
+          category: "Local Search",
+          author: "Admin",
+          date: new Date().toISOString(),
+          image: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&q=80&w=800"
+        },
+        {
+          id: "demo-2",
+          title: "The Science of UULE: Precise Google Rankings",
+          content: "<h2>What is UULE?</h2><p>UULE is a base64 encoded parameter used by Google to represent a specific geographic location. Most SEO trackers fail because they don't encode this correctly. Ranking Anywhere uses a proprietary 1:1 mapping algorithm to ensure 99.9% accuracy in local results.</p>",
+          category: "SEO Tips",
+          author: "Admin",
+          date: new Date().toISOString(),
+          image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
+        },
+        {
+          id: "demo-3",
+          title: "How to Outrank Competitors with Invisible Scrapers",
+          content: "<h2>Silent Dominance</h2><p>Intrusive scraping is easily detected. The future of data collection lies in invisible, distributed node networks. By using offscreen browsers and rotating residential proxies, you can gather intelligence without ever being noticed.</p>",
+          category: "Product Updates",
+          author: "Admin",
+          date: new Date().toISOString(),
+          image: "https://images.unsplash.com/photo-1551288049-bbda48658a7d?auto=format&fit=crop&q=80&w=800"
+        }
+      ],
       settings: {
         globalSerperApiKey: '',
         globalScrapingdogApiKey: '',
