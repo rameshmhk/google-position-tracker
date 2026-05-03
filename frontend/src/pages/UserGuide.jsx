@@ -1,124 +1,138 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Helmet } from 'react-helmet-async';
 
 const UserGuide = () => {
-  const sections = [
-    {
-      id: 'dashboard',
-      title: '1. Dashboard & Navigation',
-      image: '/assets/guide/dashboard.png',
-      content: `The Ranking Anywhere dashboard is your command center. Here you can see your global health at a glance.
-      - **Project List**: All your tracked domains.
-      - **Quick Stats**: Total keywords, average rank, and visibility score.
-      - **The Matrix**: The main table shows current positions versus previous scans.`
-    },
-    {
-      id: 'ranks',
-      title: '2. Understanding Rank Symbols',
-      content: `We use specific codes to help you identify where you stand:
-      - **P1, P2...**: This is your Organic Web result (e.g., P1 = Page 1, Position 1).
-      - **M1, M2...**: This is your Google Maps / Local Pack result.
-      - **L1, L2...**: This refers to Local Place listings or Local Finder positions.
-      - **DNS**: Did Not Show (Your site was not found in the top results).`
-    },
-    {
-      id: 'location',
-      title: '3. Adding Locations & UULE',
-      image: '/assets/guide/maps.png',
-      content: `Local SEO is about precision. When adding a project:
-      - **Country/City**: Choose your target market.
-      - **GPS Precision**: You can inject a specific Latitude/Longitude for street-level tracking.
-      - **UULE Logic**: Our system automatically encodes your location into a UULE string, tricking Google into showing results exactly as a local resident would see them.`
-    },
-    {
-      id: 'scanners',
-      title: '4. Scanners: API vs Proxy',
-      content: `Choose the right engine for the job:
-      - **API Stream**: High-speed cloud tracking for thousands of keywords. Best for broad tracking.
-      - **Direct Proxy**: The "Real Browser" method. It simulates a human typing. Best for hyper-accurate local map verification or when results are highly volatile.`
-    },
-    {
-      id: 'reports',
-      title: '5. Comparison & Reports',
-      content: `Use the 'Comparison Matrix' to see your SEO growth:
-      - **Daily vs Weekly**: See how your rank changed from yesterday or last week.
-      - **Green/Red Indicators**: Instantly spot gains or drops.
-      - **Exporting**: Use the 'Export CSV' button to get client-ready reports in seconds.`
-    }
-  ];
-
   return (
-    <div style={{ minHeight: '100vh', background: '#fff' }}>
+    <div style={{ minHeight: '100vh', background: '#fff', color: '#1e293b', fontFamily: 'Inter, system-ui, sans-serif' }}>
       <Helmet>
-        <title>User Guide | Ranking Anywhere Documentation</title>
-        <meta name="description" content="Complete user guide for Ranking Anywhere. Learn how to track rankings, manage proxies, and understand SEO metrics." />
+        <title>Master Documentation | Ranking Anywhere</title>
+        <meta name="description" content="The definitive guide to mastering Ranking Anywhere. Detailed walkthrough of projects, locations, dashboard, and reporting." />
       </Helmet>
 
       <Navbar />
 
-      {/* Header */}
-      <header style={{ background: 'radial-gradient(circle at 70% 30%, #1e293b, #0f172a)', padding: '120px 24px', color: '#fff' }}>
-         <div style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
-            <motion.div 
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              style={{ display: 'inline-block', background: 'rgba(255,153,0,0.1)', border: '1px solid rgba(255,153,0,0.3)', padding: '6px 15px', borderRadius: '100px', color: 'var(--accent)', fontSize: '11px', fontWeight: '900', letterSpacing: '2px', marginBottom: '30px' }}
-            >
-              KNOWLEDGE BASE v2.1
-            </motion.div>
-            <h1 style={{ fontSize: '56px', fontWeight: '900', marginBottom: '20px', letterSpacing: '-3px' }}>The Master Guide</h1>
-            <p style={{ fontSize: '20px', color: '#94a3b8', maxWidth: '700px', margin: '0 auto', lineHeight: '1.6' }}>
-              Everything you need to know about tracking, precision data, and dominating your local search market.
-            </p>
-         </div>
+      {/* Header Section */}
+      <header style={{ borderBottom: '1px solid #f1f5f9', padding: '100px 24px', background: '#f8fafc' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <div style={{ fontSize: '12px', fontWeight: '800', color: 'var(--accent)', letterSpacing: '2px', marginBottom: '15px' }}>DOCUMENTATION PORTAL</div>
+          <h1 style={{ fontSize: '48px', fontWeight: '900', color: '#0f172a', letterSpacing: '-2px', marginBottom: '20px' }}>Platform Mastery Guide</h1>
+          <p style={{ fontSize: '18px', color: '#64748b', lineHeight: '1.6', maxWidth: '700px' }}>
+            A comprehensive walkthrough of the Ranking Anywhere ecosystem. From initial node configuration to advanced competitive intelligence.
+          </p>
+        </div>
       </header>
 
-      <main style={{ maxWidth: '1000px', margin: '80px auto', padding: '0 24px' }}>
-         <div style={{ display: 'flex', gap: '60px' }}>
-            
-            {/* Sidebar Nav */}
-            <aside style={{ width: '250px', position: 'sticky', top: '100px', height: 'fit-content', display: 'none', md: 'block' }}>
-               <h4 style={{ fontSize: '12px', fontWeight: '900', letterSpacing: '2px', color: '#0f172a', marginBottom: '25px' }}>CHAPTERS</h4>
-               <ul style={{ listStyle: 'none', padding: 0 }}>
-                  {sections.map(s => (
-                    <li key={s.id} style={{ marginBottom: '15px' }}>
-                       <a href={`#${s.id}`} style={{ textDecoration: 'none', color: '#64748b', fontSize: '15px', fontWeight: '600', transition: 'color 0.2s' }}>{s.title}</a>
-                    </li>
-                  ))}
-               </ul>
-            </aside>
-
-            {/* Content */}
-            <div style={{ flex: 1 }}>
-               {sections.map((s, i) => (
-                 <section id={s.id} key={s.id} style={{ marginBottom: '100px' }}>
-                    <h2 style={{ fontSize: '32px', fontWeight: '900', color: '#0f172a', marginBottom: '30px', letterSpacing: '-1px' }}>{s.title}</h2>
-                    
-                    {s.image && (
-                      <div style={{ background: '#f8fafc', borderRadius: '30px', padding: '40px', marginBottom: '40px', border: '1px solid #f1f5f9' }}>
-                         <img src={s.image} alt={s.title} style={{ width: '100%', borderRadius: '15px', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }} />
-                      </div>
-                    )}
-
-                    <div style={{ fontSize: '17px', color: '#475569', lineHeight: '1.8', fontWeight: '500' }}>
-                       {s.content.split('\n').map((line, li) => (
-                         <p key={li} style={{ marginBottom: '20px' }}>
-                            {line.startsWith('- ') ? (
-                              <div style={{ display: 'flex', gap: '12px' }}>
-                                 <span style={{ color: 'var(--accent)', fontWeight: '900' }}>•</span>
-                                 <span>{line.substring(2)}</span>
-                              </div>
-                            ) : line}
-                         </p>
-                       ))}
-                    </div>
-                 </section>
-               ))}
+      <main style={{ maxWidth: '900px', margin: '60px auto 120px auto', padding: '0 24px' }}>
+        
+        {/* Phase 1: Onboarding */}
+        <section id="onboarding" style={{ marginBottom: '80px' }}>
+          <h2 style={{ fontSize: '28px', fontWeight: '900', color: '#0f172a', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '15px' }}>
+            <span style={{ background: '#f1f5f9', width: '40px', height: '40px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>01</span>
+            Initial Onboarding
+          </h2>
+          <div style={{ fontSize: '16px', lineHeight: '1.8', color: '#475569' }}>
+            <p style={{ marginBottom: '15px' }}>To begin tracking, you must first initialize your account. Once registered, the system prepares a dedicated database environment for your projects. All data is isolated and encrypted to ensure your competitive intelligence remains private.</p>
+            <div style={{ background: '#eff6ff', borderLeft: '4px solid #3b82f6', padding: '20px', borderRadius: '0 8px 8px 0', marginBottom: '20px' }}>
+              <strong>Pro Tip:</strong> Always use a professional email for account recovery and to receive automated weekly rank reports directly to your inbox.
             </div>
-         </div>
+          </div>
+        </section>
+
+        {/* Phase 2: Project Architecture */}
+        <section id="architecture" style={{ marginBottom: '80px' }}>
+          <h2 style={{ fontSize: '28px', fontWeight: '900', color: '#0f172a', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '15px' }}>
+            <span style={{ background: '#f1f5f9', width: '40px', height: '40px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>02</span>
+            Project Architecture
+          </h2>
+          <div style={{ fontSize: '16px', lineHeight: '1.8', color: '#475569' }}>
+            <p style={{ marginBottom: '15px' }}>Adding a project is the foundation of your tracking strategy. The system requires three critical inputs to function accurately:</p>
+            <ul style={{ paddingLeft: '20px', marginBottom: '20px', listStyleType: 'none' }}>
+              <li style={{ marginBottom: '15px' }}>
+                <span style={{ color: 'var(--accent)', fontWeight: '900', marginRight: '10px' }}>●</span>
+                <strong>Target Domain:</strong> The exact website URL (e.g., myshop.com) you wish to monitor.
+              </li>
+              <li style={{ marginBottom: '15px' }}>
+                <span style={{ color: 'var(--accent)', fontWeight: '900', marginRight: '10px' }}>●</span>
+                <strong>Business Name:</strong> This is vital for Google Maps tracking. It must exactly match your name on the Google Business Profile (GBP).
+              </li>
+              <li style={{ marginBottom: '15px' }}>
+                <span style={{ color: 'var(--accent)', fontWeight: '900', marginRight: '10px' }}>●</span>
+                <strong>Primary Location:</strong> Set the default country and city for your broad ranking overview.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Phase 3: Geographic Precision (UULE) */}
+        <section id="geo" style={{ marginBottom: '80px' }}>
+          <h2 style={{ fontSize: '28px', fontWeight: '900', color: '#0f172a', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '15px' }}>
+            <span style={{ background: '#f1f5f9', width: '40px', height: '40px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>03</span>
+            Geographic Precision (UULE)
+          </h2>
+          <div style={{ fontSize: '16px', lineHeight: '1.8', color: '#475569' }}>
+            <p style={{ marginBottom: '15px' }}>Ranking Anywhere uses advanced <strong>UULE Injection</strong> technology. This encodes specific geographic metadata into every search request, tricking the search engine into believing the searcher is physically located at a specific coordinate.</p>
+            <p style={{ marginBottom: '15px' }}>In your project settings, you can override the general city location with a specific <strong>Postal Code</strong> or exact <strong>Latitude and Longitude</strong>. This is critical for Local SEO, as the 'Map Pack' can change significantly even within a few hundred meters.</p>
+            <div style={{ background: '#fff7ed', borderLeft: '4px solid #f97316', padding: '20px', borderRadius: '0 8px 8px 0' }}>
+              <strong>Important:</strong> Use coordinates if you want to track a specific shop's ranking from a nearby landmark or a high-traffic intersection.
+            </div>
+          </div>
+        </section>
+
+        {/* Phase 4: Dashboard Mastery */}
+        <section id="dashboard" style={{ marginBottom: '80px' }}>
+          <h2 style={{ fontSize: '28px', fontWeight: '900', color: '#0f172a', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '15px' }}>
+            <span style={{ background: '#f1f5f9', width: '40px', height: '40px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>04</span>
+            Dashboard Mastery
+          </h2>
+          <div style={{ fontSize: '16px', lineHeight: '1.8', color: '#475569' }}>
+            <p style={{ marginBottom: '15px' }}>The Dashboard is designed for high-speed analysis. Understanding the terminology is key:</p>
+            <ul style={{ paddingLeft: '20px', marginBottom: '20px', listStyleType: 'none' }}>
+              <li style={{ marginBottom: '15px' }}>
+                <span style={{ color: 'var(--accent)', fontWeight: '900', marginRight: '10px' }}>●</span>
+                <strong>P1, P2... Codes:</strong> These represent your Organic position on Google Search. P1 means you are on Page 1.
+              </li>
+              <li style={{ marginBottom: '15px' }}>
+                <span style={{ color: 'var(--accent)', fontWeight: '900', marginRight: '10px' }}>●</span>
+                <strong>M1, M2... Codes:</strong> These indicate your position within the Google Maps 'Local 3-Pack'. M1 is the #1 spot on the map.
+              </li>
+              <li style={{ marginBottom: '15px' }}>
+                <span style={{ color: 'var(--accent)', fontWeight: '900', marginRight: '10px' }}>●</span>
+                <strong>Comparison Matrix:</strong> A real-time comparison of your current rank vs. your last scan. Green indicators represent ranking growth, while Red highlights potential issues.
+              </li>
+              <li style={{ marginBottom: '15px' }}>
+                <span style={{ color: 'var(--accent)', fontWeight: '900', marginRight: '10px' }}>●</span>
+                <strong>Pause/Resume:</strong> Toggle individual keywords to manage your scanning credits and prioritize high-value terms.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Phase 5: Scanning Strategies */}
+        <section id="scrapers" style={{ marginBottom: '80px' }}>
+          <h2 style={{ fontSize: '28px', fontWeight: '900', color: '#0f172a', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '15px' }}>
+            <span style={{ background: '#f1f5f9', width: '40px', height: '40px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>05</span>
+            API Stream vs Direct Proxy
+          </h2>
+          <div style={{ fontSize: '16px', lineHeight: '1.8', color: '#475569' }}>
+            <p style={{ marginBottom: '15px' }}>Depending on your goals, you can choose between two scanning engines:</p>
+            <p style={{ marginBottom: '15px' }}><strong>API Stream:</strong> Best for tracking thousands of keywords at once. It is extremely fast and connects via our global cloud node cluster. Use this for your general daily keyword tracking.</p>
+            <p style={{ marginBottom: '15px' }}><strong>Direct Proxy:</strong> This uses physical residential nodes to simulate a 100% human-like search interaction. It is slower but ensures that you bypass any bot protection and get the most 'honest' local results possible.</p>
+          </div>
+        </section>
+
+        {/* Phase 6: Professional Reporting */}
+        <section id="reporting" style={{ marginBottom: '80px' }}>
+          <h2 style={{ fontSize: '28px', fontWeight: '900', color: '#0f172a', marginBottom: '25px', display: 'flex', alignItems: 'center', gap: '15px' }}>
+            <span style={{ background: '#f1f5f9', width: '40px', height: '40px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px' }}>06</span>
+            Professional Reporting
+          </h2>
+          <div style={{ fontSize: '16px', lineHeight: '1.8', color: '#475569' }}>
+            <p style={{ marginBottom: '15px' }}>To share your success with clients, use the <strong>Export Module</strong>. You can generate CSV or PDF style reports for any project. These reports contain historical ranking data and visibility trends, perfect for monthly SEO audits or performance reviews.</p>
+          </div>
+        </section>
+
       </main>
 
       <Footer />
