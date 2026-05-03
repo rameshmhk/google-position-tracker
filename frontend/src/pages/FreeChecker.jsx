@@ -916,23 +916,32 @@ const FreeChecker = () => {
               { 
                 name: "John SEO", 
                 comment: "The UULE precision here is unmatched. I tracked my local bakery's rank from 3 different streets and it was spot on.", 
-                socials: { fb: "#", ig: "#", li: "#" }, 
+                socials: { fb: "https://facebook.com/rankinganywhere", ig: "https://instagram.com/rankinganywhere", li: "https://linkedin.com/company/rankinganywhere" }, 
                 date: "2 hours ago" 
               },
               { 
                 name: "Sarah Miller", 
                 comment: "Dashboard is super clean. I love how M1 and P1 codes are separated. Great tool for local agencies.", 
-                socials: { fb: "#", li: "#" }, 
+                socials: { fb: "https://facebook.com/rankinganywhere", li: "https://linkedin.com/company/rankinganywhere" }, 
                 date: "5 hours ago" 
               },
               { 
                 name: "Digital Pulse", 
                 comment: "Testing the Direct Proxy node today. The results are extremely honest and transparent.", 
-                socials: { ig: "#" }, 
+                socials: { ig: "https://instagram.com/rankinganywhere" }, 
                 date: "1 day ago" 
-              }
+              },
+              { name: "Local SEO Pro", comment: "The GPS override feature is a game changer for my clients in London.", socials: { fb: "#" }, date: "2 days ago" },
+              { name: "Market Guru", comment: "Accurate results even for very competitive niches. Highly recommended.", socials: { li: "#" }, date: "2 days ago" },
+              { name: "Site Auditor", comment: "Fast scans and reliable data. The best free investigator I've used.", socials: { ig: "#" }, date: "3 days ago" },
+              { name: "Ranking Expert", comment: "I use this daily to check my main keywords. Never fails.", socials: { fb: "#", li: "#" }, date: "3 days ago" },
+              { name: "SEO Agency", comment: "Great for quick spot checks before meeting clients.", socials: { ig: "#" }, date: "4 days ago" },
+              { name: "Web Master", comment: "Integration with maps is perfect. M1 spot detected correctly.", socials: { fb: "#" }, date: "4 days ago" },
+              { name: "Search Analyst", comment: "Very impressive UULE encoding logic. 100% precision.", socials: { li: "#" }, date: "5 days ago" },
+              { name: "Community User", comment: "Joining the discussion! Great tool for the SEO community.", socials: { fb: "#", ig: "#" }, date: "6 days ago" },
+              { name: "Growth Hacker", comment: "The speed of the API Stream is incredible.", socials: { li: "#" }, date: "1 week ago" }
             ].map((c, i) => (
-              <div key={i} style={{ borderBottom: '1px solid #f1f5f9', paddingBottom: '30px' }}>
+              <div key={i} style={{ borderBottom: '1px solid #f1f5f9', paddingBottom: '30px', display: i >= 10 ? 'none' : 'block' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
                     <div style={{ width: '45px', height: '45px', background: 'linear-gradient(135deg, #1e293b, #0f172a)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: '900', fontSize: '18px' }}>
@@ -944,20 +953,19 @@ const FreeChecker = () => {
                     </div>
                   </div>
                   
-                  {/* Multiple Social Icons Display */}
                   <div style={{ display: 'flex', gap: '12px' }}>
                     {c.socials.fb && (
-                      <a href={c.socials.fb} style={{ color: '#1877F2' }} title="Facebook">
+                      <a href={c.socials.fb} target="_blank" rel="noreferrer" style={{ color: '#1877F2' }} title="Facebook">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                       </a>
                     )}
                     {c.socials.ig && (
-                      <a href={c.socials.ig} style={{ color: '#E4405F' }} title="Instagram">
+                      <a href={c.socials.ig} target="_blank" rel="noreferrer" style={{ color: '#E4405F' }} title="Instagram">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.054 1.811.247 2.23.408.556.215.957.47 1.372.884.414.414.67.815.884 1.372.162.42.355 1.061.408 2.23.058 1.265.069 1.645.069 4.849s-.011 3.584-.069 4.849c-.054 1.17-.247 1.812-.408 2.23-.215.557-.47.958-.884 1.372-.414.414-.815.67-1.372.884-.42.162-1.061.355-2.23.408-1.265.058-1.645.07-4.849.07s-3.584-.011-4.849-.07c-1.17-.054-1.812-.247-2.23-.408-.557-.215-.958-.47-1.372-.884-.414-.414-.815-.67-1.372-.884-.42-.162-1.061-.355-2.23-.408-1.265-.058-1.645-.07-4.849-.07s-3.584.011-4.849.07c-1.17.054-1.812.247-2.23.408-.557.215-.958.47-1.372.884-.414.414-.815.67-1.372.884-.42-.162-1.061-.355-2.23-.408-1.265-.058-1.645-.07-4.849-.07zM12 0C8.741 0 8.333.014 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.741 0 12s.012 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.303 1.636.504 2.913.56 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.277-.06 2.148-.262 2.913-.56.788-.306 1.459-.718 2.126-1.384s1.079-1.338 1.384-2.126c.303-.765.504-1.636.56-2.913.058-1.28.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.06-1.277-.262-2.149-.56-2.913-.306-.789-.718-1.459-1.384-2.126s-1.338-1.079-2.126-1.384c-.765-.303-1.636-.504-2.913-.56C15.667.012 15.259 0 12 0zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                       </a>
                     )}
                     {c.socials.li && (
-                      <a href={c.socials.li} style={{ color: '#0077B5' }} title="LinkedIn">
+                      <a href={c.socials.li} target="_blank" rel="noreferrer" style={{ color: '#0077B5' }} title="LinkedIn">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.2225 0z"/></svg>
                       </a>
                     )}
@@ -967,6 +975,15 @@ const FreeChecker = () => {
               </div>
             ))}
           </div>
+
+          {/* View More Button */}
+          <div style={{ textAlign: 'center', marginTop: '50px' }}>
+             <button style={{ background: '#fff', border: '1px solid #e2e8f0', color: '#64748b', padding: '12px 30px', borderRadius: '100px', fontWeight: '800', cursor: 'pointer', transition: '0.3s' }}>
+                View More Discussions (12+)
+             </button>
+          </div>
+        </div>
+      </section>
         </div>
       </section>
 
