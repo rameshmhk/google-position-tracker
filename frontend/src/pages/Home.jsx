@@ -33,42 +33,35 @@ const Home = () => {
       
       <Navbar />
       
-      {/* HERO SECTION */}
-      <header className="hero" style={{ background: 'radial-gradient(circle at top right, #1e293b, #0f172a)', padding: '160px 24px', color: '#fff', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'url("https://www.transparenttextures.com/patterns/carbon-fibre.png")', opacity: 0.1 }}></div>
-        <div className="hero-content" style={{ maxWidth: '1000px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            style={{ display: 'inline-block', background: 'rgba(255,153,0,0.1)', border: '1px solid rgba(255,153,0,0.3)', padding: '6px 15px', borderRadius: '100px', color: 'var(--accent)', fontSize: '11px', fontWeight: '900', letterSpacing: '2px', marginBottom: '30px' }}
-          >
-            PRECISION RANKING ENGINE v4.0
-          </motion.div>
+      {/* HERO SECTION - REVERTED TO ORIGINAL */}
+      <header className="hero" style={{ background: '#1D2B44', padding: '120px 24px', color: '#fff', textAlign: 'center', display: 'block' }}>
+        <div className="hero-content" style={{ maxWidth: '900px', margin: '0 auto' }}>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            style={{ fontSize: '5.5rem', fontWeight: '900', letterSpacing: '-4px', marginBottom: '30px', lineHeight: '0.95', textShadow: '0 10px 30px rgba(0,0,0,0.5)' }}
+            transition={{ duration: 0.6 }}
+            style={{ fontSize: '4.5rem', fontWeight: '900', letterSpacing: '-3px', marginBottom: '30px', lineHeight: '1.1' }}
           >
-            Track rankings <br /><span style={{ background: 'linear-gradient(90deg, #fff, #94a3b8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>anywhere on earth.</span>
+            Everything you need to <br /><span style={{ color: 'var(--accent)' }}>rank higher</span> & get more traffic
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            style={{ fontSize: '1.5rem', color: '#94a3b8', marginBottom: '50px', lineHeight: '1.4', maxWidth: '800px', margin: '0 auto 50px auto', fontWeight: '500' }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={{ fontSize: '1.4rem', color: '#cbd5e1', marginBottom: '50px', lineHeight: '1.5', maxWidth: '750px', margin: '0 auto 50px auto' }}
           >
-            The world's first high-precision SEO intelligence engine that combines global hardware clusters with hyper-local GPS metadata.
+            All-in-one SEO toolset for rank tracking, site audits, and competitive intelligence. 
+            Trusted by the world's leading SEO professionals.
           </motion.p>
           <motion.div 
             className="hero-btns"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
             style={{ display: 'flex', gap: '20px', justifyContent: 'center' }}
           >
-            <Link to="/register" className="btn-primary-large" style={{ padding: '22px 50px', fontSize: '1.1rem', background: 'var(--accent)', color: '#fff', textDecoration: 'none', borderRadius: '4px', fontWeight: '900' }}>INITIALIZE FREE SCAN</Link>
-            <Link to="/how-to-use" style={{ background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.2)', padding: '22px 50px', borderRadius: '4px', fontSize: '1.1rem', fontWeight: '900', textDecoration: 'none' }}>DOCUMENTATION</Link>
+            <Link to="/register" className="btn-primary-large" style={{ background: 'var(--accent)', color: '#fff', borderRadius: '4px', border: 'none', padding: '20px 50px', fontSize: '1.2rem', fontWeight: '900', textDecoration: 'none' }}>Start for Free</Link>
+            <Link to="/how-to-use" className="btn-secondary" style={{ background: 'transparent', color: '#fff', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '4px', padding: '20px 50px', fontSize: '1.2rem', fontWeight: '900', textDecoration: 'none' }}>Documentation</Link>
           </motion.div>
         </div>
       </header>
