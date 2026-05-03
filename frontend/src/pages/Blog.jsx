@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -54,12 +55,16 @@ const Blog = () => {
             ) : (
               blogs.map((post, idx) => (
                 <article key={post.id} style={{ background: '#fff', borderRadius: '24px', border: '1px solid #e2e8f0', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.05)', transition: '0.3s' }}>
-                   <div style={{ height: '180px', background: idx % 2 === 0 ? '#1e293b' : '#334155', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '60px', position: 'relative', overflow: 'hidden' }}>
-                      {post.image ? <img src={post.image} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} /> : '📚'}
-                      <div style={{ position: 'absolute', bottom: '15px', left: '15px', background: 'var(--accent)', color: '#fff', padding: '4px 12px', borderRadius: '6px', fontSize: '10px', fontWeight: '900' }}>{post.category || 'SEO'}</div>
-                   </div>
+                   <Link to={`/blog/${post.id}`} style={{ textDecoration: 'none' }}>
+                    <div style={{ height: '180px', background: idx % 2 === 0 ? '#1e293b' : '#334155', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '60px', position: 'relative', overflow: 'hidden' }}>
+                        {post.image ? <img src={post.image} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} /> : '📚'}
+                        <div style={{ position: 'absolute', bottom: '15px', left: '15px', background: 'var(--accent)', color: '#fff', padding: '4px 12px', borderRadius: '6px', fontSize: '10px', fontWeight: '900' }}>{post.category || 'SEO'}</div>
+                    </div>
+                   </Link>
                    <div style={{ padding: '30px' }}>
-                      <h2 style={{ fontSize: '20px', fontWeight: '900', color: '#1D2B44', marginBottom: '15px', lineHeight: '1.4' }}>{post.title}</h2>
+                      <Link to={`/blog/${post.id}`} style={{ textDecoration: 'none' }}>
+                        <h2 style={{ fontSize: '20px', fontWeight: '900', color: '#1D2B44', marginBottom: '15px', lineHeight: '1.4' }}>{post.title}</h2>
+                      </Link>
                       <div 
                         style={{ color: '#64748b', fontSize: '14px', lineHeight: '1.7', marginBottom: '25px', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}
                         dangerouslySetInnerHTML={{ __html: post.content }}
