@@ -10,6 +10,10 @@ const AdminPortal = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
   
+  // Magic Generator States
+  const [showMagicBox, setShowMagicBox] = useState(false);
+  const [magicTitle, setMagicTitle] = useState('');
+
   // Blog CMS States
   const [showForm, setShowForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -29,7 +33,7 @@ const AdminPortal = () => {
         const data = await res.json();
         setPendingComments(Array.isArray(data) ? data : []);
       }
-    } catch (err) { console.error("Pending Fetch Error:", err); }
+    } catch (err) { console.error(err); }
   };
 
   const fetchBlogs = async () => {
@@ -39,11 +43,10 @@ const AdminPortal = () => {
       const data = await res.json();
       setBlogs(Array.isArray(data) ? data : []);
     } catch (err) { 
-      console.error("Blogs Fetch Error:", err);
+      console.error(err);
     } finally { setLoading(false); }
   };
 
-  // Refetch when tab changes
   useEffect(() => {
     if (isLoggedIn) {
       if (activeTab === 'blogs') fetchBlogs();
@@ -60,6 +63,27 @@ const AdminPortal = () => {
     }
   };
 
+  const handleMagicPost = async (e) => {
+    e.preventDefault();
+    if (!magicTitle) return;
+    setLoading(true);
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch('http://localhost:5000/api/admin/auto-post', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+        body: JSON.stringify({ title: magicTitle })
+      });
+      if (res.ok) {
+        alert("✨ Success! Magic AI Post is Live.");
+        setMagicTitle('');
+        setShowMagicBox(false);
+        fetchBlogs();
+      }
+    } catch (err) { alert("Magic Post failed."); }
+    finally { setLoading(false); }
+  };
+
   const handleBlogSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
@@ -73,32 +97,13 @@ const AdminPortal = () => {
         body: JSON.stringify(blogForm)
       });
       if (res.ok) {
-        alert(isEditing ? "Post Updated!" : "Post Published!");
+        alert(isEditing ? "Updated!" : "Published!");
         setBlogForm({ title: '', content: '', author: 'Admin', category: 'SEO Tips', image: '', tags: '' });
         setShowForm(false);
         setIsEditing(false);
         fetchBlogs();
       }
     } catch (err) { alert("Action failed."); }
-  };
-
-  const handleAutoPost = async () => {
-    const title = prompt("Enter Blog Title for Magic Post:");
-    if (!title) return;
-    setLoading(true);
-    try {
-      const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/admin/auto-post', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-        body: JSON.stringify({ title })
-      });
-      if (res.ok) {
-        alert("Magic AI Post Created Successfully!");
-        fetchBlogs();
-      }
-    } catch (err) { alert("Magic Post failed."); }
-    finally { setLoading(false); }
   };
 
   const deleteBlog = async (id) => {
@@ -110,7 +115,6 @@ const AdminPortal = () => {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
-        alert("Post Removed.");
         fetchBlogs();
       }
     } catch (err) { console.error(err); }
@@ -139,14 +143,13 @@ const AdminPortal = () => {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
-        alert("Comment Approved!");
         fetchPending();
       }
-    } catch (err) { alert("Failed to approve."); }
+    } catch (err) { alert("Failed."); }
   };
 
   const handleCommentDelete = async (id) => {
-    if (!window.confirm("Delete this comment?")) return;
+    if (!window.confirm("Delete?")) return;
     try {
       const token = localStorage.getItem('token');
       const res = await fetch(`http://localhost:5000/api/admin/comments/${id}`, {
@@ -154,10 +157,9 @@ const AdminPortal = () => {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
-        alert("Comment Deleted.");
         fetchPending();
       }
-    } catch (err) { alert("Failed to delete."); }
+    } catch (err) { alert("Failed."); }
   };
 
   if (!isLoggedIn) {
@@ -185,16 +187,29 @@ const AdminPortal = () => {
              <p style={{ color: '#64748b' }}>Manage your SEO content and community feedback.</p>
           </div>
           <div style={{ display: 'flex', gap: '15px' }}>
-            <button onClick={handleAutoPost} style={{ background: 'var(--accent)', color: '#fff', padding: '12px 25px', borderRadius: '12px', border: 'none', fontWeight: '900', cursor: 'pointer' }}>✨ Magic Post</button>
+            <button onClick={() => setShowMagicBox(!showMagicBox)} style={{ background: 'var(--accent)', color: '#fff', padding: '12px 25px', borderRadius: '12px', border: 'none', fontWeight: '900', cursor: 'pointer', boxShadow: '0 10px 15px rgba(255,153,0,0.3)' }}>✨ Magic Generator</button>
             <button onClick={() => setIsLoggedIn(false)} style={{ background: '#ef4444', color: '#fff', padding: '12px 25px', borderRadius: '12px', border: 'none', fontWeight: '900', cursor: 'pointer' }}>Logout</button>
           </div>
         </div>
+
+        {showMagicBox && (
+          <div style={{ background: 'linear-gradient(135deg, #1D2B44 0%, #334155 100%)', padding: '40px', borderRadius: '24px', marginBottom: '40px', color: '#fff', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
+             <h3 style={{ margin: '0 0 10px', fontWeight: '900' }}>✨ Magic AI Post Generator</h3>
+             <p style={{ margin: '0 0 25px', opacity: 0.8 }}>Just enter a title, and our AI will write a 1000+ words SEO-optimized article.</p>
+             <form onSubmit={handleMagicPost} style={{ display: 'flex', gap: '15px' }}>
+                <input type="text" value={magicTitle} onChange={e => setMagicTitle(e.target.value)} placeholder="Enter Blog Title (e.g. Best SEO Tools 2026)" style={{ flex: 1, padding: '15px 20px', borderRadius: '12px', border: 'none', fontSize: '16px', fontWeight: '600' }} />
+                <button type="submit" disabled={loading} style={{ background: 'var(--accent)', color: '#fff', border: 'none', padding: '0 40px', borderRadius: '12px', fontWeight: '900', cursor: 'pointer' }}>
+                   {loading ? 'WRITING STORY...' : 'GENERATE NOW'}
+                </button>
+             </form>
+          </div>
+        )}
 
         <div style={{ display: 'flex', gap: '30px', flexDirection: window.innerWidth < 900 ? 'column' : 'row' }}>
           {/* Sidebar */}
           <div style={{ width: window.innerWidth < 900 ? '100%' : '240px' }}>
              {['blogs', 'comments'].map(tab => (
-               <div key={tab} onClick={() => setActiveTab(tab)} style={{ padding: '18px 24px', borderRadius: '15px', marginBottom: '10px', cursor: 'pointer', background: activeTab === tab ? '#1D2B44' : '#fff', color: activeTab === tab ? '#fff' : '#64748b', fontWeight: '800', border: '1px solid #e2e8f0', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '13px' }}>
+               <div key={tab} onClick={() => { setActiveTab(tab); setShowMagicBox(false); }} style={{ padding: '18px 24px', borderRadius: '15px', marginBottom: '10px', cursor: 'pointer', background: activeTab === tab ? '#1D2B44' : '#fff', color: activeTab === tab ? '#fff' : '#64748b', fontWeight: '800', border: '1px solid #e2e8f0', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '13px' }}>
                   {tab === 'blogs' ? '📝 Posts' : '💬 Comments'}
                </div>
              ))}
@@ -253,23 +268,21 @@ const AdminPortal = () => {
                   )}
 
                   <div style={{ display: 'grid', gap: '15px' }}>
-                     {blogs.length === 0 ? <p style={{ textAlign: 'center', padding: '50px', color: '#94a3b8' }}>No blogs found. Use Magic Post or Add New!</p> : (
-                       blogs.map(b => (
-                        <div key={b.id} style={{ padding: '20px', border: '1px solid #e2e8f0', borderRadius: '18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                           <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                              <div style={{ width: '45px', height: '45px', background: '#f1f5f9', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>📄</div>
-                              <div>
-                                 <div style={{ fontWeight: '800', color: '#1D2B44' }}>{b.title}</div>
-                                 <div style={{ fontSize: '12px', color: '#94a3b8' }}>{b.category} • {new Date(b.date).toLocaleDateString()}</div>
-                              </div>
-                           </div>
-                           <div style={{ display: 'flex', gap: '10px' }}>
-                              <button onClick={() => startEdit(b)} style={{ background: '#f1f5f9', border: 'none', padding: '8px 15px', borderRadius: '8px', cursor: 'pointer', fontWeight: '800' }}>Edit</button>
-                              <button onClick={() => deleteBlog(b.id)} style={{ background: '#fee2e2', color: '#ef4444', border: 'none', padding: '8px 15px', borderRadius: '8px', cursor: 'pointer', fontWeight: '800' }}>Trash</button>
-                           </div>
-                        </div>
-                       ))
-                     )}
+                     {blogs.map(b => (
+                       <div key={b.id} style={{ padding: '20px', border: '1px solid #e2e8f0', borderRadius: '18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                             <div style={{ width: '45px', height: '45px', background: '#f1f5f9', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>📄</div>
+                             <div>
+                                <div style={{ fontWeight: '800', color: '#1D2B44' }}>{b.title}</div>
+                                <div style={{ fontSize: '12px', color: '#94a3b8' }}>{b.category} • {new Date(b.date).toLocaleDateString()}</div>
+                             </div>
+                          </div>
+                          <div style={{ display: 'flex', gap: '10px' }}>
+                             <button onClick={() => startEdit(b)} style={{ background: '#f1f5f9', border: 'none', padding: '8px 15px', borderRadius: '8px', cursor: 'pointer', fontWeight: '800' }}>Edit</button>
+                             <button onClick={() => deleteBlog(b.id)} style={{ background: '#fee2e2', color: '#ef4444', border: 'none', padding: '8px 15px', borderRadius: '8px', cursor: 'pointer', fontWeight: '800' }}>Trash</button>
+                          </div>
+                       </div>
+                     ))}
                   </div>
                </div>
              )}
