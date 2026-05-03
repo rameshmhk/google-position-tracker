@@ -566,7 +566,17 @@ app.delete('/api/admin/comments/:id', authenticateToken, (req: any, res: any) =>
   res.json({ success: true });
 });
 
-// 6. ADMIN: Blog CMS - Create Post
+// 6. ADMIN: Login
+app.post('/api/admin/login', (req: any, res: any) => {
+  const { email, password } = req.body;
+  if (email === "rameshmjk@gmail.com" && password === "admin@12345") {
+    const token = jwt.sign({ email, role: 'admin' }, JWT_SECRET, { expiresIn: '24h' });
+    return res.json({ token });
+  }
+  res.status(401).json({ error: 'Invalid admin credentials' });
+});
+
+// 7. ADMIN: Blog CMS - Create Post
 app.post('/api/admin/blogs', authenticateToken, (req: any, res: any) => {
   if (req.user.email !== "rameshmjk@gmail.com") return res.status(403).json({ error: 'Access Denied' });
   
@@ -609,8 +619,17 @@ app.delete('/api/admin/blogs/:id', authenticateToken, (req: any, res: any) => {
   if (req.user.email !== "rameshmjk@gmail.com") return res.status(403).json({ error: 'Access Denied' });
   const { id } = req.params;
   const db = getDB();
-  db.blogs = (db.blogs || []).filter((b: any) => b.id !== id);
+  const initialCount = (db.blogs || []).length;
+  
+  db.blogs = (db.blogs || []).filter((b: any) => String(b.id) !== String(id));
+  
+  if ((db.blogs || []).length === initialCount) {
+    console.warn(`[CMS] Delete failed: Post ID ${id} not found.`);
+    return res.status(404).json({ error: 'Post not found' });
+  }
+
   persistDB();
+  console.log(`[CMS] Deleted Post ID: ${id}`);
   res.json({ success: true });
 });
 

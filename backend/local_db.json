@@ -261,7 +261,7 @@
       "proxyUrl": "http://zvr3okpiua-corp.mobile.res-country-AU-state-2155400-hold-session-session-69f6b8932c611:yY4kNLHGPcpOh4H8@89.38.99.242:443",
       "lastChecked": "2026-05-03",
       "status": "active",
-      "lastCheck": 1777778356138,
+      "lastCheck": 1777795168763,
       "scheduleDay": "Friday"
     },
     {
@@ -2373,7 +2373,7 @@
       "id": "diam71",
       "projectId": "1777602314637",
       "text": "velux skylights melbourne",
-      "organic": 3,
+      "organic": 7,
       "maps": 0,
       "status": "active",
       "mapsStatus": "paused",
@@ -2391,11 +2391,11 @@
         },
         {
           "date": "2026-05-03",
-          "organic": 3,
+          "organic": 7,
           "maps": 0
         }
       ],
-      "displayRank": "1//3",
+      "displayRank": "1//7",
       "source": "Serper",
       "lastChecked": "2026-05-03"
     },
@@ -2403,7 +2403,7 @@
       "id": "y7ayz",
       "projectId": "1777602314637",
       "text": "velux skylight installation melbourne",
-      "organic": 5,
+      "organic": 3,
       "maps": 0,
       "status": "active",
       "mapsStatus": "paused",
@@ -2421,11 +2421,11 @@
         },
         {
           "date": "2026-05-03",
-          "organic": 5,
+          "organic": 3,
           "maps": 0
         }
       ],
-      "displayRank": "1//5",
+      "displayRank": "1//3",
       "source": "Serper",
       "lastChecked": "2026-05-03"
     },
@@ -2463,7 +2463,7 @@
       "id": "0r3pot",
       "projectId": "1777602314637",
       "text": "pgh bricks melbourne",
-      "organic": 8,
+      "organic": 9,
       "maps": 0,
       "status": "active",
       "mapsStatus": "paused",
@@ -2481,11 +2481,11 @@
         },
         {
           "date": "2026-05-03",
-          "organic": 8,
+          "organic": 9,
           "maps": 0
         }
       ],
-      "displayRank": "1//8",
+      "displayRank": "1//9",
       "source": "Serper",
       "lastChecked": "2026-05-03"
     },
