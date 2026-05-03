@@ -21,6 +21,7 @@ import SiteAudit from './pages/SiteAudit';
 import HowToUse from './pages/HowToUse';
 import UserGuide from './pages/UserGuide';
 import AdminPortal from './pages/AdminPortal';
+import Blog from './pages/Blog';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -49,6 +50,7 @@ const App = () => {
       <Route path="/how-to-use" element={<HowToUse />} />
       <Route path="/guide" element={<UserGuide />} />
       <Route path="/admin-portal" element={<AdminPortal />} />
+      <Route path="/blog" element={<Blog />} />
       {/* <Route path="/site-audit" element={<SiteAudit />} /> */}
 
       {/* Private Dashboard Route */}
