@@ -239,10 +239,12 @@ const FreeChecker = () => {
     { name: "SEO Agency", comment: "Great for quick spot checks.", socials: { ig: "#" }, date: "4 days ago" },
     { name: "Web Master", comment: "Integration with maps is perfect.", socials: { fb: "#" }, date: "4 days ago" },
     { name: "Search Analyst", comment: "Very impressive UULE encoding logic.", socials: { li: "#" }, date: "5 days ago" },
-    { name: "Community User", comment: "Joining the discussion! Great tool.", socials: { fb: "#", ig: "#" }, date: "6 days ago" }
+    { name: "Community User", comment: "Joining the discussion! Great tool.", socials: { fb: "#", ig: "#" }, date: "62 days ago" }
   ]);
   const [commentForm, setCommentForm] = useState({ name: '', email: '', fb: '', ig: '', li: '', text: '' });
   const [commentStatus, setCommentStatus] = useState(null);
+  const [activeFaq, setActiveFaq] = useState(null);
+
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -472,6 +474,15 @@ const FreeChecker = () => {
         .seo-section { padding: 100px 25px; max-width: 1100px; margin: 0 auto; line-height: 1.7; color: #334155; }
         .seo-title { font-size: 38px; fontWeight: 900; color: #1e293b; letterSpacing: -1px; marginBottom: 30px; lineHeight: 1.2; position: relative; }
         .seo-title::after { content: ''; position: absolute; left: 0; bottom: -10px; width: 60px; height: 4px; background: var(--accent); border-radius: 2px; }
+        .faq-item { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; margin-bottom: 15px; overflow: hidden; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .faq-item:hover { border-color: var(--accent); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .faq-question { padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 800; color: #1e293b; font-size: 16px; transition: 0.2s; }
+        .faq-question:hover { color: var(--accent); }
+        .faq-answer { padding: 0 25px; max-height: 0; overflow: hidden; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); color: #64748b; font-size: 14px; line-height: 1.8; opacity: 0; }
+        .faq-item.active .faq-answer { padding-bottom: 25px; max-height: 200px; opacity: 1; }
+        .faq-item.active .faq-question { color: var(--accent); }
+        .faq-icon { width: 32px; height: 32px; background: #f8fafc; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: 0.3s; color: #94a3b8; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); background: var(--accent); color: #fff; }
       `}</style>
       <Navbar />
       
@@ -599,12 +610,127 @@ const FreeChecker = () => {
         )}
       </div>
 
-      <section className="seo-section" style={{ background: '#fff', borderTop: '1px solid #f1f5f9' }}>
+
+      {/* SECTION 2: GLOBAL STRATEGY & NODES */}
+      <section className="seo-section" style={{ background: '#f8fafc' }}>
+        <div style={{ textAlign: 'center', marginBottom: '70px' }}>
+          <h2 className="seo-title" style={{ margin: '0 auto 20px', display: 'inline-block' }}>Global Rank Strategy & <span style={{ color: 'var(--accent)' }}>Search Nodes</span></h2>
+          <p style={{ maxWidth: '700px', margin: '0 auto', fontSize: '16px' }}>
+            We utilize a sophisticated network of geographically distributed search nodes to ensure your ranking data is never filtered or localized incorrectly.
+          </p>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 800 ? 'repeat(3, 1fr)' : '1fr', gap: '30px' }}>
+          {[
+            { icon: '🌐', title: 'Global Node Network', desc: 'Securely verify rankings across 200+ countries and 10,000+ local cities with dedicated node clusters.' },
+            { icon: '📱', title: 'Mobile-First Indexing', desc: 'Simulate high-end mobile devices to see your search presence as it appears on the latest iOS and Android units.' },
+            { icon: '🛡️', title: 'CORS-Secure Logic', desc: 'Our infrastructure bypasses regional blocks and browser limitations to provide direct, unfiltered SERP access.' }
+          ].map((feature, idx) => (
+            <div key={idx} className="seo-card">
+              <div className="seo-feature-icon">{feature.icon}</div>
+              <h3 style={{ fontSize: '18px', fontWeight: '900', marginBottom: '15px' }}>{feature.title}</h3>
+              <p style={{ fontSize: '14px', lineHeight: '1.6' }}>{feature.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 3: CORE LOCATION INTELLIGENCE */}
+      <section className="seo-section" style={{ background: '#fff' }}>
+        <div style={{ background: '#1D2B44', padding: '80px', borderRadius: '40px', color: '#fff' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 900 ? '1fr 1.2fr' : '1fr', gap: '60px', alignItems: 'center' }}>
+            <div>
+              <div style={{ fontSize: '12px', fontWeight: '900', color: 'var(--accent)', textTransform: 'uppercase', marginBottom: '20px' }}>Enterprise SEO Architecture</div>
+              <h2 style={{ fontSize: '36px', fontWeight: '900', marginBottom: '25px', lineHeight: '1.1' }}>Professional Local SEO <br/>Intelligence Command</h2>
+              <p style={{ marginBottom: '30px', opacity: 0.8 }}>
+                The Advanced Investigator is just the start. Manage tens of thousands of keywords, automate daily scans, and generate professional reports through our unified SEO command center.
+              </p>
+              <button style={{ background: 'var(--accent)', color: '#fff', border: 'none', padding: '15px 35px', borderRadius: '12px', fontWeight: '900', cursor: 'pointer', boxShadow: '0 10px 30px rgba(255,153,0,0.3)' }}>
+                 Deploy Fully Managed Node
+              </button>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+               {[
+                 { label: 'Instant', value: '250ms', sub: 'Average Response' },
+                 { label: 'Accuracy', value: '100%', sub: 'Verified Data' },
+                 { label: 'Uptime', value: '99.9%', sub: 'Node Stability' },
+                 { label: 'Global', value: '1M+', sub: 'Geo Locations' }
+               ].map((stat, idx) => (
+                 <div key={idx} style={{ background: 'rgba(255,255,255,0.05)', padding: '25px', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.1)' }}>
+                    <div style={{ fontSize: '10px', fontWeight: '900', opacity: 0.5, marginBottom: '5px' }}>{stat.label}</div>
+                    <div style={{ fontSize: '24px', fontWeight: '900', color: 'var(--accent)' }}>{stat.value}</div>
+                    <div style={{ fontSize: '11px', opacity: 0.6 }}>{stat.sub}</div>
+                 </div>
+               ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 4: FAQ HUB */}
+      <section className="seo-section" style={{ background: '#f8fafc' }}>
+        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <div style={{ color: 'var(--accent)', fontWeight: '900', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '15px' }}>Knowledge Base</div>
+          <h2 className="seo-title" style={{ margin: '0 auto 20px', display: 'inline-block' }}>Ranking Intelligence <span style={{ color: 'var(--accent)' }}>FAQ Hub</span></h2>
+          <p style={{ color: '#64748b' }}>Common questions about local SEO tracking and our Advanced Investigatory tool.</p>
+        </div>
+        <div style={{ maxWidth: '850px', margin: '0 auto' }}>
+          {[
+            { q: "What is a Google Location Changer?", a: "A Google Location Changer is an advanced tool that allows SEO professionals to view search engine results as if they were physically located in a different city, state, or country. This is essential for local SEO audits and competitive analysis." },
+            { q: "How accurate is the Advanced SERP Investigator?", a: "Our tool utilizes UULE encoding and high-precision GPS coordinates to spoof your location at the Google node level, providing 100% accuracy that matches what a real user in that location would see." },
+            { q: "Do you support Google Maps (Local Pack) results?", a: "Yes. Our tool specifically detects and highlights Map Pack rankings, ensuring you can track your business's impact on Google My Business and local map results globally." },
+            { q: "Why should I use this over a standard VPN?", a: "VPNs only change your IP address, which Google often ignores in favor of browser-level location data. Our tool changes your actual search intent coordinates, which is significantly more powerful and accurate for regional SEO." },
+            { q: "Is the UULE parameter required for every check?", a: "While not 'required' for basic searches, the UULE parameter is the gold standard for location-based searching. It guarantees that Google treats the request as coming from that specific latitude and longitude." }
+          ].map((item, idx) => (
+            <div key={idx} className={`faq-item ${activeFaq === idx ? 'active' : ''}`} onClick={() => setActiveFaq(activeFaq === idx ? null : idx)}>
+              <div className="faq-question">
+                <span>{item.q}</span>
+                <div className="faq-icon">+</div>
+              </div>
+              <div className="faq-answer">
+                <div style={{ borderTop: '1px solid #f1f5f9', paddingTop: '20px' }}>
+                  {item.a}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* NEW SECTION: PRO TIPS */}
+      <section className="seo-section" style={{ background: '#fff' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 800 ? '1fr 1fr' : '1fr', gap: '50px', alignItems: 'center' }}>
+          <div style={{ order: windowWidth > 800 ? 1 : 2 }}>
+             <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800" alt="SEO Analysis" style={{ width: '100%', borderRadius: '24px', boxShadow: '0 20px 50px rgba(0,0,0,0.1)' }} />
+          </div>
+          <div style={{ order: windowWidth > 800 ? 2 : 1 }}>
+            <h2 style={{ fontSize: '32px', fontWeight: '900', marginBottom: '25px' }}>Pro Tips for <span style={{ color: 'var(--accent)' }}>Local Dominance</span></h2>
+            <ul style={{ listStyle: 'none', padding: 0 }}>
+              {[
+                { title: 'Use Precise ZIP Codes', desc: 'Instead of just city names, use exact ZIP/Postcodes for hyper-local Map Pack tracking.' },
+                { title: 'Monitor Mobile Variations', desc: 'Google shows different results for mobile users. Always check both desktop and mobile nodes.' },
+                { title: 'Leverage UULE Parameters', desc: 'Our tool automatically generates the correct UULE string so you don\'t have to worry about complex encoding.' },
+                { title: 'Analyze Map Pack Proximity', desc: 'Check rankings from different corners of the same city to see how distance affects your business visibility.' }
+              ].map((tip, i) => (
+                <li key={i} style={{ marginBottom: '20px', display: 'flex', gap: '15px' }}>
+                  <div style={{ width: '24px', height: '24px', background: 'rgba(255,153,0,0.1)', color: 'var(--accent)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', flexShrink: 0 }}>{i+1}</div>
+                  <div>
+                    <div style={{ fontWeight: '900', fontSize: '16px', marginBottom: '5px' }}>{tip.title}</div>
+                    <div style={{ fontSize: '14px', color: '#64748b' }}>{tip.desc}</div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className="seo-section" style={{ background: '#f8fafc', borderTop: '1px solid #f1f5f9' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: '50px' }}>
             <h2 style={{ fontSize: '32px', fontWeight: '900', color: '#0f172a' }}>Community Feedback</h2>
             <p style={{ color: '#64748b' }}>Share your ranking success with our global community.</p>
           </div>
+
           
           <div style={{ background: '#f8fafc', padding: '35px', borderRadius: '24px', border: '1px solid #e2e8f0', marginBottom: '60px' }}>
             <h3 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '20px' }}>Join the Discussion</h3>
