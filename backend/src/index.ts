@@ -671,7 +671,7 @@ const loadDB = () => {
         {
           id: "demo-1",
           title: "10 Secret Ways to Boost Local SEO in 2026",
-          content: "<h2>Mastering the Local SERPs</h2><p>Local SEO is no longer just about keywords. It's about geographic authority and user trust. In this post, we explore how UULE technology and precise location tracking can give you an edge over competitors who are still using outdated scraping methods.</p><h3>Why Geo-Targeting Matters</h3><p>When a user searches for a service 'near me', Google uses complex triangulation. By mastering local signals, you ensure your business is the first one they see.</p>",
+          content: "<h2>Mastering the Local SERPs</h2><p>Local SEO is no longer just about keywords. It's about geographic authority and user trust. In this post, we explore how UULE technology and precise location tracking can give you an edge over competitors who are still using outdated scraping methods.</p>",
           category: "Local Search",
           author: "Admin",
           date: new Date().toISOString(),
@@ -687,13 +687,58 @@ const loadDB = () => {
           image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800"
         },
         {
-          id: "demo-3",
-          title: "How to Outrank Competitors with Invisible Scrapers",
-          content: "<h2>Silent Dominance</h2><p>Intrusive scraping is easily detected. The future of data collection lies in invisible, distributed node networks. By using offscreen browsers and rotating residential proxies, you can gather intelligence without ever being noticed.</p>",
+          id: "auto-1",
+          title: "The Future of Local SEO: AI & Automation",
+          content: "<h2>AI-Powered Local Growth</h2><p>As we move into 2026, manual tracking is becoming obsolete. AI and machine learning are now driving search results. To stay ahead, businesses must adopt automated systems that can react to algorithm changes in real-time.</p>",
+          category: "News",
+          author: "Ranking AI",
+          date: new Date().toISOString(),
+          image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800"
+        },
+        {
+          id: "auto-2",
+          title: "How to Dominate Google Maps in 30 Days",
+          content: "<h2>Google Maps Mastery</h2><p>Ranking in the top 3 of Google Maps is the fastest way to grow a local business. By optimizing your GBP (Google Business Profile) and ensuring your citations are 100% consistent across the web, you can skyrocket your leads.</p>",
+          category: "Local Search",
+          author: "Ranking AI",
+          date: new Date().toISOString(),
+          image: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&q=80&w=800"
+        },
+        {
+          id: "auto-3",
+          title: "Why Ranking Precision is the New Currency",
+          content: "<h2>Data Accuracy Matters</h2><p>In the world of SEO, bad data is worse than no data. Accurate ranking tracking allows you to make informed decisions that save thousands in marketing spend.</p>",
+          category: "SEO Tips",
+          author: "Ranking AI",
+          date: new Date().toISOString(),
+          image: "https://images.unsplash.com/photo-1454165833762-02ac4f408d18?auto=format&fit=crop&q=80&w=800"
+        },
+        {
+          id: "hist-1",
+          title: "The Power of Mobile-First SEO in 2026",
+          content: "<h2>Mobile is King</h2><p>With over 90% of searches happening on mobile devices, optimizing for small screens is no longer optional. Google's mobile-first indexing means your mobile site is the primary version for ranking.</p>",
+          category: "SEO Tips",
+          author: "Admin",
+          date: new Date(Date.now() - 3600000).toISOString(), // 1 hour ago
+          image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&q=80&w=800"
+        },
+        {
+          id: "hist-2",
+          title: "Core Web Vitals: A Technical Deep Dive",
+          content: "<h2>Speed and Stability</h2><p>LCP, FID, and CLS are the new metrics that define user experience. Learn how to optimize your server and frontend code to score 100/100 on PageSpeed Insights.</p>",
           category: "Product Updates",
           author: "Admin",
-          date: new Date().toISOString(),
+          date: new Date(Date.now() - 86400000).toISOString(), // 1 day ago
           image: "https://images.unsplash.com/photo-1551288049-bbda48658a7d?auto=format&fit=crop&q=80&w=800"
+        },
+        {
+          id: "hist-3",
+          title: "Voice Search: The Next SEO Frontier",
+          content: "<h2>Conversational AI</h2><p>People search differently when they speak. Long-tail keywords and natural language processing are now essential for ranking on voice assistants.</p>",
+          category: "News",
+          author: "Admin",
+          date: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
+          image: "https://images.unsplash.com/photo-1589254065878-42c9da997008?auto=format&fit=crop&q=80&w=800"
         }
       ],
       settings: {

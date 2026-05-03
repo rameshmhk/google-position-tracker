@@ -4739,5 +4739,25 @@
       "status": "pending",
       "createdAt": 1777697706537
     }
+  ],
+  "blogs": [
+    {
+      "id": "1777792082873",
+      "title": "msmms",
+      "content": "ssssss",
+      "author": "Admin",
+      "category": "Product Updates",
+      "image": "",
+      "date": "2026-05-03T07:08:02.873Z"
+    },
+    {
+      "id": "1777792217760",
+      "title": "Audit Test",
+      "content": "Full Audit Content",
+      "author": "Admin",
+      "category": "Product Updates",
+      "image": "https://via.placeholder.com/150",
+      "date": "2026-05-03T07:10:17.760Z"
+    }
   ]
 }

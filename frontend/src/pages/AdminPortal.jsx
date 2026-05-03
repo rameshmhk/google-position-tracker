@@ -9,7 +9,6 @@ const AdminPortal = () => {
   const [pendingComments, setPendingComments] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [apiError, setApiError] = useState(null);
   
   // Blog CMS States
   const [showForm, setShowForm] = useState(false);
@@ -30,7 +29,7 @@ const AdminPortal = () => {
         const data = await res.json();
         setPendingComments(Array.isArray(data) ? data : []);
       }
-    } catch (err) { console.error(err); }
+    } catch (err) { console.error("Pending Fetch Error:", err); }
   };
 
   const fetchBlogs = async () => {
@@ -40,16 +39,17 @@ const AdminPortal = () => {
       const data = await res.json();
       setBlogs(Array.isArray(data) ? data : []);
     } catch (err) { 
-      setApiError("Backend not connected.");
+      console.error("Blogs Fetch Error:", err);
     } finally { setLoading(false); }
   };
 
+  // Refetch when tab changes
   useEffect(() => {
     if (isLoggedIn) {
-      fetchBlogs();
-      fetchPending();
+      if (activeTab === 'blogs') fetchBlogs();
+      if (activeTab === 'comments') fetchPending();
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, activeTab]);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -73,7 +73,7 @@ const AdminPortal = () => {
         body: JSON.stringify(blogForm)
       });
       if (res.ok) {
-        alert("Success!");
+        alert(isEditing ? "Post Updated!" : "Post Published!");
         setBlogForm({ title: '', content: '', author: 'Admin', category: 'SEO Tips', image: '', tags: '' });
         setShowForm(false);
         setIsEditing(false);
@@ -83,7 +83,7 @@ const AdminPortal = () => {
   };
 
   const handleAutoPost = async () => {
-    const title = prompt("Enter Blog Title:");
+    const title = prompt("Enter Blog Title for Magic Post:");
     if (!title) return;
     setLoading(true);
     try {
@@ -94,10 +94,10 @@ const AdminPortal = () => {
         body: JSON.stringify({ title })
       });
       if (res.ok) {
-        alert("Magic AI Post Created!");
+        alert("Magic AI Post Created Successfully!");
         fetchBlogs();
       }
-    } catch (err) { alert("Auto-post failed."); }
+    } catch (err) { alert("Magic Post failed."); }
     finally { setLoading(false); }
   };
 
@@ -105,12 +105,59 @@ const AdminPortal = () => {
     if (!window.confirm("Trash this post?")) return;
     try {
       const token = localStorage.getItem('token');
-      await fetch(`http://localhost:5000/api/admin/blogs/${id}`, {
+      const res = await fetch(`http://localhost:5000/api/admin/blogs/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
-      fetchBlogs();
+      if (res.ok) {
+        alert("Post Removed.");
+        fetchBlogs();
+      }
     } catch (err) { console.error(err); }
+  };
+
+  const startEdit = (post) => {
+    setBlogForm({
+      title: post.title,
+      content: post.content,
+      author: post.author || 'Admin',
+      category: post.category || 'SEO Tips',
+      image: post.image || '',
+      tags: post.tags || ''
+    });
+    setEditId(post.id);
+    setIsEditing(true);
+    setShowForm(true);
+    window.scrollTo(0, 0);
+  };
+
+  const handleCommentApprove = async (id) => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`http://localhost:5000/api/admin/comments/approve/${id}`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        alert("Comment Approved!");
+        fetchPending();
+      }
+    } catch (err) { alert("Failed to approve."); }
+  };
+
+  const handleCommentDelete = async (id) => {
+    if (!window.confirm("Delete this comment?")) return;
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`http://localhost:5000/api/admin/comments/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        alert("Comment Deleted.");
+        fetchPending();
+      }
+    } catch (err) { alert("Failed to delete."); }
   };
 
   if (!isLoggedIn) {
@@ -166,6 +213,7 @@ const AdminPortal = () => {
 
                   {showForm && (
                     <form onSubmit={handleBlogSubmit} style={{ background: '#f8fafc', padding: '30px', borderRadius: '20px', border: '1px solid #e2e8f0', marginBottom: '40px' }}>
+                       <h3 style={{ marginBottom: '20px', fontWeight: '900' }}>{isEditing ? "Edit Post" : "Create New Post"}</h3>
                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', marginBottom: '20px' }}>
                           <div>
                              <label style={{ fontSize: '11px', fontWeight: '900', color: '#64748b', display: 'block', marginBottom: '8px' }}>POST TITLE</label>
@@ -188,13 +236,13 @@ const AdminPortal = () => {
                              <input type="text" value={blogForm.image} onChange={e => setBlogForm({...blogForm, image: e.target.value})} style={{ width: '100%', padding: '14px', borderRadius: '10px', border: '1px solid #e2e8f0', boxSizing: 'border-box' }} placeholder="https://..." />
                           </div>
                           <div>
-                             <label style={{ fontSize: '11px', fontWeight: '900', color: '#64748b', display: 'block', marginBottom: '8px' }}>TAGS (Comma separated)</label>
-                             <input type="text" value={blogForm.tags} onChange={e => setBlogForm({...blogForm, tags: e.target.value})} style={{ width: '100%', padding: '14px', borderRadius: '10px', border: '1px solid #e2e8f0', boxSizing: 'border-box' }} placeholder="seo, rankings, google" />
+                             <label style={{ fontSize: '11px', fontWeight: '900', color: '#64748b', display: 'block', marginBottom: '8px' }}>TAGS</label>
+                             <input type="text" value={blogForm.tags} onChange={e => setBlogForm({...blogForm, tags: e.target.value})} style={{ width: '100%', padding: '14px', borderRadius: '10px', border: '1px solid #e2e8f0', boxSizing: 'border-box' }} placeholder="seo, google, local" />
                           </div>
                        </div>
 
                        <div style={{ marginBottom: '25px' }}>
-                          <label style={{ fontSize: '11px', fontWeight: '900', color: '#64748b', display: 'block', marginBottom: '8px' }}>POST CONTENT (Rich Text/HTML)</label>
+                          <label style={{ fontSize: '11px', fontWeight: '900', color: '#64748b', display: 'block', marginBottom: '8px' }}>POST CONTENT</label>
                           <textarea value={blogForm.content} onChange={e => setBlogForm({...blogForm, content: e.target.value})} style={{ width: '100%', height: '300px', padding: '20px', borderRadius: '15px', border: '1px solid #e2e8f0', fontSize: '15px', lineHeight: '1.6', boxSizing: 'border-box' }} required />
                        </div>
 
@@ -205,34 +253,42 @@ const AdminPortal = () => {
                   )}
 
                   <div style={{ display: 'grid', gap: '15px' }}>
-                     {blogs.map(b => (
-                       <div key={b.id} style={{ padding: '20px', border: '1px solid #e2e8f0', borderRadius: '18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
-                             <div style={{ width: '45px', height: '45px', background: '#f1f5f9', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>📄</div>
-                             <div>
-                                <div style={{ fontWeight: '800', color: '#1D2B44' }}>{b.title}</div>
-                                <div style={{ fontSize: '12px', color: '#94a3b8' }}>{b.category} • {new Date(b.date).toLocaleDateString()}</div>
-                             </div>
-                          </div>
-                          <div style={{ display: 'flex', gap: '10px' }}>
-                             <button onClick={() => { startEdit(b); setShowForm(true); }} style={{ background: '#f1f5f9', border: 'none', padding: '8px 15px', borderRadius: '8px', cursor: 'pointer', fontWeight: '800' }}>Edit</button>
-                             <button onClick={() => deleteBlog(b.id)} style={{ background: '#fee2e2', color: '#ef4444', border: 'none', padding: '8px 15px', borderRadius: '8px', cursor: 'pointer', fontWeight: '800' }}>Trash</button>
-                          </div>
-                       </div>
-                     ))}
+                     {blogs.length === 0 ? <p style={{ textAlign: 'center', padding: '50px', color: '#94a3b8' }}>No blogs found. Use Magic Post or Add New!</p> : (
+                       blogs.map(b => (
+                        <div key={b.id} style={{ padding: '20px', border: '1px solid #e2e8f0', borderRadius: '18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                           <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+                              <div style={{ width: '45px', height: '45px', background: '#f1f5f9', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>📄</div>
+                              <div>
+                                 <div style={{ fontWeight: '800', color: '#1D2B44' }}>{b.title}</div>
+                                 <div style={{ fontSize: '12px', color: '#94a3b8' }}>{b.category} • {new Date(b.date).toLocaleDateString()}</div>
+                              </div>
+                           </div>
+                           <div style={{ display: 'flex', gap: '10px' }}>
+                              <button onClick={() => startEdit(b)} style={{ background: '#f1f5f9', border: 'none', padding: '8px 15px', borderRadius: '8px', cursor: 'pointer', fontWeight: '800' }}>Edit</button>
+                              <button onClick={() => deleteBlog(b.id)} style={{ background: '#fee2e2', color: '#ef4444', border: 'none', padding: '8px 15px', borderRadius: '8px', cursor: 'pointer', fontWeight: '800' }}>Trash</button>
+                           </div>
+                        </div>
+                       ))
+                     )}
                   </div>
                </div>
              )}
 
              {activeTab === 'comments' && (
                <div>
-                  <h2 style={{ fontSize: '24px', fontWeight: '900', color: '#1D2B44', marginBottom: '30px' }}>Pending Comments</h2>
-                  {pendingComments.length === 0 ? <p style={{ textAlign: 'center', color: '#94a3b8', padding: '50px' }}>All clear! No pending comments.</p> : (
+                  <h2 style={{ fontSize: '24px', fontWeight: '900', color: '#1D2B44', marginBottom: '30px' }}>Pending Moderation</h2>
+                  {pendingComments.length === 0 ? <p style={{ textAlign: 'center', color: '#94a3b8', padding: '50px' }}>All clear! No pending comments found.</p> : (
                     pendingComments.map(c => (
                       <div key={c.id} style={{ padding: '25px', border: '1px solid #f1f5f9', background: '#f8fafc', borderRadius: '20px', marginBottom: '20px' }}>
                          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '15px' }}>
-                            <div style={{ fontWeight: '900' }}>{c.name}</div>
-                            <button style={{ background: '#10b981', color: '#fff', border: 'none', padding: '8px 18px', borderRadius: '10px', fontWeight: '800' }}>Approve</button>
+                            <div>
+                               <div style={{ fontWeight: '900', fontSize: '16px' }}>{c.name}</div>
+                               <div style={{ fontSize: '12px', color: '#94a3b8' }}>{new Date(c.date).toLocaleString()}</div>
+                            </div>
+                            <div style={{ display: 'flex', gap: '10px' }}>
+                               <button onClick={() => handleCommentApprove(c.id)} style={{ background: '#10b981', color: '#fff', border: 'none', padding: '8px 18px', borderRadius: '10px', fontWeight: '800', cursor: 'pointer' }}>Approve</button>
+                               <button onClick={() => handleCommentDelete(c.id)} style={{ background: '#fee2e2', color: '#ef4444', border: 'none', padding: '8px 18px', borderRadius: '10px', fontWeight: '800', cursor: 'pointer' }}>Reject</button>
+                            </div>
                          </div>
                          <p style={{ color: '#475569', lineHeight: '1.6' }}>{c.text}</p>
                       </div>
