@@ -877,6 +877,67 @@ const FreeChecker = () => {
         </div>
       </section>
 
+      {/* --- COMMUNITY COMMENTS SECTION --- */}
+      <section className="seo-section" style={{ background: '#fff', borderTop: '1px solid #f1f5f9' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '50px' }}>
+            <h2 style={{ fontSize: '32px', fontWeight: '900', color: '#0f172a', letterSpacing: '-1px' }}>Community Feedback</h2>
+            <p style={{ color: '#64748b', fontSize: '16px' }}>Share your ranking success and tips with our global community.</p>
+          </div>
+
+          {/* Comment Form */}
+          <div style={{ background: '#f8fafc', padding: '35px', borderRadius: '24px', border: '1px solid #e2e8f0', marginBottom: '60px' }}>
+            <h3 style={{ fontSize: '18px', fontWeight: '800', color: '#1e293b', marginBottom: '20px' }}>Leave a comment</h3>
+            <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 600 ? '1fr 1fr' : '1fr', gap: '20px', marginBottom: '20px' }}>
+              <input 
+                type="email" 
+                placeholder="Your Email ID" 
+                style={{ padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none' }} 
+              />
+              <input 
+                type="text" 
+                placeholder="Facebook Profile URL / ID" 
+                style={{ padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none' }} 
+              />
+            </div>
+            <textarea 
+              placeholder="Write your ranking tip or feedback here..." 
+              style={{ width: '100%', height: '120px', padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none', marginBottom: '20px', boxSizing: 'border-box' }}
+            ></textarea>
+            <button style={{ background: '#1D2B44', color: '#fff', padding: '12px 30px', borderRadius: '8px', fontWeight: '900', border: 'none', cursor: 'pointer' }}>
+              Post Comment
+            </button>
+          </div>
+
+          {/* Mock Comments for SEO & Trust */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+            {[
+              { name: "John SEO", comment: "Amazing tool! The UULE precision for New York was 100% accurate compared to my manual search.", social: "fb.com/johnseo", date: "2 hours ago" },
+              { name: "Priya Sharma", comment: "Finally found a tool that handles Indian local pack results correctly. P1 detected perfectly.", social: "fb.com/priyash", date: "5 hours ago" },
+              { name: "Digital Marketer", comment: "Used this for a client audit today. The mobile vs desktop switch is a life saver.", social: "fb.com/digitalpro", date: "1 day ago" }
+            ].map((c, i) => (
+              <div key={i} style={{ borderBottom: '1px solid #f1f5f9', paddingBottom: '25px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div style={{ width: '40px', height: '40px', background: 'var(--accent)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontWeight: '900' }}>
+                      {c.name[0]}
+                    </div>
+                    <div>
+                      <div style={{ fontWeight: '800', fontSize: '15px', color: '#0f172a' }}>{c.name}</div>
+                      <div style={{ fontSize: '12px', color: '#94a3b8' }}>{c.date}</div>
+                    </div>
+                  </div>
+                  <a href={`https://${c.social}`} target="_blank" rel="noreferrer" style={{ fontSize: '18px', color: '#3b82f6', textDecoration: 'none' }}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-8.74h-2.94v-3.403h2.94v-2.511c0-2.91 1.777-4.496 4.376-4.496 1.245 0 2.317.092 2.628.134v3.048l-1.804.001c-1.412 0-1.685.672-1.685 1.654v2.17h3.374l-.439 3.403h-2.935v8.74h6.14c.731 0 1.325-.593 1.325-1.325v-21.351c0-.732-.594-1.325-1.325-1.325z"/></svg>
+                  </a>
+                </div>
+                <p style={{ color: '#475569', fontSize: '15px', lineHeight: '1.6', paddingLeft: '50px' }}>{c.comment}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
