@@ -188,7 +188,6 @@ const COUNTRY_DB = [
   { code: 'tr', name: 'Turkey', flag: '🇹🇷', tld: 'google.com.tr' },
   { code: 'tm', name: 'Turkmenistan', flag: '🇹🇲', tld: 'google.tm' },
   { code: 'vi', name: 'U.S. Virgin Islands', flag: '🇻🇮', tld: 'google.co.vi' },
-  { code: 'vi', name: 'U.S. Virgin Islands', flag: '🇻🇮', tld: 'google.co.vi' },
   { code: 'ug', name: 'Uganda', flag: '🇺🇬', tld: 'google.co.ug' },
   { code: 'ua', name: 'Ukraine', flag: '🇺🇦', tld: 'google.com.ua' },
   { code: 'ae', name: 'United Arab Emirates', flag: '🇦🇪', tld: 'google.ae', aliases: ['UAE'] },
@@ -227,6 +226,23 @@ const FreeChecker = () => {
   const cityDropdownRef = useRef(null);
   const [isCityLoading, setIsCityLoading] = useState(false);
   const [isCityLinked, setIsCityLinked] = useState(false);
+
+  // --- COMMUNITY COMMENT STATES ---
+  const [commentForm, setCommentForm] = useState({ name: '', email: '', fb: '', ig: '', li: '', text: '' });
+  const [commentStatus, setCommentStatus] = useState(null);
+
+  const handleCommentSubmit = (e) => {
+    e.preventDefault();
+    if (!commentForm.name || !commentForm.text) {
+      alert("Please fill in your name and comment.");
+      return;
+    }
+    setCommentStatus('success');
+    setTimeout(() => {
+      setCommentStatus(null);
+      setCommentForm({ name: '', email: '', fb: '', ig: '', li: '', text: '' });
+    }, 3000);
+  };
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -575,20 +591,74 @@ const FreeChecker = () => {
             <h2 style={{ fontSize: '32px', fontWeight: '900', color: '#0f172a' }}>Community Feedback</h2>
             <p style={{ color: '#64748b' }}>Share your ranking success with our global community.</p>
           </div>
+          
           <div style={{ background: '#f8fafc', padding: '35px', borderRadius: '24px', border: '1px solid #e2e8f0', marginBottom: '60px' }}>
             <h3 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '20px' }}>Join the Discussion</h3>
-            <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 600 ? '1fr 1fr' : '1fr', gap: '20px', marginBottom: '20px' }}>
-              <input type="text" placeholder="Your Name" style={{ padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0' }} />
-              <input type="email" placeholder="Email Address" style={{ padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0' }} />
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 600 ? '1fr 1fr 1fr' : '1fr', gap: '15px', marginBottom: '20px' }}>
-              <input type="text" placeholder="Facebook URL" style={{ padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '13px' }} />
-              <input type="text" placeholder="Instagram URL" style={{ padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '13px' }} />
-              <input type="text" placeholder="LinkedIn URL" style={{ padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '13px' }} />
-            </div>
-            <textarea placeholder="Your feedback..." style={{ width: '100%', height: '100px', padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', marginBottom: '20px' }}></textarea>
-            <button style={{ background: '#1D2B44', color: '#fff', padding: '12px 35px', borderRadius: '8px', fontWeight: '900', border: 'none' }}>Submit Review</button>
+            
+            {commentStatus === 'success' ? (
+              <div style={{ background: '#10b981', color: '#fff', padding: '20px', borderRadius: '12px', textAlign: 'center', fontWeight: '900' }}>
+                ✓ Thank you! Your review has been submitted for moderation.
+              </div>
+            ) : (
+              <form onSubmit={handleCommentSubmit}>
+                <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 600 ? '1fr 1fr' : '1fr', gap: '20px', marginBottom: '20px' }}>
+                  <input 
+                    type="text" 
+                    placeholder="Your Name" 
+                    value={commentForm.name}
+                    onChange={(e) => setCommentForm({...commentForm, name: e.target.value})}
+                    style={{ padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none' }} 
+                  />
+                  <input 
+                    type="email" 
+                    placeholder="Email Address" 
+                    value={commentForm.email}
+                    onChange={(e) => setCommentForm({...commentForm, email: e.target.value})}
+                    style={{ padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none' }} 
+                  />
+                </div>
+                
+                <div style={{ display: 'grid', gridTemplateColumns: windowWidth > 600 ? '1fr 1fr 1fr' : '1fr', gap: '15px', marginBottom: '20px' }}>
+                  <input 
+                    type="text" 
+                    placeholder="Facebook URL" 
+                    value={commentForm.fb}
+                    onChange={(e) => setCommentForm({...commentForm, fb: e.target.value})}
+                    style={{ padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '13px' }} 
+                  />
+                  <input 
+                    type="text" 
+                    placeholder="Instagram URL" 
+                    value={commentForm.ig}
+                    onChange={(e) => setCommentForm({...commentForm, ig: e.target.value})}
+                    style={{ padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '13px' }} 
+                  />
+                  <input 
+                    type="text" 
+                    placeholder="LinkedIn URL" 
+                    value={commentForm.li}
+                    onChange={(e) => setCommentForm({...commentForm, li: e.target.value})}
+                    style={{ padding: '12px', borderRadius: '8px', border: '1px solid #e2e8f0', fontSize: '13px' }} 
+                  />
+                </div>
+
+                <textarea 
+                  placeholder="Your feedback..." 
+                  value={commentForm.text}
+                  onChange={(e) => setCommentForm({...commentForm, text: e.target.value})}
+                  style={{ width: '100%', height: '100px', padding: '15px', borderRadius: '12px', border: '1px solid #e2e8f0', outline: 'none', marginBottom: '20px', boxSizing: 'border-box' }}
+                ></textarea>
+                
+                <button 
+                  type="submit"
+                  style={{ background: '#1D2B44', color: '#fff', padding: '12px 35px', borderRadius: '8px', fontWeight: '900', border: 'none', cursor: 'pointer' }}
+                >
+                  Submit Review
+                </button>
+              </form>
+            )}
           </div>
+
           <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
             {[
               { name: "John SEO", comment: "The UULE precision here is unmatched.", socials: { fb: "https://facebook.com/rankinganywhere", ig: "https://instagram.com/rankinganywhere", li: "https://linkedin.com/company/rankinganywhere" }, date: "2 hours ago" },
