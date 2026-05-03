@@ -1,11 +1,20 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const FAQItem = ({ question, answer }) => {
+const FAQItem = ({ question, answer, icon, index }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const colors = ['#eff6ff', '#fff7ed', '#f0fdf4', '#f5f3ff', '#fdf2f8'];
+  const bg = colors[index % colors.length];
 
   return (
-    <div style={{ marginBottom: '15px', borderBottom: '1px solid #e2e8f0' }}>
+    <div style={{ 
+      marginBottom: '15px', 
+      borderRadius: '16px', 
+      overflow: 'hidden', 
+      border: '1px solid #e2e8f0',
+      background: isOpen ? bg : '#fff',
+      transition: 'all 0.3s ease'
+    }}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
         style={{ 
@@ -13,15 +22,31 @@ const FAQItem = ({ question, answer }) => {
           display: 'flex', 
           justifyContent: 'space-between', 
           alignItems: 'center', 
-          padding: '25px 0', 
+          padding: '20px 25px', 
           background: 'none', 
           border: 'none', 
           cursor: 'pointer',
           textAlign: 'left'
         }}
       >
-        <span style={{ fontSize: '18px', fontWeight: '900', color: '#0f172a' }}>{question}</span>
-        <span style={{ fontSize: '24px', color: 'var(--accent)', transition: 'transform 0.3s', transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)' }}>+</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+          <span style={{ fontSize: '20px' }}>{icon}</span>
+          <span style={{ fontSize: '17px', fontWeight: '800', color: '#1e293b' }}>{question}</span>
+        </div>
+        <div style={{ 
+          width: '32px', 
+          height: '32px', 
+          borderRadius: '50%', 
+          background: isOpen ? 'var(--accent)' : '#f1f5f9', 
+          color: isOpen ? '#fff' : '#64748b',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '18px',
+          fontWeight: '900',
+          transition: 'all 0.3s',
+          transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)'
+        }}>+</div>
       </button>
       <AnimatePresence>
         {isOpen && (
@@ -31,7 +56,7 @@ const FAQItem = ({ question, answer }) => {
             exit={{ height: 0, opacity: 0 }}
             style={{ overflow: 'hidden' }}
           >
-            <p style={{ paddingBottom: '25px', color: '#64748b', lineHeight: '1.7', fontSize: '15px' }}>{answer}</p>
+            <p style={{ padding: '0 25px 25px 60px', color: '#475569', lineHeight: '1.6', fontSize: '15px', fontWeight: '500' }}>{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -42,57 +67,67 @@ const FAQItem = ({ question, answer }) => {
 const FAQSection = () => {
   const faqs = [
     {
-      question: "What makes Ranking Anywhere different from other trackers?",
-      answer: "We use a distributed network of physical hardware nodes and high-precision UULE injection. While other tools give you broad city data, we provide exact postal code and street-level accuracy."
+      icon: "🚀",
+      question: "How is this different from other SEO tools?",
+      answer: "Most tools show you general data. We show you exactly what a person sitting in a specific city or street sees on Google. It’s like having a local person check the rankings for you!"
     },
     {
-      question: "How accurate is the ranking data?",
-      answer: "Our data is 100% real-time and fetched directly from Google's local search results. By spoofing exact GPS coordinates, we ensure you see the SERP exactly as a user standing at that specific location would."
+      icon: "🎯",
+      question: "How accurate is the ranking information?",
+      answer: "It is very accurate! We use real-time data from Google. We don't guess—we check the live results every time you run a scan."
     },
     {
-      question: "What is UULE injection and why is it important?",
-      answer: "UULE is a specialized base64 encoded parameter used by Google to determine a user's precise location. We generate unique UULE keys for every request to bypass generic data centers and get hyper-local results."
+      icon: "📍",
+      question: "Can I check rankings for a specific area or city?",
+      answer: "Yes! You can choose any city, country, or even a specific area. This is great for local businesses who want to see how they look to nearby customers."
     },
     {
-      question: "Can I track Google Maps and Local Pack rankings?",
-      answer: "Absolutely. Our engine specifically targets the Local 3-Pack and Google Maps results, tracking your business's visibility in the map results across various geographic points."
+      icon: "🗺️",
+      question: "Does it track Google Maps results?",
+      answer: "Yes, it does. We track the 'Map Pack' (the top 3 local results with the map) so you can see if your business is showing up there."
     },
     {
-      question: "How often can I scan my keywords?",
-      answer: "You can set custom schedules for Daily or Weekly scans. Additionally, you can trigger 'On-Demand' manual scans at any time for instant rank verification."
+      icon: "⏰",
+      question: "How often do the rankings update?",
+      answer: "You decide! You can set it to check every day, every week, or you can just click a button to check right now."
     },
     {
-      question: "Do you support mobile and desktop rank tracking?",
-      answer: "Yes. Every keyword can be tracked on both Desktop and Mobile devices. Mobile results account for mobile-first indexing and specific mobile SERP features."
+      icon: "📱",
+      question: "Does it work for both Mobile and Desktop?",
+      answer: "Yes. You can see how you rank on a computer and how you rank on a mobile phone, as the results are often different."
     },
     {
-      question: "What is the difference between API Stream and Direct Proxy?",
-      answer: "API Stream is our high-speed distributed cloud service for rapid scaling. Direct Proxy uses dedicated hardware nodes that simulate real-browser interactions for maximum stealth and precision."
+      icon: "🛠️",
+      question: "What is API Stream and Direct Proxy?",
+      answer: "Don't worry about the technical names! API Stream is for fast results, and Direct Proxy is for when you want to see the result exactly like a real browser would show it."
     },
     {
-      question: "Can I export my ranking data for clients?",
-      answer: "Yes, you can export your keyword ranking history and comparison matrices directly to CSV/Excel formats for professional client reporting."
+      icon: "📊",
+      question: "Can I download my reports?",
+      answer: "Yes, you can download all your ranking data into an Excel-style sheet to show your clients or keep for your records."
     },
     {
-      question: "How do you handle proxy failures or CAPTCHAs?",
-      answer: "Our system features an automated failover system. If a node is challenged or fails, the request is instantly rerouted through a different hardware cluster to ensure zero data gaps."
+      icon: "🛡️",
+      question: "What happens if a scan fails?",
+      answer: "Our system is smart. If one way fails, it automatically tries another way immediately to make sure you always get your data."
     },
     {
-      question: "Is my data and project information secure?",
-      answer: "Security is our priority. All project data, keyword lists, and API configurations are encrypted with enterprise-grade SSL and stored in secure, isolated databases."
+      icon: "🔒",
+      question: "Is my project data safe with you?",
+      answer: "Absolutely. Your data is private and encrypted. No one else can see your keywords or your projects."
     }
   ];
 
   return (
-    <section style={{ padding: '100px 24px', background: '#fff' }}>
+    <section style={{ padding: '80px 24px', background: '#f8fafc' }}>
       <div style={{ maxWidth: '900px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <div style={{ fontSize: '12px', fontWeight: '900', color: 'var(--accent)', letterSpacing: '3px', marginBottom: '15px' }}>KNOWLEDGE BASE</div>
-          <h2 style={{ fontSize: '36px', fontWeight: '900', color: '#0f172a' }}>Frequently Asked Questions</h2>
+          <div style={{ fontSize: '11px', fontWeight: '900', color: 'var(--accent)', letterSpacing: '3px', marginBottom: '15px' }}>HELP CENTER</div>
+          <h2 style={{ fontSize: '36px', fontWeight: '900', color: '#0f172a', letterSpacing: '-1.5px' }}>Simple Answers to Common Questions</h2>
         </div>
         <div>
           {faqs.map((f, i) => (
-            <FAQItem key={i} question={f.question} answer={f.answer} />
+            <FAQItem key={i} index={i} question={f.question} answer={f.answer} icon={f.icon} />
           ))}
         </div>
       </div>
