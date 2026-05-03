@@ -43,7 +43,7 @@ const PORT = process.env.PORT || 5000;
 const DB_FILE = process.env.DB_PATH || path.join(process.cwd(), 'local_db.json');
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://localhost:3000', 'https://rankinganywhere.com'],
+  origin: ['http://localhost:5173', 'http://localhost:3000', 'https://rankinganywhere.com', 'https://www.rankinganywhere.com'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
   credentials: true
