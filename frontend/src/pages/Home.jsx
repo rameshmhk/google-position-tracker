@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import FAQSection from '../components/FAQSection';
 import { motion } from 'framer-motion';
 
 const Home = () => {
@@ -131,6 +132,8 @@ const Home = () => {
            <Link to="/how-to-use" style={{ padding: '22px 60px', background: '#f1f5f9', border: 'none', color: '#0f172a', fontWeight: '900', borderRadius: '4px', textDecoration: 'none' }}>Learn the Workflow</Link>
         </div>
       </section>
+
+      <FAQSection />
 
       <Footer />
     </div>

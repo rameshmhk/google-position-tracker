@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import FAQSection from '../components/FAQSection';
 import { Helmet } from 'react-helmet-async';
 
 const HowToUse = () => {
@@ -87,19 +88,7 @@ const HowToUse = () => {
          </section>
 
          {/* FAQ SECTION */}
-         <section style={{ maxWidth: '800px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '50px' }}>
-               <h2 style={{ fontSize: '32px', fontWeight: '900', color: '#0f172a' }}>Frequently Asked Questions</h2>
-            </div>
-            <div style={{ display: 'grid', gap: '20px' }}>
-               {faqs.map((f, i) => (
-                 <div key={i} style={{ background: '#fff', padding: '30px', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
-                    <h4 style={{ fontSize: '17px', fontWeight: '900', color: '#0f172a', marginBottom: '12px' }}>Q: {f.q}</h4>
-                    <p style={{ color: '#64748b', lineHeight: '1.6', fontSize: '15px' }}>{f.a}</p>
-                 </div>
-               ))}
-            </div>
-         </section>
+         <FAQSection />
 
       </main>
 
