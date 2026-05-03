@@ -228,6 +228,19 @@ const FreeChecker = () => {
   const [isCityLinked, setIsCityLinked] = useState(false);
 
   // --- COMMUNITY COMMENT STATES ---
+  const [comments, setComments] = useState([
+    { name: "John SEO", comment: "The UULE precision here is unmatched.", socials: { fb: "https://facebook.com/rankinganywhere", ig: "https://instagram.com/rankinganywhere", li: "https://linkedin.com/company/rankinganywhere" }, date: "2 hours ago" },
+    { name: "Sarah Miller", comment: "Dashboard is super clean.", socials: { fb: "https://facebook.com/rankinganywhere", li: "https://linkedin.com/company/rankinganywhere" }, date: "5 hours ago" },
+    { name: "Digital Pulse", comment: "Testing the Direct Proxy node today.", socials: { ig: "https://instagram.com/rankinganywhere" }, date: "1 day ago" },
+    { name: "Local SEO Pro", comment: "The GPS override feature is a game changer.", socials: { fb: "#" }, date: "2 days ago" },
+    { name: "Market Guru", comment: "Accurate results even for very competitive niches.", socials: { li: "#" }, date: "2 days ago" },
+    { name: "Site Auditor", comment: "Fast scans and reliable data.", socials: { ig: "#" }, date: "3 days ago" },
+    { name: "Ranking Expert", comment: "I use this daily to check my main keywords.", socials: { fb: "#", li: "#" }, date: "3 days ago" },
+    { name: "SEO Agency", comment: "Great for quick spot checks.", socials: { ig: "#" }, date: "4 days ago" },
+    { name: "Web Master", comment: "Integration with maps is perfect.", socials: { fb: "#" }, date: "4 days ago" },
+    { name: "Search Analyst", comment: "Very impressive UULE encoding logic.", socials: { li: "#" }, date: "5 days ago" },
+    { name: "Community User", comment: "Joining the discussion! Great tool.", socials: { fb: "#", ig: "#" }, date: "6 days ago" }
+  ]);
   const [commentForm, setCommentForm] = useState({ name: '', email: '', fb: '', ig: '', li: '', text: '' });
   const [commentStatus, setCommentStatus] = useState(null);
 
@@ -237,6 +250,7 @@ const FreeChecker = () => {
       alert("Please fill in your name and comment.");
       return;
     }
+    // Simulation: In reality, this would send to backend for moderation
     setCommentStatus('success');
     setTimeout(() => {
       setCommentStatus(null);
@@ -660,12 +674,7 @@ const FreeChecker = () => {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-            {[
-              { name: "John SEO", comment: "The UULE precision here is unmatched.", socials: { fb: "https://facebook.com/rankinganywhere", ig: "https://instagram.com/rankinganywhere", li: "https://linkedin.com/company/rankinganywhere" }, date: "2 hours ago" },
-              { name: "Sarah Miller", comment: "Dashboard is super clean.", socials: { fb: "https://facebook.com/rankinganywhere", li: "https://linkedin.com/company/rankinganywhere" }, date: "5 hours ago" },
-              { name: "Digital Pulse", comment: "Testing the Direct Proxy node today.", socials: { ig: "https://instagram.com/rankinganywhere" }, date: "1 day ago" },
-              { name: "Local SEO Pro", comment: "Great tool!", socials: { fb: "#" }, date: "2 days ago" }
-            ].map((c, i) => (
+            {comments.slice(0, 10).map((c, i) => (
               <div key={i} style={{ borderBottom: '1px solid #f1f5f9', paddingBottom: '30px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '15px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
@@ -682,9 +691,15 @@ const FreeChecker = () => {
               </div>
             ))}
           </div>
-          <div style={{ textAlign: 'center', marginTop: '50px' }}>
-             <button style={{ background: '#fff', border: '1px solid #e2e8f0', color: '#64748b', padding: '12px 30px', borderRadius: '100px', fontWeight: '800', cursor: 'pointer' }}>View More Discussions (12+)</button>
-          </div>
+
+          {/* View More Button - Only shows if more than 10 comments */}
+          {comments.length > 10 && (
+            <div style={{ textAlign: 'center', marginTop: '50px' }}>
+               <button style={{ background: '#fff', border: '1px solid #e2e8f0', color: '#64748b', padding: '12px 30px', borderRadius: '100px', fontWeight: '800', cursor: 'pointer', transition: '0.3s' }}>
+                  View More Discussions ({comments.length}+)
+               </button>
+            </div>
+          )}
         </div>
       </section>
 
