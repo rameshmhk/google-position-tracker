@@ -56,7 +56,7 @@ const FAQItem = ({ question, answer, icon, index }) => {
             exit={{ height: 0, opacity: 0 }}
             style={{ overflow: 'hidden' }}
           >
-            <p style={{ padding: '0 25px 25px 60px', color: '#475569', lineHeight: '1.6', fontSize: '15px', fontWeight: '500' }}>{answer}</p>
+            <p style={{ padding: '0 25px 25px 60px', color: '#475569', lineHeight: '1.8', fontSize: '15px', fontWeight: '500' }}>{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -69,52 +69,52 @@ const FAQSection = () => {
     {
       icon: "🚀",
       question: "How is this different from other SEO tools?",
-      answer: "Most tools show you general data. We show you exactly what a person sitting in a specific city or street sees on Google. It’s like having a local person check the rankings for you!"
+      answer: "Most SEO tools show you general data from huge data centers, which is often not what real customers see. Ranking Anywhere is different because we use a special network that mimics a real person's location. This means we bypass the 'filter' of data centers and show you the exact search results for any city or street. It is like having thousands of local people checking Google for you from their own homes or offices, giving you the most honest data possible."
     },
     {
       icon: "🎯",
       question: "How accurate is the ranking information?",
-      answer: "It is very accurate! We use real-time data from Google. We don't guess—we check the live results every time you run a scan."
+      answer: "Our accuracy is unmatched because we don't use old or 'cached' data. Every time you start a scan, our system goes live to Google's search engine and performs a fresh search. We use high-precision geographic telemetry to make sure the results are exactly what they should be. This ensures that the position you see in your dashboard is the same position a real user would see at that exact moment in their local search results."
     },
     {
       icon: "📍",
       question: "Can I check rankings for a specific area or city?",
-      answer: "Yes! You can choose any city, country, or even a specific area. This is great for local businesses who want to see how they look to nearby customers."
+      answer: "Yes, this is one of our best features! You can choose any country, city, or even a very specific postal code area. For example, if you own a pizza shop, you can see how you rank for someone standing right outside your shop versus someone standing 5 kilometers away. This level of detail helps you understand your 'local dominance' and where you need to improve your SEO efforts to beat local competitors."
     },
     {
       icon: "🗺️",
       question: "Does it track Google Maps results?",
-      answer: "Yes, it does. We track the 'Map Pack' (the top 3 local results with the map) so you can see if your business is showing up there."
+      answer: "Absolutely. We know that for local businesses, the Google Maps 'Local 3-Pack' is where all the phone calls and foot traffic come from. Our system specifically tracks these map positions. We will show you if your business is in the top 3 results, or if it is buried deeper in the 'More Places' section. This allows you to track your local visibility across multiple different points on the map simultaneously."
     },
     {
       icon: "⏰",
       question: "How often do the rankings update?",
-      answer: "You decide! You can set it to check every day, every week, or you can just click a button to check right now."
+      answer: "The choice is entirely yours. You can set up an automatic schedule so the system checks your rankings every single day or once a week. If you are working on a new SEO strategy and want to see the impact immediately, you can simply click the 'Check Now' button for any keyword. This gives you total control over your data frequency so you can spot ranking drops early and fix them before they hurt your business."
     },
     {
       icon: "📱",
       question: "Does it work for both Mobile and Desktop?",
-      answer: "Yes. You can see how you rank on a computer and how you rank on a mobile phone, as the results are often different."
+      answer: "Yes, we track both. Google often shows completely different results to a person on a smartphone versus someone on a laptop. Our system lets you monitor both versions so you can ensure your website is performing well across all devices. This is especially important for local SEO, as most local searches happen on mobile phones while people are on the go."
     },
     {
       icon: "🛠️",
       question: "What is API Stream and Direct Proxy?",
-      answer: "Don't worry about the technical names! API Stream is for fast results, and Direct Proxy is for when you want to see the result exactly like a real browser would show it."
+      answer: "These are just two different ways our engine fetches data for you. API Stream is designed for speed and large volumes of keywords - it is very efficient and fast. Direct Proxy is our premium 'Real Browser' method. It uses physical hardware nodes to simulate a person actually typing a query into a browser. While it takes a little longer, it provides the highest level of verification and is almost impossible for Google to detect as a bot."
     },
     {
       icon: "📊",
-      question: "Can I download my reports?",
-      answer: "Yes, you can download all your ranking data into an Excel-style sheet to show your clients or keep for your records."
+      question: "Can I download my reports for clients?",
+      answer: "Yes, you can easily export all your ranking data. We provide professional CSV and Excel-style downloads that you can use to create your own reports or send directly to your clients. These reports include the keyword, its current position, and its historical movement over time. This makes it very easy to prove the value of your SEO work and build long-term trust with your business partners."
     },
     {
       icon: "🛡️",
       question: "What happens if a scan fails?",
-      answer: "Our system is smart. If one way fails, it automatically tries another way immediately to make sure you always get your data."
+      answer: "Our system is built to be 'self-healing.' If a specific proxy node or network path fails for any reason, the system detects it within milliseconds and automatically tries a different route. We have multiple failover layers to make sure you get your ranking data even if one part of the internet is having issues. This redundancy ensures that your daily and weekly ranking charts always have complete data with no gaps."
     },
     {
       icon: "🔒",
       question: "Is my project data safe with you?",
-      answer: "Absolutely. Your data is private and encrypted. No one else can see your keywords or your projects."
+      answer: "We take your privacy very seriously. All your project details, keyword lists, and business information are stored in a secure, encrypted database. We do not share or sell your data to any third parties. Your ranking intelligence is your competitive advantage, and we make sure it stays that way. Our infrastructure is protected by enterprise-grade SSL security to keep your account safe at all times."
     }
   ];
 
