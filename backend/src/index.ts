@@ -498,6 +498,99 @@ app.post('/api/auth/login', async (req: any, res: any) => {
   res.json({ success: true, token, user: { id: user.id, name: user.name, email: user.email } });
 });
 
+// --- COMMUNITY & BLOG CMS ENDPOINTS ---
+
+// 1. PUBLIC: Submit a comment (Sent to pending)
+app.post('/api/comments', (req: any, res: any) => {
+  const { name, email, fb, ig, li, text } = req.body;
+  if (!name || !text) return res.status(400).json({ error: 'Name and comment are required' });
+  
+  const db = getDB();
+  const newComment = {
+    id: Date.now().toString(),
+    name, email, fb, ig, li, text,
+    status: 'pending',
+    date: new Date().toISOString()
+  };
+  
+  db.pendingComments = db.pendingComments || [];
+  db.pendingComments.push(newComment);
+  persistDB();
+  res.json({ success: true, message: 'Comment submitted for moderation' });
+});
+
+// 2. PUBLIC: Get all approved comments
+app.get('/api/comments/approved', (req: any, res: any) => {
+  const db = getDB();
+  res.json(db.approvedComments || []);
+});
+
+// 3. ADMIN: Get pending comments
+app.get('/api/admin/comments/pending', authenticateToken, (req: any, res: any) => {
+  // Security: Only authorized email
+  if (req.user.email !== "rameshmjk@gmail.com") return res.status(403).json({ error: 'Access Denied' });
+  
+  const db = getDB();
+  res.json(db.pendingComments || []);
+});
+
+// 4. ADMIN: Approve a comment
+app.post('/api/admin/comments/approve/:id', authenticateToken, (req: any, res: any) => {
+  if (req.user.email !== "rameshmjk@gmail.com") return res.status(403).json({ error: 'Access Denied' });
+  
+  const { id } = req.params;
+  const db = getDB();
+  
+  const idx = db.pendingComments.findIndex((c: any) => c.id === id);
+  if (idx === -1) return res.status(404).json({ error: 'Comment not found' });
+  
+  const comment = db.pendingComments.splice(idx, 1)[0];
+  comment.status = 'approved';
+  
+  db.approvedComments = db.approvedComments || [];
+  db.approvedComments.push(comment);
+  persistDB();
+  res.json({ success: true });
+});
+
+// 5. ADMIN: Delete a comment (Pending or Approved)
+app.delete('/api/admin/comments/:id', authenticateToken, (req: any, res: any) => {
+  if (req.user.email !== "rameshmjk@gmail.com") return res.status(403).json({ error: 'Access Denied' });
+  
+  const { id } = req.params;
+  const db = getDB();
+  
+  db.pendingComments = (db.pendingComments || []).filter((c: any) => c.id !== id);
+  db.approvedComments = (db.approvedComments || []).filter((c: any) => c.id !== id);
+  persistDB();
+  res.json({ success: true });
+});
+
+// 6. ADMIN: Blog CMS - Create Post
+app.post('/api/admin/blogs', authenticateToken, (req: any, res: any) => {
+  if (req.user.email !== "rameshmjk@gmail.com") return res.status(403).json({ error: 'Access Denied' });
+  
+  const { title, content, author, category, image } = req.body;
+  const db = getDB();
+  
+  const newPost = {
+    id: Date.now().toString(),
+    title, content, author, category, image,
+    date: new Date().toISOString()
+  };
+  
+  db.blogs = db.blogs || [];
+  db.blogs.push(newPost);
+  persistDB();
+  res.json(newPost);
+});
+
+// 7. PUBLIC: Get all blogs
+app.get('/api/blogs', (req: any, res: any) => {
+  const db = getDB();
+  res.json(db.blogs || []);
+});
+
 // Helper to Load/Save Local JSON DB
 const loadDB = () => {
   if (!fs.existsSync(DB_FILE)) {
@@ -506,6 +599,9 @@ const loadDB = () => {
       keywords: [],
       users: [],
       extensionTasks: [],
+      pendingComments: [],
+      approvedComments: [],
+      blogs: [],
       settings: {
         globalSerperApiKey: '',
         globalScrapingdogApiKey: '',

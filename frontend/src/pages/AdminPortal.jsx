@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
@@ -6,25 +6,77 @@ const AdminPortal = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [activeTab, setActiveTab] = useState('comments');
+  const [pendingComments, setPendingComments] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  // MOCK DATA FOR MANAGEMENT
-  const [pendingComments, setPendingComments] = useState([
-    { id: 1, name: "Ramesh", email: "abc@gmail.com", text: "ist amazin tool greate oe", date: "Just now", status: 'pending' }
-  ]);
+  const MASTER_ADMIN = "rameshmjk@gmail.com";
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    // In production, this would verify against backend with the specific Gmail
-    if (credentials.email.includes('@gmail.com') && credentials.password.length >= 8) {
-      setIsLoggedIn(true);
-    } else {
-      alert("Invalid Admin Credentials. Please use the authorized Gmail ID.");
+  // Fetch Pending Comments
+  const fetchPending = async () => {
+    setLoading(true);
+    try {
+      // For this demo/setup, we assume the admin is already logged in to the main system 
+      // or we use the credentials provided in the portal.
+      const token = localStorage.getItem('token');
+      const res = await fetch('http://localhost:5000/api/admin/comments/pending', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setPendingComments(data);
+      }
+    } catch (err) {
+      console.error("Failed to fetch pending comments", err);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleApprove = (id) => {
-    setPendingComments(pendingComments.filter(c => c.id !== id));
-    alert("Comment Approved & Published!");
+  useEffect(() => {
+    if (isLoggedIn && activeTab === 'comments') {
+      fetchPending();
+    }
+  }, [isLoggedIn, activeTab]);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (credentials.email === MASTER_ADMIN && credentials.password.length >= 8) {
+      setIsLoggedIn(true);
+    } else {
+      alert("Unauthorized Access! Only rameshmjk@gmail.com is permitted.");
+    }
+  };
+
+  const handleApprove = async (id) => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`http://localhost:5000/api/admin/comments/approve/${id}`, {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        setPendingComments(pendingComments.filter(c => c.id !== id));
+        alert("Comment Approved & Published!");
+      }
+    } catch (err) {
+      alert("Approval failed.");
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this?")) return;
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch(`http://localhost:5000/api/admin/comments/${id}`, {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (res.ok) {
+        setPendingComments(pendingComments.filter(c => c.id !== id));
+      }
+    } catch (err) {
+      alert("Delete failed.");
+    }
   };
 
   if (!isLoggedIn) {
@@ -106,27 +158,33 @@ const AdminPortal = () => {
             {activeTab === 'comments' && (
               <div>
                 <h2 style={{ fontSize: '20px', fontWeight: '900', marginBottom: '25px' }}>Pending Moderation</h2>
-                {pendingComments.length === 0 ? (
-                  <p style={{ color: '#94a3b8' }}>Zero pending comments. You're all caught up!</p>
-                ) : (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                    {pendingComments.map(c => (
-                      <div key={c.id} style={{ border: '1px solid #f1f5f9', padding: '20px', borderRadius: '12px' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-                          <div>
-                            <div style={{ fontWeight: '800' }}>{c.name} <span style={{ fontWeight: '400', color: '#64748b', fontSize: '13px' }}>({c.email})</span></div>
-                            <div style={{ fontSize: '12px', color: '#94a3b8' }}>{c.date}</div>
+                {loading ? <p>Loading feedback...</p> : (
+                  pendingComments.length === 0 ? (
+                    <p style={{ color: '#94a3b8' }}>Zero pending comments. You're all caught up!</p>
+                  ) : (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                      {pendingComments.map(c => (
+                        <div key={c.id} style={{ border: '1px solid #f1f5f9', padding: '20px', borderRadius: '12px' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+                            <div>
+                              <div style={{ fontWeight: '800' }}>{c.name} <span style={{ fontWeight: '400', color: '#64748b', fontSize: '13px' }}>({c.email})</span></div>
+                              <div style={{ fontSize: '12px', color: '#94a3b8' }}>{new Date(c.date).toLocaleString()}</div>
+                            </div>
+                            <div style={{ display: 'flex', gap: '10px' }}>
+                              <button onClick={() => handleApprove(c.id)} style={{ background: '#10b981', color: '#fff', border: 'none', padding: '8px 15px', borderRadius: '6px', cursor: 'pointer', fontWeight: '700' }}>Approve</button>
+                              <button onClick={() => handleDelete(c.id)} style={{ background: '#fee2e2', color: '#ef4444', border: 'none', padding: '8px 15px', borderRadius: '6px', cursor: 'pointer', fontWeight: '700' }}>Delete</button>
+                            </div>
                           </div>
-                          <div style={{ display: 'flex', gap: '10px' }}>
-                            <button onClick={() => handleApprove(c.id)} style={{ background: '#10b981', color: '#fff', border: 'none', padding: '8px 15px', borderRadius: '6px', cursor: 'pointer', fontWeight: '700' }}>Approve</button>
-                            <button style={{ background: '#f8fafc', border: '1px solid #e2e8f0', padding: '8px 15px', borderRadius: '6px', cursor: 'pointer', fontWeight: '700' }}>Edit</button>
-                            <button style={{ background: '#fee2e2', color: '#ef4444', border: 'none', padding: '8px 15px', borderRadius: '6px', cursor: 'pointer', fontWeight: '700' }}>Delete</button>
+                          <p style={{ margin: 0, color: '#475569', fontSize: '14px' }}>{c.text}</p>
+                          <div style={{ marginTop: '10px', display: 'flex', gap: '10px' }}>
+                             {c.fb && <span style={{ fontSize: '10px', background: '#f1f5f9', padding: '2px 8px', borderRadius: '4px' }}>FB</span>}
+                             {c.ig && <span style={{ fontSize: '10px', background: '#f1f5f9', padding: '2px 8px', borderRadius: '4px' }}>IG</span>}
+                             {c.li && <span style={{ fontSize: '10px', background: '#f1f5f9', padding: '2px 8px', borderRadius: '4px' }}>LI</span>}
                           </div>
                         </div>
-                        <p style={{ margin: 0, color: '#475569', fontSize: '14px' }}>{c.text}</p>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  )
                 )}
               </div>
             )}

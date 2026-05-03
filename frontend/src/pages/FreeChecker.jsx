@@ -228,19 +228,7 @@ const FreeChecker = () => {
   const [isCityLinked, setIsCityLinked] = useState(false);
 
   // --- COMMUNITY COMMENT STATES ---
-  const [comments, setComments] = useState([
-    { name: "John SEO", comment: "The UULE precision here is unmatched.", socials: { fb: "https://facebook.com/rankinganywhere", ig: "https://instagram.com/rankinganywhere", li: "https://linkedin.com/company/rankinganywhere" }, date: "2 hours ago" },
-    { name: "Sarah Miller", comment: "Dashboard is super clean.", socials: { fb: "https://facebook.com/rankinganywhere", li: "https://linkedin.com/company/rankinganywhere" }, date: "5 hours ago" },
-    { name: "Digital Pulse", comment: "Testing the Direct Proxy node today.", socials: { ig: "https://instagram.com/rankinganywhere" }, date: "1 day ago" },
-    { name: "Local SEO Pro", comment: "The GPS override feature is a game changer.", socials: { fb: "#" }, date: "2 days ago" },
-    { name: "Market Guru", comment: "Accurate results even for very competitive niches.", socials: { li: "#" }, date: "2 days ago" },
-    { name: "Site Auditor", comment: "Fast scans and reliable data.", socials: { ig: "#" }, date: "3 days ago" },
-    { name: "Ranking Expert", comment: "I use this daily to check my main keywords.", socials: { fb: "#", li: "#" }, date: "3 days ago" },
-    { name: "SEO Agency", comment: "Great for quick spot checks.", socials: { ig: "#" }, date: "4 days ago" },
-    { name: "Web Master", comment: "Integration with maps is perfect.", socials: { fb: "#" }, date: "4 days ago" },
-    { name: "Search Analyst", comment: "Very impressive UULE encoding logic.", socials: { li: "#" }, date: "5 days ago" },
-    { name: "Community User", comment: "Joining the discussion! Great tool.", socials: { fb: "#", ig: "#" }, date: "6 days ago" }
-  ]);
+  const [comments, setComments] = useState([]);
   const [commentForm, setCommentForm] = useState({ name: '', email: '', fb: '', ig: '', li: '', text: '' });
   const [commentStatus, setCommentStatus] = useState(null);
 
