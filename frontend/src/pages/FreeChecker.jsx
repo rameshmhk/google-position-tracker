@@ -583,6 +583,9 @@ const FreeChecker = () => {
                           {Array.from({ length: expandedRows[`${r.keyword}_desktop`] || 5 }).map((_, i) => (
                             <button key={i} onClick={() => openVerify(r.baseUrl, i * 10, 'desktop')} className="pill-button" style={{ background: '#3b82f6', color: '#fff', border: 'none' }}>P{i + 1}</button>
                           ))}
+                          {(expandedRows[`${r.keyword}_desktop`] || 5) < 20 && (
+                            <button onClick={() => handleIncrementExpansion(r.keyword, 'desktop', expandedRows[`${r.keyword}_desktop`] || 5)} className="pill-button" style={{ border: '1px dashed #3b82f6', color: '#3b82f6', background: 'transparent', fontWeight: 'bold', fontSize: '14px' }}>+</button>
+                          )}
                         </div>
                       </div>
                       <div style={{ textAlign: 'center' }}>
@@ -591,6 +594,9 @@ const FreeChecker = () => {
                           {Array.from({ length: expandedRows[`${r.keyword}_mobile`] || 5 }).map((_, i) => (
                             <button key={i} onClick={() => openVerify(r.baseUrl, i * 10, 'mobile')} className="pill-button" style={{ background: '#10b981', color: '#fff', border: 'none' }}>M{i + 1}</button>
                           ))}
+                          {(expandedRows[`${r.keyword}_mobile`] || 5) < 20 && (
+                            <button onClick={() => handleIncrementExpansion(r.keyword, 'mobile', expandedRows[`${r.keyword}_mobile`] || 5)} className="pill-button" style={{ border: '1px dashed #10b981', color: '#10b981', background: 'transparent', fontWeight: 'bold', fontSize: '14px' }}>+</button>
+                          )}
                         </div>
                       </div>
                       <div style={{ textAlign: 'center' }}>
@@ -599,6 +605,9 @@ const FreeChecker = () => {
                           {Array.from({ length: expandedRows[`${r.keyword}_maps`] || 5 }).map((_, i) => (
                             <button key={i} onClick={() => window.open(`${r.baseUrl}&udm=1&start=${i * 20}`, '_blank')} className="pill-button" style={{ color: '#fff', border: 'none', background: '#f97316' }}>MAP {i + 1}</button>
                           ))}
+                          {(expandedRows[`${r.keyword}_maps`] || 5) < 20 && (
+                            <button onClick={() => handleIncrementExpansion(r.keyword, 'maps', expandedRows[`${r.keyword}_maps`] || 5)} className="pill-button" style={{ border: '1px dashed #f97316', color: '#f97316', background: 'transparent', fontWeight: 'bold', fontSize: '14px' }}>+</button>
+                          )}
                         </div>
                       </div>
                     </div>

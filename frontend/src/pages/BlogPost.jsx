@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import API_BASE_URL from '../config/apiConfig';
 
 const BlogPost = () => {
   const { id } = useParams();
@@ -12,7 +13,7 @@ const BlogPost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/blogs`);
+        const res = await fetch(`${API_BASE_URL}/api/blogs`);
         const data = await res.json();
         const found = data.find(p => String(p.id) === String(id));
         setPost(found);

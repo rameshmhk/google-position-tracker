@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-const API_BASE = 'http://localhost:5000/api';
+import API_BASE_URL from '../config/apiConfig';
+
+const API_BASE = `${API_BASE_URL}/api`;
 
 const COUNTRY_DB = [
   { code: 'us', name: 'United States', flag: '🇺🇸', tld: 'google.com' },

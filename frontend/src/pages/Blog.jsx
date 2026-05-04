@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import API_BASE_URL from '../config/apiConfig';
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
@@ -11,7 +12,7 @@ const Blog = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/blogs');
+        const res = await fetch(`${API_BASE_URL}/api/blogs`);
         if (res.ok) {
           const data = await res.json();
           setBlogs(Array.isArray(data) ? data : []);

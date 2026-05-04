@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import API_BASE_URL from '../config/apiConfig';
 
 const AdminPortal = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,7 +33,7 @@ const AdminPortal = () => {
   const fetchPending = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/admin/comments/pending', {
+      const res = await fetch(`${API_BASE_URL}/api/admin/comments/pending`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -45,7 +46,7 @@ const AdminPortal = () => {
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/blogs');
+      const res = await fetch(`${API_BASE_URL}/api/blogs`);
       const data = await res.json();
       setBlogs(Array.isArray(data) ? data : []);
     } catch (err) { 
@@ -63,7 +64,7 @@ const AdminPortal = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/admin/login', {
+      const res = await fetch(`${API_BASE_URL}/api/admin/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials)
@@ -91,7 +92,7 @@ const AdminPortal = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch('http://localhost:5000/api/admin/auto-post', {
+      const res = await fetch(`${API_BASE_URL}/api/admin/auto-post`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
         body: JSON.stringify({ title: magicTitle })
@@ -109,7 +110,7 @@ const AdminPortal = () => {
   const handleBlogSubmit = async (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
-    const url = isEditing ? `http://localhost:5000/api/admin/blogs/${editId}` : 'http://localhost:5000/api/admin/blogs';
+    const url = isEditing ? `${API_BASE_URL}/api/admin/blogs/${editId}` : `${API_BASE_URL}/api/admin/blogs`;
     const method = isEditing ? 'PUT' : 'POST';
 
     try {
@@ -132,7 +133,7 @@ const AdminPortal = () => {
     if (!window.confirm("Trash this post?")) return;
     try {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:5000/api/admin/blogs/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/admin/blogs/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
