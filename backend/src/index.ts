@@ -13,8 +13,141 @@ import { updateExcelMatrix } from './services/excelService.js';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 import multer from 'multer';
+import dns from 'dns';
+import https from 'https';
+import tls from 'tls';
 
 dotenv.config();
+
+const processRdapData = (data: any, domain: string) => {
+  const getContact = (role: string) => {
+    const registrarEntity = data.entities?.find((e: any) => e.roles?.includes('registrar'));
+    const registrarName = registrarEntity?.vcardArray?.[1]?.find((v: any) => v[0] === 'fn')?.[3] || '';
+    const entity = data.entities?.find((e: any) => e.roles?.includes(role));
+    
+    const vcard = entity?.vcardArray?.[1] || [];
+    const getField = (field: string) => vcard.find((v: any) => v[0] === field)?.[3];
+    const adr = vcard.find((v: any) => v[0] === 'adr')?.[3] || [];
+    
+    let contact: any = {
+      name: getField('fn') || entity?.handle,
+      organization: getField('org'),
+      email: getField('email'),
+      phone: getField('tel'),
+      street: adr[2],
+      city: adr[3],
+      state: adr[4],
+      zip: adr[5],
+      country: adr[6]
+    };
+
+    const isPrivate = !contact.name || contact.name.toLowerCase().includes('redacted') || contact.name.toLowerCase().includes('privacy');
+
+    // --- SMART PRIVACY FILLING (GoDaddy Style) ---
+    if (isPrivate || !entity) {
+      const regLower = registrarName.toLowerCase();
+      if (regLower.includes('godaddy')) {
+        return {
+          name: 'Registration Private',
+          organization: 'Domains By Proxy, LLC',
+          street: '100 S. Mill Ave, Suite 1600',
+          city: 'Tempe',
+          state: 'Arizona',
+          zip: '85281',
+          country: 'US',
+          phone: '+1.4806242599',
+          email: `https://www.godaddy.com/whois/results.aspx?domain=${domain}`
+        };
+      } else if (regLower.includes('namecheap')) {
+        return {
+          name: 'Withheld for Privacy Purposes',
+          organization: 'PrivacyService.it',
+          street: 'Kalkofnsvegur 2',
+          city: 'Reykjavik',
+          state: 'Capital Region',
+          zip: '101',
+          country: 'IS',
+          phone: '+354.4212434',
+          email: 'privacy@namecheap.com'
+        };
+      } else if (regLower.includes('google') || regLower.includes('squarespace')) {
+        return {
+          name: 'Contact Privacy Inc.',
+          organization: 'Contact Privacy Inc. Customer 012345',
+          street: '96 Mowat Ave',
+          city: 'Toronto',
+          state: 'ON',
+          zip: 'M6K 3M1',
+          country: 'CA',
+          phone: '+1.4165385457',
+          email: `https://domains.google.com/contactowner?domain=${domain}`
+        };
+      } else {
+        // Generic Fallback
+        return {
+          name: 'Privacy Protection Service',
+          organization: 'Data Protected',
+          street: 'Redacted for Privacy',
+          city: 'Not Disclosed',
+          state: 'N/A',
+          zip: 'N/A',
+          country: registrarEntity?.vcardArray?.[1]?.find((v: any) => v[0] === 'adr')?.[3]?.[6] || 'US',
+          phone: 'REDACTED',
+          email: 'REDACTED (GDPR)'
+        };
+      }
+    }
+
+    return contact.name ? contact : null;
+  };
+
+  const events = data.events || [];
+  const registration = events.find((e: any) => e.eventAction === 'registration');
+  const expiration = events.find((e: any) => e.eventAction === 'expiration');
+  const lastUpdate = events.find((e: any) => e.eventAction === 'last changed' || e.eventAction === 'last update');
+
+  const created = registration?.eventDate;
+  const expires = expiration?.eventDate;
+  const updated = lastUpdate?.eventDate;
+
+  // Trust Score Logic
+  let score = 30;
+  if (created) {
+    const years = (new Date().getTime() - new Date(created).getTime()) / (1000 * 3600 * 24 * 365);
+    if (years > 10) score += 40;
+    else if (years > 3) score += 20;
+  }
+  if (data.status?.includes('client transfer prohibited')) score += 15;
+  if (data.status?.includes('server delete prohibited')) score += 15;
+
+  return {
+    success: true,
+    domain,
+    status: data.status || [],
+    registrar: data.entities?.find((e: any) => e.roles?.includes('registrar'))?.vcardArray?.[1]?.find((v: any) => v[0] === 'fn')?.[3] || 'Unknown',
+    contacts: {
+      registrar: data.entities?.find((e: any) => e.roles?.includes('registrar')),
+      registrant: getContact('registrant'),
+      admin: getContact('administrative'),
+      tech: getContact('technical')
+    },
+    dates: { created, expires, updated },
+    nameservers: (data.nameservers || []).map((ns: any) => ns.ldhName),
+    age: {
+      days: created ? Math.floor((new Date().getTime() - new Date(created).getTime()) / (1000 * 3600 * 24)) : 0,
+      years: created ? ((new Date().getTime() - new Date(created).getTime()) / (1000 * 3600 * 24 * 365)).toFixed(1) : 0,
+      label: (() => {
+        if (!created) return 'Unknown';
+        const diffDays = Math.floor((new Date().getTime() - new Date(created).getTime()) / (1000 * 3600 * 24));
+        if (diffDays < 31) return `${diffDays} Days`;
+        if (diffDays < 365) return `${Math.floor(diffDays / 30.41)} Months`;
+        return `${(diffDays / 365).toFixed(1)} Years`;
+      })()
+    },
+    trustScore: Math.min(score, 100),
+    raw: data
+  };
+};
 
 const app = express();
 const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-key-change-this-in-prod';
@@ -37,7 +170,7 @@ process.on('uncaughtException', (err) => {
 });
 
 console.log('=========================================');
-console.log('🚀 RANK TRACKER BACKEND IS STARTING... v9');
+console.log('🚀 RANK TRACKER BACKEND IS STARTING... v10');
 console.log('=========================================');
 const PORT = process.env.PORT || 5000;
 const DB_FILE = process.env.DB_PATH || path.join(process.cwd(), 'local_db.json');
@@ -49,6 +182,59 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json());
+
+// --- DYNAMIC SITEMAP GENERATOR (Automatic SEO) ---
+app.get('/sitemap.xml', (req: any, res: any) => {
+  const baseUrl = 'https://rankinganywhere.com';
+  const staticPages = [
+    '',
+    '/about',
+    '/guide',
+    '/free-check',
+    '/check-ip',
+    '/blog',
+    '/contact',
+    '/terms',
+    '/how-to-use'
+  ];
+
+  try {
+    const dbPath = path.join(process.cwd(), 'local_db.json');
+    let db: any = { blogs: [] };
+    if (fs.existsSync(dbPath)) {
+      db = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+    }
+    const blogPages = (db.blogs || []).map((post: any) => `/blog/${post.id}`);
+    const allPages = [...staticPages, ...blogPages];
+
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>';
+    xml += '\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+    
+    allPages.forEach(page => {
+      const priority = page === '' ? '1.0' : '0.8';
+      xml += `\n  <url>\n    <loc>${baseUrl}${page}</loc>\n    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+    });
+
+    xml += '\n</urlset>';
+    res.header('Content-Type', 'application/xml');
+    res.send(xml);
+  } catch (err) {
+    console.error("Sitemap Error:", err);
+    res.status(500).send("Error generating sitemap");
+  }
+});
+
+// --- ROBOTS.TXT (Crawler Instructions) ---
+app.get('/robots.txt', (req: any, res: any) => {
+  const robots = `User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /admin
+
+Sitemap: https://rankinganywhere.com/sitemap.xml`;
+  res.header('Content-Type', 'text/plain');
+  res.send(robots);
+});
 
 // Global Request Logger
 app.use((req, res, next) => {
@@ -80,6 +266,406 @@ const upload = multer({
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 app.get('/api/ping', (req, res) => res.json({ status: 'ok', version: 'v10', time: new Date().toISOString() }));
+
+// --- TECHNOLOGY & SSL DETECTION HELPERS ---
+const getSSLInfo = (domain: string): Promise<any> => {
+  return new Promise((resolve) => {
+    const options = {
+      hostname: domain,
+      port: 443,
+      method: 'GET',
+      rejectUnauthorized: false,
+      timeout: 5000
+    };
+
+    const req = https.request(options, (res) => {
+      const cert = (res.socket as any).getPeerCertificate();
+      if (cert && Object.keys(cert).length > 0) {
+        resolve({
+          valid: true,
+          issuer: cert.issuer?.O || cert.issuer?.CN,
+          valid_from: cert.valid_from,
+          valid_to: cert.valid_to,
+          protocol: (res.socket as any).getProtocol(),
+          days_left: Math.floor((new Date(cert.valid_to).getTime() - new Date().getTime()) / (1000 * 3600 * 24))
+        });
+      } else {
+        resolve({ valid: false, message: "No certificate found" });
+      }
+      res.resume();
+      req.destroy();
+    });
+
+    req.on('error', () => resolve({ valid: false, message: "Connection failed" }));
+    req.on('timeout', () => {
+      req.destroy();
+      resolve({ valid: false, message: "Timeout" });
+    });
+    req.end();
+  });
+};
+
+const detectTechStack = async (domain: string) => {
+  try {
+    const url = `http://${domain}`;
+    const response = await axios.get(url, { 
+      timeout: 8000,
+      headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36' }
+    });
+
+    const headers = response.headers;
+    const body = response.data;
+    const bodyLower = body.toLowerCase();
+    const stack: string[] = [];
+    
+    let cms = 'Custom / Not Detected';
+    let theme = 'Unknown';
+    let database = 'Unknown';
+    let frontend = 'Vanilla / Unknown';
+
+    // 1. Web Server
+    const serverHeader = headers['server'] || 'Unknown';
+    if (serverHeader !== 'Unknown') stack.push(serverHeader);
+    
+    // 2. CMS Detection
+    if (bodyLower.includes('wp-content') || bodyLower.includes('wp-includes')) {
+      cms = 'WordPress';
+      database = 'MySQL / MariaDB';
+      // Try to extract theme
+      const themeMatch = body.match(/wp-content\/themes\/([a-zA-Z0-9-_]+)\//);
+      if (themeMatch) theme = themeMatch[1].charAt(0).toUpperCase() + themeMatch[1].slice(1);
+    } else if (bodyLower.includes('shopify.com')) {
+      cms = 'Shopify';
+      database = 'Proprietary (Shopify)';
+    } else if (bodyLower.includes('wix.com')) {
+      cms = 'Wix';
+      database = 'NoSQL (Wix)';
+    } else if (bodyLower.includes('squarespace.com')) {
+      cms = 'Squarespace';
+    } else if (bodyLower.includes('ghost.org')) {
+      cms = 'Ghost';
+      database = 'SQLite / MySQL';
+    } else if (bodyLower.includes('bitrix')) {
+      cms = '1C-Bitrix';
+    }
+
+    // 3. Frontend & Frameworks
+    if (bodyLower.includes('react') || bodyLower.includes('react.js')) frontend = 'React';
+    if (bodyLower.includes('next.js')) frontend = 'Next.js';
+    if (bodyLower.includes('vue') || bodyLower.includes('vue.js')) frontend = 'Vue.js';
+    if (bodyLower.includes('jquery')) stack.push('jQuery');
+    if (bodyLower.includes('bootstrap')) stack.push('Bootstrap');
+    if (bodyLower.includes('tailwind')) stack.push('Tailwind CSS');
+
+    // 4. Programming Languages
+    let language = 'Unknown';
+    if (headers['x-powered-by']?.includes('PHP') || bodyLower.includes('.php')) language = 'PHP';
+    if (headers['x-powered-by']?.includes('ASP.NET') || bodyLower.includes('.aspx')) language = 'ASP.NET';
+    if (bodyLower.includes('node.js') || bodyLower.includes('express')) language = 'Node.js';
+
+    // 5. CDN / Security
+    if (headers['server']?.toLowerCase().includes('cloudflare')) stack.push('Cloudflare');
+
+    return {
+      stack: Array.from(new Set(stack)),
+      cms,
+      theme,
+      database,
+      frontend,
+      language,
+      server: serverHeader,
+      poweredBy: headers['x-powered-by'] || 'Hidden'
+    };
+  } catch (err) {
+    return { stack: [], cms: 'Unknown', theme: 'Unknown', database: 'Unknown', frontend: 'Unknown', language: 'Unknown', server: 'Unknown', poweredBy: 'Unknown' };
+  }
+};
+
+
+// --- KEYWORD INTELLIGENCE (Localized Suggestions) ---
+// --- KEYWORD INTELLIGENCE (Professional Deep Discovery) ---
+app.get('/api/keywords/suggestions', async (req: any, res: any) => {
+  const { q, gl, hl, uule, deep } = req.query;
+  if (!q) return res.status(400).json({ error: 'Query is required' });
+
+  try {
+    const country = (gl as string || 'us').toLowerCase();
+    const language = (hl as string || 'en').toLowerCase();
+    
+    const googleDomains: any = {
+      us: 'google.com', in: 'google.co.in', gb: 'google.co.uk', au: 'google.com.au',
+      ca: 'google.ca', de: 'google.de', fr: 'google.fr', es: 'google.es',
+      br: 'google.com.br', jp: 'google.co.jp', ae: 'google.ae'
+    };
+
+    const domain = googleDomains[country] || 'google.com';
+    const baseUrl = `https://www.${domain}/complete/search?client=chrome&gl=${country}&hl=${language}${uule ? `&uule=${uule}` : ''}`;
+    
+    let allSuggestions: string[] = [];
+
+    // PRO LOGIC: Recursive Alphabet Soup + Common SEO Modifiers
+    const searchTerms = [q as string];
+    if (deep === 'true') {
+      const modifiers = [
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+        'near', 'best', 'service', 'repair', 'company', 'price', 'cost', 'how', 'top', 'cheap', 'online', 'charges', 'agency'
+      ];
+      modifiers.forEach(m => {
+        searchTerms.push(`${q} ${m}`);
+      });
+    }
+
+    console.log(`🚀 [KEYWORDS PRO] Starting Deep Discovery for: ${q} (${searchTerms.length} nodes)`);
+
+    // Fetch all terms (limited to 40 for stability and rate-limiting safety)
+    const activeTerms = deep === 'true' ? searchTerms.slice(0, 40) : [q as string];
+    
+    const fetchPromises = activeTerms.map(term => 
+      axios.get(`${baseUrl}&q=${encodeURIComponent(term)}`, {
+        headers: { 
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          'Referer': `https://www.${domain}/`
+        },
+        timeout: 4000
+      }).catch(() => ({ data: [null, []] }))
+    );
+
+    const responses = await Promise.all(fetchPromises);
+    responses.forEach(res => {
+      const suggestions = res.data[1] || [];
+      allSuggestions = [...allSuggestions, ...suggestions];
+    });
+
+    // Deduplicate and filter
+    const uniqueSuggestions = Array.from(new Set(allSuggestions))
+      .filter(s => s.toLowerCase() !== (q as string).toLowerCase());
+    
+    res.json({
+      success: true,
+      query: q,
+      region: country,
+      language: language,
+      suggestions: uniqueSuggestions,
+      count: uniqueSuggestions.length,
+      mode: deep === 'true' ? 'Deep Discovery' : 'Standard'
+    });
+
+  } catch (err: any) {
+    console.error('Keywords Pro Error:', err.message);
+    res.status(500).json({ success: false, message: "Failed to perform deep discovery." });
+  }
+});
+
+
+// --- DOMAIN INTELLIGENCE (RDAP/WHOIS) ---
+app.get('/api/whois/:domain', async (req: any, res: any) => {
+  const { domain } = req.params;
+  try {
+    const cleanDomain = domain.toLowerCase().trim();
+    
+    // --- CACHE CHECK (Programmatic SEO) ---
+    try {
+      const dbData = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
+      if (dbData.whois_cache && dbData.whois_cache[cleanDomain]) {
+        const cached = dbData.whois_cache[cleanDomain];
+        const cacheAge = (new Date().getTime() - new Date(cached.audit_time).getTime()) / (1000 * 3600);
+        if (cacheAge < 24) { // 24 hour cache
+          console.log(`📦 [WHOIS] Returning cached result for ${cleanDomain}`);
+          return res.json(cached);
+        }
+      }
+    } catch (e) {}
+
+    const tld = cleanDomain.split('.').pop();
+    
+    console.log(`🔍 [WHOIS PRO] Deep Audit: ${cleanDomain} (TLD: ${tld})`);
+    
+    // Intelligent RDAP Routing with Fallbacks
+    const servers = [];
+    
+    // Primary authoritative servers
+    if (tld === 'com' || tld === 'net') {
+      servers.push(`https://rdap.verisign.com/v1/domain/${cleanDomain}`);
+    } else if (tld === 'org') {
+      servers.push(`https://rdap.publicinterestregistry.org/rdap/domain/${cleanDomain}`);
+    }
+    
+    // Global gateways
+    servers.push(`https://rdap.org/domain/${cleanDomain}`);
+    servers.push(`https://www.rdap.net/domain/${cleanDomain}`);
+
+    let lastError = null;
+    for (const url of servers) {
+      try {
+        console.log(`📡 [WHOIS] Trying: ${url}`);
+        const response = await axios.get(url, { 
+          timeout: 10000,
+          headers: { 
+            'Accept': 'application/rdap+json',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+          }
+        });
+
+        if (response.data && !response.data.errorCode) {
+          console.log(`✅ [WHOIS] Success from ${url}`);
+          
+          const processed = processRdapData(response.data, cleanDomain);
+          
+          // 1. Hosting Enrichment (Professional Domain-to-IP Intelligence)
+          let hosting: any = { ip: 'N/A', provider: 'Unknown', city: 'Unknown', country: 'Unknown' };
+          try {
+            console.log(`📡 [WHOIS] Resolving IPv4 for ${cleanDomain}...`);
+            let targetIp = null;
+            
+            // Step 1: Force IPv4 DNS Lookup (Most stable for geolocation APIs)
+            try {
+              const lookup = await dns.promises.lookup(cleanDomain, { family: 4 });
+              targetIp = lookup.address;
+            } catch (e) {
+              try {
+                const addresses = await dns.promises.resolve4(cleanDomain);
+                if (addresses && addresses.length > 0) targetIp = addresses[0];
+              } catch (e2) {
+                // Last resort: Get IP from ip-api directly
+                try {
+                  const quickRes = await axios.get(`http://ip-api.com/json/${cleanDomain}?fields=query`, { timeout: 4000 });
+                  if (quickRes.data?.query) targetIp = quickRes.data.query;
+                } catch (e3) {}
+              }
+            }
+
+            if (targetIp) {
+              hosting.ip = targetIp;
+              console.log(`📡 [WHOIS] Fetching Geo Intelligence for ${targetIp}...`);
+              
+              // Use ip-api.com with the resolved IP
+              const geoRes = await axios.get(`http://ip-api.com/json/${targetIp}?fields=status,message,country,countryCode,regionName,city,isp,org,query`, { timeout: 6000 });
+              
+              if (geoRes.data && geoRes.data.status === 'success') {
+                hosting = {
+                  ip: targetIp,
+                  provider: geoRes.data.isp || 'Unknown',
+                  org: geoRes.data.org || 'Unknown',
+                  country: geoRes.data.country || 'Unknown',
+                  country_code: geoRes.data.countryCode || 'UN',
+                  city: geoRes.data.city || 'Unknown',
+                  region: geoRes.data.regionName || 'Unknown'
+                };
+                console.log(`✅ [WHOIS] Infrastructure resolved: ${hosting.ip} (${hosting.provider})`);
+              }
+            }
+          } catch (hErr) { console.error("Final Hosting fail:", hErr.message); }
+
+          // 2. Tech & SSL Enrichment (Isolated)
+          let tech = { stack: [], server: 'Unknown', poweredBy: 'Unknown' };
+          let ssl = { valid: false };
+          try {
+            const [t, s] = await Promise.all([
+              detectTechStack(cleanDomain).catch(() => tech),
+              getSSLInfo(cleanDomain).catch(() => ssl)
+            ]);
+            tech = t;
+            ssl = s;
+          } catch (e) { console.warn("Tech/SSL enrichment failed:", e); }
+
+          // 3. WEBSITE METADATA FETCHING (For 'About' Section)
+          let siteMeta = { title: '', description: '', h1: '', keywords: '' };
+          try {
+            const metaRes = await axios.get(`http://${cleanDomain}`, { timeout: 5000 });
+            const $ = cheerio.load(metaRes.data);
+            siteMeta = {
+              title: $('title').text().trim(),
+              description: $('meta[name="description"]').attr('content')?.trim() || '',
+              keywords: $('meta[name="keywords"]').attr('content')?.trim() || '',
+              h1: $('h1').first().text().trim()
+            };
+          } catch (mErr) { console.warn("Metadata fetch failed:", mErr.message); }
+
+          const finalResult = {
+            success: true,
+            domain: cleanDomain,
+            ...processed,
+            hosting,
+            tech,
+            ssl,
+            siteMeta,
+            audit_time: new Date().toISOString()
+          };
+
+          // --- PERSIST TO DATABASE (Programmatic SEO) ---
+          try {
+            const dbData = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
+            if (!dbData.whois_cache) dbData.whois_cache = {};
+            dbData.whois_cache[cleanDomain] = finalResult;
+            fs.writeFileSync(DB_FILE, JSON.stringify(dbData, null, 2));
+          } catch (e) { console.error("Cache save error:", e); }
+
+          return res.json(finalResult);
+        }
+      } catch (err: any) {
+        console.warn(`⚠️ [WHOIS] Registry ${url} error: ${err.message}`);
+        lastError = err;
+      }
+    }
+
+    throw new Error(lastError?.message || 'Registry lookup failed');
+
+  } catch (err: any) {
+    console.error('WHOIS PRO CRITICAL:', err.message);
+    res.status(500).json({ 
+      success: false, 
+      message: `Deep audit failed for ${domain}. ${err.message}` 
+    });
+  }
+});
+
+// Helper to Parse vCard data from RDAP
+const parseVCard = (vcardArray: any) => {
+  if (!vcardArray || !vcardArray[1]) return null;
+  const info: any = {};
+  vcardArray[1].forEach((field: any) => {
+    if (field[0] === 'fn') info.name = field[3];
+    if (field[0] === 'email') info.email = field[3];
+    if (field[0] === 'tel') {
+      if (Array.isArray(field[3])) info.phone = field[3].join(', ');
+      else info.phone = field[3];
+    }
+    if (field[0] === 'adr') {
+      const adr = field[3];
+      if (Array.isArray(adr)) info.address = adr.filter((a: any) => a).join(', ');
+      else info.address = adr;
+    }
+    if (field[0] === 'org') info.organization = field[3];
+  });
+  return info;
+};
+
+// Helper to Process RDAP Data consistently
+
+// --- IP INTELLIGENCE PROXY ---
+app.get('/api/ip-info', async (req: any, res: any) => {
+  try {
+    let clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    
+    // In local development, clientIp might be ::1 or 127.0.0.1
+    // We'll use a reliable external service to get the actual public IP if needed
+    if (clientIp === '::1' || clientIp === '127.0.0.1' || !clientIp) {
+      const v4Res = await axios.get('https://api.ipify.org?format=json');
+      clientIp = v4Res.data.ip;
+    }
+
+    // Clean up IP if it has multiple (from proxy)
+    if (typeof clientIp === 'string' && clientIp.includes(',')) {
+      clientIp = clientIp.split(',')[0].trim();
+    }
+
+    const response = await axios.get(`https://ipwho.is/${clientIp}`);
+    res.json(response.data);
+  } catch (err) {
+    console.error('IP Info Error:', err);
+    res.status(500).json({ success: false, message: "Server failed to fetch IP details" });
+  }
+});
 
 // Authentication Middleware
 const authenticateToken = (req: any, res: any, next: any) => {

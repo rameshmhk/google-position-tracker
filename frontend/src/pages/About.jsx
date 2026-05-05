@@ -21,7 +21,49 @@ const About = () => {
         <title>About Us | Ranking Anywhere SEO Engine</title>
         <meta name="description" content="Discover the technology behind Ranking Anywhere. Professional-grade data, global scanning, and 100% precision for SEO professionals." />
         <script type="application/ld+json">
-          {JSON.stringify(schema)}
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "AboutPage",
+              "name": "About Ranking Anywhere",
+              "description": "Learn about our enterprise-grade SEO tracking software and our data transparency philosophy.",
+              "publisher": {
+                "@type": "Organization",
+                "name": "Ranking Anywhere"
+              }
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Ranking Anywhere",
+              "url": "https://rankinganywhere.com/"
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Ranking Anywhere",
+              "url": "https://rankinganywhere.com/",
+              "logo": "https://rankinganywhere.com/logo.png"
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://rankinganywhere.com/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "About",
+                  "item": "https://rankinganywhere.com/about"
+                }
+              ]
+            }
+          ])}
         </script>
       </Helmet>
       <Navbar />

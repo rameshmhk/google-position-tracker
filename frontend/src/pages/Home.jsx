@@ -28,7 +28,61 @@ const Home = () => {
         <meta name="description" content="All-in-one SEO toolset for rank tracking, site audits, and competitive intelligence. Trusted by leading SEO professionals." />
         <meta name="keywords" content="seo tracker, rank tracker, google rank, keyword rank, local seo" />
         <script type="application/ld+json">
-          {JSON.stringify(schema)}
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "Ranking Anywhere",
+              "operatingSystem": "Web",
+              "applicationCategory": "BusinessApplication",
+              "description": "Ranking Anywhere provides hyper-accurate, real-time SEO intelligence and keyword tracking for global enterprises.",
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.9",
+                "ratingCount": "1250"
+              },
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              }
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Ranking Anywhere",
+              "url": "https://rankinganywhere.com/",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://rankinganywhere.com/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Ranking Anywhere",
+              "url": "https://rankinganywhere.com/",
+              "logo": "https://rankinganywhere.com/logo.png",
+              "sameAs": [
+                "https://www.facebook.com/rankinganywhere",
+                "https://twitter.com/rankinganywhere",
+                "https://www.linkedin.com/company/rankinganywhere"
+              ]
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://rankinganywhere.com/"
+                }
+              ]
+            }
+          ])}
         </script>
       </Helmet>
       

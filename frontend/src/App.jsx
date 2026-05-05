@@ -23,6 +23,10 @@ import UserGuide from './pages/UserGuide';
 import AdminPortal from './pages/AdminPortal';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import IPChecker from './pages/IPChecker';
+import WhoisLookup from './pages/WhoisLookup';
+import KeywordExplorer from './pages/KeywordExplorer';
+
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -53,6 +57,10 @@ const App = () => {
       <Route path="/admin-portal" element={<AdminPortal />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:id" element={<BlogPost />} />
+      <Route path="/check-ip" element={<IPChecker />} />
+      <Route path="/whois" element={<WhoisLookup />} />
+      <Route path="/whois/:domain" element={<WhoisLookup />} />
+      <Route path="/keywords" element={<KeywordExplorer />} />
       {/* <Route path="/site-audit" element={<SiteAudit />} /> */}
 
       {/* Private Dashboard Route */}

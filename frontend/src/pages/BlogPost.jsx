@@ -34,6 +34,60 @@ const BlogPost = () => {
       <Helmet>
         <title>{post.title} | Ranking Anywhere Journal</title>
         <meta name="description" content={post.title} />
+        <meta name="keywords" content={`seo, ranking anywhere, ${post.category || 'seo journal'}, ${post.title}`} />
+        <script type="application/ld+json">
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "NewsArticle",
+              "headline": post.title,
+              "image": [post.image || "https://rankinganywhere.com/logo.png"],
+              "datePublished": post.date || new Date().toISOString(),
+              "author": {
+                "@type": "Person",
+                "name": post.author || "Ranking Anywhere Team"
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "Ranking Anywhere",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://rankinganywhere.com/logo.png"
+                }
+              }
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Ranking Anywhere",
+              "url": "https://rankinganywhere.com/"
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://rankinganywhere.com/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://rankinganywhere.com/blog"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": post.title,
+                  "item": `https://rankinganywhere.com/blog/${post.id}`
+                }
+              ]
+            }
+          ])}
+        </script>
       </Helmet>
       <Navbar />
       

@@ -43,6 +43,49 @@ const UserGuide = () => {
     <div style={{ minHeight: '100vh', background: '#f8fafc', color: '#1e293b' }}>
       <Helmet>
         <title>Master Guide | Ranking Anywhere Documentation</title>
+        <meta name="description" content="Official technical manual for Ranking Anywhere. Learn how to use our geographic intelligence engine, enterprise scraping infrastructure, and UULE metadata logic." />
+        <meta name="keywords" content="seo guide, rank tracking documentation, uule logic, geographic intelligence, ranking anywhere manual" />
+        <script type="application/ld+json">
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "name": "Master Guide | Ranking Anywhere",
+              "description": "Technical manual for our geographic intelligence engine and enterprise scraping infrastructure."
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Ranking Anywhere",
+              "url": "https://rankinganywhere.com/"
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Ranking Anywhere",
+              "url": "https://rankinganywhere.com/",
+              "logo": "https://rankinganywhere.com/logo.png"
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://rankinganywhere.com/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Master Guide",
+                  "item": "https://rankinganywhere.com/guide"
+                }
+              ]
+            }
+          ])}
+        </script>
       </Helmet>
 
       <Navbar />

@@ -255,13 +255,13 @@
       "defaultLng": 145.3628251,
       "pincode": "3978",
       "usePincode": true,
-      "scrapingStrategy": "direct_proxy",
+      "scrapingStrategy": "api_only",
       "preferredApi": "hybrid",
       "device": "desktop",
       "proxyUrl": "http://zvr3okpiua-corp.mobile.res-country-AU-state-2155400-hold-session-session-69f6b8932c611:yY4kNLHGPcpOh4H8@89.38.99.242:443",
-      "lastChecked": "2026-05-03",
+      "lastChecked": "2026-05-04",
       "status": "active",
-      "lastCheck": 1777795168763,
+      "lastCheck": 1777908048408,
       "scheduleDay": "Friday"
     },
     {
@@ -1197,7 +1197,8 @@
       ],
       "displayRank": "1//8",
       "source": "Serper",
-      "lastChecked": "2026-05-03"
+      "lastChecked": "2026-05-03",
+      "activePriority": "city"
     },
     {
       "id": "1xz8fc",
@@ -2363,17 +2364,22 @@
           "date": "2026-05-03",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-05-03"
+      "lastChecked": "2026-05-04"
     },
     {
       "id": "diam71",
       "projectId": "1777602314637",
       "text": "velux skylights melbourne",
-      "organic": 7,
+      "organic": 1,
       "maps": 0,
       "status": "active",
       "mapsStatus": "paused",
@@ -2393,11 +2399,16 @@
           "date": "2026-05-03",
           "organic": 7,
           "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 1,
+          "maps": 0
         }
       ],
-      "displayRank": "1//7",
+      "displayRank": "1//1",
       "source": "Serper",
-      "lastChecked": "2026-05-03"
+      "lastChecked": "2026-05-04"
     },
     {
       "id": "y7ayz",
@@ -2423,11 +2434,16 @@
           "date": "2026-05-03",
           "organic": 3,
           "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 3,
+          "maps": 0
         }
       ],
       "displayRank": "1//3",
       "source": "Serper",
-      "lastChecked": "2026-05-03"
+      "lastChecked": "2026-05-04"
     },
     {
       "id": "fclg8j",
@@ -2453,17 +2469,22 @@
           "date": "2026-05-03",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-05-03"
+      "lastChecked": "2026-05-04"
     },
     {
       "id": "0r3pot",
       "projectId": "1777602314637",
       "text": "pgh bricks melbourne",
-      "organic": 9,
+      "organic": 0,
       "maps": 0,
       "status": "active",
       "mapsStatus": "paused",
@@ -2483,11 +2504,16 @@
           "date": "2026-05-03",
           "organic": 9,
           "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
         }
       ],
-      "displayRank": "1//9",
-      "source": "Serper",
-      "lastChecked": "2026-05-03"
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-04"
     },
     {
       "id": "g8t1yd",
@@ -2513,11 +2539,16 @@
           "date": "2026-05-03",
           "organic": 3,
           "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 3,
+          "maps": 0
         }
       ],
       "displayRank": "1//3",
       "source": "Serper",
-      "lastChecked": "2026-05-03"
+      "lastChecked": "2026-05-04"
     },
     {
       "id": "gs87wh",
@@ -2543,11 +2574,16 @@
           "date": "2026-05-03",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-05-03"
+      "lastChecked": "2026-05-04"
     },
     {
       "id": "jwd9owg",
@@ -2573,11 +2609,16 @@
           "date": "2026-05-03",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-05-03"
+      "lastChecked": "2026-05-04"
     },
     {
       "id": "sckycw",
@@ -2603,11 +2644,16 @@
           "date": "2026-05-03",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-05-03"
+      "lastChecked": "2026-05-04"
     },
     {
       "id": "3yityt",
@@ -2633,11 +2679,16 @@
           "date": "2026-05-03",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-05-03"
+      "lastChecked": "2026-05-04"
     },
     {
       "id": "8gv72",
@@ -2663,11 +2714,16 @@
           "date": "2026-05-03",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-05-03"
+      "lastChecked": "2026-05-04"
     },
     {
       "id": "f1u9l",
@@ -2693,11 +2749,16 @@
           "date": "2026-05-03",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "displayRank": "N/A",
       "source": "",
-      "lastChecked": "2026-05-03"
+      "lastChecked": "2026-05-04"
     },
     {
       "id": "uwqklk",
@@ -2951,7 +3012,7 @@
     "serperQuotaActive": true,
     "scrapingdogQuotaActive": true,
     "serpapiQuotaActive": true,
-    "proxyActive": false
+    "proxyActive": true
   },
   "extensionTasks": [
     {
@@ -4783,5 +4844,1567 @@
       "category": "SEO Tips",
       "date": "2026-05-03T07:42:17.511Z"
     }
-  ]
+  ],
+  "whois_cache": {
+    "angelone.in": {
+      "success": true,
+      "domain": "angelone.in",
+      "status": [
+        "client update prohibited",
+        "client renew prohibited",
+        "client delete prohibited",
+        "client transfer prohibited"
+      ],
+      "registrar": "GoDaddy",
+      "contacts": {
+        "registrar": {
+          "objectClassName": "entity",
+          "handle": "146",
+          "vcardArray": [
+            "vcard",
+            [
+              [
+                "version",
+                {},
+                "text",
+                "4.0"
+              ],
+              [
+                "fn",
+                {},
+                "text",
+                "GoDaddy"
+              ],
+              [
+                "adr",
+                {
+                  "cc": "US"
+                },
+                "text",
+                [
+                  "",
+                  "",
+                  "14555 North Hayden Rd #219",
+                  "Scottsdale ",
+                  "AZ",
+                  "85260",
+                  ""
+                ]
+              ],
+              [
+                "tel",
+                {
+                  "type": "voice"
+                },
+                "uri",
+                "tel:+1.4805058800"
+              ],
+              [
+                "tel",
+                {
+                  "type": "fax"
+                },
+                "uri",
+                "tel:+1.4802474195"
+              ],
+              [
+                "email",
+                {},
+                "text",
+                "reg_admin@godaddy.com"
+              ]
+            ]
+          ],
+          "roles": [
+            "registrar"
+          ],
+          "publicIds": [
+            {
+              "type": "IANA Registrar ID",
+              "identifier": "146"
+            }
+          ],
+          "entities": [
+            {
+              "objectClassName": "entity",
+              "vcardArray": [
+                "vcard",
+                [
+                  [
+                    "version",
+                    {},
+                    "text",
+                    "4.0"
+                  ],
+                  [
+                    "fn",
+                    {},
+                    "text",
+                    ""
+                  ],
+                  [
+                    "tel",
+                    {
+                      "type": "voice"
+                    },
+                    "uri",
+                    "tel:+1.4805058800"
+                  ],
+                  [
+                    "email",
+                    {},
+                    "text",
+                    "reg_admin@godaddy.com"
+                  ]
+                ]
+              ],
+              "roles": [
+                "abuse"
+              ],
+              "events": [
+                {
+                  "eventAction": "last update of RDAP database",
+                  "eventDate": "2026-05-05T12:16:18.525Z"
+                }
+              ]
+            }
+          ],
+          "links": [
+            {
+              "value": "https://rdap.godaddy.com/v1/",
+              "rel": "about",
+              "href": "https://rdap.nixiregistry.in/rdap/entity/146",
+              "type": "application/rdap+json"
+            }
+          ],
+          "events": [
+            {
+              "eventAction": "last update of RDAP database",
+              "eventDate": "2026-05-05T12:16:18.525Z"
+            }
+          ]
+        },
+        "registrant": {
+          "name": "Registration Private",
+          "organization": "Domains By Proxy, LLC",
+          "street": "100 S. Mill Ave, Suite 1600",
+          "city": "Tempe",
+          "state": "Arizona",
+          "zip": "85281",
+          "country": "US",
+          "phone": "+1.4806242599",
+          "email": "https://www.godaddy.com/whois/results.aspx?domain=angelone.in"
+        },
+        "admin": {
+          "name": "Registration Private",
+          "organization": "Domains By Proxy, LLC",
+          "street": "100 S. Mill Ave, Suite 1600",
+          "city": "Tempe",
+          "state": "Arizona",
+          "zip": "85281",
+          "country": "US",
+          "phone": "+1.4806242599",
+          "email": "https://www.godaddy.com/whois/results.aspx?domain=angelone.in"
+        },
+        "tech": {
+          "name": "Registration Private",
+          "organization": "Domains By Proxy, LLC",
+          "street": "100 S. Mill Ave, Suite 1600",
+          "city": "Tempe",
+          "state": "Arizona",
+          "zip": "85281",
+          "country": "US",
+          "phone": "+1.4806242599",
+          "email": "https://www.godaddy.com/whois/results.aspx?domain=angelone.in"
+        }
+      },
+      "dates": {
+        "created": "2021-05-28T11:07:14.186Z",
+        "expires": "2027-05-28T11:07:14.186Z",
+        "updated": "2025-07-24T05:32:27.772Z"
+      },
+      "nameservers": [
+        "josephine.ns.cloudflare.com",
+        "dax.ns.cloudflare.com"
+      ],
+      "age": {
+        "days": 1803,
+        "years": "4.9",
+        "label": "4.9 Years"
+      },
+      "trustScore": 65,
+      "raw": {
+        "rdapConformance": [
+          "rdap_level_0",
+          "icann_rdap_response_profile_1",
+          "icann_rdap_technical_implementation_guide_1",
+          "redacted"
+        ],
+        "notices": [
+          {
+            "title": "Terms of Service",
+            "description": [
+              "The WHOIS information provided in this page has been redacted",
+              "in compliance with ICANN's Temporary Specification for gTLD",
+              "Registration Data.",
+              "",
+              "The data in this record is provided by Tucows Registry for informational",
+              "purposes only, and it does not guarantee its accuracy. Tucows Registry is",
+              "authoritative for whois information in top-level domains it operates",
+              "under contract with the Internet Corporation for Assigned Names and",
+              "Numbers. Whois information from other top-level domains is provided by",
+              "a third-party under license to Tucows Registry.",
+              "",
+              "This service is intended only for query-based access. By using this",
+              "service, you agree that you will use any data presented only for lawful",
+              "purposes and that, under no circumstances will you use (a) data",
+              "acquired for the purpose of allowing, enabling, or otherwise supporting",
+              "the transmission by e-mail, telephone, facsimile or other",
+              "communications mechanism of mass  unsolicited, commercial advertising",
+              "or solicitations to entities other than your existing  customers; or",
+              "(b) this service to enable high volume, automated, electronic processes",
+              "that send queries or data to the systems of any Registrar or any",
+              "Registry except as reasonably necessary to register domain names or",
+              "modify existing domain name registrations.",
+              "",
+              "Tucows Registry reserves the right to modify these terms at any time. By",
+              "submitting this query, you agree to abide by this policy. All rights",
+              "reserved."
+            ],
+            "links": [
+              {
+                "value": "https://rdap.nixiregistry.in/rdap/domain/angelone.in",
+                "rel": "terms-of-service",
+                "href": "https://rdap.nixiregistry.in/",
+                "type": "text/html"
+              }
+            ]
+          },
+          {
+            "title": "Status Codes",
+            "description": [
+              "For more information on domain status codes, please visit https://icann.org/epp"
+            ],
+            "links": [
+              {
+                "value": "https://rdap.nixiregistry.in/rdap/domain/angelone.in",
+                "rel": "glossary",
+                "href": "https://icann.org/epp",
+                "type": "text/html"
+              }
+            ]
+          },
+          {
+            "title": "RDDS Inaccuracy Complaint Form",
+            "description": [
+              "URL of the ICANN RDDS Inaccuracy Complaint Form: https://icann.org/wicf"
+            ],
+            "links": [
+              {
+                "value": "https://rdap.nixiregistry.in/rdap/domain/angelone.in",
+                "rel": "help",
+                "href": "https://icann.org/wicf",
+                "type": "text/html"
+              }
+            ]
+          }
+        ],
+        "redacted": [
+          {
+            "name": {
+              "type": "Registry Registrant ID"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].handle",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='email')]",
+            "replacementPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='email')][3]",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Name"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='fn')][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Street"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='adr')][3][:3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant City"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='adr')][3][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Postal Code"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='adr')][3][5]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Phone"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Phone Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Fax"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Fax Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registry Admin ID"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].handle",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='email')]",
+            "replacementPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='email')][3]",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Name"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='fn')][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Street"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='adr')][3][:3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin City"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='adr')][3][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Postal Code"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='adr')][3][5]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Phone"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Phone Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Fax"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Fax Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registry Tech ID"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].handle",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='email')]",
+            "replacementPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='email')][3]",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Name"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='fn')][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Street"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='adr')][3][:3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech City"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='adr')][3][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Postal Code"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='adr')][3][5]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Phone"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Phone Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Fax"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Fax Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registry Billing ID"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].handle",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='email')]",
+            "replacementPath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='email')][3]",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Name"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='fn')][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Street"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='adr')][3][:3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing City"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='adr')][3][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Postal Code"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='adr')][3][5]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Phone"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Phone Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Fax"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Fax Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          }
+        ],
+        "objectClassName": "domain",
+        "handle": "D192023D380944E6D8918DCD9328D3CF4-IN",
+        "ldhName": "angelone.in",
+        "unicodeName": "angelone.in",
+        "nameservers": [
+          {
+            "objectClassName": "nameserver",
+            "handle": "HA9E02DB51F714A5CBF905DEF713E1CB5-IN",
+            "ldhName": "josephine.ns.cloudflare.com",
+            "unicodeName": "josephine.ns.cloudflare.com",
+            "status": [
+              "associated"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-05T12:16:18.525Z"
+              }
+            ]
+          },
+          {
+            "objectClassName": "nameserver",
+            "handle": "H8CBD330A783A4FE29251948B8B7A0686-IN",
+            "ldhName": "dax.ns.cloudflare.com",
+            "unicodeName": "dax.ns.cloudflare.com",
+            "status": [
+              "associated"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-05T12:16:18.525Z"
+              }
+            ]
+          }
+        ],
+        "secureDNS": {
+          "delegationSigned": false
+        },
+        "entities": [
+          {
+            "remarks": [
+              {
+                "title": "REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Some of the data in this object has been removed"
+                ]
+              },
+              {
+                "title": "EMAIL REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name."
+                ]
+              }
+            ],
+            "objectClassName": "entity",
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "org",
+                  {},
+                  "text",
+                  "Bombay Biz (India) Private Limited"
+                ],
+                [
+                  "adr",
+                  {
+                    "cc": "IN"
+                  },
+                  "text",
+                  [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "MH",
+                    "",
+                    ""
+                  ]
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "roles": [
+              "registrant"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-05T12:16:18.525Z"
+              }
+            ]
+          },
+          {
+            "remarks": [
+              {
+                "title": "REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Some of the data in this object has been removed"
+                ]
+              },
+              {
+                "title": "EMAIL REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name."
+                ]
+              }
+            ],
+            "objectClassName": "entity",
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "adr",
+                  {},
+                  "text",
+                  [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "roles": [
+              "administrative"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-05T12:16:18.525Z"
+              }
+            ]
+          },
+          {
+            "remarks": [
+              {
+                "title": "REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Some of the data in this object has been removed"
+                ]
+              },
+              {
+                "title": "EMAIL REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name."
+                ]
+              }
+            ],
+            "objectClassName": "entity",
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "adr",
+                  {},
+                  "text",
+                  [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "roles": [
+              "technical"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-05T12:16:18.525Z"
+              }
+            ]
+          },
+          {
+            "remarks": [
+              {
+                "title": "REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Some of the data in this object has been removed"
+                ]
+              },
+              {
+                "title": "EMAIL REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name."
+                ]
+              }
+            ],
+            "objectClassName": "entity",
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "adr",
+                  {},
+                  "text",
+                  [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "roles": [
+              "billing"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-05T12:16:18.525Z"
+              }
+            ]
+          },
+          {
+            "objectClassName": "entity",
+            "handle": "146",
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  "GoDaddy"
+                ],
+                [
+                  "adr",
+                  {
+                    "cc": "US"
+                  },
+                  "text",
+                  [
+                    "",
+                    "",
+                    "14555 North Hayden Rd #219",
+                    "Scottsdale ",
+                    "AZ",
+                    "85260",
+                    ""
+                  ]
+                ],
+                [
+                  "tel",
+                  {
+                    "type": "voice"
+                  },
+                  "uri",
+                  "tel:+1.4805058800"
+                ],
+                [
+                  "tel",
+                  {
+                    "type": "fax"
+                  },
+                  "uri",
+                  "tel:+1.4802474195"
+                ],
+                [
+                  "email",
+                  {},
+                  "text",
+                  "reg_admin@godaddy.com"
+                ]
+              ]
+            ],
+            "roles": [
+              "registrar"
+            ],
+            "publicIds": [
+              {
+                "type": "IANA Registrar ID",
+                "identifier": "146"
+              }
+            ],
+            "entities": [
+              {
+                "objectClassName": "entity",
+                "vcardArray": [
+                  "vcard",
+                  [
+                    [
+                      "version",
+                      {},
+                      "text",
+                      "4.0"
+                    ],
+                    [
+                      "fn",
+                      {},
+                      "text",
+                      ""
+                    ],
+                    [
+                      "tel",
+                      {
+                        "type": "voice"
+                      },
+                      "uri",
+                      "tel:+1.4805058800"
+                    ],
+                    [
+                      "email",
+                      {},
+                      "text",
+                      "reg_admin@godaddy.com"
+                    ]
+                  ]
+                ],
+                "roles": [
+                  "abuse"
+                ],
+                "events": [
+                  {
+                    "eventAction": "last update of RDAP database",
+                    "eventDate": "2026-05-05T12:16:18.525Z"
+                  }
+                ]
+              }
+            ],
+            "links": [
+              {
+                "value": "https://rdap.godaddy.com/v1/",
+                "rel": "about",
+                "href": "https://rdap.nixiregistry.in/rdap/entity/146",
+                "type": "application/rdap+json"
+              }
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-05T12:16:18.525Z"
+              }
+            ]
+          }
+        ],
+        "status": [
+          "client update prohibited",
+          "client renew prohibited",
+          "client delete prohibited",
+          "client transfer prohibited"
+        ],
+        "links": [
+          {
+            "value": "https://rdap.nixiregistry.in/rdap/domain/angelone.in",
+            "rel": "related",
+            "href": "https://rdap.godaddy.com/v1/domain/angelone.in",
+            "type": "application/rdap+json"
+          },
+          {
+            "value": "https://rdap.nixiregistry.in/rdap/domain/angelone.in",
+            "rel": "self",
+            "href": "https://rdap.nixiregistry.in/rdap/domain/angelone.in",
+            "type": "application/rdap+json"
+          }
+        ],
+        "events": [
+          {
+            "eventAction": "registration",
+            "eventActor": "sgs_tech",
+            "eventDate": "2021-05-28T11:07:14.186Z"
+          },
+          {
+            "eventAction": "expiration",
+            "eventDate": "2027-05-28T11:07:14.186Z"
+          },
+          {
+            "eventAction": "last changed",
+            "eventDate": "2025-07-24T05:32:27.772Z"
+          },
+          {
+            "eventAction": "transfer",
+            "eventDate": "2025-07-19T05:31:27.773Z"
+          },
+          {
+            "eventAction": "last update of RDAP database",
+            "eventDate": "2026-05-05T12:16:18.525Z"
+          }
+        ]
+      },
+      "hosting": {
+        "ip": "172.64.149.79",
+        "provider": "Cloudflare, Inc.",
+        "org": "Cloudflare, Inc.",
+        "country": "Canada",
+        "country_code": "CA",
+        "city": "Toronto",
+        "region": "Ontario"
+      },
+      "tech": {
+        "stack": [
+          "cloudflare",
+          "Cloudflare"
+        ],
+        "cms": "WordPress",
+        "theme": "Unknown",
+        "database": "MySQL / MariaDB",
+        "frontend": "React",
+        "language": "Unknown",
+        "server": "cloudflare",
+        "poweredBy": "Next.js"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": "DigiCert Inc",
+        "valid_from": "Jul  1 00:00:00 2025 GMT",
+        "valid_to": "Jun 30 23:59:59 2026 GMT",
+        "protocol": "TLSv1.3",
+        "days_left": 56
+      },
+      "siteMeta": {
+        "title": "Online Trading & Stock Broking in India | Angel One",
+        "description": "Angel One - India’s leading stock broker for online trading in Stocks, Mutual Funds, Commodities, IPOs, F&O and ETFs. Trade seamlessly with smart tools.",
+        "keywords": "",
+        "h1": "Your One-Stop Investment Platform"
+      },
+      "audit_time": "2026-05-05T12:16:18.847Z"
+    },
+    "rankinganywhere.com": {
+      "success": true,
+      "domain": "rankinganywhere.com",
+      "status": [
+        "client delete prohibited",
+        "client renew prohibited",
+        "client transfer prohibited",
+        "client update prohibited"
+      ],
+      "registrar": "GoDaddy.com, LLC",
+      "contacts": {
+        "registrar": {
+          "objectClassName": "entity",
+          "handle": "146",
+          "roles": [
+            "registrar"
+          ],
+          "links": [
+            {
+              "href": "http://www.godaddy.com",
+              "type": "text/html",
+              "value": "https://rdap.godaddy.com/v1/",
+              "rel": "about"
+            }
+          ],
+          "publicIds": [
+            {
+              "type": "IANA Registrar ID",
+              "identifier": "146"
+            }
+          ],
+          "vcardArray": [
+            "vcard",
+            [
+              [
+                "version",
+                {},
+                "text",
+                "4.0"
+              ],
+              [
+                "fn",
+                {},
+                "text",
+                "GoDaddy.com, LLC"
+              ]
+            ]
+          ],
+          "entities": [
+            {
+              "objectClassName": "entity",
+              "roles": [
+                "abuse"
+              ],
+              "vcardArray": [
+                "vcard",
+                [
+                  [
+                    "version",
+                    {},
+                    "text",
+                    "4.0"
+                  ],
+                  [
+                    "fn",
+                    {},
+                    "text",
+                    ""
+                  ],
+                  [
+                    "tel",
+                    {
+                      "type": "voice"
+                    },
+                    "uri",
+                    "tel:480-624-2505"
+                  ],
+                  [
+                    "email",
+                    {},
+                    "text",
+                    "abuse@godaddy.com"
+                  ]
+                ]
+              ]
+            }
+          ]
+        },
+        "registrant": {
+          "name": "Registration Private",
+          "organization": "Domains By Proxy, LLC",
+          "street": "100 S. Mill Ave, Suite 1600",
+          "city": "Tempe",
+          "state": "Arizona",
+          "zip": "85281",
+          "country": "US",
+          "phone": "+1.4806242599",
+          "email": "https://www.godaddy.com/whois/results.aspx?domain=rankinganywhere.com"
+        },
+        "admin": {
+          "name": "Registration Private",
+          "organization": "Domains By Proxy, LLC",
+          "street": "100 S. Mill Ave, Suite 1600",
+          "city": "Tempe",
+          "state": "Arizona",
+          "zip": "85281",
+          "country": "US",
+          "phone": "+1.4806242599",
+          "email": "https://www.godaddy.com/whois/results.aspx?domain=rankinganywhere.com"
+        },
+        "tech": {
+          "name": "Registration Private",
+          "organization": "Domains By Proxy, LLC",
+          "street": "100 S. Mill Ave, Suite 1600",
+          "city": "Tempe",
+          "state": "Arizona",
+          "zip": "85281",
+          "country": "US",
+          "phone": "+1.4806242599",
+          "email": "https://www.godaddy.com/whois/results.aspx?domain=rankinganywhere.com"
+        }
+      },
+      "dates": {
+        "created": "2026-05-03T04:18:01Z",
+        "expires": "2027-05-03T04:18:01Z",
+        "updated": "2026-05-03T04:44:00Z"
+      },
+      "nameservers": [
+        "FRANK.NS.CLOUDFLARE.COM",
+        "KIM.NS.CLOUDFLARE.COM"
+      ],
+      "age": {
+        "days": 2,
+        "years": "0.0",
+        "label": "2 Days"
+      },
+      "trustScore": 45,
+      "raw": {
+        "objectClassName": "domain",
+        "handle": "3094973741_DOMAIN_COM-VRSN",
+        "ldhName": "RANKINGANYWHERE.COM",
+        "links": [
+          {
+            "value": "https://rdap.verisign.com/com/v1/domain/RANKINGANYWHERE.COM",
+            "rel": "self",
+            "href": "https://rdap.verisign.com/com/v1/domain/RANKINGANYWHERE.COM",
+            "type": "application/rdap+json"
+          },
+          {
+            "value": "https://rdap.godaddy.com/v1/domain/RANKINGANYWHERE.COM",
+            "rel": "related",
+            "href": "https://rdap.godaddy.com/v1/domain/RANKINGANYWHERE.COM",
+            "type": "application/rdap+json"
+          }
+        ],
+        "status": [
+          "client delete prohibited",
+          "client renew prohibited",
+          "client transfer prohibited",
+          "client update prohibited"
+        ],
+        "entities": [
+          {
+            "objectClassName": "entity",
+            "handle": "146",
+            "roles": [
+              "registrar"
+            ],
+            "links": [
+              {
+                "href": "http://www.godaddy.com",
+                "type": "text/html",
+                "value": "https://rdap.godaddy.com/v1/",
+                "rel": "about"
+              }
+            ],
+            "publicIds": [
+              {
+                "type": "IANA Registrar ID",
+                "identifier": "146"
+              }
+            ],
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  "GoDaddy.com, LLC"
+                ]
+              ]
+            ],
+            "entities": [
+              {
+                "objectClassName": "entity",
+                "roles": [
+                  "abuse"
+                ],
+                "vcardArray": [
+                  "vcard",
+                  [
+                    [
+                      "version",
+                      {},
+                      "text",
+                      "4.0"
+                    ],
+                    [
+                      "fn",
+                      {},
+                      "text",
+                      ""
+                    ],
+                    [
+                      "tel",
+                      {
+                        "type": "voice"
+                      },
+                      "uri",
+                      "tel:480-624-2505"
+                    ],
+                    [
+                      "email",
+                      {},
+                      "text",
+                      "abuse@godaddy.com"
+                    ]
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "events": [
+          {
+            "eventAction": "registration",
+            "eventDate": "2026-05-03T04:18:01Z"
+          },
+          {
+            "eventAction": "expiration",
+            "eventDate": "2027-05-03T04:18:01Z"
+          },
+          {
+            "eventAction": "last changed",
+            "eventDate": "2026-05-03T04:44:00Z"
+          },
+          {
+            "eventAction": "last update of RDAP database",
+            "eventDate": "2026-05-05T12:30:51Z"
+          }
+        ],
+        "secureDNS": {
+          "delegationSigned": false
+        },
+        "nameservers": [
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "FRANK.NS.CLOUDFLARE.COM"
+          },
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "KIM.NS.CLOUDFLARE.COM"
+          }
+        ],
+        "rdapConformance": [
+          "rdap_level_0",
+          "icann_rdap_technical_implementation_guide_1",
+          "icann_rdap_response_profile_1"
+        ],
+        "notices": [
+          {
+            "title": "Terms of Service",
+            "description": [
+              "Service subject to Terms of Use."
+            ],
+            "links": [
+              {
+                "href": "https://www.verisign.com/domain-names/registration-data-access-protocol/terms-service/index.xhtml",
+                "type": "text/html",
+                "value": "https://rdap.verisign.com/com/v1/domain/rankinganywhere.com",
+                "rel": "terms-of-service"
+              }
+            ]
+          },
+          {
+            "title": "Status Codes",
+            "description": [
+              "For more information on domain status codes, please visit https://icann.org/epp"
+            ],
+            "links": [
+              {
+                "href": "https://icann.org/epp",
+                "type": "text/html"
+              }
+            ]
+          },
+          {
+            "title": "RDDS Inaccuracy Complaint Form",
+            "description": [
+              "URL of the ICANN RDDS Inaccuracy Complaint Form: https://icann.org/wicf"
+            ],
+            "links": [
+              {
+                "href": "https://icann.org/wicf",
+                "type": "text/html",
+                "value": "https://rdap.verisign.com/com/v1/domain/rankinganywhere.com",
+                "rel": "help"
+              }
+            ]
+          }
+        ]
+      },
+      "hosting": {
+        "ip": "172.67.156.20",
+        "provider": "Cloudflare, Inc.",
+        "org": "Cloudflare, Inc.",
+        "country": "Canada",
+        "country_code": "CA",
+        "city": "Toronto",
+        "region": "Ontario"
+      },
+      "tech": {
+        "stack": [
+          "cloudflare",
+          "Cloudflare"
+        ],
+        "cms": "Custom / Not Detected",
+        "theme": "Unknown",
+        "database": "Unknown",
+        "frontend": "Vanilla / Unknown",
+        "language": "Unknown",
+        "server": "cloudflare",
+        "poweredBy": "Hidden"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": "Let's Encrypt",
+        "valid_from": "May  3 03:48:52 2026 GMT",
+        "valid_to": "Aug  1 03:48:51 2026 GMT",
+        "protocol": "TLSv1.3",
+        "days_left": 87
+      },
+      "siteMeta": {
+        "title": "Ranking Anywhere - Professional SEO Ranking & Audit Software",
+        "description": "Ranking Anywhere provides hyper-accurate, real-time SEO intelligence and keyword tracking for global enterprises.",
+        "keywords": "",
+        "h1": ""
+      },
+      "audit_time": "2026-05-05T12:30:58.330Z"
+    }
+  }
 }

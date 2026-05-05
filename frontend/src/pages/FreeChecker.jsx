@@ -453,7 +453,53 @@ const FreeChecker = () => {
         <meta name="description" content="The ultimate Google Location Changer tool. Change your search location to any city or ZIP code globally with 100% precision. Free advanced SERP investigator for SEO professionals." />
         <meta name="keywords" content="google location changer, change google search location, local seo checker, serp investigator" />
         <script type="application/ld+json">
-          {JSON.stringify(schema)}
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": "Google Location Changer",
+              "url": "https://rankinganywhere.com/free-check",
+              "description": "Free advanced SERP investigator and Google Location Changer. View search results from any city or ZIP code globally.",
+              "applicationCategory": "SEO Tool",
+              "operatingSystem": "Web",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              }
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Ranking Anywhere",
+              "url": "https://rankinganywhere.com/"
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Ranking Anywhere",
+              "url": "https://rankinganywhere.com/",
+              "logo": "https://rankinganywhere.com/logo.png"
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://rankinganywhere.com/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Live Rank Tracker",
+                  "item": "https://rankinganywhere.com/free-check"
+                }
+              ]
+            }
+          ])}
         </script>
       </Helmet>
       <style>{`

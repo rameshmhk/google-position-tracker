@@ -442,7 +442,8 @@ export const scrapeGoogleRank = async (options: ScrapeOptions, retryCount: numbe
   const ABS_LOG = path.join(process.cwd(), 'debug_scan_audit.log');
   fs.appendFileSync(ABS_LOG, `[Scraper-PUP] TRACE: Entering scrapeGoogleRank for "${options.keyword}"\n`);
 
-  const { keyword, targetUrl, region, businessName, location, lat, lng, proxy } = options;
+  const { keyword, targetUrl, region, businessName, location, lat, lng } = options;
+  const proxyUrl = options.proxyUrl;
   
   let browser: any = null;
   try {
@@ -591,8 +592,8 @@ export const scrapeGoogleRank = async (options: ScrapeOptions, retryCount: numbe
             const res = await processOrganicResults($final, targetUrl, businessName, keyword, pageNum);
             
             if (res.organicRank > 0) {
-                foundUrl = res.foundUrl;
-                organicRank = res.organicRank;
+                finalResult.foundUrl = res.foundUrl;
+                finalResult.organicRank = res.organicRank;
                 await interactiveBrowser.close();
                 break;
             }
@@ -699,7 +700,7 @@ async function processOrganicResults($: any, targetUrl: string | undefined, busi
         return isHit;
       });
 
-      if (foundIdx !== -1) {
+      if (foundIdx !== -1 && organicResults[foundIdx]) {
           organicRank = (pageNum - 1) * 10 + (foundIdx + 1);
           foundUrl = organicResults[foundIdx].link || '';
       }

@@ -66,9 +66,12 @@ const Footer = () => {
         <div className="footer-section">
           <h4 style={{ fontSize: '11px', fontWeight: '900', color: '#fff', marginBottom: '30px', letterSpacing: '1.5px', textTransform: 'uppercase', opacity: 0.9 }}>Search Solutions</h4>
           <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            <li><Link to="/" className="footer-link">Site Explorer</Link></li>
+            <li><Link to="/keywords" className="footer-link">Keywords Explorer</Link></li>
             <li><Link to="/free-check" className="footer-link">Global Rank Checker</Link></li>
-            <li><Link to="/register" className="footer-link">Keywords Explorer</Link></li>
             <li><Link to="/register" className="footer-link">Bulk Rank Tracker</Link></li>
+            <li><Link to="/check-ip" className="footer-link">IP Checker Online</Link></li>
+            <li><Link to="/whois" className="footer-link">Whois Lookup Intelligence</Link></li>
             <li><Link to="/dashboard" className="footer-link">Enterprise Console</Link></li>
           </ul>
         </div>

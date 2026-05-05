@@ -30,7 +30,49 @@ const Blog = () => {
     <div style={{ minHeight: '100vh', background: '#f1f5f9', fontFamily: 'Inter, sans-serif' }}>
       <Helmet>
         <title>SEO Journal & News | Ranking Anywhere</title>
-        <meta name="description" content="Get the latest SEO insights, product updates and ranking strategies." />
+        <meta name="description" content="Get the latest SEO insights, product updates and ranking strategies. Deep-dive into technical SEO and search intelligence." />
+        <meta name="keywords" content="seo blog, search engine journal, ranking anywhere news, technical seo articles, ranking insights" />
+        <script type="application/ld+json">
+          {JSON.stringify([
+            {
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "name": "SEO Journal & News | Ranking Anywhere",
+              "description": "Latest SEO insights and ranking strategies from the Ranking Anywhere team."
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Ranking Anywhere",
+              "url": "https://rankinganywhere.com/"
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Ranking Anywhere",
+              "url": "https://rankinganywhere.com/",
+              "logo": "https://rankinganywhere.com/logo.png"
+            },
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://rankinganywhere.com/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Blog",
+                  "item": "https://rankinganywhere.com/blog"
+                }
+              ]
+            }
+          ])}
+        </script>
       </Helmet>
       <Navbar />
       
