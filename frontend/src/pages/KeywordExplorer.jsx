@@ -330,15 +330,35 @@ const KeywordExplorer = () => {
     { q: "Can I export my research to Excel?", a: "Absolutely! We provide a 'Export CSV' feature so you can download your entire keyword research report for further analysis in Excel, Google Sheets, or any other SEO tool." }
   ];
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Keyword Discovery Pro",
-    "operatingSystem": "Web",
-    "applicationCategory": "SEO Tool",
-    "description": "Professional-grade free keyword research tool with city-level UULE precision and deep alphabetical discovery.",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
-  };
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Keyword Discovery Pro",
+      "operatingSystem": "Web",
+      "applicationCategory": "SEO Tool",
+      "description": "Professional-grade free keyword research tool with city-level UULE precision and deep alphabetical discovery.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": `${window.location.origin}/`
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Keyword Explorer",
+          "item": `${window.location.origin}/keywords`
+        }
+      ]
+    }
+  ];
 
   return (
     <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #020617 0%, #0f172a 100%)', color: '#f8fafc', fontFamily: 'Inter, sans-serif' }}>

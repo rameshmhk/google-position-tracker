@@ -4,23 +4,44 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const Contact = () => {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": "Contact RankTracker Pro Support",
-    "description": "Technical assistance and enterprise sales for world-class SEO operations.",
-    "mainEntity": {
-      "@type": "LocalBusiness",
-      "name": "RankTracker Pro",
-      "email": "support@ranktrackerpro.com"
+  const schema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact Ranking Anywhere Support",
+      "description": "Technical assistance and enterprise sales for world-class SEO operations.",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "Ranking Anywhere",
+        "email": "support@rankinganywhere.com",
+        "logo": "https://rankinganywhere.com/logo.png"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": `${window.location.origin}/`
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": `${window.location.origin}/contact`
+        }
+      ]
     }
-  };
+  ];
 
   return (
     <div className="info-page">
       <Helmet>
-        <title>Contact Support | RankTracker Pro</title>
-        <meta name="description" content="Get in touch with the RankTracker Pro engineering and support team for technical assistance, enterprise sales, and API access." />
+        <title>Contact Support | Ranking Anywhere</title>
+        <meta name="description" content="Get in touch with the Ranking Anywhere engineering and support team for technical assistance, enterprise sales, and API access." />
         <script type="application/ld+json">
           {JSON.stringify(schema)}
         </script>

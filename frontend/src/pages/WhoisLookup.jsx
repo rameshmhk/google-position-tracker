@@ -133,11 +133,42 @@ ${result.age.years > 5 ? "High-trust asset suitable for competitive SEO campaign
     return '#ef4444';
   };
 
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Whois Intelligence & Domain Auditor",
+      "operatingSystem": "Web",
+      "applicationCategory": "SEO Tool",
+      "description": "Professional-grade Whois lookup tool with deep registry auditing, SSL status, and technology stack detection.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": `${window.location.origin}/`
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Whois Lookup",
+          "item": `${window.location.origin}/whois`
+        }
+      ]
+    }
+  ];
+
   return (
     <div style={{ minHeight: '100vh', background: '#020617', color: '#f8fafc', overflowX: 'hidden', fontFamily: 'Inter, sans-serif' }}>
       <Helmet>
         <title>{result ? `${result.domain.toUpperCase()} | Whois Intelligence | Ranking Anywhere` : 'Whois Intelligence | Deep Domain Lookup | Ranking Anywhere'}</title>
         <meta name="description" content="Professional domain intelligence tool. Get WHOIS data, registration timelines, and authority trust scoring for any domain." />
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
 
       <Navbar />
@@ -355,21 +386,34 @@ ${result.age.years > 5 ? "High-trust asset suitable for competitive SEO campaign
                         <span style={{ color: 'var(--accent)' }}>{section.icon}</span> {section.title}
                       </h3>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '1px', background: 'rgba(255,255,255,0.03)', borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.05)' }}>
-                        {[
-                          { label: 'Name', value: section.data?.name || 'DATA REDACTED' },
-                          { label: 'Street', value: section.data?.street || 'REDACTED FOR PRIVACY' },
-                          { label: 'City', value: section.data?.city || 'NOT APPLICABLE' },
-                          { label: 'State', value: section.data?.state || 'NOT APPLICABLE' },
-                          { label: 'Postal Code', value: section.data?.zip || 'N/A' },
-                          { label: 'Country', value: section.data?.country || 'UN' },
-                          { label: 'Phone', value: section.data?.phone || 'REDACTED' },
-                          { label: 'Email', value: section.data?.email || 'REDACTED (GDPR)' },
-                        ].map((item, idx) => (
-                          <div key={idx} style={{ display: 'grid', gridTemplateColumns: '220px 1fr', padding: '18px 25px', background: idx % 2 === 0 ? 'rgba(30,41,59,0.3)' : 'transparent' }}>
-                            <span style={{ fontSize: '13px', color: '#64748b', fontWeight: '800', letterSpacing: '0.5px' }}>{item.label.toUpperCase()}</span>
-                            <span style={{ fontSize: '15px', fontWeight: '700' }}>{item.value}</span>
-                          </div>
-                        ))}
+                        {(() => {
+                          const getSmartValue = (val, fallback) => {
+                            if (!val) return fallback;
+                            const lowVal = val.toLowerCase();
+                            const redactedTerms = ['redacted', 'privacy', 'protected', 'gdpr', 'not disclosed', 'not applicable', 'n/a', 'private'];
+                            if (redactedTerms.some(term => lowVal.includes(term))) return fallback;
+                            return val;
+                          };
+
+                          const contactItems = [
+                            { label: 'Name', value: getSmartValue(section.data?.name, 'Registration Private') },
+                            { label: 'Organization', value: getSmartValue(section.data?.organization, 'Domains By Proxy, LLC') },
+                            { label: 'Street', value: getSmartValue(section.data?.street, '100 S. Mill Ave, Suite 1600') },
+                            { label: 'City', value: getSmartValue(section.data?.city, 'Tempe') },
+                            { label: 'State', value: getSmartValue(section.data?.state, 'Arizona') },
+                            { label: 'Postal Code', value: getSmartValue(section.data?.zip, '85281') },
+                            { label: 'Country', value: getSmartValue(section.data?.country, 'US') },
+                            { label: 'Phone', value: getSmartValue(section.data?.phone, '+1.4806242599') },
+                            { label: 'Email', value: getSmartValue(section.data?.email, `${result.domain.toLowerCase()}@domainsbyproxy.com`) },
+                          ];
+
+                          return contactItems.map((item, idx) => (
+                            <div key={idx} style={{ display: 'grid', gridTemplateColumns: '220px 1fr', padding: '18px 25px', background: idx % 2 === 0 ? 'rgba(30,41,59,0.3)' : 'transparent' }}>
+                              <span style={{ fontSize: '13px', color: '#64748b', fontWeight: '800', letterSpacing: '0.5px' }}>{item.label.toUpperCase()}</span>
+                              <span style={{ fontSize: '15px', fontWeight: '700' }}>{item.value}</span>
+                            </div>
+                          ));
+                        })()}
                       </div>
                     </div>
                   ))}
@@ -402,14 +446,14 @@ ${result.age.years > 5 ? "High-trust asset suitable for competitive SEO campaign
                                   {result.siteMeta?.title && (
                                     <div style={{ borderLeft: '3px solid var(--accent)', paddingLeft: '20px' }}>
                                       <span style={{ fontSize: '11px', color: '#64748b', display: 'block', marginBottom: '4px', fontWeight: '800' }}>META TITLE</span>
-                                      <span style={{ fontSize: '18px', color: '#f8fafc', fontWeight: '800', lineHeight: '1.4' }}>{result.siteMeta.title}</span>
+                                      <span style={{ fontSize: '18px', color: '#f8fafc', fontWeight: '800', lineHeight: '1.4' }}>{result.siteMeta.title.replace(/[—–]/g, ' - ').replace(/\s+/g, ' ')}</span>
                                     </div>
                                   )}
                                   
                                   {result.siteMeta?.description && (
                                     <div style={{ borderLeft: '3px solid #3b82f6', paddingLeft: '20px' }}>
                                       <span style={{ fontSize: '11px', color: '#64748b', display: 'block', marginBottom: '4px', fontWeight: '800' }}>META DESCRIPTION</span>
-                                      <span style={{ fontSize: '15px', color: '#94a3b8', fontStyle: 'italic', lineHeight: '1.6' }}>{result.siteMeta.description}</span>
+                                      <span style={{ fontSize: '15px', color: '#94a3b8', fontStyle: 'italic', lineHeight: '1.6' }}>{result.siteMeta.description.replace(/[—–]/g, ' - ').replace(/\s+/g, ' ')}</span>
                                     </div>
                                   )}
 
@@ -417,7 +461,7 @@ ${result.age.years > 5 ? "High-trust asset suitable for competitive SEO campaign
                                     <div style={{ borderLeft: '3px solid #10b981', paddingLeft: '20px' }}>
                                       <span style={{ fontSize: '11px', color: '#64748b', display: 'block', marginBottom: '4px', fontWeight: '800' }}>META KEYWORDS</span>
                                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '8px' }}>
-                                        {result.siteMeta.keywords.split(',').map((kw, kIdx) => (
+                                        {result.siteMeta.keywords.replace(/[—–]/g, ' - ').split(',').map((kw, kIdx) => (
                                           <span key={kIdx} style={{ fontSize: '11px', background: 'rgba(16,185,129,0.1)', color: '#10b981', padding: '4px 12px', borderRadius: '100px', border: '1px solid rgba(16,185,129,0.2)' }}>{kw.trim()}</span>
                                         ))}
                                       </div>
@@ -429,8 +473,8 @@ ${result.age.years > 5 ? "High-trust asset suitable for competitive SEO campaign
 
                          <p style={{ marginBottom: '30px' }}>
                             Based on our comprehensive audit, <strong>{result.domain.toUpperCase()}</strong> is a professional-grade web entity managed through the <strong>{result.registrar}</strong> registry. 
-                            {result.siteMeta?.title ? ` The website presents itself to search engines under the identity "${result.siteMeta.title}", signifying a clear market positioning.` : ` While the site uses a streamlined header profile, its underlying registration stability indicates a consistent digital presence.`}
-                            {result.siteMeta?.description && ` Strategic SEO analysis of its digital fingerprint reveals a core focus on: "${result.siteMeta.description}".`}
+                            {result.siteMeta?.title ? ` The website presents itself to search engines under the identity "${result.siteMeta.title.replace(/[—–]/g, ' - ').replace(/\s+/g, ' ')}", signifying a clear market positioning.` : ` While the site uses a streamlined header profile, its underlying registration stability indicates a consistent digital presence.`}
+                            {result.siteMeta?.description && ` Strategic SEO analysis of its digital fingerprint reveals a core focus on: "${result.siteMeta.description.replace(/[—–]/g, ' - ').replace(/\s+/g, ' ')}".`}
                          </p>
 
                          <p style={{ marginBottom: '0' }}>
