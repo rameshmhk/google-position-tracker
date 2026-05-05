@@ -183,44 +183,149 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// --- DYNAMIC SITEMAP GENERATOR (Automatic SEO) ---
-app.get('/sitemap.xml', (req: any, res: any) => {
-  const baseUrl = 'https://rankinganywhere.com';
-  const staticPages = [
-    '',
-    '/about',
-    '/guide',
-    '/free-check',
-    '/check-ip',
-    '/blog',
-    '/contact',
-    '/terms',
-    '/how-to-use'
-  ];
+// ============================================================
+// --- PROFESSIONAL SITEMAP INDEX SYSTEM (Auto-Updating) ---
+// ============================================================
+const SITE_URL = 'https://rankinganywhere.com';
+const today = () => new Date().toISOString().split('T')[0];
 
+const loadDb = () => {
   try {
     const dbPath = path.join(process.cwd(), 'local_db.json');
-    let db: any = { blogs: [] };
-    if (fs.existsSync(dbPath)) {
-      db = JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+    if (fs.existsSync(dbPath)) return JSON.parse(fs.readFileSync(dbPath, 'utf8'));
+  } catch (e) {}
+  return { blogs: [], whois_cache: {} };
+};
+
+// 1. SITEMAP INDEX (Master) — /sitemap.xml
+app.get('/sitemap.xml', (req: any, res: any) => {
+  try {
+    const db = loadDb();
+    const sitemaps = [
+      { loc: `${SITE_URL}/sitemap-pages.xml`, lastmod: today() },
+      { loc: `${SITE_URL}/sitemap-tools.xml`, lastmod: today() },
+    ];
+
+    // Only add blog sitemap if there are blog posts
+    if ((db.blogs || []).length > 0) {
+      sitemaps.push({ loc: `${SITE_URL}/sitemap-blog.xml`, lastmod: today() });
     }
-    const blogPages = (db.blogs || []).map((post: any) => `/blog/${post.id}`);
-    const allPages = [...staticPages, ...blogPages];
+
+    // Only add whois sitemap if there are cached domains
+    if (db.whois_cache && Object.keys(db.whois_cache).length > 0) {
+      sitemaps.push({ loc: `${SITE_URL}/sitemap-whois.xml`, lastmod: today() });
+    }
+
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>';
+    xml += '\n<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+    sitemaps.forEach(s => {
+      xml += `\n  <sitemap>\n    <loc>${s.loc}</loc>\n    <lastmod>${s.lastmod}</lastmod>\n  </sitemap>`;
+    });
+    xml += '\n</sitemapindex>';
+
+    res.header('Content-Type', 'application/xml');
+    res.header('Cache-Control', 'public, max-age=3600');
+    res.send(xml);
+  } catch (err) {
+    console.error("Sitemap Index Error:", err);
+    res.status(500).send("Error generating sitemap index");
+  }
+});
+
+// 2. STATIC PAGES SITEMAP — /sitemap-pages.xml
+app.get('/sitemap-pages.xml', (req: any, res: any) => {
+  const pages = [
+    { path: '',             priority: '1.0', changefreq: 'daily'   },
+    { path: '/about',       priority: '0.8', changefreq: 'monthly' },
+    { path: '/contact',     priority: '0.6', changefreq: 'monthly' },
+    { path: '/terms',       priority: '0.3', changefreq: 'yearly'  },
+    { path: '/guide',       priority: '0.7', changefreq: 'monthly' },
+    { path: '/how-to-use',  priority: '0.7', changefreq: 'monthly' },
+    { path: '/login',       priority: '0.4', changefreq: 'yearly'  },
+    { path: '/register',    priority: '0.4', changefreq: 'yearly'  },
+  ];
+
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>';
+  xml += '\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+  pages.forEach(p => {
+    xml += `\n  <url>\n    <loc>${SITE_URL}${p.path}</loc>\n    <lastmod>${today()}</lastmod>\n    <changefreq>${p.changefreq}</changefreq>\n    <priority>${p.priority}</priority>\n  </url>`;
+  });
+  xml += '\n</urlset>';
+
+  res.header('Content-Type', 'application/xml');
+  res.header('Cache-Control', 'public, max-age=3600');
+  res.send(xml);
+});
+
+// 3. SEO TOOLS SITEMAP — /sitemap-tools.xml
+app.get('/sitemap-tools.xml', (req: any, res: any) => {
+  const tools = [
+    { path: '/free-check',  priority: '0.9', changefreq: 'daily'   },
+    { path: '/check-ip',    priority: '0.9', changefreq: 'daily'   },
+    { path: '/whois',       priority: '0.9', changefreq: 'daily'   },
+    { path: '/keywords',    priority: '0.9', changefreq: 'daily'   },
+    { path: '/blog',        priority: '0.8', changefreq: 'daily'   },
+  ];
+
+  let xml = '<?xml version="1.0" encoding="UTF-8"?>';
+  xml += '\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+  tools.forEach(t => {
+    xml += `\n  <url>\n    <loc>${SITE_URL}${t.path}</loc>\n    <lastmod>${today()}</lastmod>\n    <changefreq>${t.changefreq}</changefreq>\n    <priority>${t.priority}</priority>\n  </url>`;
+  });
+  xml += '\n</urlset>';
+
+  res.header('Content-Type', 'application/xml');
+  res.header('Cache-Control', 'public, max-age=3600');
+  res.send(xml);
+});
+
+// 4. BLOG SITEMAP (Auto-Growing) — /sitemap-blog.xml
+app.get('/sitemap-blog.xml', (req: any, res: any) => {
+  try {
+    const db = loadDb();
+    const blogs = db.blogs || [];
 
     let xml = '<?xml version="1.0" encoding="UTF-8"?>';
     xml += '\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
-    
-    allPages.forEach(page => {
-      const priority = page === '' ? '1.0' : '0.8';
-      xml += `\n  <url>\n    <loc>${baseUrl}${page}</loc>\n    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>\n    <changefreq>daily</changefreq>\n    <priority>${priority}</priority>\n  </url>`;
+
+    blogs.forEach((post: any) => {
+      const lastmod = post.updatedAt || post.createdAt || today();
+      const dateStr = typeof lastmod === 'string' && lastmod.includes('T') ? lastmod.split('T')[0] : today();
+      xml += `\n  <url>\n    <loc>${SITE_URL}/blog/${post.id}</loc>\n    <lastmod>${dateStr}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.7</priority>\n  </url>`;
     });
 
     xml += '\n</urlset>';
     res.header('Content-Type', 'application/xml');
+    res.header('Cache-Control', 'public, max-age=1800');
     res.send(xml);
   } catch (err) {
-    console.error("Sitemap Error:", err);
-    res.status(500).send("Error generating sitemap");
+    console.error("Blog Sitemap Error:", err);
+    res.status(500).send("Error generating blog sitemap");
+  }
+});
+
+// 5. WHOIS/DOMAIN INTEL SITEMAP (Auto-Growing) — /sitemap-whois.xml
+app.get('/sitemap-whois.xml', (req: any, res: any) => {
+  try {
+    const db = loadDb();
+    const domains = Object.keys(db.whois_cache || {});
+
+    let xml = '<?xml version="1.0" encoding="UTF-8"?>';
+    xml += '\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+
+    domains.forEach((domain: string) => {
+      const cached = db.whois_cache[domain];
+      const dateStr = cached?.audit_time ? cached.audit_time.split('T')[0] : today();
+      xml += `\n  <url>\n    <loc>${SITE_URL}/whois/${domain}</loc>\n    <lastmod>${dateStr}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>0.6</priority>\n  </url>`;
+    });
+
+    xml += '\n</urlset>';
+    res.header('Content-Type', 'application/xml');
+    res.header('Cache-Control', 'public, max-age=1800');
+    res.send(xml);
+  } catch (err) {
+    console.error("Whois Sitemap Error:", err);
+    res.status(500).send("Error generating whois sitemap");
   }
 });
 
@@ -230,8 +335,12 @@ app.get('/robots.txt', (req: any, res: any) => {
 Allow: /
 Disallow: /dashboard
 Disallow: /admin
+Disallow: /settings
+Disallow: /project-settings
+Disallow: /project-insights
+Disallow: /admin-portal
 
-Sitemap: https://rankinganywhere.com/sitemap.xml`;
+Sitemap: ${SITE_URL}/sitemap.xml`;
   res.header('Content-Type', 'text/plain');
   res.send(robots);
 });
