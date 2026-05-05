@@ -6405,6 +6405,357 @@
         "h1": ""
       },
       "audit_time": "2026-05-05T12:30:58.330Z"
+    },
+    "ahrefs.com": {
+      "success": true,
+      "domain": "ahrefs.com",
+      "status": [
+        "client transfer prohibited"
+      ],
+      "registrar": "Name.com, Inc.",
+      "contacts": {
+        "registrar": {
+          "objectClassName": "entity",
+          "handle": "625",
+          "roles": [
+            "registrar"
+          ],
+          "links": [
+            {
+              "href": "http://www.name.com",
+              "type": "text/html",
+              "value": "https://namerdap.systems/",
+              "rel": "about"
+            }
+          ],
+          "publicIds": [
+            {
+              "type": "IANA Registrar ID",
+              "identifier": "625"
+            }
+          ],
+          "vcardArray": [
+            "vcard",
+            [
+              [
+                "version",
+                {},
+                "text",
+                "4.0"
+              ],
+              [
+                "fn",
+                {},
+                "text",
+                "Name.com, Inc."
+              ]
+            ]
+          ],
+          "entities": [
+            {
+              "objectClassName": "entity",
+              "roles": [
+                "abuse"
+              ],
+              "vcardArray": [
+                "vcard",
+                [
+                  [
+                    "version",
+                    {},
+                    "text",
+                    "4.0"
+                  ],
+                  [
+                    "fn",
+                    {},
+                    "text",
+                    ""
+                  ],
+                  [
+                    "tel",
+                    {
+                      "type": "voice"
+                    },
+                    "uri",
+                    "tel:7202492374"
+                  ],
+                  [
+                    "email",
+                    {},
+                    "text",
+                    "abuse@name.com"
+                  ]
+                ]
+              ]
+            }
+          ]
+        },
+        "registrant": {
+          "name": "Privacy Protection Service",
+          "organization": "Data Protected",
+          "street": "Redacted for Privacy",
+          "city": "Not Disclosed",
+          "state": "N/A",
+          "zip": "N/A",
+          "country": "US",
+          "phone": "REDACTED",
+          "email": "REDACTED (GDPR)"
+        },
+        "admin": {
+          "name": "Privacy Protection Service",
+          "organization": "Data Protected",
+          "street": "Redacted for Privacy",
+          "city": "Not Disclosed",
+          "state": "N/A",
+          "zip": "N/A",
+          "country": "US",
+          "phone": "REDACTED",
+          "email": "REDACTED (GDPR)"
+        },
+        "tech": {
+          "name": "Privacy Protection Service",
+          "organization": "Data Protected",
+          "street": "Redacted for Privacy",
+          "city": "Not Disclosed",
+          "state": "N/A",
+          "zip": "N/A",
+          "country": "US",
+          "phone": "REDACTED",
+          "email": "REDACTED (GDPR)"
+        }
+      },
+      "dates": {
+        "created": "2010-11-25T15:32:54Z",
+        "expires": "2029-11-25T15:32:54Z",
+        "updated": "2020-03-26T06:21:50Z"
+      },
+      "nameservers": [
+        "ADAM.NS.CLOUDFLARE.COM",
+        "YOLANDA.NS.CLOUDFLARE.COM"
+      ],
+      "age": {
+        "days": 5639,
+        "years": "15.5",
+        "label": "15.4 Years"
+      },
+      "trustScore": 85,
+      "raw": {
+        "objectClassName": "domain",
+        "handle": "1627274528_DOMAIN_COM-VRSN",
+        "ldhName": "AHREFS.COM",
+        "links": [
+          {
+            "value": "https://rdap.verisign.com/com/v1/domain/AHREFS.COM",
+            "rel": "self",
+            "href": "https://rdap.verisign.com/com/v1/domain/AHREFS.COM",
+            "type": "application/rdap+json"
+          },
+          {
+            "value": "https://namerdap.systems/domain/AHREFS.COM",
+            "rel": "related",
+            "href": "https://namerdap.systems/domain/AHREFS.COM",
+            "type": "application/rdap+json"
+          }
+        ],
+        "status": [
+          "client transfer prohibited"
+        ],
+        "entities": [
+          {
+            "objectClassName": "entity",
+            "handle": "625",
+            "roles": [
+              "registrar"
+            ],
+            "links": [
+              {
+                "href": "http://www.name.com",
+                "type": "text/html",
+                "value": "https://namerdap.systems/",
+                "rel": "about"
+              }
+            ],
+            "publicIds": [
+              {
+                "type": "IANA Registrar ID",
+                "identifier": "625"
+              }
+            ],
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  "Name.com, Inc."
+                ]
+              ]
+            ],
+            "entities": [
+              {
+                "objectClassName": "entity",
+                "roles": [
+                  "abuse"
+                ],
+                "vcardArray": [
+                  "vcard",
+                  [
+                    [
+                      "version",
+                      {},
+                      "text",
+                      "4.0"
+                    ],
+                    [
+                      "fn",
+                      {},
+                      "text",
+                      ""
+                    ],
+                    [
+                      "tel",
+                      {
+                        "type": "voice"
+                      },
+                      "uri",
+                      "tel:7202492374"
+                    ],
+                    [
+                      "email",
+                      {},
+                      "text",
+                      "abuse@name.com"
+                    ]
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "events": [
+          {
+            "eventAction": "registration",
+            "eventDate": "2010-11-25T15:32:54Z"
+          },
+          {
+            "eventAction": "expiration",
+            "eventDate": "2029-11-25T15:32:54Z"
+          },
+          {
+            "eventAction": "last changed",
+            "eventDate": "2020-03-26T06:21:50Z"
+          },
+          {
+            "eventAction": "last update of RDAP database",
+            "eventDate": "2026-05-05T13:08:05Z"
+          }
+        ],
+        "secureDNS": {
+          "delegationSigned": false
+        },
+        "nameservers": [
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "ADAM.NS.CLOUDFLARE.COM"
+          },
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "YOLANDA.NS.CLOUDFLARE.COM"
+          }
+        ],
+        "rdapConformance": [
+          "rdap_level_0",
+          "icann_rdap_technical_implementation_guide_1",
+          "icann_rdap_response_profile_1"
+        ],
+        "notices": [
+          {
+            "title": "Terms of Service",
+            "description": [
+              "Service subject to Terms of Use."
+            ],
+            "links": [
+              {
+                "href": "https://www.verisign.com/domain-names/registration-data-access-protocol/terms-service/index.xhtml",
+                "type": "text/html",
+                "value": "https://rdap.verisign.com/com/v1/domain/ahrefs.com",
+                "rel": "terms-of-service"
+              }
+            ]
+          },
+          {
+            "title": "Status Codes",
+            "description": [
+              "For more information on domain status codes, please visit https://icann.org/epp"
+            ],
+            "links": [
+              {
+                "href": "https://icann.org/epp",
+                "type": "text/html"
+              }
+            ]
+          },
+          {
+            "title": "RDDS Inaccuracy Complaint Form",
+            "description": [
+              "URL of the ICANN RDDS Inaccuracy Complaint Form: https://icann.org/wicf"
+            ],
+            "links": [
+              {
+                "href": "https://icann.org/wicf",
+                "type": "text/html",
+                "value": "https://rdap.verisign.com/com/v1/domain/ahrefs.com",
+                "rel": "help"
+              }
+            ]
+          }
+        ]
+      },
+      "hosting": {
+        "ip": "172.64.148.115",
+        "provider": "Cloudflare, Inc.",
+        "org": "Cloudflare, Inc.",
+        "country": "Canada",
+        "country_code": "CA",
+        "city": "Toronto",
+        "region": "Ontario"
+      },
+      "tech": {
+        "stack": [
+          "cloudflare",
+          "Cloudflare"
+        ],
+        "cms": "Custom / Not Detected",
+        "theme": "Unknown",
+        "database": "Unknown",
+        "frontend": "Vue.js",
+        "language": "Unknown",
+        "server": "cloudflare",
+        "poweredBy": "Hidden"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": "Google Trust Services",
+        "valid_from": "Mar 26 00:21:03 2026 GMT",
+        "valid_to": "Jun 24 01:20:40 2026 GMT",
+        "protocol": "TLSv1.3",
+        "days_left": 49
+      },
+      "siteMeta": {
+        "title": "Ahrefs—AI Marketing Platform Powered by Big Data",
+        "description": "We help marketers drive visibility across AI search, SEO, content, and social – with the largest AI and search databases online.",
+        "keywords": "",
+        "h1": "Make your business discoverable—in search, AI, and beyond"
+      },
+      "audit_time": "2026-05-05T13:08:12.914Z"
     }
   }
 }
