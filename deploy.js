@@ -9,6 +9,7 @@ const RESET = '\x1b[0m';
 
 const SERVER_IP = "162.243.209.73";
 const USER = "root";
+const PASSWORD = "News@12345@@#dDs";
 const REMOTE_PATH = "/root/google-position-tracker";
 
 console.log(`${BLUE}===========================================${RESET}`);
