@@ -12,12 +12,12 @@ git commit -m "🚀 PRODUCTION DEPLOY: Latest SEO and Sync updates"
 git push origin master
 
 echo.
-echo Step 2: Connecting to server to pull changes...
-echo Please enter the password 'News@12345@@#dDs' when prompted:
-ssh root@162.243.209.73 "cd /root/google-position-tracker && git pull origin master && npm install && cd frontend && npm install && npm run build && pm2 restart all || echo 'PM2 not found, please restart manually'"
+echo Step 2: Connecting to server to pull and rebuild...
+ssh root@162.243.209.73 "cd /var/www/tracker && git stash && git pull origin master && cd backend && npm install && cd ../frontend && npm install && npm run build && pm2 restart tracker-api || echo 'PM2 not found, please restart manually'"
 
 echo.
 echo ===========================================
 echo   DEPLOYMENT PROCESS COMPLETE!
 echo ===========================================
 pause
+
