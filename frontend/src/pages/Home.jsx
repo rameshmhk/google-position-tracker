@@ -25,8 +25,8 @@ const Home = () => {
     <div className="landing-page">
       <Helmet>
         <title>Ranking Anywhere - Professional SEO Ranking & Audit Software</title>
-        <meta name="description" content="All-in-one SEO toolset for rank tracking, site audits, and competitive intelligence. Trusted by leading SEO professionals." />
-        <meta name="keywords" content="seo tracker, rank tracker, google rank, keyword rank, local seo" />
+        <meta name="description" content="Professional Google Location Changer and Rank Tracker. All-in-one SEO toolset for residential proxy searches, site audits, and local packing tracking." />
+        <meta name="keywords" content="google location changer, location changer, seo proxy, residential proxy, vpn for seo, rank tracker, google rank, local seo pack" />
         <script type="application/ld+json">
           {JSON.stringify([
             {
@@ -89,7 +89,7 @@ const Home = () => {
       <Navbar />
       
       {/* HERO SECTION - REVERTED TO ORIGINAL */}
-      <header className="hero" style={{ background: '#1D2B44', padding: '120px 24px', color: '#fff', textAlign: 'center', display: 'block' }}>
+      <header className="hero" style={{ background: '#1D2B44', padding: '60px 24px', color: '#fff', textAlign: 'center', display: 'block' }}>
         <div className="hero-content" style={{ maxWidth: '900px', margin: '0 auto' }}>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
@@ -121,14 +121,14 @@ const Home = () => {
         </div>
       </header>
 
-      {/* CORE INFRASTRUCTURE SECTION */}
-      <section style={{ padding: '100px 24px', background: '#fff' }}>
+       {/* CORE INFRASTRUCTURE SECTION */}
+      <section style={{ padding: '40px 24px', background: '#fff' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
            <div style={{ textAlign: 'center', marginBottom: '80px' }}>
               <div style={{ fontSize: '12px', fontWeight: '900', color: 'var(--accent)', letterSpacing: '3px', marginBottom: '15px' }}>GLOBAL INFRASTRUCTURE</div>
               <h2 style={{ fontSize: '42px', fontWeight: '900', color: '#0f172a', letterSpacing: '-1.5px' }}>Distributed Node Architecture</h2>
            </div>
-
+ 
            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '40px' }}>
               {[
                 { title: 'Anycast Proxy Network', desc: 'Access results via residential hardware clusters in over 190 countries with zero detection.', icon: '🌐' },
@@ -144,9 +144,88 @@ const Home = () => {
            </div>
         </div>
       </section>
+ 
+      {/* NEW SECTION: ADVANCED SEO CAPABILITIES (Keywords: Location Changer, VPN, Proxy) */}
+      <section style={{ padding: '40px 24px', background: '#f8fafc' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', alignItems: 'center' }}>
+            <div>
+               <div style={{ fontSize: '11px', fontWeight: '900', color: 'var(--accent)', letterSpacing: '2px', marginBottom: '20px' }}>NEXT-GEN SEO TOOLS</div>
+               <h2 style={{ fontSize: '40px', fontWeight: '900', color: '#0f172a', lineHeight: '1.2', marginBottom: '25px' }}>
+                 The Ultimate <span style={{color: 'var(--accent)'}}>Location Changer</span> for Search Intelligence
+               </h2>
+               <p style={{ fontSize: '18px', color: '#475569', lineHeight: '1.7', marginBottom: '30px' }}>
+                 Tired of using a <strong>VPN</strong> or slow <strong>proxy</strong> services that Google easily detects? Our <strong>Google location changer</strong> technology operates at the browser level, allowing you to simulate any geographic point on Earth without triggering CAPTCHAs or being blocked.
+               </p>
+               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                  <div style={{ padding: '20px', background: '#fff', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+                    <h4 style={{ fontWeight: '800', marginBottom: '10px' }}>VPN-Free Search</h4>
+                    <p style={{ fontSize: '13px', color: '#64748b' }}>No more server blacklists. Get real results as seen by local users instantly.</p>
+                  </div>
+                  <div style={{ padding: '20px', background: '#fff', borderRadius: '16px', border: '1px solid #e2e8f0' }}>
+                    <h4 style={{ fontWeight: '800', marginBottom: '10px' }}>Residential Proxy</h4>
+                    <p style={{ fontSize: '13px', color: '#64748b' }}>Leverage our private pool of residential nodes for 100% human-like behavior.</p>
+                  </div>
+               </div>
+            </div>
+            <div style={{ position: 'relative' }}>
+               <div style={{ background: 'linear-gradient(135deg, #1D2B44 0%, #0f172a 100%)', padding: '50px', borderRadius: '40px', boxShadow: '0 40px 100px rgba(0,0,0,0.1)' }}>
+                  <div style={{ color: '#fff', fontSize: '14px', marginBottom: '20px' }}>
+                    <span style={{ color: 'var(--accent)' }}>$</span> google_search --location="Gurgaon, India"
+                  </div>
+                  <div style={{ height: '2px', background: 'rgba(255,255,255,0.1)', marginBottom: '20px' }}></div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
+                    {[1,2,3].map(i => (
+                      <div key={i} style={{ height: '12px', background: 'rgba(255,255,255,0.05)', borderRadius: '4px', width: `${100 - (i*15)}%` }}></div>
+                    ))}
+                  </div>
+               </div>
+               <div style={{ position: 'absolute', bottom: '-30px', right: '-30px', background: 'var(--accent)', color: '#fff', padding: '20px 30px', borderRadius: '20px', fontWeight: '900', boxShadow: '0 20px 40px rgba(245, 158, 11, 0.3)' }}>
+                 LOCALE: GGN-IN
+               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* NEW SECTION: SEO DEEP DIVE (600+ Words Content) */}
+      <section style={{ padding: '40px 24px', background: '#fff' }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+           <h2 style={{ fontSize: '36px', fontWeight: '900', color: '#0f172a', marginBottom: '40px', textAlign: 'center' }}>
+             Understanding the Power of a <span style={{color: 'var(--accent)'}}>Google Location Changer</span> in Modern SEO
+           </h2>
+           
+           <div style={{ color: '#475569', fontSize: '17px', lineHeight: '1.8', display: 'flex', flexDirection: 'column', gap: '30px' }}>
+              <p>
+                In today's highly competitive digital landscape, showing up on the first page of Google is no longer just about having good keywords. It's about understanding how your business appears to users across different geographic boundaries. This is where a professional <strong>location changer</strong> becomes an essential tool in your SEO arsenal. Unlike a standard <strong>VPN</strong>, which simply masks your IP address, a dedicated SERP investigator like Ranking Anywhere allows you to inject precise UULE parameters and geographic telemetry into your queries.
+              </p>
+
+              <h3 style={{ color: '#0f172a', fontSize: '24px', fontWeight: '800' }}>The Limitation of Standard VPNs and Proxies</h3>
+              <p>
+                Many SEO beginners rely on a <strong>proxy</strong> or a commercial <strong>VPN</strong> to check their rankings in other cities. However, Google's sophisticated anti-bot algorithms are highly trained to recognize the IP ranges used by these services. When you use a data-center-based <strong>proxy</strong>, Google often serves you "sanitized" or generic results, which do not reflect the actual local pack or organic rankings seen by a real resident of that area. Our platform solves this by utilizing a distributed residential node network that mimics authentic human behavior, ensuring your <strong>google location changer</strong> strategy remains invisible and accurate.
+              </p>
+
+              <div style={{ padding: '40px', background: '#f8fafc', borderRadius: '32px', borderLeft: '6px solid var(--accent)' }}>
+                <h4 style={{ color: '#0f172a', marginBottom: '15px', fontWeight: '800' }}>Why Geo-Targeting Matters More Than Ever</h4>
+                <p>
+                  Google's "Venice" update changed the search game forever by prioritizing local intent for broad queries. If someone searches for "best SEO agency," the results in New York will be vastly different from those in London. To compete globally, you need to see exactly what those local users see. A <strong>location changer</strong> allows you to audit these variations in real-time, helping you adjust your on-page SEO and GMB (Google My Business) strategy for every specific market you target.
+                </p>
+              </div>
+
+              <h3 style={{ color: '#0f172a', fontSize: '24px', fontWeight: '800' }}>Mastering Local Search with Advanced Proxy Intelligence</h3>
+              <p>
+                When you deploy our <strong>residential proxy network</strong>, you aren't just changing your IP; you are adopting a digital identity native to your target city. This enables you to track the "Local 3-Pack" on Google Maps with surgical precision. Whether you are managing SEO for a multi-location franchise or a local service business, having access to an untainted <strong>location changer</strong> ensures that your client reports are backed by verified, real-world data. No more guessing why your rankings look different on your phone versus your client's office - with Ranking Anywhere, everyone sees the same truth.
+              </p>
+
+              <p>
+                Finally, integrating a <strong>Google location changer</strong> into your daily workflow saves hours of manual labor. Instead of manually switching <strong>VPN</strong> servers and clearing cookies for every search, our automated system handles the heavy lifting. You can queue hundreds of keywords across dozens of locations and receive a unified historical rank matrix. This is the difference between an amateur "manual check" and a professional SEO intelligence operation.
+              </p>
+           </div>
+        </div>
+      </section>
 
       {/* DEEP DATA SECTION */}
-      <section style={{ padding: '120px 24px', background: '#0f172a', color: '#fff' }}>
+      <section style={{ padding: '40px 24px', background: '#0f172a', color: '#fff' }}>
          <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', alignItems: 'center', gap: '80px' }}>
             <div style={{ flex: 1 }}>
                <div style={{ fontSize: '12px', fontWeight: '900', color: 'var(--accent)', letterSpacing: '3px', marginBottom: '20px' }}>DATA INTELLIGENCE</div>
@@ -178,7 +257,7 @@ const Home = () => {
       </section>
 
       {/* FINAL CTA SECTION */}
-      <section className="cta-section" style={{ padding: '120px 24px', textAlign: 'center', background: '#fff' }}>
+      <section className="cta-section" style={{ padding: '40px 24px', textAlign: 'center', background: '#fff' }}>
         <h2 style={{ fontSize: '48px', fontWeight: '900', marginBottom: '20px' }}>Ready to outrank the competition?</h2>
         <p style={{ color: '#64748b', fontSize: '18px', marginBottom: '50px' }}>Join the next generation of SEO professionals using high-precision data.</p>
         <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
@@ -188,6 +267,31 @@ const Home = () => {
       </section>
 
       <FAQSection />
+
+      {/* CONTENT ACCESS SECTION */}
+      <section style={{ padding: '20px 24px', background: '#f1f5f9' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', background: '#1D2B44', borderRadius: '40px', padding: '60px', color: '#fff', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '200px', height: '200px', background: 'var(--accent)', borderRadius: '50%', filter: 'blur(100px)', opacity: 0.2 }}></div>
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <h2 style={{ fontSize: '40px', fontWeight: '900', marginBottom: '20px' }}>Access Global Ranking Intelligence</h2>
+            <p style={{ fontSize: '18px', color: '#94a3b8', marginBottom: '40px', maxWidth: '700px', margin: '0 auto 40px auto' }}>
+              Instantly audit keywords, check IP locations, and monitor SERP movements from any city on earth. No VPN or extra proxies required.
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginBottom: '40px' }}>
+               {[
+                 { label: 'Rank Tracker', path: '/free-check' },
+                 { label: 'IP Intelligence', path: '/check-ip' },
+                 { label: 'Whois Audit', path: '/whois' }
+               ].map((item, i) => (
+                 <Link key={i} to={item.path} style={{ padding: '20px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '16px', color: '#fff', textDecoration: 'none', fontWeight: '800', transition: 'all 0.3s ease' }} onMouseOver={e => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'} onMouseOut={e => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}>
+                   {item.label}
+                 </Link>
+               ))}
+            </div>
+            <Link to="/register" style={{ display: 'inline-block', background: 'var(--accent)', color: '#fff', textDecoration: 'none', padding: '18px 45px', borderRadius: '12px', fontWeight: '900', fontSize: '18px', boxShadow: '0 10px 30px rgba(245, 158, 11, 0.3)' }}>Start Full Access Now</Link>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

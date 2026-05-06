@@ -115,20 +115,120 @@ const FAQSection = () => {
       icon: "🔒",
       question: "Is my project data safe with you?",
       answer: "We take your privacy very seriously. All your project details, keyword lists, and business information are stored in a secure, encrypted database. We do not share or sell your data to any third parties. Your ranking intelligence is your competitive advantage, and we make sure it stays that way. Our infrastructure is protected by enterprise-grade SSL security to keep your account safe at all times."
+    },
+    {
+      icon: "⚡",
+      question: "Why should I use the Ranking Anywhere Location Changer?",
+      answer: "The biggest benefit is freedom. Usually, if you want to check rankings in London while sitting in Gurgaon, you have to buy expensive VPNs or residential proxies. Our tool gives you this capability for free. You can check the exact position of any keyword from any corner of the world without actually being there. It's like a 'teleportation' tool for your search browser."
+    },
+    {
+      icon: "💰",
+      question: "Do I need to pay for extra Proxies or VPNs?",
+      answer: "No! Most professional SEO tools require you to connect your own proxy or pay for a VPN service. With Ranking Anywhere, you don't need any of that. Our advanced extension and system do all the work using our internal infrastructure. This saves you hundreds of dollars every month on proxy subscriptions."
+    },
+    {
+      icon: "🎯",
+      question: "What are the 3 formats for checking rankings?",
+      answer: "We provide 3 levels of hyper-local precision: 1. City-based (check any city worldwide), 2. Coordinate-based (use exact Latitude and Longitude for street-level results), and 3. Pin Code / Postal Code (the most accurate way to check local service area rankings). This ensures you see the 'Local 3-Pack' exactly as a neighbor would see it."
+    },
+    {
+      icon: "💻",
+      question: "Will it slow down my computer or system?",
+      answer: "Not at all. Our tool is designed to be lightweight. Instead of running heavy background processes, it uses your browser extension's intelligence to communicate with our cloud nodes. It effectively turns your own system into a powerful SEO workstation without consuming high RAM or CPU."
     }
   ];
 
   return (
-    <section style={{ padding: '80px 24px', background: '#f8fafc' }}>
-      <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <div style={{ fontSize: '11px', fontWeight: '900', color: 'var(--accent)', letterSpacing: '3px', marginBottom: '15px' }}>HELP CENTER</div>
-          <h2 style={{ fontSize: '36px', fontWeight: '900', color: '#0f172a', letterSpacing: '-1.5px' }}>Simple Answers to Common Questions</h2>
+    <section style={{ padding: '30px 24px', background: '#f8fafc' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '40px' }}>
+        <div style={{ position: 'sticky', top: '100px', height: 'fit-content' }}>
+          <div style={{ fontSize: '11px', fontWeight: '900', color: 'var(--accent)', letterSpacing: '3px', marginBottom: '15px' }}>KNOWLEDGE BASE</div>
+          <h2 style={{ fontSize: '48px', fontWeight: '900', color: '#0f172a', letterSpacing: '-2px', lineHeight: '1.1', marginBottom: '20px' }}>
+            Expert Answers for <span style={{color: 'var(--accent)'}}>SEO Professionals</span>
+          </h2>
+          <p style={{ color: '#64748b', fontSize: '18px', lineHeight: '1.6', marginBottom: '30px' }}>
+            Everything you need to know about our <strong>Google Location Changer</strong>, proxy technology, and hyper-local ranking intelligence.
+          </p>
+
+          <div style={{ background: '#fff', padding: '40px', borderRadius: '32px', border: '1px solid #e2e8f0', boxShadow: '0 30px 60px rgba(0,0,0,0.02)' }}>
+             <h4 style={{ fontSize: '24px', fontWeight: '900', marginBottom: '25px', color: '#0f172a', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span style={{ color: 'var(--accent)' }}>★</span> Why choose our tool?
+             </h4>
+             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '25px' }}>
+                <li style={{ fontSize: '15px', color: '#475569', display: 'flex', gap: '15px', lineHeight: '1.6' }}>
+                  <span style={{ color: 'var(--accent)', fontSize: '20px', fontWeight: '900' }}>✔</span> 
+                  <div>
+                    <strong style={{ color: '#0f172a', display: 'block', marginBottom: '4px' }}>Sit at Home Intelligence</strong>
+                    Forget traveling or hiring local teams. Check rankings in any city, country, or even a specific street block without leaving your chair. Our technology teleports your browser's search intent globally.
+                  </div>
+                </li>
+                <li style={{ fontSize: '15px', color: '#475569', display: 'flex', gap: '15px', lineHeight: '1.6' }}>
+                  <span style={{ color: 'var(--accent)', fontSize: '20px', fontWeight: '900' }}>✔</span> 
+                  <div>
+                    <strong style={{ color: '#0f172a', display: 'block', marginBottom: '4px' }}>Zero Infrastructure Costs</strong>
+                    Professional SEO operations spend $500+ monthly on <strong>paid Proxies</strong> and <strong>paid VPNs</strong>. Ranking Anywhere includes a high-speed residential network at no extra cost, saving you thousands of dollars yearly.
+                  </div>
+                </li>
+                <li style={{ fontSize: '15px', color: '#475569', display: 'flex', gap: '15px', lineHeight: '1.6' }}>
+                  <span style={{ color: 'var(--accent)', fontSize: '20px', fontWeight: '900' }}>✔</span> 
+                  <div>
+                    <strong style={{ color: '#0f172a', display: 'block', marginBottom: '4px' }}>3-Tier Precision Formats</strong>
+                    We offer the most versatile auditing modes in the industry: 
+                    <ul style={{ marginTop: '8px', paddingLeft: '15px', fontSize: '13px', display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                      <li>• <strong>Global City:</strong> Broader market analysis.</li>
+                      <li>• <strong>Lat/Long:</strong> Exact street-level coordinates.</li>
+                      <li>• <strong>Pin Code:</strong> Hyper-local postal area tracking.</li>
+                    </ul>
+                  </div>
+                </li>
+                <li style={{ fontSize: '15px', color: '#475569', display: 'flex', gap: '15px', lineHeight: '1.6' }}>
+                  <span style={{ color: 'var(--accent)', fontSize: '20px', fontWeight: '900' }}>✔</span> 
+                  <div>
+                    <strong style={{ color: '#0f172a', display: 'block', marginBottom: '4px' }}>Local-to-Local Authenticity</strong>
+                    Get hyper-accurate results exactly as seen by real local neighbors. Our nodes simulate authentic device fingerprints, bypassing 'sanitized' data center results that typical trackers provide.
+                  </div>
+                </li>
+                <li style={{ fontSize: '15px', color: '#475569', display: 'flex', gap: '15px', lineHeight: '1.6' }}>
+                  <span style={{ color: 'var(--accent)', fontSize: '20px', fontWeight: '900' }}>✔</span> 
+                  <div>
+                    <strong style={{ color: '#0f172a', display: 'block', marginBottom: '4px' }}>Invisible System Extension</strong>
+                    Your system becomes an SEO powerhouse. No heavy software to install - just professional, lightweight intelligence that works with your browser to deliver live, untainted SERP data instantly.
+                  </div>
+                </li>
+             </ul>
+
+             <div style={{ marginTop: '40px', padding: '20px', background: 'rgba(245, 158, 11, 0.05)', borderRadius: '16px', border: '1px dashed rgba(245, 158, 11, 0.3)' }}>
+                <p style={{ fontSize: '13px', color: '#92400e', fontWeight: '700', lineHeight: '1.5' }}>
+                  <span style={{ marginRight: '8px' }}>💡</span> 
+                  <strong>SEO EDGE:</strong> Using our 3-tier formats, you can identify "blind spots" in your local ranking map that generic trackers completely miss.
+                </p>
+             </div>
+          </div>
+
+          <div style={{ padding: '30px', background: 'rgba(245, 158, 11, 0.05)', borderRadius: '24px', border: '1px solid rgba(245, 158, 11, 0.1)' }}>
+             <h4 style={{ fontWeight: '800', marginBottom: '10px' }}>Still have questions?</h4>
+             <p style={{ color: '#64748b', fontSize: '14px', marginBottom: '20px' }}>Our technical support team is ready to help you optimize your tracking strategy.</p>
+             <button style={{ background: '#0f172a', color: '#fff', border: 'none', padding: '12px 25px', borderRadius: '8px', fontWeight: '800', fontSize: '14px', cursor: 'pointer' }}>Contact Expert</button>
+          </div>
         </div>
         <div>
           {faqs.map((f, i) => (
             <FAQItem key={i} index={i} question={f.question} answer={f.answer} icon={f.icon} />
           ))}
+          
+          {/* ADDITIONAL SEO FAQS */}
+          <FAQItem 
+            index={15} 
+            icon="🏢" 
+            question="Can I check 'Local-to-Local' rankings?" 
+            answer="Yes! This is our specialty. You can check how your business ranks for someone standing right next to your office vs someone 2 blocks away. By using our 'Pin Code' or 'Coordinates' method, you get true hyper-local data that broad SEO tools simply can't provide."
+          />
+          <FAQItem 
+            index={16} 
+            icon="🚫" 
+            question="Do I need to clear cookies or use Incognito?" 
+            answer="No. Because we handle the location injection at the system level, Google won't track your personal search history to influence the results. Every search is a 'clean' search, exactly as a first-time visitor in that location would experience it."
+          />
         </div>
       </div>
     </section>
