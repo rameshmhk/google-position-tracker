@@ -10,7 +10,7 @@ const RESET = '\x1b[0m';
 const SERVER_IP = "162.243.209.73";
 const USER = "root";
 const PASSWORD = "News@12345@@#dDs";
-const REMOTE_PATH = "/root/google-position-tracker";
+const REMOTE_PATH = "/var/www/tracker";
 
 console.log(`${BLUE}===========================================${RESET}`);
 console.log(`${YELLOW}   RANKING ANYWHERE - AUTO-DEPLOY ENGINE   ${RESET}`);
@@ -41,9 +41,9 @@ async function startDeploy() {
         const remoteCmds = [
             `cd ${REMOTE_PATH}`,
             'git pull origin master',
-            'npm install',
-            'npm run build',
-            'pm2 restart all || echo "PM2 not found, skipping restart"'
+            'cd frontend && npm install && npm run build',
+            'cd ../backend && npm install',
+            'pm2 restart all'
         ].join(' && ');
 
         const sshCmd = `ssh ${USER}@${SERVER_IP} "${remoteCmds}"`;
