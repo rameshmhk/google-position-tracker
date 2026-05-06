@@ -2,147 +2,236 @@
 <html>
 <head>
   <style>
-    body {
-      width: 320px;
-      padding: 20px;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: #f8fafc;
-      color: #1e293b;
-      margin: 0;
-    }
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid #e2e8f0;
-    }
-    .logo {
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, #3b82f6, #2563eb);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-    }
-    h2 { margin: 0; font-size: 16px; font-weight: 700; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    .status-card {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 20px;
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+    body {
+      width: 380px;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #0a0e1a;
+      color: #e2e8f0;
+      overflow: hidden;
+    }
+
+    /* ═══ HEADER ═══ */
+    .header {
+      background: linear-gradient(135deg, #0f1629 0%, #1a1f3a 100%);
+      padding: 16px 20px;
       display: flex;
       align-items: center;
       gap: 12px;
+      border-bottom: 1px solid rgba(255, 165, 0, 0.15);
     }
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #ef4444;
-      box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+    .logo {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, #ff8c00, #ff6600);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 18px; color: #fff;
+      box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
     }
-    .status-text {
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
+    .header-text h1 { font-size: 15px; font-weight: 700; color: #fff; }
+    .header-text span { font-size: 10px; color: #64748b; letter-spacing: 1px; text-transform: uppercase; }
 
-    .form-group { margin-bottom: 15px; }
-    label { display: block; font-size: 11px; font-weight: 600; color: #64748b; margin-bottom: 5px; text-transform: uppercase; }
-    input[type="text"] {
-      width: 100%;
-      padding: 10px;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      box-sizing: border-box;
-      font-size: 13px;
-      transition: border 0.2s;
+    /* ═══ STATUS BAR ═══ */
+    .status-bar {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 20px;
+      background: rgba(16, 185, 129, 0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
     }
-    input[type="text"]:focus { outline: none; border-color: #3b82f6; }
+    .status-bar.offline { background: rgba(239, 68, 68, 0.06); }
+    .pulse {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+      animation: pulse-ring 2s infinite;
+    }
+    .pulse.offline { background: #ef4444; box-shadow: 0 0 0 0 rgba(239,68,68,0.4); animation: none; }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    .status-label { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
+    .status-label.online { color: #10b981; }
+    .status-label.offline { color: #ef4444; }
 
-    .toggle-group {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 20px;
-      padding-top: 15px;
-      border-top: 1px solid #e2e8f0;
+    /* ═══ LOGIN FORM ═══ */
+    #loginView, #dashView { padding: 20px; }
+    .form-title { font-size: 13px; font-weight: 600; color: #94a3b8; margin-bottom: 16px; }
+    .input-group { margin-bottom: 14px; }
+    .input-group label { display: block; font-size: 10px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+    .input-group input {
+      width: 100%; padding: 11px 14px;
+      background: #111827; border: 1px solid #1e293b; border-radius: 10px;
+      color: #e2e8f0; font-size: 13px; font-family: inherit;
+      transition: border 0.2s, box-shadow 0.2s;
+      outline: none;
     }
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 44px;
-      height: 24px;
-    }
-    .switch input { opacity: 0; width: 0; height: 0; }
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-color: #cbd5e1;
-      transition: .4s;
-      border-radius: 24px;
-    }
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 18px; width: 18px;
-      left: 3px; bottom: 3px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-    }
-    input:checked + .slider { background-color: #3b82f6; }
-    input:checked + .slider:before { transform: translateX(20px); }
+    .input-group input:focus { border-color: #ff8c00; box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1); }
+    .input-group input::placeholder { color: #4b5563; }
 
     .btn-primary {
-      width: 100%;
-      margin-top: 20px;
-      padding: 12px;
-      background: #1e293b;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 13px;
-      cursor: pointer;
-      transition: background 0.2s;
+      width: 100%; padding: 12px;
+      background: linear-gradient(135deg, #ff8c00, #e67300);
+      color: #fff; border: none; border-radius: 10px;
+      font-weight: 700; font-size: 13px; font-family: inherit;
+      cursor: pointer; transition: all 0.2s;
+      letter-spacing: 0.5px;
     }
-    .btn-primary:hover { background: #0f172a; }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255, 140, 0, 0.3); }
+    .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .login-error {
+      display: none; padding: 10px; margin-bottom: 12px;
+      background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2);
+      border-radius: 8px; font-size: 12px; color: #f87171;
+    }
+
+    /* ═══ DASHBOARD ═══ */
+    .stats-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px; margin-bottom: 16px;
+    }
+    .stat-card {
+      background: linear-gradient(135deg, #111827, #1a1f3a);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 14px;
+      text-align: center;
+    }
+    .stat-value { font-size: 26px; font-weight: 800; color: #ff8c00; }
+    .stat-label { font-size: 10px; color: #64748b; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 4px; }
+
+    .stat-card.highlight {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+      border-color: rgba(16, 185, 129, 0.15);
+    }
+    .stat-card.highlight .stat-value { color: #10b981; }
+
+    /* ═══ CURRENT TASK ═══ */
+    .current-task {
+      background: linear-gradient(135deg, #111827, #0f1629);
+      border: 1px solid rgba(255, 140, 0, 0.12);
+      border-radius: 12px; padding: 14px; margin-bottom: 16px;
+    }
+    .task-header { font-size: 10px; color: #64748b; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+    .task-keyword { font-size: 14px; font-weight: 700; color: #fff; }
+    .task-idle { font-size: 12px; color: #4b5563; font-style: italic; }
+
+    /* ═══ USER INFO ═══ */
+    .user-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 20px;
+      background: #0d1117;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    .user-info { display: flex; align-items: center; gap: 10px; }
+    .user-avatar {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 13px; color: #fff;
+    }
+    .user-name { font-size: 12px; font-weight: 600; color: #e2e8f0; }
+    .user-email { font-size: 10px; color: #64748b; }
+
+    .btn-logout {
+      background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2);
+      color: #f87171; font-size: 11px; font-weight: 600;
+      padding: 6px 14px; border-radius: 8px; cursor: pointer;
+      font-family: inherit; transition: all 0.2s;
+    }
+    .btn-logout:hover { background: rgba(239, 68, 68, 0.2); }
+
+    .hidden { display: none !important; }
+
+    /* ═══ LOADING SPINNER ═══ */
+    .spinner {
+      display: inline-block; width: 14px; height: 14px;
+      border: 2px solid rgba(255,255,255,0.2);
+      border-top-color: #fff; border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      vertical-align: middle; margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .version { text-align: center; padding: 8px; font-size: 9px; color: #334155; }
   </style>
 </head>
 <body>
+
+  <!-- HEADER -->
   <div class="header">
-    <div class="logo">R</div>
-    <h2>RankTracker Pro</h2>
+    <div class="logo">▲</div>
+    <div class="header-text">
+      <h1>Ranking Anywhere</h1>
+      <span>Smart Rank Checker v2.0</span>
+    </div>
   </div>
 
-  <div class="status-card">
-    <div id="statusDot" class="dot"></div>
-    <div id="statusText" class="status-text">DISCONNECTED</div>
+  <!-- STATUS BAR -->
+  <div id="statusBar" class="status-bar offline">
+    <div id="statusDot" class="pulse offline"></div>
+    <span id="statusLabel" class="status-label offline">NOT CONNECTED</span>
   </div>
 
-  <div class="form-group">
-    <label>Your Account UserID</label>
-    <input type="text" id="userId" placeholder="Enter ID from Dashboard">
+  <!-- LOGIN VIEW -->
+  <div id="loginView">
+    <p class="form-title">Login with your Ranking Anywhere account</p>
+    <div id="loginError" class="login-error"></div>
+    <div class="input-group">
+      <label>Email Address</label>
+      <input type="email" id="emailInput" placeholder="you@example.com" autocomplete="email">
+    </div>
+    <div class="input-group">
+      <label>Password</label>
+      <input type="password" id="passwordInput" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <button id="loginBtn" class="btn-primary">CONNECT EXTENSION</button>
   </div>
 
-  <div class="toggle-group">
-    <label>Assistant Active</label>
-    <label class="switch">
-      <input type="checkbox" id="activeToggle">
-      <span class="slider"></span>
-    </label>
+  <!-- DASHBOARD VIEW -->
+  <div id="dashView" class="hidden">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div id="statQueue" class="stat-value">0</div>
+        <div class="stat-label">In Queue</div>
+      </div>
+      <div class="stat-card highlight">
+        <div id="statDone" class="stat-value">0</div>
+        <div class="stat-label">Done Today</div>
+      </div>
+      <div class="stat-card">
+        <div id="statProcessing" class="stat-value">0</div>
+        <div class="stat-label">Processing</div>
+      </div>
+      <div class="stat-card">
+        <div id="statDelayed" class="stat-value">0</div>
+        <div class="stat-label">Cooldown</div>
+      </div>
+    </div>
+
+    <div class="current-task">
+      <div class="task-header">▶ Current Task</div>
+      <div id="currentTask" class="task-idle">Waiting for tasks...</div>
+    </div>
   </div>
 
-  <button id="saveBtn" class="btn-primary">SAVE SETTINGS</button>
+  <!-- USER BAR -->
+  <div id="userBar" class="user-bar hidden">
+    <div class="user-info">
+      <div id="userAvatar" class="user-avatar">R</div>
+      <div>
+        <div id="userName" class="user-name">User</div>
+        <div id="userEmail" class="user-email">user@email.com</div>
+      </div>
+    </div>
+    <button id="logoutBtn" class="btn-logout">Logout</button>
+  </div>
+
+  <div class="version">v2.0.0 — Distributed Engine</div>
 
   <script src="popup.js"></script>
 </body>

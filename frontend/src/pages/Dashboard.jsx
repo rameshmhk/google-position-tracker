@@ -19,22 +19,23 @@ const Dashboard = () => {
   const { theme, toggleTheme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [extensionOnline, setExtensionOnline] = useState(false);
+  const [showExtGuide, setShowExtGuide] = useState(false);
+  // Removed taskStatuses state
 
-  /* HIDING EXTENSION STATUS CHECK
   useEffect(() => {
     if (!user?.id) return;
     const checkStatus = async () => {
       try {
-        const res = await fetch(`${API_BASE}/extension/status?userId=${user.id}`);
+        const res = await fetch(`${API_BASE_URL}/api/extension/status?userId=${user.id}`);
         const data = await res.json();
         setExtensionOnline(data.isOnline);
-      } catch (err) { console.error("Extension status check failed", err); }
+      } catch (err) { /* silent */ }
     };
     checkStatus();
-    const timer = setInterval(checkStatus, 15000); // Check every 15s
+    const timer = setInterval(checkStatus, 15000);
     return () => clearInterval(timer);
   }, [user?.id]);
-  */
+
   const [projects, setProjects] = useState([]);
 
   const [selectedId, setSelectedId] = useState(null);
@@ -62,6 +63,7 @@ const Dashboard = () => {
   const [isManualLocationSearch, setIsManualLocationSearch] = useState(false);
   const [expandedKeyIds, setExpandedKeyIds] = useState([]);
   const [visibleCounts, setVisibleCounts] = useState({}); // { keyId: { p: 5, m: 5, map: 5 } }
+
 
 
   const getRankChange = (history, type) => {
@@ -539,24 +541,28 @@ const Dashboard = () => {
         </div>
       )}
 
-      {/* HIDING EXTENSION ASSISTANT BANNER
-      <div style={{ background: 'rgba(29, 43, 68, 0.95)', borderBottom: '1px solid rgba(255,153,0,0.2)', padding: '10px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <span style={{ background: 'var(--accent)', color: '#fff', padding: '2px 8px', borderRadius: '4px', fontSize: '10px', fontWeight: '900' }}>NEW</span>
-          <span style={{ color: '#fff', fontSize: '12px', fontWeight: '600' }}>Want to save API credits? Download the Browser Extension to track rankings for free.</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: extensionOnline ? '#10b981' : '#ef4444', boxShadow: extensionOnline ? '0 0 10px #10b981' : 'none' }}></span>
-             <span style={{ color: extensionOnline ? '#10b981' : '#ef4444', fontSize: '10px', fontWeight: '900', textTransform: 'uppercase' }}>
-               {extensionOnline ? 'Extension Connected' : 'Extension Offline'}
-             </span>
+      {activeProject?.scrapingStrategy === 'extension' && (
+        <div style={{ background: 'linear-gradient(90deg, #1D2B44, #2d3e50)', borderBottom: '1px solid rgba(255,153,0,0.2)', padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <span style={{ background: '#f59e0b', color: '#fff', padding: '3px 10px', borderRadius: '4px', fontSize: '10px', fontWeight: '900', letterSpacing: '0.5px' }}>EXTENSION</span>
+            <span style={{ color: '#cbd5e1', fontSize: '12px', fontWeight: '600' }}>🧩 Ensure your Extension is connected to scan rankings for free.</span>
           </div>
-          <span style={{ color: '#94a3b8', fontSize: '11px' }}>Your User ID: <code style={{ color: '#fff', background: 'rgba(255,255,255,0.1)', padding: '2px 6px', borderRadius: '4px' }}>{user?.id}</code></span>
-          <a href="/extension.zip" download style={{ background: 'var(--accent)', color: '#fff', textDecoration: 'none', padding: '5px 15px', borderRadius: '4px', fontSize: '11px', fontWeight: '900' }}>DOWNLOAD ADD-ON</a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+               <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: extensionOnline ? '#10b981' : '#ef4444', boxShadow: extensionOnline ? '0 0 10px #10b981' : 'none', display: 'inline-block' }}></span>
+               <span style={{ color: extensionOnline ? '#10b981' : '#ef4444', fontSize: '10px', fontWeight: '900', textTransform: 'uppercase' }}>
+                 {extensionOnline ? 'Extension Connected' : 'Extension Disconnected'}
+               </span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <button 
+                onClick={() => setShowExtGuide(true)}
+                style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: '1px solid rgba(255,255,255,0.2)', padding: '6px 16px', borderRadius: '6px', fontSize: '11px', fontWeight: '900', cursor: 'pointer', letterSpacing: '0.5px' }}
+              >📖 SETUP GUIDE</button>
+            </div>
+          </div>
         </div>
-      </div>
-      */}
+      )}
       <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
         <aside className={`sidebar ${isMobileMenuOpen ? 'active' : ''}`} style={{ background: '#1D2B44', borderRight: '1px solid rgba(255,255,255,0.05)', color: '#fff', width: '280px', padding: '24px', display: 'flex', flexDirection: 'column' }}>
           <div className="logo" style={{ color: '#fff', fontSize: '20px', fontWeight: '900', letterSpacing: '-0.8px', marginBottom: '40px', display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -594,7 +600,7 @@ const Dashboard = () => {
               </div>
               <div style={{ flex: 1, overflow: 'hidden' }}>
                 <div style={{ fontSize: '14px', fontWeight: '700', color: '#fff', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>{user?.name || 'Authenticated User'}</div>
-                <button onClick={logout} style={{ background: 'none', border: 'none', color: '#94a3b8', fontSize: '11px', cursor: 'pointer', padding: 0 }}>Logout Node</button>
+                <button onClick={logout} style={{ background: 'none', border: 'none', color: '#94a3b8', fontSize: '11px', cursor: 'pointer', padding: 0 }}>Logout</button>
               </div>
             </div>
           </div>
@@ -621,6 +627,15 @@ const Dashboard = () => {
                     title="Direct Proxy Mode - Click to Manage"
                   >
                     🌐 DIRECT PROXY
+                  </div>
+                )}
+                {activeProject?.scrapingStrategy === 'extension' && (
+                  <div 
+                    onClick={() => navigate('/settings')}
+                    style={{ background: extensionOnline ? 'rgba(139, 92, 246, 0.1)' : 'rgba(239, 68, 68, 0.1)', color: extensionOnline ? '#7c3aed' : '#ef4444', padding: '4px 10px', borderRadius: '100px', fontSize: '9px', fontWeight: '900', display: 'flex', alignItems: 'center', gap: '5px', border: `1px solid ${extensionOnline ? 'rgba(139, 92, 246, 0.2)' : 'rgba(239, 68, 68, 0.2)'}`, cursor: 'pointer' }}
+                    title="Desktop Software Mode - Click to Manage"
+                  >
+                    💻 {extensionOnline ? 'SOFTWARE ACTIVE' : 'SOFTWARE OFFLINE'}
                   </div>
                 )}
 
@@ -702,8 +717,8 @@ const Dashboard = () => {
                                      fontWeight: '900', 
                                      color: k.displayRank === 'Queued (Extension)' ? '#3b82f6' : ((k.rank || k.organic) && (k.rank || k.organic) <= 10 ? '#10b981' : (k.rank || k.organic) ? '#f97316' : '#94a3b8') 
                                    }}>
-                                     {/* HIDING EXTENSION QUEUED TEXT */}
-                                     {((k.rank || k.organic) ? `#${k.rank || k.organic}` : 'DNS')}
+                                     
+                                     {(k.rank || k.organic) ? `#${k.rank || k.organic}` : 'DNS'}
                                    </span>
                                   {(() => {
                                     const { diff, trend } = getRankChange(k.history, 'organic');
@@ -970,6 +985,58 @@ const Dashboard = () => {
                 >
                   SAVE OVERRIDES
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* EXTENSION INSTALLATION GUIDE MODAL */}
+      {showExtGuide && (
+        <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)', zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center' }} onClick={() => setShowExtGuide(false)}>
+          <div onClick={e => e.stopPropagation()} style={{ background: '#fff', borderRadius: '20px', width: '580px', maxHeight: '85vh', overflowY: 'auto', boxShadow: '0 25px 50px rgba(0,0,0,0.3)' }}>
+            <div style={{ padding: '30px 30px 0', borderBottom: '1px solid #f1f5f9' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                <h2 style={{ margin: 0, fontSize: '20px', fontWeight: '900', color: '#1D2B44' }}>💻 Install Desktop Software</h2>
+                <button onClick={() => setShowExtGuide(false)} style={{ background: '#f1f5f9', border: 'none', width: '32px', height: '32px', borderRadius: '50%', fontSize: '16px', cursor: 'pointer' }}>✕</button>
+              </div>
+            </div>
+            <div style={{ padding: '25px 30px 30px' }}>
+              
+              {/* Step 1 */}
+              <div style={{ display: 'flex', gap: '15px', marginBottom: '24px' }}>
+                <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#f59e0b', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '14px', flexShrink: 0 }}>1</div>
+                <div>
+                  <h4 style={{ margin: '0 0 6px', fontSize: '14px', fontWeight: '800', color: '#1e293b' }}>Download Extension</h4>
+                  <p style={{ margin: '0 0 10px', color: '#64748b', fontSize: '13px', lineHeight: '1.5' }}>Download the extension ZIP and extract it to a folder on your computer.</p>
+                  <a href="/extension.zip" download="RankingAnywhere-Extension.zip" style={{ display: 'inline-block', background: '#f59e0b', color: '#fff', padding: '10px 24px', borderRadius: '10px', fontWeight: '800', fontSize: '13px', textDecoration: 'none', boxShadow: '0 4px 12px rgba(245, 158, 11, 0.3)' }}>⬇ Download Extension ZIP</a>
+                </div>
+              </div>               {/* Step 2 */}
+              <div style={{ display: 'flex', gap: '15px', marginBottom: '20px' }}>
+                <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#3b82f6', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '14px', flexShrink: 0 }}>2</div>
+                <div>
+                  <h4 style={{ margin: '0 0 6px', fontSize: '14px', fontWeight: '800', color: '#1e293b' }}>Load Extension</h4>
+                  <p style={{ margin: 0, color: '#64748b', fontSize: '13px', lineHeight: '1.5' }}>
+                    Open <strong>chrome://extensions</strong> → Enable <strong>"Developer Mode"</strong> (top right) → Click <strong>"Load Unpacked"</strong> → Select the extracted folder.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div style={{ display: 'flex', gap: '15px', marginBottom: '20px' }}>
+                <div style={{ width: '36px', height: '36px', borderRadius: '50%', background: '#10b981', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', fontSize: '14px', flexShrink: 0 }}>3</div>
+                <div>
+                  <h4 style={{ margin: '0 0 6px', fontSize: '14px', fontWeight: '800', color: '#1e293b' }}>Connect & Sync</h4>
+                  <p style={{ margin: 0, color: '#64748b', fontSize: '13px', lineHeight: '1.5' }}>
+                    Click the 🧩 icon in your browser → Pin <strong>Ranking Anywhere</strong> → Click the icon and enter your User ID to start syncing rankings!
+                  </p>
+                </div>
+              </div>
+
+              <div style={{ background: '#fffbeb', border: '1px solid #fde68a', borderRadius: '12px', padding: '15px', marginTop: '15px' }}>
+                <p style={{ margin: 0, fontSize: '12px', color: '#92400e', fontWeight: '600' }}>
+                  ✅ <strong>Tip:</strong> Keep your browser open or running in the background. The extension will silently check rankings for your active projects every 1-2 hours.
+                </p>
               </div>
             </div>
           </div>

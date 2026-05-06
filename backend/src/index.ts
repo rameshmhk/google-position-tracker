@@ -984,7 +984,7 @@ app.post('/api/auth/register', async (req: any, res: any) => {
     name,
     email,
     password: hashedPassword,
-    isVerified: false,
+    isVerified: true,  // Auto-verify on local server
     verificationToken,
     createdAt: new Date().toISOString()
   };
@@ -1182,9 +1182,8 @@ app.post('/api/auth/login', async (req: any, res: any) => {
   const user = db.users.find((u: any) => u.email === email);
   if (!user) return res.status(400).json({ error: 'Invalid credentials' });
 
-  if (!user.isVerified && !email.endsWith('@test.com')) {
-    return res.status(403).json({ error: 'Please verify your email address before logging in.' });
-  }
+  // Email verification skipped for local development
+  // if (!user.isVerified) return res.status(403).json({ error: 'Please verify your email.' });
 
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) return res.status(400).json({ error: 'Invalid credentials' });
@@ -2193,16 +2192,15 @@ async function performCheckForKeywords(keywordIds: string[], projectId: string) 
     keywordIds.includes(String(k.id)) && k.status === 'active'
   );
 
-  /* HIDING EXTENSION STRATEGY FOR NOW
   if (project.scrapingStrategy === 'extension') {
-    console.log(`[Extension] Queuing ${keywordsToCheck.length} keywords for browser extension...`);
+    console.log(`🧩 [Extension] Queuing ${keywordsToCheck.length} keywords for browser extension...`);
 
     if (!db.extensionTasks) db.extensionTasks = [];
 
     keywordsToCheck.forEach((kw: any) => {
       // Remove any existing pending tasks for this keyword to avoid duplicates
       db.extensionTasks = db.extensionTasks.filter((t: any) =>
-        !(String(t.keywordId) === String(kw.id) && t.status === 'pending')
+        !(String(t.keywordId) === String(kw.id) && (t.status === 'pending' || t.status === 'processing'))
       );
 
       db.extensionTasks.push({
@@ -2215,18 +2213,17 @@ async function performCheckForKeywords(keywordIds: string[], projectId: string) 
         location: kw.location || project.defaultLocation || '',
         targetDomain: project.url,
         status: 'pending',
-        createdAt: Date.now()
+        createdAt: Date.now(),
+        retries: 0
       });
 
-      // Update keyword status in main DB
       kw.lastChecked = 'Queued (Extension)';
-      kw.displayRank = 'Queued (Extension)';
+      kw.displayRank = '⏳ Queued';
     });
 
     persistDB();
     return { success: true, message: `${keywordsToCheck.length} keywords queued for extension.` };
   }
-  */
 
   // --- OLD API LOGIC (FALLBACK) ---
   const resolveProxy = (settings: any) => {
@@ -2556,64 +2553,66 @@ setInterval(async () => {
   }
 }, 60000);
 
-/* HIDING EXTENSION ENDPOINTS FOR NOW
-// --- EXTENSION ENDPOINTS ---
-const extensionConnections = new Map<string, number>(); // userId -> lastSeen timestamp
+// ============================================================
+// --- EXTENSION DISTRIBUTED SCRAPING SYSTEM ---
+// ============================================================
+const extensionConnections = new Map<string, number>();
 
+// Extension Auth — Login with email/password, returns userId for extension
+app.post('/api/extension/auth', async (req: any, res: any) => {
+  const { email, password } = req.body;
+  if (!email || !password) return res.status(400).json({ error: 'Email and password required' });
+
+  const db = getDB();
+  const user = db.users?.find((u: any) => u.email?.toLowerCase() === email.toLowerCase());
+  if (!user) return res.status(401).json({ error: 'Account not found' });
+
+  const bcrypt = require('bcryptjs');
+  const valid = await bcrypt.compare(password, user.password);
+  if (!valid) return res.status(401).json({ error: 'Invalid password' });
+
+  console.log(`🧩 [Extension] User authenticated: ${user.email}`);
+  res.json({
+    success: true,
+    userId: user.id,
+    name: user.name || user.email.split('@')[0],
+    email: user.email
+  });
+});
+
+// Extension Heartbeat — Track online status
+app.post('/api/extension/ping', (req: any, res: any) => {
+  const { userId } = req.body;
+  if (!userId) return res.status(400).json({ error: 'Missing userId' });
+
+  extensionConnections.set(String(userId).trim(), Date.now());
+  
+  const db = getDB();
+  const pending = (db.extensionTasks || []).filter((t: any) =>
+    String(t.userId) === String(userId) && (t.status === 'pending' || t.status === 'processing')
+  ).length;
+
+  res.json({ success: true, pendingTasks: pending, timestamp: Date.now() });
+});
+
+// Extension Status — Check if user's extension is online
 app.get('/api/extension/status', (req: any, res: any) => {
   const { userId } = req.query;
   const lastSeen = extensionConnections.get(String(userId)) || 0;
-  // Professional Buffer: Mark online if seen in last 90 seconds (handles browser throttling)
   const isOnline = (Date.now() - lastSeen) < 90000;
-  res.json({ isOnline });
+  res.json({ isOnline, lastSeen });
 });
 
+// Extension Tasks — Serve next pending task
 app.get('/api/extension/tasks', (req: any, res: any) => {
   try {
     const { userId } = req.query;
-    if (!userId) return res.status(400).json({ error: "Missing userId" });
+    if (!userId) return res.status(400).json({ error: 'Missing userId' });
 
     const db = getDB();
-    if (!db.extensionTasks) db.extensionTasks = [];
+    if (!db.extensionTasks) { db.extensionTasks = []; persistDB(); }
 
-    // Find the next pending task for this user
-    const nextTask = db.extensionTasks.find((t: any) =>
-      String(t.userId) === String(userId) && t.status === 'pending'
-    );
-
-    if (nextTask) {
-      console.log(`[Extension] Serving task ${nextTask.id} to user ${userId}`);
-      res.json({ task: nextTask });
-    } else {
-      res.json({ task: null });
-    }
-  } catch (err) {
-    res.status(500).json({ error: "Internal error" });
-  }
-});
-
-// Dedicated Ping endpoint for connection stability
-app.post('/api/extension/ping', (req: any, res: any) => {
-  const { userId } = req.body;
-  console.log(`[Ping] Received from user: ${userId}`);
-  if (userId) {
-    extensionConnections.set(String(userId).trim(), Date.now());
-    return res.json({ success: true, timestamp: Date.now() });
-  }
-  res.status(400).json({ error: "Missing userId" });
-});
-
-app.get('/api/extension/tasks', (req: any, res: any) => {
-  try {
-    const { userId } = req.query;
-    const db = getDB();
-
-    if (!db.extensionTasks) {
-      db.extensionTasks = [];
-      persistDB();
-    }
-
-    // Find the first pending task for this user that isn't delayed
+    // Find first pending task that isn't delayed by CAPTCHA cooldown
     const taskIdx = db.extensionTasks.findIndex((t: any) =>
       String(t.userId) === String(userId) &&
       t.status === 'pending' &&
@@ -2627,61 +2626,168 @@ app.get('/api/extension/tasks', (req: any, res: any) => {
     task.startedAt = Date.now();
     persistDB();
 
-    console.log(`[Tasks] Serving task ${task.id} to user ${userId}`);
+    console.log(`🧩 [Extension] Task → ${task.keyword} (${task.id}) → user ${userId}`);
     res.json({ task });
   } catch (err: any) {
-    console.error("[Extension Tasks Error]:", err);
-    res.status(500).json({ error: "Internal Server Error", details: err.message });
+    console.error('[Extension Tasks Error]:', err);
+    res.status(500).json({ error: 'Internal error' });
   }
 });
 
+// Extension Submit — Receive rank results
 app.post('/api/extension/submit', (req: any, res: any) => {
-  const { taskId, rank, foundUrl, status } = req.body;
+  const { taskId, organic, maps, foundUrl, foundPage, status } = req.body;
   const db = getDB();
+  if (!db.extensionTasks) db.extensionTasks = [];
 
   const taskIdx = db.extensionTasks.findIndex((t: any) => String(t.id) === String(taskId));
-  if (taskIdx === -1) return res.status(404).json({ error: "Task not found" });
+  if (taskIdx === -1) return res.status(404).json({ error: 'Task not found' });
 
   const task = db.extensionTasks[taskIdx];
 
-  if (status === 'CAPTCHA_BLOCKED') {
-    // If captcha found, set back to pending but with a delay
+  // CAPTCHA: Reschedule with 3-minute delay, max 3 retries
+  if (status === 'CAPTCHA') {
+    task.retries = (task.retries || 0) + 1;
+    if (task.retries >= 3) {
+      // Too many CAPTCHAs — mark failed
+      db.extensionTasks.splice(taskIdx, 1);
+      const kw = db.keywords.find((k: any) => String(k.id) === String(task.keywordId));
+      if (kw) { kw.displayRank = '⚠️ CAPTCHA'; kw.lastChecked = new Date().toISOString().split('T')[0]; }
+      persistDB();
+      console.log(`❌ [Extension] Task ${task.keyword} failed after 3 CAPTCHAs`);
+      return res.json({ success: true, message: 'Task dropped after max retries' });
+    }
     task.status = 'pending';
-    task.retryAfter = Date.now() + (5 * 60 * 1000); // 5 minutes delay
+    task.retryAfter = Date.now() + (3 * 60 * 1000);
     persistDB();
-    return res.json({ success: true, message: "Task rescheduled due to captcha" });
+    console.log(`⏸️ [Extension] CAPTCHA on "${task.keyword}" — retry ${task.retries}/3 in 3 min`);
+    return res.json({ success: true, message: 'Rescheduled (CAPTCHA cooldown)' });
   }
 
-  // Update the keyword in the main database
+  // SUCCESS: Update keyword with real rank data
   const keyword = db.keywords.find((k: any) => String(k.id) === String(task.keywordId));
   if (keyword) {
-    const today = new Date().toISOString().split('T')[0];
-    keyword.organic = rank;
-    keyword.foundUrl = foundUrl;
-    keyword.lastChecked = today;
-    keyword.source = 'Extension';
-    keyword.displayRank = formatFullRank(rank, keyword.maps || 0);
+    const todayStr = new Date().toISOString().split('T')[0];
+    const organicRank = Number(organic) || 0;
+    const mapsRank = Number(maps) || 0;
 
+    keyword.organic = organicRank;
+    keyword.maps = mapsRank;
+    keyword.foundUrl = foundUrl || '';
+    keyword.lastChecked = todayStr;
+    keyword.source = foundPage ? `Extension (P${foundPage})` : 'Extension';
+    keyword.displayRank = formatFullRank(organicRank, mapsRank);
+
+    // History tracking
     if (!keyword.history) keyword.history = [];
-    const existing = keyword.history.findIndex((h: any) => h.date === today);
-    const snap = { date: today, organic: rank, maps: keyword.maps || 0 };
+    const existing = keyword.history.findIndex((h: any) => h.date === todayStr);
+    const snap = { date: todayStr, organic: organicRank, maps: mapsRank };
     if (existing !== -1) keyword.history[existing] = snap;
     else keyword.history.push(snap);
+    if (keyword.history.length > 30) keyword.history = keyword.history.slice(-30);
+
+    console.log(`✅ [Extension] ${task.keyword} → Organic: #${organicRank} | Maps: #${mapsRank} (Page ${foundPage || '?'})`);
   }
 
-  // Remove task from queue
+  // Remove completed task
   db.extensionTasks.splice(taskIdx, 1);
   persistDB();
-
   res.json({ success: true });
 });
-*/
+
+// Extension Stats — For popup dashboard
+app.get('/api/extension/stats', (req: any, res: any) => {
+  const { userId } = req.query;
+  if (!userId) return res.status(400).json({ error: 'Missing userId' });
+
+  const db = getDB();
+  const tasks = db.extensionTasks || [];
+  const userTasks = tasks.filter((t: any) => String(t.userId) === String(userId));
+
+  const pending = userTasks.filter((t: any) => t.status === 'pending').length;
+  const processing = userTasks.filter((t: any) => t.status === 'processing').length;
+  const delayed = userTasks.filter((t: any) => t.retryAfter && t.retryAfter > Date.now()).length;
+
+  // Count today's completed checks from keywords
+  const todayStr = new Date().toISOString().split('T')[0];
+  const userProjects = (db.projects || []).filter((p: any) => String(p.userId) === String(userId));
+  const projectIds = userProjects.map((p: any) => String(p.id));
+  const todayChecks = (db.keywords || []).filter((k: any) =>
+    projectIds.includes(String(k.projectId)) &&
+    k.lastChecked === todayStr &&
+    k.source?.includes('Extension')
+  ).length;
+
+  res.json({
+    pending,
+    processing,
+    delayed,
+    completedToday: todayChecks,
+    queueTotal: pending + processing
+  });
+});
+
+// Extension Project Tasks — Returns per-keyword task status for dashboard
+app.get('/api/extension/project-tasks', (req: any, res: any) => {
+  const { projectId } = req.query;
+  if (!projectId) return res.status(400).json({ error: 'Missing projectId' });
+
+  const db = getDB();
+  const tasks = (db.extensionTasks || []).filter((t: any) => String(t.projectId) === String(projectId));
+
+  // Build a map: keywordId -> status
+  const statusMap: Record<string, { status: string; keyword: string; retryAfter?: number }> = {};
+  
+  for (const task of tasks) {
+    const kid = String(task.keywordId);
+    const isDelayed = task.retryAfter && task.retryAfter > Date.now();
+    
+    statusMap[kid] = {
+      status: isDelayed ? 'captcha_wait' : task.status || 'pending',
+      keyword: task.keyword || ''
+    };
+    
+    if (isDelayed) {
+      statusMap[kid].retryAfter = task.retryAfter;
+    }
+  }
+
+  const totalPending = tasks.filter((t: any) => t.status === 'pending').length;
+  const totalProcessing = tasks.filter((t: any) => t.status === 'processing').length;
+  const totalDelayed = tasks.filter((t: any) => t.retryAfter && t.retryAfter > Date.now()).length;
+
+  res.json({
+    statusMap,
+    summary: {
+      pending: totalPending,
+      processing: totalProcessing,
+      delayed: totalDelayed,
+      total: tasks.length
+    }
+  });
+});
+
+// Cleanup stale processing tasks (stuck > 2 min)
+setInterval(() => {
+  const db = getDB();
+  if (!db.extensionTasks) return;
+  let changed = false;
+  db.extensionTasks.forEach((t: any) => {
+    if (t.status === 'processing' && t.startedAt && (Date.now() - t.startedAt) > 120000) {
+      t.status = 'pending';
+      delete t.startedAt;
+      changed = true;
+      console.log(`🔄 [Extension] Recovered stale task: ${t.keyword}`);
+    }
+  });
+  if (changed) persistDB();
+}, 30000);
+
+// Final fallback for 404s (must be last)
+app.use((req: any, res: any) => {
+  res.status(404).json({ error: 'Route not found', method: req.method, url: req.url });
+});
 
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`✅ Server running on http://localhost:${PORT}`);
-});
-
-// Final fallback for 404s (must be last)
-app.use((req, res) => {
-  res.status(404).json({ error: 'Route not found', method: req.method, url: req.url });
 });

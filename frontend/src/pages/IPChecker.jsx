@@ -37,6 +37,7 @@ const IPChecker = () => {
   
   const [preciseLocation, setPreciseLocation] = useState(null);
   const [fetchingPrecise, setFetchingPrecise] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   // BRAND COLORS
   const BRAND_ORANGE = '#f59e0b';
@@ -64,31 +65,47 @@ const IPChecker = () => {
     setSystemInfo({ os, browser });
   };
 
-  const fetchIpInfo = async () => {
+  const fetchIpInfo = async (manualIp = '') => {
     setLoading(true);
     try {
-      const res = await fetch('https://api.ip.sb/geoip');
+      const url = manualIp 
+        ? `https://api.ip.sb/geoip/${manualIp}` 
+        : 'https://api.ip.sb/geoip';
+      
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("Invalid IP or API limit reached");
       const data = await res.json();
       
       setIpInfo({
         ip: data.ip,
-        city: data.city,
-        region: data.region,
-        country_name: data.country,
-        org: data.isp || data.organization || 'Tripleplay Broadband',
-        asn: data.asn_organization || data.asn || 'AS132453',
-        postal: data.postal_code || data.zip || '122002',
+        city: data.city || 'Unknown',
+        region: data.region || 'Unknown',
+        country_name: data.country || 'Unknown',
+        org: data.isp || data.organization || 'Provider N/A',
+        asn: data.asn_organization || data.asn || 'N/A',
+        postal: data.postal_code || data.zip || 'N/A',
         latitude: data.latitude,
         longitude: data.longitude,
         timezone: data.timezone,
-        type: 'Residential',
+        type: manualIp ? 'Manual Query' : 'Residential',
         hostname: data.hostname || 'N/A'
       });
     } catch (err) {
       console.error("IP Fetch failed", err);
+      // Fallback if specific IP fails
+      if (manualIp) alert("Could not fetch info for this IP. Please check the format.");
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!searchQuery.trim()) {
+      fetchIpInfo(); // Reset to current
+      return;
+    }
+    fetchIpInfo(searchQuery.trim());
   };
 
   const runSpeedTest = async () => {
@@ -298,6 +315,41 @@ const IPChecker = () => {
            <p style={{ color: '#94a3b8', fontSize: '1.2rem', maxWidth: '700px', margin: '0 auto', fontWeight: '500' }}>
               High-precision <strong style={{color: BRAND_ORANGE}}>Internet Speed Test</strong> and Technical Audit for Global Network Intelligence and SEO Location Verification.
            </p>
+        </div>
+        
+        {/* SEARCH BAR SECTION */}
+        <div style={{ maxWidth: '800px', margin: '0 auto 60px', position: 'relative' }}>
+          <form onSubmit={handleSearch} style={{ display: 'flex', gap: '15px', background: 'rgba(255,255,255,0.03)', padding: '10px', borderRadius: '24px', border: '1px solid rgba(255,255,255,0.08)', backdropFilter: 'blur(10px)', boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}>
+            <div style={{ flex: 1, position: 'relative', display: 'flex', alignItems: 'center', paddingLeft: '20px' }}>
+              <span style={{ fontSize: '20px', marginRight: '15px', opacity: 0.5 }}>🔍</span>
+              <input 
+                type="text" 
+                placeholder="Search any IP address (e.g. 8.8.8.8)" 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                style={{ width: '100%', background: 'transparent', border: 'none', color: '#fff', fontSize: '1.1rem', fontWeight: '500', outline: 'none', padding: '15px 0' }}
+              />
+            </div>
+            <button 
+              type="submit"
+              style={{ background: BRAND_ORANGE, color: '#000', border: 'none', padding: '0 40px', borderRadius: '16px', fontWeight: '900', fontSize: '14px', cursor: 'pointer', transition: '0.3s', boxShadow: `0 0 20px ${BRAND_ORANGE}44` }}
+              onMouseOver={(e) => e.target.style.transform = 'scale(1.02)'}
+              onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
+            >
+              CHECK IP
+            </button>
+          </form>
+          
+          <div style={{ marginTop: '15px', display: 'flex', justifyContent: 'center', gap: '20px' }}>
+            <button onClick={() => { setSearchQuery(''); fetchIpInfo(); }} style={{ background: 'transparent', border: 'none', color: BRAND_GOLD, fontSize: '12px', fontWeight: '800', cursor: 'pointer', textDecoration: 'underline', opacity: 0.8 }}>
+              ← Reset to My System IP
+            </button>
+            <div style={{ color: '#64748b', fontSize: '12px', fontWeight: '600' }}>
+               Status: <span style={{ color: ipInfo?.type === 'Manual Query' ? BRAND_ORANGE : '#10b981' }}>
+                 {ipInfo?.type === 'Manual Query' ? 'Viewing Custom IP' : 'Viewing Your Real IP'}
+               </span>
+            </div>
+          </div>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '40px', marginBottom: '60px' }}>

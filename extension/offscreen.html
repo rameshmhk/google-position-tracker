@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>RankTracker Pro Hidden Scraper</title>
-  <script src="offscreen.js"></script>
-</head>
+<head><title>Offscreen</title></head>
 <body>
-  <div id="container"></div>
+  <!-- Hidden iframe for Google scraping — uses real user session -->
+  <iframe id="scrapeFrame" sandbox="allow-same-origin allow-scripts" style="width:1024px;height:768px;position:absolute;left:-9999px;"></iframe>
+  <script src="offscreen.js"></script>
 </body>
 </html>

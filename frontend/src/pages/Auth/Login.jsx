@@ -108,21 +108,8 @@ const Login = () => {
               {loading ? 'Processing...' : 'Access Dashboard'}
             </button>
 
-            <div style={{ display: 'flex', alignItems: 'center', margin: '30px 0', gap: '15px', color: '#94a3b8', fontSize: '12px', fontWeight: '800' }}>
-              <div style={{ flex: 1, height: '1px', background: '#e1e1e1' }}></div>
-              <span>OR AGENT ACCESS</span>
-              <div style={{ flex: 1, height: '1px', background: '#e1e1e1' }}></div>
-            </div>
 
-            <div style={{display:'flex', justifyContent:'center'}}>
-              <GoogleLogin
-                onSuccess={handleGoogleSuccess}
-                onError={() => setError('Google Auth Failed')}
-                theme="outline"
-                shape="rectangular"
-                width="100%"
-              />
-            </div>
+            {/* Google Login removed for local development */}
             
             <div className="auth-footer" style={{ marginTop: '40px', textAlign: 'center', fontSize: '14px', color: '#64748b' }}>
               New to Ranking Anywhere?{' '}<Link to="/register" style={{ color: 'var(--primary)', fontWeight: '700' }}>Create an account</Link>

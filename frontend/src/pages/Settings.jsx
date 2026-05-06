@@ -686,7 +686,6 @@ const Settings = () => {
                              <div style={{ fontSize: '24px', marginBottom: '10px' }}>🚀</div>
                              <div style={{ fontWeight: '800', fontSize: '13px' }}>API Stream</div>
                            </div>
-                           {/* 
                            <div 
                              onClick={() => setTmpProjStrategy({...tmpProjStrategy, scrapingStrategy: 'extension'})}
                              style={{ flex: 1, padding: '20px', borderRadius: '16px', border: '2px solid', borderColor: tmpProjStrategy.scrapingStrategy === 'extension' ? 'var(--accent)' : '#e2e8f0', background: tmpProjStrategy.scrapingStrategy === 'extension' ? 'rgba(255, 153, 0, 0.05)' : '#fff', cursor: 'pointer', textAlign: 'center' }}
@@ -694,7 +693,6 @@ const Settings = () => {
                              <div style={{ fontSize: '24px', marginBottom: '10px' }}>🧩</div>
                              <div style={{ fontWeight: '800', fontSize: '13px' }}>Extension Hub</div>
                            </div>
-                           */}
                            <div 
                              onClick={() => setTmpProjStrategy({...tmpProjStrategy, scrapingStrategy: 'direct_proxy'})}
                              style={{ flex: 1, padding: '20px', borderRadius: '16px', border: '2px solid', borderColor: tmpProjStrategy.scrapingStrategy === 'direct_proxy' ? 'var(--accent)' : '#e2e8f0', background: tmpProjStrategy.scrapingStrategy === 'direct_proxy' ? 'rgba(255, 153, 0, 0.05)' : '#fff', cursor: 'pointer', textAlign: 'center' }}
@@ -704,15 +702,13 @@ const Settings = () => {
                            </div>
                          </div>
 
-                         {/* 
                          {tmpProjStrategy.scrapingStrategy === 'extension' && (
                             <div style={{ marginTop: '20px', padding: '15px', background: 'rgba(16, 185, 129, 0.05)', borderRadius: '12px', border: '1px solid rgba(16, 185, 129, 0.1)', animation: 'fadeIn 0.3s ease-out' }}>
                                <p style={{ margin: 0, fontSize: '12px', color: '#059669', fontWeight: '600' }}>
-                                 🧩 <b>Extension Hub Active:</b> Zero API costs. This project will use your local browser and IP address for the highest possible accuracy. Make sure your extension is "Connected" on the dashboard.
+                                 🧩 <b>Extension Hub Active:</b> Zero API costs. This project will use your browser extension for the highest possible accuracy. Make sure Chrome Extension is installed and connected.
                                </p>
                             </div>
                           )}
-                          */}
 
                          {tmpProjStrategy.scrapingStrategy === 'api_only' && (
                             <div style={{ marginTop: '20px', animation: 'fadeIn 0.3s ease-out' }}>
