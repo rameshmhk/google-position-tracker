@@ -74,7 +74,7 @@ const Footer = () => {
             <div className="footer-section">
                <h4 style={{ fontSize: '12px', fontWeight: '900', color: '#fff', marginBottom: '30px', letterSpacing: '1px', textTransform: 'uppercase' }}>Resources</h4>
                <ul style={{ listStyle: 'none', padding: 0, display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                  <li><Link to="/guide" className="footer-link">Knowledge Base</Link></li>
+                  <li><Link to="/guide" className="footer-link">Master Guide</Link></li>
                   <li><Link to="/how-to-use" className="footer-link">Workflow Guide</Link></li>
                   <li><Link to="/contact" className="footer-link">Priority Support</Link></li>
                   <li><Link to="/terms" className="footer-link">Privacy Policy</Link></li>
