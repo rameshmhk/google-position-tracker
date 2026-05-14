@@ -1,0 +1,4 @@
+INSERT INTO AdClick (id, websiteUrl, ipAddress, userAgent, deviceType, browser, os, source, campaignId, gclid, isSuspicious, suspicionReason, formInteracted, timeOnSite, pageLoadTime, isp, city, country, lat, lon, pagesVisited, exitPage, actions, clickedAt) 
+VALUES 
+('seed-1', 'demo', '114.143.195.1', 'Mozilla/5.0 (Linux; Android 13)', 'Mobile', 'Chrome', 'Android', 'google_ads', 'mumbai-camp', 'gclid-bouncer', 0, NULL, 0, 4, 2200, 'Reliance Jio', 'Mumbai', 'India', 19.0760, 72.8777, '["/"]', '/', '["Landed on Home"]', CURRENT_TIMESTAMP),
+('seed-2', 'demo', '106.192.0.1', 'Mozilla/5.0 (Windows NT 10.0)', 'Desktop', 'Chrome', 'Windows', 'google_ads', 'delhi-camp', 'gclid-lead', 0, NULL, 1, 210, 850, 'Airtel India', 'Delhi', 'India', 28.6139, 77.2090, '["/", "/services", "/contact"]', '/contact', '["Landed on Home", "Visited Services", "Clicked WhatsApp", "Submitted Form"]', CURRENT_TIMESTAMP);

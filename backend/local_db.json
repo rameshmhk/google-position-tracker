@@ -1,0 +1,6415 @@
+{
+  "users": [
+    {
+      "id": "1776349431674",
+      "name": "Test User",
+      "email": "test@example.com",
+      "password": "$2b$10$07TQPfcnv1/4VMP6YAQmpOVCn4MpRu.M4ohq36jvC9IXvrGAAg/em",
+      "createdAt": "2026-04-16T14:23:51.674Z",
+      "isVerified": true,
+      "verificationToken": null
+    },
+    {
+      "id": "1776349705175",
+      "name": "RAmesh",
+      "email": "rameshmjk@gmail.com",
+      "password": "$2b$10$sNGepIovEAjIS67wHfl4aee1i.2bp3cz67SpgumkgAVAo79JOJsCi",
+      "createdAt": "2026-04-16T14:28:25.175Z",
+      "isVerified": true,
+      "verificationToken": null,
+      "resetToken": null,
+      "resetTokenExpiry": null
+    },
+    {
+      "id": "111499858881808739149",
+      "name": "Ramesh Kumar",
+      "email": "rameshwebseo@gmail.com",
+      "password": "",
+      "isVerified": true,
+      "verificationToken": null,
+      "picture": "https://lh3.googleusercontent.com/a/ACg8ocLXJI9opFjvVb52yhbhLOQFIyjXj5RumhauZ546ZXoDK73aU-gR=s96-c",
+      "createdAt": "2026-04-22T13:08:33.893Z",
+      "resetToken": "8f0whyocy2szrzk94n8w2e",
+      "resetTokenExpiry": 1778142703629
+    },
+    {
+      "id": "1776995697246",
+      "name": "sssdsda",
+      "email": "rameshmjkk@gmail.com",
+      "password": "$2b$10$wy38lJ5YFw725FzUxemfbuQVZWJiuOwHcq9ZafizoNjre4PBrhPe6",
+      "isVerified": false,
+      "verificationToken": "fa5zueatv4v5s1mw92hhg",
+      "createdAt": "2026-04-24T01:54:57.246Z"
+    },
+    {
+      "id": "1777540553932",
+      "name": "dddd",
+      "email": "mehruramg@gmail.com",
+      "password": "$2b$10$1Ylmnx5J2GVly8Bvb66l0u/me.DpBjXo1JZaRje.xRrzodhgDiy9m",
+      "isVerified": true,
+      "verificationToken": null,
+      "createdAt": "2026-04-30T09:15:53.932Z",
+      "resetToken": null,
+      "resetTokenExpiry": null
+    },
+    {
+      "id": "1777618199379",
+      "name": "Test Agent",
+      "email": "test@test.com",
+      "password": "$2b$10$4uDVwA25QLWub1Emj.MKGuOkbAfq/u1B2x0I/J0iziJDCroFFN1Ey",
+      "isVerified": false,
+      "verificationToken": "r0shu8cbqejvaub4q108ra",
+      "createdAt": "2026-05-01T06:49:59.380Z"
+    },
+    {
+      "id": "1777696349201",
+      "name": "Agent Tester",
+      "email": "agent_tester@test.com",
+      "password": "$2b$10$lMoHFcVjQuPmwqImRfQGXOzRKyzrNp3xaJtaiQOkRoRg6Q0QEZV1S",
+      "isVerified": false,
+      "verificationToken": "8796a4md9vw7mhiopoecmb",
+      "createdAt": "2026-05-02T04:32:29.201Z"
+    },
+    {
+      "id": "1777696411274",
+      "name": "Agent Tester 2",
+      "email": "agent_tester2@test.com",
+      "password": "$2b$10$dNQSbSOS2C2KJsWregsxhuMutvNmjpUYvacs5WMdRc.l.EmHKCPY.",
+      "isVerified": false,
+      "verificationToken": "bymzkm8xtr5oce20psw3z",
+      "createdAt": "2026-05-02T04:33:31.274Z"
+    },
+    {
+      "id": "1777696582100",
+      "name": "Agent Tester",
+      "email": "agent_tester5@test.com",
+      "password": "$2b$10$whrU6QhljbKlkBZgU8QAq.7Z1jKytRO9DxtKtJTzaxi6BW80ceBDu",
+      "isVerified": false,
+      "verificationToken": "yr90wwmxz2aybhgvcwrdad",
+      "createdAt": "2026-05-02T04:36:22.100Z"
+    },
+    {
+      "id": "1777696899575",
+      "name": "Agent Master",
+      "email": "master_tester@test.com",
+      "password": "$2b$10$acymIMYpAXr/pFBTLk6PI.UD/3GvtxJdTLq1TmnFE755AsOyJR22i",
+      "isVerified": false,
+      "verificationToken": "rvj0cj2wc8cb2e8ed1vdo",
+      "createdAt": "2026-05-02T04:41:39.575Z"
+    },
+    {
+      "id": "1778141416727",
+      "name": "Local Admin",
+      "email": "admin@local.com",
+      "password": "$2b$10$Qo.z3Tzd3SCKSfQ1lwjzyeTd9lregFsFAhgDbC0oXjEDQ/9J3r9Jm",
+      "isVerified": true,
+      "createdAt": "2026-05-07T08:10:16.727Z",
+      "verificationToken": null,
+      "picture": "http://localhost:5173/uploads/profile-1778166556956-732439232.jpg"
+    }
+  ],
+  "projects": [
+    {
+      "id": "1776059828049",
+      "name": "Costumesinaustralia.com.au",
+      "url": "Costumesinaustralia.com.au",
+      "targetRegion": "in",
+      "businessName": "Costumesinaustralia",
+      "serperApiKey": "",
+      "status": "paused",
+      "schedule": "instant",
+      "lastCheck": 1776867316745,
+      "defaultLocation": "Mumba",
+      "scrapingStrategy": "api_only",
+      "scheduleDay": "Friday",
+      "lastChecked": "2026-04-22",
+      "device": "desktop",
+      "proxyUrl": "",
+      "defaultLat": "-37.8142454",
+      "defaultLng": "144.9631732",
+      "pincode": "3000",
+      "usePincode": true,
+      "userId": "1776349431674",
+      "isVerified": false
+    },
+    {
+      "id": "1776407544041",
+      "name": "are-corp.com updated",
+      "url": "are-corp.com",
+      "businessName": "Are Corp",
+      "serperApiKey": "",
+      "targetRegion": "us",
+      "schedule": "instant",
+      "scrapingStrategy": "direct_proxy",
+      "defaultLocation": "Kansas, United States",
+      "defaultLat": "38.27312",
+      "defaultLng": "-98.5821872",
+      "lastChecked": "2026-04-22",
+      "lastCheck": 1776855445547,
+      "status": "active",
+      "scheduleDay": "Friday",
+      "device": "desktop",
+      "proxyUrl": "",
+      "userId": "1776349431674",
+      "isVerified": false
+    },
+    {
+      "id": "1776867045499",
+      "userId": "1776349431674",
+      "name": "Final Test Updated",
+      "url": "final-test.com",
+      "businessName": "final",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "",
+      "defaultLat": 0,
+      "defaultLng": 0,
+      "pincode": "",
+      "usePincode": false,
+      "scrapingStrategy": "api_only",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": null,
+      "scheduleDay": "Friday",
+      "isVerified": false
+    },
+    {
+      "id": "1776868572373",
+      "userId": "1776349431674",
+      "name": "Verification Project",
+      "url": "https://example.com",
+      "businessName": "",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "Sydn",
+      "defaultLat": 0,
+      "defaultLng": 0,
+      "pincode": "",
+      "usePincode": false,
+      "scrapingStrategy": "api_only",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": null,
+      "scheduleDay": "Friday",
+      "isVerified": false
+    },
+    {
+      "id": "1776937143253",
+      "userId": "111499858881808739149",
+      "name": "abbagroup",
+      "url": "abbagroup.com.au",
+      "businessName": "Abba Group Business Brokers",
+      "targetRegion": "au",
+      "schedule": "weekly",
+      "defaultLocation": "2010, Surry Hills, New South Wales, Australia",
+      "defaultLat": -33.88289433526316,
+      "defaultLng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "scrapingStrategy": "direct_proxy",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": "2026-05-05",
+      "lastCheck": 1778006109699,
+      "status": "active",
+      "scheduleDay": "Wednesday",
+      "preferredApi": "hybrid",
+      "isVerified": false
+    },
+    {
+      "id": "1776940075528",
+      "userId": "1776349431674",
+      "name": "abbagroup",
+      "url": "abbagroup.com.au",
+      "businessName": "abbagroup",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "Sydney, New South Wales, Australia",
+      "defaultLat": "-33.8698439",
+      "defaultLng": "151.2082848",
+      "pincode": "2000",
+      "usePincode": true,
+      "scrapingStrategy": "api_only",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": "2026-04-23",
+      "lastCheck": 1776942607553,
+      "status": "active",
+      "scheduleDay": "Friday",
+      "isVerified": false
+    },
+    {
+      "id": "1776946201535",
+      "userId": "111499858881808739149",
+      "name": "adamdental.com.au",
+      "url": "adamdental.com.au",
+      "businessName": "Adam Dental",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "Mulgrave, Victoria, Australia",
+      "defaultLat": "-37.9261741",
+      "defaultLng": "145.1723107",
+      "pincode": "3170",
+      "usePincode": true,
+      "scrapingStrategy": "api_only",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": "2026-05-03",
+      "lastCheck": 1777779705629,
+      "status": "active",
+      "scheduleDay": "Friday",
+      "preferredApi": "hybrid",
+      "isVerified": false
+    },
+    {
+      "id": "1777602314637",
+      "userId": "111499858881808739149",
+      "name": "challengebricksandroofing.com.au",
+      "url": "challengebricksandroofing.com.au",
+      "businessName": "Challenge Bricks and Roofing Pty Ltd",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "Clyde North, Victoria, Australia",
+      "defaultLat": -38.0949384,
+      "defaultLng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "scrapingStrategy": "api_only",
+      "preferredApi": "hybrid",
+      "device": "desktop",
+      "proxyUrl": "http://zvr3okpiua-corp.mobile.res-country-AU-state-2155400-hold-session-session-69f6b8932c611:yY4kNLHGPcpOh4H8@89.38.99.242:443",
+      "lastChecked": "2026-05-04",
+      "status": "active",
+      "lastCheck": 1777908048408,
+      "scheduleDay": "Friday",
+      "isVerified": false
+    },
+    {
+      "id": "1778007106199",
+      "userId": "1776349705175",
+      "name": "abbagroup",
+      "url": "abbagroup.com.au",
+      "businessName": "Abba Group Business Brokers",
+      "targetRegion": "au",
+      "schedule": "daily",
+      "defaultLocation": "Surry Hills, New South Wales, Australia",
+      "defaultLat": -33.8845123,
+      "defaultLng": 151.2100301,
+      "pincode": "2010",
+      "usePincode": false,
+      "scrapingStrategy": "api_only",
+      "preferredApi": "hybrid",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": "2026-05-07",
+      "status": "active",
+      "scheduleDay": "Friday",
+      "lastCheck": 1778125556235,
+      "isVerified": false
+    },
+    {
+      "id": "1778008201501",
+      "userId": "1776349705175",
+      "name": "melbournedjhire",
+      "url": "melbournedjhire.com",
+      "businessName": "Melbourne DJ Hire",
+      "targetRegion": "au",
+      "schedule": "daily",
+      "defaultLocation": "Cheltenham, Victoria, Australia",
+      "defaultLat": -37.9634181,
+      "defaultLng": 145.0615668,
+      "pincode": "3192",
+      "usePincode": true,
+      "scrapingStrategy": "api_only",
+      "preferredApi": "hybrid",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": "2026-05-07",
+      "status": "active",
+      "scheduleDay": "Friday",
+      "lastCheck": 1778125525870,
+      "isVerified": false
+    },
+    {
+      "id": "1778759774881",
+      "userId": "1778141416727",
+      "name": "Test Live Project",
+      "url": "https:www.google.co.uk",
+      "businessName": "",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "",
+      "defaultLat": 0,
+      "defaultLng": 0,
+      "pincode": "",
+      "usePincode": false,
+      "scrapingStrategy": "api_only",
+      "preferredApi": "hybrid",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": "2026-05-14",
+      "lastCheck": 1778762247572,
+      "isVerified": false,
+      "scheduleDay": "Friday"
+    },
+    {
+      "id": "1778759801835",
+      "userId": "1778141416727",
+      "name": "rankinganywhere.com",
+      "url": "rankinganywhere.com",
+      "businessName": "ranking anywhere",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "",
+      "defaultLat": 0,
+      "defaultLng": 0,
+      "pincode": "",
+      "usePincode": false,
+      "scrapingStrategy": "standard",
+      "preferredApi": "hybrid",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": "2026-05-14",
+      "lastCheck": 1778760167122,
+      "isVerified": false,
+      "scheduleDay": "Friday"
+    },
+    {
+      "id": "1778760396264",
+      "userId": "1778141416727",
+      "name": "Final Clean Test",
+      "url": "https:www.google.co.uk",
+      "businessName": "",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "",
+      "defaultLat": 0,
+      "defaultLng": 0,
+      "pincode": "",
+      "usePincode": false,
+      "scrapingStrategy": "standard",
+      "preferredApi": "hybrid",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": null,
+      "isVerified": false,
+      "scheduleDay": "Friday"
+    },
+    {
+      "id": "1778762763763",
+      "userId": "1778141416727",
+      "name": "rankinganywhere",
+      "url": "rankinganywhere.com",
+      "businessName": "https://rankinganywhere.com/login",
+      "targetRegion": "au",
+      "schedule": "instant",
+      "defaultLocation": "",
+      "defaultLat": 0,
+      "defaultLng": 0,
+      "pincode": "",
+      "usePincode": false,
+      "scrapingStrategy": "standard",
+      "preferredApi": "hybrid",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": null,
+      "isVerified": false,
+      "scheduleDay": "Friday"
+    }
+  ],
+  "keywords": [
+    {
+      "id": "4z1eru",
+      "projectId": "1775563454924",
+      "text": "melbourne dj",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "location": "Melbourne",
+      "lat": 0,
+      "lng": 0,
+      "mapsStatus": "active",
+      "organicStatus": "active"
+    },
+    {
+      "id": "eo4cgd",
+      "projectId": "1776407544041",
+      "text": "rail bridge inspection",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 9,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "f0zqq",
+      "projectId": "1776407544041",
+      "text": "rail engineers",
+      "organic": 2,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//2",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 3,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 2,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "kwixc",
+      "projectId": "1776407544041",
+      "text": "railroad engineers",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "aqxhis",
+      "projectId": "1776407544041",
+      "text": "uas mapping services",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "3rf8jj",
+      "projectId": "1776407544041",
+      "text": "uas solutions",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "bs0a7l",
+      "projectId": "1776407544041",
+      "text": "bridge rating",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "7iiuq8",
+      "projectId": "1776407544041",
+      "text": "bridge health monitoring system",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "inkhyz",
+      "projectId": "1776407544041",
+      "text": "structural health monitoring of bridges",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "quajy",
+      "projectId": "1776407544041",
+      "text": "railroad bridge engineering",
+      "organic": 10,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//10",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 10,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "vludtj",
+      "projectId": "1776407544041",
+      "text": "railroad bridge inspection",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "abltpq",
+      "projectId": "1776407544041",
+      "text": "fra bridge inspection",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "lkt3ee",
+      "projectId": "1776407544041",
+      "text": "railroad bridge design",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Kansas, USA",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "ihmzko",
+      "projectId": "1776059828049",
+      "text": "costumes australia",
+      "organic": 4,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Melbourne, Victoria, Australia",
+      "lat": -37.8142454,
+      "lng": 144.9631732,
+      "displayRank": "1//4",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 4,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 4,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "eu8t5k",
+      "projectId": "1776059828049",
+      "text": "1920s flapper costume",
+      "organic": 9,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Melbourne, Victoria, Australia",
+      "lat": -37.8142454,
+      "lng": 144.9631732,
+      "displayRank": "1//9",
+      "source": "Serper",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 9,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 9,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 9,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "7ugsiw",
+      "projectId": "1776059828049",
+      "text": "1920s flapper costumes",
+      "organic": 7,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Sydney, New South Wales, Australia",
+      "lat": -33.8698439,
+      "lng": 151.2082848,
+      "displayRank": "1//7",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 7,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "c16cir",
+      "projectId": "1776059828049",
+      "text": "oktoberfest costume",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "tydbs",
+      "projectId": "1776059828049",
+      "text": "oktoberfest costumes",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Melbourne, Victoria, Australia",
+      "lat": -37.8142454,
+      "lng": 144.9631732,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "i11t2",
+      "projectId": "1776059828049",
+      "text": "burlesque costumes",
+      "organic": 8,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//8",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 8,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "6tgf1k",
+      "projectId": "1776059828049",
+      "text": "halloween costumes australia",
+      "organic": 5,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//5",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 9,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 5,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "9btkkr",
+      "projectId": "1776059828049",
+      "text": "fancy dress australia",
+      "organic": 4,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//4",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 4,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 4,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "3fqrw7",
+      "projectId": "1776059828049",
+      "text": "halloween costume australia",
+      "organic": 7,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//7",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 7,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 7,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "kemg5l",
+      "projectId": "1776059828049",
+      "text": "zombie costume",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "61rhqi",
+      "projectId": "1776059828049",
+      "text": "fancy dress costumes",
+      "organic": 9,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "1//9",
+      "source": "Serper",
+      "lastChecked": "2026-04-21",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 9,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "v9u7wq",
+      "projectId": "1776059828049",
+      "text": "school girl costume",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0,
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22",
+      "history": [
+        {
+          "date": "2026-04-20",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-21",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "lgtoo",
+      "projectId": "1776059828049",
+      "text": "seo result",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "sydney, Australia",
+      "lat": 0,
+      "lng": 0
+    },
+    {
+      "id": "q402rk",
+      "projectId": "1776407544041",
+      "text": "news",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Kansas, United States",
+      "lat": "38.27312",
+      "lng": "-98.5821872"
+    },
+    {
+      "id": "v8eu4bd",
+      "projectId": "1776059828049",
+      "text": "oktoberfest costume",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "AAMI Park, Melbourne, Victoria, Australia",
+      "lat": "-37.8251046",
+      "lng": "144.983743",
+      "history": [
+        {
+          "date": "2026-04-22",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-22"
+    },
+    {
+      "id": "0idqqcf",
+      "projectId": "1776937143253",
+      "text": "business broker sydney",
+      "organic": 9,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 9,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-29",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 7,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 9,
+          "maps": 2
+        },
+        {
+          "date": "2026-05-05",
+          "organic": 9,
+          "maps": 1
+        }
+      ],
+      "displayRank": "1//9 LL 1",
+      "source": "Serper",
+      "lastChecked": "2026-05-05"
+    },
+    {
+      "id": "iho0v7",
+      "projectId": "1776937143253",
+      "text": "business brokers canberra",
+      "organic": 6,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 6,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-29",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 6,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-05",
+          "organic": 6,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//6",
+      "source": "Serper",
+      "lastChecked": "2026-05-05",
+      "activePriority": "city"
+    },
+    {
+      "id": "1xz8fc",
+      "projectId": "1776937143253",
+      "text": "business brokers wollongong",
+      "organic": 7,
+      "maps": 9,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 6,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-29",
+          "organic": 4,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 6,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 6,
+          "maps": 10
+        },
+        {
+          "date": "2026-05-05",
+          "organic": 7,
+          "maps": 9
+        }
+      ],
+      "displayRank": "1//7 LL 9",
+      "source": "Serper",
+      "lastChecked": "2026-05-05"
+    },
+    {
+      "id": "vejp3",
+      "projectId": "1776937143253",
+      "text": "business broker",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 2,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-05",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-05"
+    },
+    {
+      "id": "m8mbqn",
+      "projectId": "1776937143253",
+      "text": "business brokers australia",
+      "organic": 2,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 3,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-29",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 3,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-05",
+          "organic": 2,
+          "maps": 1
+        }
+      ],
+      "displayRank": "1//2 LL 1",
+      "source": "Serper",
+      "lastChecked": "2026-05-05"
+    },
+    {
+      "id": "4af26",
+      "projectId": "1776937143253",
+      "text": "business sale brokers",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-29",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 9,
+          "maps": 5
+        },
+        {
+          "date": "2026-05-05",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-05"
+    },
+    {
+      "id": "arirw",
+      "projectId": "1776937143253",
+      "text": "sell a business",
+      "organic": 2,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-05",
+          "organic": 2,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//2",
+      "source": "Serper",
+      "lastChecked": "2026-05-05"
+    },
+    {
+      "id": "byihw",
+      "projectId": "1776937143253",
+      "text": "sell business sydney",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-05",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-05"
+    },
+    {
+      "id": "kz96ea",
+      "projectId": "1776937143253",
+      "text": "sell your business",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-05",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-05"
+    },
+    {
+      "id": "tj73en",
+      "projectId": "1776937143253",
+      "text": "business brokerage",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 5,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 9,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 8,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-05",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-05"
+    },
+    {
+      "id": "uy6l",
+      "projectId": "1776937143253",
+      "text": "business brokers",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "2010, Surry Hills, New South Wales, Australia",
+      "lat": -33.88289433526316,
+      "lng": 151.21411001526315,
+      "pincode": "2010",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-05",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-05"
+    },
+    {
+      "id": "02vcwa",
+      "projectId": "1776940075528",
+      "text": "business broker sydney",
+      "organic": 9,
+      "maps": 6,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney, New South Wales, Australia",
+      "lat": -33.8354519,
+      "lng": 151.2083011,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 9,
+          "maps": 6
+        }
+      ],
+      "displayRank": "1//9 LL 6",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "rjvqt",
+      "projectId": "1776940075528",
+      "text": "business brokers canberra",
+      "organic": 7,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney Council, North Sydney, New South Wales, Australia",
+      "lat": -33.8343157,
+      "lng": 151.2091974,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 7,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//7",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "fjlwyc",
+      "projectId": "1776940075528",
+      "text": "business brokers wollongong",
+      "organic": 6,
+      "maps": 8,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney Council, North Sydney, New South Wales, Australia",
+      "lat": -33.8343157,
+      "lng": 151.2091974,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 6,
+          "maps": 8
+        }
+      ],
+      "displayRank": "1//6 LL 8",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "xvhia7",
+      "projectId": "1776940075528",
+      "text": "business brokers newcastle",
+      "organic": 9,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney Council, North Sydney, New South Wales, Australia",
+      "lat": -33.8343157,
+      "lng": 151.2091974,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 9,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//9",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "n60k5r",
+      "projectId": "1776940075528",
+      "text": "business broker",
+      "organic": 9,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "",
+      "lat": 0,
+      "lng": 0,
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 9,
+          "maps": 1
+        }
+      ],
+      "displayRank": "1//9 LL 1",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "brqat",
+      "projectId": "1776940075528",
+      "text": "business brokers australia",
+      "organic": 10,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "",
+      "lat": 0,
+      "lng": 0,
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 10,
+          "maps": 1
+        }
+      ],
+      "displayRank": "1//10 LL 1",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "lsggll",
+      "projectId": "1776940075528",
+      "text": "business sale brokers",
+      "organic": 8,
+      "maps": 2,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "",
+      "lat": 0,
+      "lng": 0,
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 8,
+          "maps": 2
+        }
+      ],
+      "displayRank": "1//8 LL 2",
+      "source": "Serper",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "7759li",
+      "projectId": "1776940075528",
+      "text": "sell a business",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney, New South Wales, Australia",
+      "lat": -33.8354519,
+      "lng": 151.2083011,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "rqjd9q",
+      "projectId": "1776940075528",
+      "text": "sell business sydney",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney, New South Wales, Australia",
+      "lat": -33.8354519,
+      "lng": 151.2083011,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "m3lhhs",
+      "projectId": "1776940075528",
+      "text": "sell your business",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney, New South Wales, Australia",
+      "lat": -33.8354519,
+      "lng": 151.2083011,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "l04yol",
+      "projectId": "1776940075528",
+      "text": "business brokerage",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney, New South Wales, Australia",
+      "lat": -33.8354519,
+      "lng": 151.2083011,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "cet82r",
+      "projectId": "1776940075528",
+      "text": "business brokers",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "North Sydney Council, North Sydney, New South Wales, Australia",
+      "lat": -33.8343157,
+      "lng": 151.2091974,
+      "pincode": "2060",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-04-23"
+    },
+    {
+      "id": "jws6eu",
+      "projectId": "1776940075528",
+      "text": "business brokers canberra",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Sydney, New South Wales, Australia",
+      "lat": "-33.8698439",
+      "lng": "151.2082848",
+      "pincode": "2000",
+      "usePincode": true
+    },
+    {
+      "id": "wfdnlp",
+      "projectId": "1776946201535",
+      "text": "dental supplies australia",
+      "organic": 1,
+      "maps": 2,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Australian Capital Territory, Australia",
+      "lat": -35.4883502,
+      "lng": 149.0026942,
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 1,
+          "maps": 2
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 1,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 1,
+          "maps": 2
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 1,
+          "maps": 2
+        }
+      ],
+      "displayRank": "1//1 LL 2",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "y8b5rg",
+      "projectId": "1776946201535",
+      "text": "dental needles",
+      "organic": 2,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 7,
+          "maps": 1
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 1,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 2,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 2,
+          "maps": 1
+        }
+      ],
+      "displayRank": "1//2 LL 1",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "4b692",
+      "projectId": "1776946201535",
+      "text": "dental supplies sydney",
+      "organic": 1,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Sydney, New South Wales, Australia",
+      "lat": -33.8698439,
+      "lng": 151.2082848,
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 2,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 2,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 1,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 1,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//1",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "66n06m",
+      "projectId": "1776946201535",
+      "text": "dental supplies brisbane",
+      "organic": 3,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Brisbane, Queensland, Australia",
+      "lat": -27.4689623,
+      "lng": 153.0235009,
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 3,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 4,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 3,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 3,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//3",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "qyvc6a",
+      "projectId": "1776946201535",
+      "text": "dental supplies melbourne",
+      "organic": 2,
+      "maps": 10,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Melbourne, Victoria, Australia",
+      "lat": -37.8142454,
+      "lng": 144.9631732,
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 1,
+          "maps": 7
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 1,
+          "maps": 7
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 2,
+          "maps": 7
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 2,
+          "maps": 10
+        }
+      ],
+      "displayRank": "1//2 LL 10",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "uqczz7",
+      "projectId": "1776946201535",
+      "text": "dental supplies perth",
+      "organic": 4,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Perth, Western Australia, Australia",
+      "lat": -31.9558967,
+      "lng": 115.8605784,
+      "pincode": "6000",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 2,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 1,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 4,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 4,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//4",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "z8dp9c",
+      "projectId": "1776946201535",
+      "text": "dental supplies adelaide",
+      "organic": 2,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Adelaide, South Australia, Australia",
+      "lat": -34.9281805,
+      "lng": 138.5999312,
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 5,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 2,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 2,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 2,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//2",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "ixqf5g",
+      "projectId": "1776946201535",
+      "text": "dental equipment",
+      "organic": 1,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 2,
+          "maps": 1
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 1,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 1,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 1,
+          "maps": 1
+        }
+      ],
+      "displayRank": "1//1 LL 1",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "u831b6",
+      "projectId": "1776946201535",
+      "text": "powder free latex gloves",
+      "organic": 1,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 7,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 3,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 6,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 1,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//1",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "kw5p7p",
+      "projectId": "1776946201535",
+      "text": "autoclave bags",
+      "organic": 2,
+      "maps": 2,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 2,
+          "maps": 2
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 2,
+          "maps": 2
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 2,
+          "maps": 2
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 2,
+          "maps": 2
+        }
+      ],
+      "displayRank": "1//2 LL 2",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "ytsq7",
+      "projectId": "1776946201535",
+      "text": "scotchbond",
+      "organic": 3,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 3,
+          "maps": 0
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 3,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 3,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 3,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//3",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "bq16sa",
+      "projectId": "1776946201535",
+      "text": "nitrile gloves",
+      "organic": 4,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "3170, Mulgrave, Victoria, Australia",
+      "lat": -37.92294097995951,
+      "lng": 145.1786773001012,
+      "pincode": "3170",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-04-23",
+          "organic": 6,
+          "maps": 4
+        },
+        {
+          "date": "2026-04-30",
+          "organic": 8,
+          "maps": 8
+        },
+        {
+          "date": "2026-05-01",
+          "organic": 3,
+          "maps": 4
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 4,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//4",
+      "source": "Serper",
+      "lastChecked": "2026-05-03"
+    },
+    {
+      "id": "yexjac",
+      "projectId": "1777602314637",
+      "text": "velux skylight installation near me",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-04"
+    },
+    {
+      "id": "diam71",
+      "projectId": "1777602314637",
+      "text": "velux skylights melbourne",
+      "organic": 1,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 1,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 7,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 1,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//1",
+      "source": "Serper",
+      "lastChecked": "2026-05-04"
+    },
+    {
+      "id": "y7ayz",
+      "projectId": "1777602314637",
+      "text": "velux skylight installation melbourne",
+      "organic": 3,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 3,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 3,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//3",
+      "source": "Serper",
+      "lastChecked": "2026-05-04"
+    },
+    {
+      "id": "fclg8j",
+      "projectId": "1777602314637",
+      "text": "austral bricks melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-04"
+    },
+    {
+      "id": "0r3pot",
+      "projectId": "1777602314637",
+      "text": "pgh bricks melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 9,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-04"
+    },
+    {
+      "id": "g8t1yd",
+      "projectId": "1777602314637",
+      "text": "monier roof tiles melbourne",
+      "organic": 3,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 2,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 3,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 3,
+          "maps": 0
+        }
+      ],
+      "displayRank": "1//3",
+      "source": "Serper",
+      "lastChecked": "2026-05-04"
+    },
+    {
+      "id": "gs87wh",
+      "projectId": "1777602314637",
+      "text": "re roofing melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-04"
+    },
+    {
+      "id": "jwd9owg",
+      "projectId": "1777602314637",
+      "text": "roof replacements melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-04"
+    },
+    {
+      "id": "sckycw",
+      "projectId": "1777602314637",
+      "text": "roof replacements near me",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-04"
+    },
+    {
+      "id": "3yityt",
+      "projectId": "1777602314637",
+      "text": "roof restoration dandenong",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-04"
+    },
+    {
+      "id": "8gv72",
+      "projectId": "1777602314637",
+      "text": "roof restoration berwickÂ ",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-04"
+    },
+    {
+      "id": "f1u9l",
+      "projectId": "1777602314637",
+      "text": "roof restoration cranbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "paused",
+      "organicStatus": "active",
+      "location": "Clyde North, Victoria, Australia",
+      "lat": -38.0949384,
+      "lng": 145.3628251,
+      "pincode": "3978",
+      "usePincode": true,
+      "history": [
+        {
+          "date": "2026-05-01",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-03",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-04",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-04"
+    },
+    {
+      "id": "bxmevb",
+      "projectId": "1778007106199",
+      "text": "business broker sydney",
+      "organic": 9,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Surry Hills, New South Wales, Australia",
+      "lat": -33.8845123,
+      "lng": 151.2100301,
+      "activePriority": "city",
+      "pincode": "2010",
+      "usePincode": false,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//9 LL 1",
+      "history": [
+        {
+          "date": "2026-05-05",
+          "organic": 9,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 9,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "9z8it",
+      "projectId": "1778007106199",
+      "text": "business brokers canberra",
+      "organic": 7,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Surry Hills, New South Wales, Australia",
+      "lat": -33.8845123,
+      "lng": 151.2100301,
+      "activePriority": "city",
+      "pincode": "2010",
+      "usePincode": false,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//7",
+      "foundUrl": "https://www.abbagroup.com.au/sell-business-canberra-act/",
+      "source": "Serper",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 7,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 7,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "qg6d",
+      "projectId": "1778007106199",
+      "text": "business brokers wollongong",
+      "organic": 3,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Surry Hills, New South Wales, Australia",
+      "lat": -33.8845123,
+      "lng": 151.2100301,
+      "activePriority": "city",
+      "pincode": "2010",
+      "usePincode": false,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//3",
+      "foundUrl": "https://www.abbagroup.com.au/sell-business-wollongong-nsw/",
+      "source": "Serper",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 3,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 3,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "4h0zqq",
+      "projectId": "1778007106199",
+      "text": "business brokers newcastle",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Surry Hills, New South Wales, Australia",
+      "lat": -33.8845123,
+      "lng": 151.2100301,
+      "activePriority": "city",
+      "pincode": "2010",
+      "usePincode": false,
+      "lastChecked": "2026-05-07",
+      "displayRank": "N/A",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 8,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "source": ""
+    },
+    {
+      "id": "ji2n7n",
+      "projectId": "1778007106199",
+      "text": "business broker",
+      "organic": 7,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Surry Hills, New South Wales, Australia",
+      "lat": -33.8845123,
+      "lng": 151.2100301,
+      "activePriority": "city",
+      "pincode": "2010",
+      "usePincode": false,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//7",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 7,
+          "maps": 0
+        }
+      ],
+      "source": "Serper"
+    },
+    {
+      "id": "q16syo",
+      "projectId": "1778007106199",
+      "text": "business brokers australia",
+      "organic": 5,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Surry Hills, New South Wales, Australia",
+      "lat": -33.8845123,
+      "lng": 151.2100301,
+      "activePriority": "city",
+      "pincode": "2010",
+      "usePincode": false,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//5",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 4,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 5,
+          "maps": 0
+        }
+      ],
+      "source": "Serper"
+    },
+    {
+      "id": "0zkq37",
+      "projectId": "1778007106199",
+      "text": "business sale brokers",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Surry Hills, New South Wales, Australia",
+      "lat": -33.8845123,
+      "lng": 151.2100301,
+      "activePriority": "city",
+      "pincode": "2010",
+      "usePincode": false,
+      "lastChecked": "2026-05-07",
+      "displayRank": "N/A",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 3,
+          "maps": 3
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "source": ""
+    },
+    {
+      "id": "pl1ser",
+      "projectId": "1778007106199",
+      "text": "sell a business",
+      "organic": 2,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Surry Hills, New South Wales, Australia",
+      "lat": -33.8845123,
+      "lng": 151.2100301,
+      "activePriority": "city",
+      "pincode": "2010",
+      "usePincode": false,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//2",
+      "foundUrl": "https://www.abbagroup.com.au/business-brokers-sydney-nsw/",
+      "source": "Serper",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 2,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 2,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "y9tmpc",
+      "projectId": "1778007106199",
+      "text": "sell business sydney",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Surry Hills, New South Wales, Australia",
+      "lat": -33.8845123,
+      "lng": 151.2100301,
+      "activePriority": "city",
+      "pincode": "2010",
+      "usePincode": false,
+      "lastChecked": "2026-05-07",
+      "displayRank": "N/A",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 14,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "source": "",
+      "foundUrl": "https://www.abbagroup.com.au/business-brokers-sydney-nsw/"
+    },
+    {
+      "id": "tq4wan",
+      "projectId": "1778007106199",
+      "text": "sell your business",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Surry Hills, New South Wales, Australia",
+      "lat": -33.8845123,
+      "lng": 151.2100301,
+      "activePriority": "city",
+      "pincode": "2010",
+      "usePincode": false,
+      "lastChecked": "2026-05-07",
+      "displayRank": "N/A",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 90,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "source": "",
+      "foundUrl": "https://www.abbagroup.com.au/business-sales/"
+    },
+    {
+      "id": "zhp62",
+      "projectId": "1778007106199",
+      "text": "business brokerage",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Surry Hills, New South Wales, Australia",
+      "lat": -33.8845123,
+      "lng": 151.2100301,
+      "activePriority": "city",
+      "pincode": "2010",
+      "usePincode": false,
+      "lastChecked": "2026-05-07",
+      "displayRank": "N/A",
+      "foundUrl": "https://www.abbagroup.com.au/",
+      "source": "",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        }
+      ]
+    },
+    {
+      "id": "8bjjd",
+      "projectId": "1778007106199",
+      "text": "business brokers",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Surry Hills, New South Wales, Australia",
+      "lat": -33.8845123,
+      "lng": 151.2100301,
+      "activePriority": "city",
+      "pincode": "2010",
+      "usePincode": false,
+      "lastChecked": "2026-05-07",
+      "displayRank": "N/A",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 2,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "source": "",
+      "foundUrl": "https://www.abbagroup.com.au/"
+    },
+    {
+      "id": "bm0dts",
+      "projectId": "1778008201501",
+      "text": "dj melbourne",
+      "organic": 1,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//1 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 1,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "71jg3m",
+      "projectId": "1778008201501",
+      "text": "melbourne dj",
+      "organic": 1,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//1 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 1,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "hwz0gm",
+      "projectId": "1778008201501",
+      "text": "djs melbourne",
+      "organic": 1,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//1 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 1,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "8hr13p",
+      "projectId": "1778008201501",
+      "text": "melbourne djs",
+      "organic": 1,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//1 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 1,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "3d9gf",
+      "projectId": "1778008201501",
+      "text": "wedding dj melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "N/A",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "source": "",
+      "foundUrl": ""
+    },
+    {
+      "id": "kxq73",
+      "projectId": "1778008201501",
+      "text": "djs in melbourne",
+      "organic": 1,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//1 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 1,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "1yzw67",
+      "projectId": "1778008201501",
+      "text": "dj in melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "N/A",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "source": "",
+      "foundUrl": ""
+    },
+    {
+      "id": "ibasxn",
+      "projectId": "1778008201501",
+      "text": "dj hire",
+      "organic": 4,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//4",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 4,
+          "maps": 0
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "85ea4p",
+      "projectId": "1778008201501",
+      "text": "dj near me",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "N/A",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "source": "",
+      "foundUrl": ""
+    },
+    {
+      "id": "her829",
+      "projectId": "1778008201501",
+      "text": "djs near me",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "N/A",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "source": "",
+      "foundUrl": ""
+    },
+    {
+      "id": "wwsly",
+      "projectId": "1778008201501",
+      "text": "melbourne dj hire",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "N/A",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "source": "",
+      "foundUrl": ""
+    },
+    {
+      "id": "ih6a0j",
+      "projectId": "1778008201501",
+      "text": "dj melbourne hire",
+      "organic": 4,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//4 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 4,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "so3un",
+      "projectId": "1778008201501",
+      "text": "dj hire melbourne",
+      "organic": 1,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//1 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 1,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "8no0la",
+      "projectId": "1778008201501",
+      "text": "dj for hire melbourne",
+      "organic": 1,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//1 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 1,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "hb9x0v",
+      "projectId": "1778008201501",
+      "text": "dj service",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "N/A",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "source": "",
+      "foundUrl": ""
+    },
+    {
+      "id": "id1k9n",
+      "projectId": "1778008201501",
+      "text": "dj services",
+      "organic": 3,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//3 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 3,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "oo098",
+      "projectId": "1778008201501",
+      "text": "best dj melbourne",
+      "organic": 6,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//6 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 41,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 6,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": "https://www.melbournedjhire.com/"
+    },
+    {
+      "id": "c1573g",
+      "projectId": "1778008201501",
+      "text": "best djs melbourne",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "N/A",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 4,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "source": "",
+      "foundUrl": "http://www.melbournedjhire.com/"
+    },
+    {
+      "id": "3mrliq",
+      "projectId": "1778008201501",
+      "text": "party djs",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "N/A",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 32,
+          "maps": 2
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "source": "",
+      "foundUrl": "https://www.melbournedjhire.com/best-djs-melbourne/"
+    },
+    {
+      "id": "6xin8l",
+      "projectId": "1778008201501",
+      "text": "wedding djs melbourne",
+      "organic": 9,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-07",
+      "displayRank": "1//9 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 9,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "ybtend",
+      "projectId": "1778759774881",
+      "text": "seo services london",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "",
+      "lat": 0,
+      "lng": 0,
+      "activePriority": "city",
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-05-14",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-14"
+    },
+    {
+      "id": "fzcaimd",
+      "projectId": "1778759801835",
+      "text": "News",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "",
+      "lat": 0,
+      "lng": 0,
+      "activePriority": "city",
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-05-14",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-14"
+    },
+    {
+      "id": "fkoig",
+      "projectId": "1778759801835",
+      "text": "Help News",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "",
+      "lat": 0,
+      "lng": 0,
+      "activePriority": "city",
+      "pincode": "",
+      "usePincode": false,
+      "history": [
+        {
+          "date": "2026-05-14",
+          "organic": 0,
+          "maps": 0
+        }
+      ],
+      "displayRank": "N/A",
+      "source": "",
+      "lastChecked": "2026-05-14"
+    },
+    {
+      "id": "ud2n9",
+      "projectId": "1778762763763",
+      "text": "news",
+      "organic": 0,
+      "maps": 0,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "",
+      "lat": 0,
+      "lng": 0,
+      "activePriority": "city",
+      "pincode": "",
+      "usePincode": false
+    }
+  ],
+  "settings": {
+    "globalSerperApiKey": "eb8cfa419e28cdf088877384d847edfdbf8c956d",
+    "globalScrapingdogApiKey": "69fc8695a00480a3ad208fe5",
+    "globalSerpapiKey": "",
+    "globalProxyUrl": "",
+    "globalProxies": [],
+    "isRandomProxy": false,
+    "activeProxyIdx": 0,
+    "serperQuotaActive": true,
+    "scrapingdogQuotaActive": true,
+    "serpapiQuotaActive": true,
+    "proxyActive": false
+  },
+  "extensionTasks": [],
+  "blogs": [
+    {
+      "id": "1777792082873",
+      "title": "msmms",
+      "content": "ssssss",
+      "author": "Admin",
+      "category": "Product Updates",
+      "image": "",
+      "date": "2026-05-03T07:08:02.873Z"
+    },
+    {
+      "id": "1777792217760",
+      "title": "Audit Test",
+      "content": "Full Audit Content",
+      "author": "Admin",
+      "category": "Product Updates",
+      "image": "https://via.placeholder.com/150",
+      "date": "2026-05-03T07:10:17.760Z"
+    },
+    {
+      "id": "1777793925617",
+      "title": "seo tool position track",
+      "content": "\n    <h2>The Ultimate Guide to seo tool position track</h2>\n    <p>In the rapidly evolving landscape of search engine optimization, staying ahead means mastering the art of seo tool position track. This comprehensive guide explores why professionals are turning to advanced tools to dominate their niche.</p>\n    \n    <h3>1. Why seo tool position track Matters in 2026</h3>\n    <p>Search engines have become increasingly sophisticated. They no longer just look for keywords; they look for authority, relevance, and geographic precision. By focusing on seo tool position track, you ensure your digital presence is felt where it matters most.</p>\n    \n    <h3>2. Strategic Implementation</h3>\n    <p>To truly excel, one must understand the underlying mechanics. From UULE encoding to proxy-based geo-targeting, the layers of modern SEO are complex. However, with the right strategy, you can bypass traditional limitations and achieve unprecedented ranking growth.</p>\n    \n    <h3>3. Performance Metrics & Scaling</h3>\n    <p>Data doesn't lie. Monitoring your seo tool position track performance daily allows for micro-adjustments that lead to macro-results. This is where automation meets intelligence.</p>\n    \n    <p><i>...This is a high-authority 1000+ words technical breakdown generated by the Ranking Anywhere CMS Engine...</i></p>\n    \n    <p>Conclusion: Mastery of seo tool position track is not just an optionâ€”it is a requirement for anyone serious about digital dominance.</p>\n  ",
+      "author": "Ranking AI",
+      "category": "SEO Tips",
+      "date": "2026-05-03T07:38:45.617Z"
+    },
+    {
+      "id": "1777793976828",
+      "title": "why need position track and why use this one ",
+      "content": "\n    <h2>The Ultimate Guide to why need position track and why use this one </h2>\n    <p>In the rapidly evolving landscape of search engine optimization, staying ahead means mastering the art of why need position track and why use this one . This comprehensive guide explores why professionals are turning to advanced tools to dominate their niche.</p>\n    \n    <h3>1. Why why need position track and why use this one  Matters in 2026</h3>\n    <p>Search engines have become increasingly sophisticated. They no longer just look for keywords; they look for authority, relevance, and geographic precision. By focusing on why need position track and why use this one , you ensure your digital presence is felt where it matters most.</p>\n    \n    <h3>2. Strategic Implementation</h3>\n    <p>To truly excel, one must understand the underlying mechanics. From UULE encoding to proxy-based geo-targeting, the layers of modern SEO are complex. However, with the right strategy, you can bypass traditional limitations and achieve unprecedented ranking growth.</p>\n    \n    <h3>3. Performance Metrics & Scaling</h3>\n    <p>Data doesn't lie. Monitoring your why need position track and why use this one  performance daily allows for micro-adjustments that lead to macro-results. This is where automation meets intelligence.</p>\n    \n    <p><i>...This is a high-authority 1000+ words technical breakdown generated by the Ranking Anywhere CMS Engine...</i></p>\n    \n    <p>Conclusion: Mastery of why need position track and why use this one  is not just an optionâ€”it is a requirement for anyone serious about digital dominance.</p>\n  ",
+      "author": "Ranking AI",
+      "category": "SEO Tips",
+      "date": "2026-05-03T07:39:36.828Z"
+    },
+    {
+      "id": "1777794137511",
+      "title": "google position checker 2026",
+      "content": "\n    <h2>The Ultimate Guide to google position checker 2026</h2>\n    <p>In the rapidly evolving landscape of search engine optimization, staying ahead means mastering the art of google position checker 2026. This comprehensive guide explores why professionals are turning to advanced tools to dominate their niche.</p>\n    \n    <h3>1. Why google position checker 2026 Matters in 2026</h3>\n    <p>Search engines have become increasingly sophisticated. They no longer just look for keywords; they look for authority, relevance, and geographic precision. By focusing on google position checker 2026, you ensure your digital presence is felt where it matters most.</p>\n    \n    <h3>2. Strategic Implementation</h3>\n    <p>To truly excel, one must understand the underlying mechanics. From UULE encoding to proxy-based geo-targeting, the layers of modern SEO are complex. However, with the right strategy, you can bypass traditional limitations and achieve unprecedented ranking growth.</p>\n    \n    <h3>3. Performance Metrics & Scaling</h3>\n    <p>Data doesn't lie. Monitoring your google position checker 2026 performance daily allows for micro-adjustments that lead to macro-results. This is where automation meets intelligence.</p>\n    \n    <p><i>...This is a high-authority 1000+ words technical breakdown generated by the Ranking Anywhere CMS Engine...</i></p>\n    \n    <p>Conclusion: Mastery of google position checker 2026 is not just an optionâ€”it is a requirement for anyone serious about digital dominance.</p>\n  ",
+      "author": "Ranking AI",
+      "category": "SEO Tips",
+      "date": "2026-05-03T07:42:17.511Z"
+    }
+  ],
+  "whois_cache": {
+    "angelone.in": {
+      "success": true,
+      "domain": "angelone.in",
+      "status": [
+        "client update prohibited",
+        "client renew prohibited",
+        "client delete prohibited",
+        "client transfer prohibited"
+      ],
+      "registrar": "GoDaddy",
+      "contacts": {
+        "registrar": {
+          "objectClassName": "entity",
+          "handle": "146",
+          "vcardArray": [
+            "vcard",
+            [
+              [
+                "version",
+                {},
+                "text",
+                "4.0"
+              ],
+              [
+                "fn",
+                {},
+                "text",
+                "GoDaddy"
+              ],
+              [
+                "adr",
+                {
+                  "cc": "US"
+                },
+                "text",
+                [
+                  "",
+                  "",
+                  "14555 North Hayden Rd #219",
+                  "Scottsdale ",
+                  "AZ",
+                  "85260",
+                  ""
+                ]
+              ],
+              [
+                "tel",
+                {
+                  "type": "voice"
+                },
+                "uri",
+                "tel:+1.4805058800"
+              ],
+              [
+                "tel",
+                {
+                  "type": "fax"
+                },
+                "uri",
+                "tel:+1.4802474195"
+              ],
+              [
+                "email",
+                {},
+                "text",
+                "reg_admin@godaddy.com"
+              ]
+            ]
+          ],
+          "roles": [
+            "registrar"
+          ],
+          "publicIds": [
+            {
+              "type": "IANA Registrar ID",
+              "identifier": "146"
+            }
+          ],
+          "entities": [
+            {
+              "objectClassName": "entity",
+              "vcardArray": [
+                "vcard",
+                [
+                  [
+                    "version",
+                    {},
+                    "text",
+                    "4.0"
+                  ],
+                  [
+                    "fn",
+                    {},
+                    "text",
+                    ""
+                  ],
+                  [
+                    "tel",
+                    {
+                      "type": "voice"
+                    },
+                    "uri",
+                    "tel:+1.4805058800"
+                  ],
+                  [
+                    "email",
+                    {},
+                    "text",
+                    "reg_admin@godaddy.com"
+                  ]
+                ]
+              ],
+              "roles": [
+                "abuse"
+              ],
+              "events": [
+                {
+                  "eventAction": "last update of RDAP database",
+                  "eventDate": "2026-05-05T12:16:18.525Z"
+                }
+              ]
+            }
+          ],
+          "links": [
+            {
+              "value": "https://rdap.godaddy.com/v1/",
+              "rel": "about",
+              "href": "https://rdap.nixiregistry.in/rdap/entity/146",
+              "type": "application/rdap+json"
+            }
+          ],
+          "events": [
+            {
+              "eventAction": "last update of RDAP database",
+              "eventDate": "2026-05-05T12:16:18.525Z"
+            }
+          ]
+        },
+        "registrant": {
+          "name": "Registration Private",
+          "organization": "Domains By Proxy, LLC",
+          "street": "100 S. Mill Ave, Suite 1600",
+          "city": "Tempe",
+          "state": "Arizona",
+          "zip": "85281",
+          "country": "US",
+          "phone": "+1.4806242599",
+          "email": "https://www.godaddy.com/whois/results.aspx?domain=angelone.in"
+        },
+        "admin": {
+          "name": "Registration Private",
+          "organization": "Domains By Proxy, LLC",
+          "street": "100 S. Mill Ave, Suite 1600",
+          "city": "Tempe",
+          "state": "Arizona",
+          "zip": "85281",
+          "country": "US",
+          "phone": "+1.4806242599",
+          "email": "https://www.godaddy.com/whois/results.aspx?domain=angelone.in"
+        },
+        "tech": {
+          "name": "Registration Private",
+          "organization": "Domains By Proxy, LLC",
+          "street": "100 S. Mill Ave, Suite 1600",
+          "city": "Tempe",
+          "state": "Arizona",
+          "zip": "85281",
+          "country": "US",
+          "phone": "+1.4806242599",
+          "email": "https://www.godaddy.com/whois/results.aspx?domain=angelone.in"
+        }
+      },
+      "dates": {
+        "created": "2021-05-28T11:07:14.186Z",
+        "expires": "2027-05-28T11:07:14.186Z",
+        "updated": "2025-07-24T05:32:27.772Z"
+      },
+      "nameservers": [
+        "josephine.ns.cloudflare.com",
+        "dax.ns.cloudflare.com"
+      ],
+      "age": {
+        "days": 1803,
+        "years": "4.9",
+        "label": "4.9 Years"
+      },
+      "trustScore": 65,
+      "raw": {
+        "rdapConformance": [
+          "rdap_level_0",
+          "icann_rdap_response_profile_1",
+          "icann_rdap_technical_implementation_guide_1",
+          "redacted"
+        ],
+        "notices": [
+          {
+            "title": "Terms of Service",
+            "description": [
+              "The WHOIS information provided in this page has been redacted",
+              "in compliance with ICANN's Temporary Specification for gTLD",
+              "Registration Data.",
+              "",
+              "The data in this record is provided by Tucows Registry for informational",
+              "purposes only, and it does not guarantee its accuracy. Tucows Registry is",
+              "authoritative for whois information in top-level domains it operates",
+              "under contract with the Internet Corporation for Assigned Names and",
+              "Numbers. Whois information from other top-level domains is provided by",
+              "a third-party under license to Tucows Registry.",
+              "",
+              "This service is intended only for query-based access. By using this",
+              "service, you agree that you will use any data presented only for lawful",
+              "purposes and that, under no circumstances will you use (a) data",
+              "acquired for the purpose of allowing, enabling, or otherwise supporting",
+              "the transmission by e-mail, telephone, facsimile or other",
+              "communications mechanism of mass  unsolicited, commercial advertising",
+              "or solicitations to entities other than your existing  customers; or",
+              "(b) this service to enable high volume, automated, electronic processes",
+              "that send queries or data to the systems of any Registrar or any",
+              "Registry except as reasonably necessary to register domain names or",
+              "modify existing domain name registrations.",
+              "",
+              "Tucows Registry reserves the right to modify these terms at any time. By",
+              "submitting this query, you agree to abide by this policy. All rights",
+              "reserved."
+            ],
+            "links": [
+              {
+                "value": "https://rdap.nixiregistry.in/rdap/domain/angelone.in",
+                "rel": "terms-of-service",
+                "href": "https://rdap.nixiregistry.in/",
+                "type": "text/html"
+              }
+            ]
+          },
+          {
+            "title": "Status Codes",
+            "description": [
+              "For more information on domain status codes, please visit https://icann.org/epp"
+            ],
+            "links": [
+              {
+                "value": "https://rdap.nixiregistry.in/rdap/domain/angelone.in",
+                "rel": "glossary",
+                "href": "https://icann.org/epp",
+                "type": "text/html"
+              }
+            ]
+          },
+          {
+            "title": "RDDS Inaccuracy Complaint Form",
+            "description": [
+              "URL of the ICANN RDDS Inaccuracy Complaint Form: https://icann.org/wicf"
+            ],
+            "links": [
+              {
+                "value": "https://rdap.nixiregistry.in/rdap/domain/angelone.in",
+                "rel": "help",
+                "href": "https://icann.org/wicf",
+                "type": "text/html"
+              }
+            ]
+          }
+        ],
+        "redacted": [
+          {
+            "name": {
+              "type": "Registry Registrant ID"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].handle",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='email')]",
+            "replacementPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='email')][3]",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Name"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='fn')][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Street"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='adr')][3][:3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant City"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='adr')][3][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Postal Code"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='adr')][3][5]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Phone"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Phone Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Fax"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Fax Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registry Admin ID"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].handle",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='email')]",
+            "replacementPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='email')][3]",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Name"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='fn')][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Street"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='adr')][3][:3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin City"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='adr')][3][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Postal Code"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='adr')][3][5]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Phone"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Phone Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Fax"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Fax Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registry Tech ID"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].handle",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='email')]",
+            "replacementPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='email')][3]",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Name"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='fn')][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Street"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='adr')][3][:3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech City"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='adr')][3][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Postal Code"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='adr')][3][5]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Phone"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Phone Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Fax"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Fax Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registry Billing ID"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].handle",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='email')]",
+            "replacementPath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='email')][3]",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Name"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='fn')][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Street"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='adr')][3][:3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing City"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='adr')][3][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Postal Code"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='adr')][3][5]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Phone"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Phone Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Fax"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Fax Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          }
+        ],
+        "objectClassName": "domain",
+        "handle": "D192023D380944E6D8918DCD9328D3CF4-IN",
+        "ldhName": "angelone.in",
+        "unicodeName": "angelone.in",
+        "nameservers": [
+          {
+            "objectClassName": "nameserver",
+            "handle": "HA9E02DB51F714A5CBF905DEF713E1CB5-IN",
+            "ldhName": "josephine.ns.cloudflare.com",
+            "unicodeName": "josephine.ns.cloudflare.com",
+            "status": [
+              "associated"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-05T12:16:18.525Z"
+              }
+            ]
+          },
+          {
+            "objectClassName": "nameserver",
+            "handle": "H8CBD330A783A4FE29251948B8B7A0686-IN",
+            "ldhName": "dax.ns.cloudflare.com",
+            "unicodeName": "dax.ns.cloudflare.com",
+            "status": [
+              "associated"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-05T12:16:18.525Z"
+              }
+            ]
+          }
+        ],
+        "secureDNS": {
+          "delegationSigned": false
+        },
+        "entities": [
+          {
+            "remarks": [
+              {
+                "title": "REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Some of the data in this object has been removed"
+                ]
+              },
+              {
+                "title": "EMAIL REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name."
+                ]
+              }
+            ],
+            "objectClassName": "entity",
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "org",
+                  {},
+                  "text",
+                  "Bombay Biz (India) Private Limited"
+                ],
+                [
+                  "adr",
+                  {
+                    "cc": "IN"
+                  },
+                  "text",
+                  [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "MH",
+                    "",
+                    ""
+                  ]
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "roles": [
+              "registrant"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-05T12:16:18.525Z"
+              }
+            ]
+          },
+          {
+            "remarks": [
+              {
+                "title": "REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Some of the data in this object has been removed"
+                ]
+              },
+              {
+                "title": "EMAIL REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name."
+                ]
+              }
+            ],
+            "objectClassName": "entity",
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "adr",
+                  {},
+                  "text",
+                  [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "roles": [
+              "administrative"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-05T12:16:18.525Z"
+              }
+            ]
+          },
+          {
+            "remarks": [
+              {
+                "title": "REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Some of the data in this object has been removed"
+                ]
+              },
+              {
+                "title": "EMAIL REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name."
+                ]
+              }
+            ],
+            "objectClassName": "entity",
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "adr",
+                  {},
+                  "text",
+                  [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "roles": [
+              "technical"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-05T12:16:18.525Z"
+              }
+            ]
+          },
+          {
+            "remarks": [
+              {
+                "title": "REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Some of the data in this object has been removed"
+                ]
+              },
+              {
+                "title": "EMAIL REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name."
+                ]
+              }
+            ],
+            "objectClassName": "entity",
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "adr",
+                  {},
+                  "text",
+                  [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "roles": [
+              "billing"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-05T12:16:18.525Z"
+              }
+            ]
+          },
+          {
+            "objectClassName": "entity",
+            "handle": "146",
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  "GoDaddy"
+                ],
+                [
+                  "adr",
+                  {
+                    "cc": "US"
+                  },
+                  "text",
+                  [
+                    "",
+                    "",
+                    "14555 North Hayden Rd #219",
+                    "Scottsdale ",
+                    "AZ",
+                    "85260",
+                    ""
+                  ]
+                ],
+                [
+                  "tel",
+                  {
+                    "type": "voice"
+                  },
+                  "uri",
+                  "tel:+1.4805058800"
+                ],
+                [
+                  "tel",
+                  {
+                    "type": "fax"
+                  },
+                  "uri",
+                  "tel:+1.4802474195"
+                ],
+                [
+                  "email",
+                  {},
+                  "text",
+                  "reg_admin@godaddy.com"
+                ]
+              ]
+            ],
+            "roles": [
+              "registrar"
+            ],
+            "publicIds": [
+              {
+                "type": "IANA Registrar ID",
+                "identifier": "146"
+              }
+            ],
+            "entities": [
+              {
+                "objectClassName": "entity",
+                "vcardArray": [
+                  "vcard",
+                  [
+                    [
+                      "version",
+                      {},
+                      "text",
+                      "4.0"
+                    ],
+                    [
+                      "fn",
+                      {},
+                      "text",
+                      ""
+                    ],
+                    [
+                      "tel",
+                      {
+                        "type": "voice"
+                      },
+                      "uri",
+                      "tel:+1.4805058800"
+                    ],
+                    [
+                      "email",
+                      {},
+                      "text",
+                      "reg_admin@godaddy.com"
+                    ]
+                  ]
+                ],
+                "roles": [
+                  "abuse"
+                ],
+                "events": [
+                  {
+                    "eventAction": "last update of RDAP database",
+                    "eventDate": "2026-05-05T12:16:18.525Z"
+                  }
+                ]
+              }
+            ],
+            "links": [
+              {
+                "value": "https://rdap.godaddy.com/v1/",
+                "rel": "about",
+                "href": "https://rdap.nixiregistry.in/rdap/entity/146",
+                "type": "application/rdap+json"
+              }
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-05T12:16:18.525Z"
+              }
+            ]
+          }
+        ],
+        "status": [
+          "client update prohibited",
+          "client renew prohibited",
+          "client delete prohibited",
+          "client transfer prohibited"
+        ],
+        "links": [
+          {
+            "value": "https://rdap.nixiregistry.in/rdap/domain/angelone.in",
+            "rel": "related",
+            "href": "https://rdap.godaddy.com/v1/domain/angelone.in",
+            "type": "application/rdap+json"
+          },
+          {
+            "value": "https://rdap.nixiregistry.in/rdap/domain/angelone.in",
+            "rel": "self",
+            "href": "https://rdap.nixiregistry.in/rdap/domain/angelone.in",
+            "type": "application/rdap+json"
+          }
+        ],
+        "events": [
+          {
+            "eventAction": "registration",
+            "eventActor": "sgs_tech",
+            "eventDate": "2021-05-28T11:07:14.186Z"
+          },
+          {
+            "eventAction": "expiration",
+            "eventDate": "2027-05-28T11:07:14.186Z"
+          },
+          {
+            "eventAction": "last changed",
+            "eventDate": "2025-07-24T05:32:27.772Z"
+          },
+          {
+            "eventAction": "transfer",
+            "eventDate": "2025-07-19T05:31:27.773Z"
+          },
+          {
+            "eventAction": "last update of RDAP database",
+            "eventDate": "2026-05-05T12:16:18.525Z"
+          }
+        ]
+      },
+      "hosting": {
+        "ip": "172.64.149.79",
+        "provider": "Cloudflare, Inc.",
+        "org": "Cloudflare, Inc.",
+        "country": "Canada",
+        "country_code": "CA",
+        "city": "Toronto",
+        "region": "Ontario"
+      },
+      "tech": {
+        "stack": [
+          "cloudflare",
+          "Cloudflare"
+        ],
+        "cms": "WordPress",
+        "theme": "Unknown",
+        "database": "MySQL / MariaDB",
+        "frontend": "React",
+        "language": "Unknown",
+        "server": "cloudflare",
+        "poweredBy": "Next.js"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": "DigiCert Inc",
+        "valid_from": "Jul  1 00:00:00 2025 GMT",
+        "valid_to": "Jun 30 23:59:59 2026 GMT",
+        "protocol": "TLSv1.3",
+        "days_left": 56
+      },
+      "siteMeta": {
+        "title": "Online Trading & Stock Broking in India | Angel One",
+        "description": "Angel One - Indiaâ€™s leading stock broker for online trading in Stocks, Mutual Funds, Commodities, IPOs, F&O and ETFs. Trade seamlessly with smart tools.",
+        "keywords": "",
+        "h1": "Your One-Stop Investment Platform"
+      },
+      "audit_time": "2026-05-05T12:16:18.847Z"
+    },
+    "rankinganywhere.com": {
+      "success": true,
+      "domain": "rankinganywhere.com",
+      "status": [
+        "client delete prohibited",
+        "client renew prohibited",
+        "client transfer prohibited",
+        "client update prohibited"
+      ],
+      "registrar": "GoDaddy.com, LLC",
+      "contacts": {
+        "registrar": {
+          "objectClassName": "entity",
+          "handle": "146",
+          "roles": [
+            "registrar"
+          ],
+          "links": [
+            {
+              "href": "http://www.godaddy.com",
+              "type": "text/html",
+              "value": "https://rdap.godaddy.com/v1/",
+              "rel": "about"
+            }
+          ],
+          "publicIds": [
+            {
+              "type": "IANA Registrar ID",
+              "identifier": "146"
+            }
+          ],
+          "vcardArray": [
+            "vcard",
+            [
+              [
+                "version",
+                {},
+                "text",
+                "4.0"
+              ],
+              [
+                "fn",
+                {},
+                "text",
+                "GoDaddy.com, LLC"
+              ]
+            ]
+          ],
+          "entities": [
+            {
+              "objectClassName": "entity",
+              "roles": [
+                "abuse"
+              ],
+              "vcardArray": [
+                "vcard",
+                [
+                  [
+                    "version",
+                    {},
+                    "text",
+                    "4.0"
+                  ],
+                  [
+                    "fn",
+                    {},
+                    "text",
+                    ""
+                  ],
+                  [
+                    "tel",
+                    {
+                      "type": "voice"
+                    },
+                    "uri",
+                    "tel:480-624-2505"
+                  ],
+                  [
+                    "email",
+                    {},
+                    "text",
+                    "abuse@godaddy.com"
+                  ]
+                ]
+              ]
+            }
+          ]
+        },
+        "registrant": {
+          "name": "Registration Private",
+          "organization": "Domains By Proxy, LLC",
+          "street": "100 S. Mill Ave, Suite 1600",
+          "city": "Tempe",
+          "state": "Arizona",
+          "zip": "85281",
+          "country": "US",
+          "phone": "+1.4806242599",
+          "email": "https://www.godaddy.com/whois/results.aspx?domain=rankinganywhere.com"
+        },
+        "admin": {
+          "name": "Registration Private",
+          "organization": "Domains By Proxy, LLC",
+          "street": "100 S. Mill Ave, Suite 1600",
+          "city": "Tempe",
+          "state": "Arizona",
+          "zip": "85281",
+          "country": "US",
+          "phone": "+1.4806242599",
+          "email": "https://www.godaddy.com/whois/results.aspx?domain=rankinganywhere.com"
+        },
+        "tech": {
+          "name": "Registration Private",
+          "organization": "Domains By Proxy, LLC",
+          "street": "100 S. Mill Ave, Suite 1600",
+          "city": "Tempe",
+          "state": "Arizona",
+          "zip": "85281",
+          "country": "US",
+          "phone": "+1.4806242599",
+          "email": "https://www.godaddy.com/whois/results.aspx?domain=rankinganywhere.com"
+        }
+      },
+      "dates": {
+        "created": "2026-05-03T04:18:01Z",
+        "expires": "2027-05-03T04:18:01Z",
+        "updated": "2026-05-03T04:44:00Z"
+      },
+      "nameservers": [
+        "FRANK.NS.CLOUDFLARE.COM",
+        "KIM.NS.CLOUDFLARE.COM"
+      ],
+      "age": {
+        "days": 2,
+        "years": "0.0",
+        "label": "2 Days"
+      },
+      "trustScore": 45,
+      "raw": {
+        "objectClassName": "domain",
+        "handle": "3094973741_DOMAIN_COM-VRSN",
+        "ldhName": "RANKINGANYWHERE.COM",
+        "links": [
+          {
+            "value": "https://rdap.verisign.com/com/v1/domain/RANKINGANYWHERE.COM",
+            "rel": "self",
+            "href": "https://rdap.verisign.com/com/v1/domain/RANKINGANYWHERE.COM",
+            "type": "application/rdap+json"
+          },
+          {
+            "value": "https://rdap.godaddy.com/v1/domain/RANKINGANYWHERE.COM",
+            "rel": "related",
+            "href": "https://rdap.godaddy.com/v1/domain/RANKINGANYWHERE.COM",
+            "type": "application/rdap+json"
+          }
+        ],
+        "status": [
+          "client delete prohibited",
+          "client renew prohibited",
+          "client transfer prohibited",
+          "client update prohibited"
+        ],
+        "entities": [
+          {
+            "objectClassName": "entity",
+            "handle": "146",
+            "roles": [
+              "registrar"
+            ],
+            "links": [
+              {
+                "href": "http://www.godaddy.com",
+                "type": "text/html",
+                "value": "https://rdap.godaddy.com/v1/",
+                "rel": "about"
+              }
+            ],
+            "publicIds": [
+              {
+                "type": "IANA Registrar ID",
+                "identifier": "146"
+              }
+            ],
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  "GoDaddy.com, LLC"
+                ]
+              ]
+            ],
+            "entities": [
+              {
+                "objectClassName": "entity",
+                "roles": [
+                  "abuse"
+                ],
+                "vcardArray": [
+                  "vcard",
+                  [
+                    [
+                      "version",
+                      {},
+                      "text",
+                      "4.0"
+                    ],
+                    [
+                      "fn",
+                      {},
+                      "text",
+                      ""
+                    ],
+                    [
+                      "tel",
+                      {
+                        "type": "voice"
+                      },
+                      "uri",
+                      "tel:480-624-2505"
+                    ],
+                    [
+                      "email",
+                      {},
+                      "text",
+                      "abuse@godaddy.com"
+                    ]
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "events": [
+          {
+            "eventAction": "registration",
+            "eventDate": "2026-05-03T04:18:01Z"
+          },
+          {
+            "eventAction": "expiration",
+            "eventDate": "2027-05-03T04:18:01Z"
+          },
+          {
+            "eventAction": "last changed",
+            "eventDate": "2026-05-03T04:44:00Z"
+          },
+          {
+            "eventAction": "last update of RDAP database",
+            "eventDate": "2026-05-05T12:30:51Z"
+          }
+        ],
+        "secureDNS": {
+          "delegationSigned": false
+        },
+        "nameservers": [
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "FRANK.NS.CLOUDFLARE.COM"
+          },
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "KIM.NS.CLOUDFLARE.COM"
+          }
+        ],
+        "rdapConformance": [
+          "rdap_level_0",
+          "icann_rdap_technical_implementation_guide_1",
+          "icann_rdap_response_profile_1"
+        ],
+        "notices": [
+          {
+            "title": "Terms of Service",
+            "description": [
+              "Service subject to Terms of Use."
+            ],
+            "links": [
+              {
+                "href": "https://www.verisign.com/domain-names/registration-data-access-protocol/terms-service/index.xhtml",
+                "type": "text/html",
+                "value": "https://rdap.verisign.com/com/v1/domain/rankinganywhere.com",
+                "rel": "terms-of-service"
+              }
+            ]
+          },
+          {
+            "title": "Status Codes",
+            "description": [
+              "For more information on domain status codes, please visit https://icann.org/epp"
+            ],
+            "links": [
+              {
+                "href": "https://icann.org/epp",
+                "type": "text/html"
+              }
+            ]
+          },
+          {
+            "title": "RDDS Inaccuracy Complaint Form",
+            "description": [
+              "URL of the ICANN RDDS Inaccuracy Complaint Form: https://icann.org/wicf"
+            ],
+            "links": [
+              {
+                "href": "https://icann.org/wicf",
+                "type": "text/html",
+                "value": "https://rdap.verisign.com/com/v1/domain/rankinganywhere.com",
+                "rel": "help"
+              }
+            ]
+          }
+        ]
+      },
+      "hosting": {
+        "ip": "172.67.156.20",
+        "provider": "Cloudflare, Inc.",
+        "org": "Cloudflare, Inc.",
+        "country": "Canada",
+        "country_code": "CA",
+        "city": "Toronto",
+        "region": "Ontario"
+      },
+      "tech": {
+        "stack": [
+          "cloudflare",
+          "Cloudflare"
+        ],
+        "cms": "Custom / Not Detected",
+        "theme": "Unknown",
+        "database": "Unknown",
+        "frontend": "Vanilla / Unknown",
+        "language": "Unknown",
+        "server": "cloudflare",
+        "poweredBy": "Hidden"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": "Let's Encrypt",
+        "valid_from": "May  3 03:48:52 2026 GMT",
+        "valid_to": "Aug  1 03:48:51 2026 GMT",
+        "protocol": "TLSv1.3",
+        "days_left": 87
+      },
+      "siteMeta": {
+        "title": "Ranking Anywhere - Professional SEO Ranking & Audit Software",
+        "description": "Ranking Anywhere provides hyper-accurate, real-time SEO intelligence and keyword tracking for global enterprises.",
+        "keywords": "",
+        "h1": ""
+      },
+      "audit_time": "2026-05-05T12:30:58.330Z"
+    },
+    "ahrefs.com": {
+      "success": true,
+      "domain": "ahrefs.com",
+      "status": [
+        "client transfer prohibited"
+      ],
+      "registrar": "Name.com, Inc.",
+      "contacts": {
+        "registrar": {
+          "objectClassName": "entity",
+          "handle": "625",
+          "roles": [
+            "registrar"
+          ],
+          "links": [
+            {
+              "href": "http://www.name.com",
+              "type": "text/html",
+              "value": "https://namerdap.systems/",
+              "rel": "about"
+            }
+          ],
+          "publicIds": [
+            {
+              "type": "IANA Registrar ID",
+              "identifier": "625"
+            }
+          ],
+          "vcardArray": [
+            "vcard",
+            [
+              [
+                "version",
+                {},
+                "text",
+                "4.0"
+              ],
+              [
+                "fn",
+                {},
+                "text",
+                "Name.com, Inc."
+              ]
+            ]
+          ],
+          "entities": [
+            {
+              "objectClassName": "entity",
+              "roles": [
+                "abuse"
+              ],
+              "vcardArray": [
+                "vcard",
+                [
+                  [
+                    "version",
+                    {},
+                    "text",
+                    "4.0"
+                  ],
+                  [
+                    "fn",
+                    {},
+                    "text",
+                    ""
+                  ],
+                  [
+                    "tel",
+                    {
+                      "type": "voice"
+                    },
+                    "uri",
+                    "tel:7202492374"
+                  ],
+                  [
+                    "email",
+                    {},
+                    "text",
+                    "abuse@name.com"
+                  ]
+                ]
+              ]
+            }
+          ]
+        },
+        "registrant": {
+          "name": "Privacy Protection Service",
+          "organization": "Data Protected",
+          "street": "Redacted for Privacy",
+          "city": "Not Disclosed",
+          "state": "N/A",
+          "zip": "N/A",
+          "country": "US",
+          "phone": "REDACTED",
+          "email": "REDACTED (GDPR)"
+        },
+        "admin": {
+          "name": "Privacy Protection Service",
+          "organization": "Data Protected",
+          "street": "Redacted for Privacy",
+          "city": "Not Disclosed",
+          "state": "N/A",
+          "zip": "N/A",
+          "country": "US",
+          "phone": "REDACTED",
+          "email": "REDACTED (GDPR)"
+        },
+        "tech": {
+          "name": "Privacy Protection Service",
+          "organization": "Data Protected",
+          "street": "Redacted for Privacy",
+          "city": "Not Disclosed",
+          "state": "N/A",
+          "zip": "N/A",
+          "country": "US",
+          "phone": "REDACTED",
+          "email": "REDACTED (GDPR)"
+        }
+      },
+      "dates": {
+        "created": "2010-11-25T15:32:54Z",
+        "expires": "2029-11-25T15:32:54Z",
+        "updated": "2020-03-26T06:21:50Z"
+      },
+      "nameservers": [
+        "ADAM.NS.CLOUDFLARE.COM",
+        "YOLANDA.NS.CLOUDFLARE.COM"
+      ],
+      "age": {
+        "days": 5639,
+        "years": "15.5",
+        "label": "15.4 Years"
+      },
+      "trustScore": 85,
+      "raw": {
+        "objectClassName": "domain",
+        "handle": "1627274528_DOMAIN_COM-VRSN",
+        "ldhName": "AHREFS.COM",
+        "links": [
+          {
+            "value": "https://rdap.verisign.com/com/v1/domain/AHREFS.COM",
+            "rel": "self",
+            "href": "https://rdap.verisign.com/com/v1/domain/AHREFS.COM",
+            "type": "application/rdap+json"
+          },
+          {
+            "value": "https://namerdap.systems/domain/AHREFS.COM",
+            "rel": "related",
+            "href": "https://namerdap.systems/domain/AHREFS.COM",
+            "type": "application/rdap+json"
+          }
+        ],
+        "status": [
+          "client transfer prohibited"
+        ],
+        "entities": [
+          {
+            "objectClassName": "entity",
+            "handle": "625",
+            "roles": [
+              "registrar"
+            ],
+            "links": [
+              {
+                "href": "http://www.name.com",
+                "type": "text/html",
+                "value": "https://namerdap.systems/",
+                "rel": "about"
+              }
+            ],
+            "publicIds": [
+              {
+                "type": "IANA Registrar ID",
+                "identifier": "625"
+              }
+            ],
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  "Name.com, Inc."
+                ]
+              ]
+            ],
+            "entities": [
+              {
+                "objectClassName": "entity",
+                "roles": [
+                  "abuse"
+                ],
+                "vcardArray": [
+                  "vcard",
+                  [
+                    [
+                      "version",
+                      {},
+                      "text",
+                      "4.0"
+                    ],
+                    [
+                      "fn",
+                      {},
+                      "text",
+                      ""
+                    ],
+                    [
+                      "tel",
+                      {
+                        "type": "voice"
+                      },
+                      "uri",
+                      "tel:7202492374"
+                    ],
+                    [
+                      "email",
+                      {},
+                      "text",
+                      "abuse@name.com"
+                    ]
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "events": [
+          {
+            "eventAction": "registration",
+            "eventDate": "2010-11-25T15:32:54Z"
+          },
+          {
+            "eventAction": "expiration",
+            "eventDate": "2029-11-25T15:32:54Z"
+          },
+          {
+            "eventAction": "last changed",
+            "eventDate": "2020-03-26T06:21:50Z"
+          },
+          {
+            "eventAction": "last update of RDAP database",
+            "eventDate": "2026-05-05T13:08:05Z"
+          }
+        ],
+        "secureDNS": {
+          "delegationSigned": false
+        },
+        "nameservers": [
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "ADAM.NS.CLOUDFLARE.COM"
+          },
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "YOLANDA.NS.CLOUDFLARE.COM"
+          }
+        ],
+        "rdapConformance": [
+          "rdap_level_0",
+          "icann_rdap_technical_implementation_guide_1",
+          "icann_rdap_response_profile_1"
+        ],
+        "notices": [
+          {
+            "title": "Terms of Service",
+            "description": [
+              "Service subject to Terms of Use."
+            ],
+            "links": [
+              {
+                "href": "https://www.verisign.com/domain-names/registration-data-access-protocol/terms-service/index.xhtml",
+                "type": "text/html",
+                "value": "https://rdap.verisign.com/com/v1/domain/ahrefs.com",
+                "rel": "terms-of-service"
+              }
+            ]
+          },
+          {
+            "title": "Status Codes",
+            "description": [
+              "For more information on domain status codes, please visit https://icann.org/epp"
+            ],
+            "links": [
+              {
+                "href": "https://icann.org/epp",
+                "type": "text/html"
+              }
+            ]
+          },
+          {
+            "title": "RDDS Inaccuracy Complaint Form",
+            "description": [
+              "URL of the ICANN RDDS Inaccuracy Complaint Form: https://icann.org/wicf"
+            ],
+            "links": [
+              {
+                "href": "https://icann.org/wicf",
+                "type": "text/html",
+                "value": "https://rdap.verisign.com/com/v1/domain/ahrefs.com",
+                "rel": "help"
+              }
+            ]
+          }
+        ]
+      },
+      "hosting": {
+        "ip": "172.64.148.115",
+        "provider": "Cloudflare, Inc.",
+        "org": "Cloudflare, Inc.",
+        "country": "Canada",
+        "country_code": "CA",
+        "city": "Toronto",
+        "region": "Ontario"
+      },
+      "tech": {
+        "stack": [
+          "cloudflare",
+          "Cloudflare"
+        ],
+        "cms": "Custom / Not Detected",
+        "theme": "Unknown",
+        "database": "Unknown",
+        "frontend": "Vue.js",
+        "language": "Unknown",
+        "server": "cloudflare",
+        "poweredBy": "Hidden"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": "Google Trust Services",
+        "valid_from": "Mar 26 00:21:03 2026 GMT",
+        "valid_to": "Jun 24 01:20:40 2026 GMT",
+        "protocol": "TLSv1.3",
+        "days_left": 49
+      },
+      "siteMeta": {
+        "title": "Ahrefsâ€”AI Marketing Platform Powered by Big Data",
+        "description": "We help marketers drive visibility across AI search, SEO, content, and social â€“ with the largest AI and search databases online.",
+        "keywords": "",
+        "h1": "Make your business discoverableâ€”in search, AI, and beyond"
+      },
+      "audit_time": "2026-05-05T13:08:12.914Z"
+    },
+    "github.com": {
+      "success": true,
+      "domain": "github.com",
+      "status": [
+        "client delete prohibited",
+        "client transfer prohibited",
+        "client update prohibited"
+      ],
+      "registrar": "MarkMonitor Inc.",
+      "contacts": {
+        "registrar": {
+          "objectClassName": "entity",
+          "handle": "292",
+          "roles": [
+            "registrar"
+          ],
+          "links": [
+            {
+              "href": "http://www.markmonitor.com",
+              "type": "text/html",
+              "value": "https://rdap.markmonitor.com/rdap/",
+              "rel": "about"
+            }
+          ],
+          "publicIds": [
+            {
+              "type": "IANA Registrar ID",
+              "identifier": "292"
+            }
+          ],
+          "vcardArray": [
+            "vcard",
+            [
+              [
+                "version",
+                {},
+                "text",
+                "4.0"
+              ],
+              [
+                "fn",
+                {},
+                "text",
+                "MarkMonitor Inc."
+              ]
+            ]
+          ],
+          "entities": [
+            {
+              "objectClassName": "entity",
+              "roles": [
+                "abuse"
+              ],
+              "vcardArray": [
+                "vcard",
+                [
+                  [
+                    "version",
+                    {},
+                    "text",
+                    "4.0"
+                  ],
+                  [
+                    "fn",
+                    {},
+                    "text",
+                    ""
+                  ],
+                  [
+                    "tel",
+                    {
+                      "type": "voice"
+                    },
+                    "uri",
+                    "tel:+1.2086851750"
+                  ],
+                  [
+                    "email",
+                    {},
+                    "text",
+                    "abusecomplaints@markmonitor.com"
+                  ]
+                ]
+              ]
+            }
+          ]
+        },
+        "registrant": {
+          "name": "Privacy Protection Service",
+          "organization": "Data Protected",
+          "street": "Redacted for Privacy",
+          "city": "Not Disclosed",
+          "state": "N/A",
+          "zip": "N/A",
+          "country": "US",
+          "phone": "REDACTED",
+          "email": "REDACTED (GDPR)"
+        },
+        "admin": {
+          "name": "Privacy Protection Service",
+          "organization": "Data Protected",
+          "street": "Redacted for Privacy",
+          "city": "Not Disclosed",
+          "state": "N/A",
+          "zip": "N/A",
+          "country": "US",
+          "phone": "REDACTED",
+          "email": "REDACTED (GDPR)"
+        },
+        "tech": {
+          "name": "Privacy Protection Service",
+          "organization": "Data Protected",
+          "street": "Redacted for Privacy",
+          "city": "Not Disclosed",
+          "state": "N/A",
+          "zip": "N/A",
+          "country": "US",
+          "phone": "REDACTED",
+          "email": "REDACTED (GDPR)"
+        }
+      },
+      "dates": {
+        "created": "2007-10-09T18:20:50Z",
+        "expires": "2026-10-09T18:20:50Z",
+        "updated": "2024-09-07T09:16:32Z"
+      },
+      "nameservers": [
+        "DNS1.P08.NSONE.NET",
+        "DNS2.P08.NSONE.NET",
+        "DNS3.P08.NSONE.NET",
+        "DNS4.P08.NSONE.NET",
+        "NS-1283.AWSDNS-32.ORG",
+        "NS-1707.AWSDNS-21.CO.UK",
+        "NS-421.AWSDNS-52.COM",
+        "NS-520.AWSDNS-01.NET"
+      ],
+      "age": {
+        "days": 6783,
+        "years": "18.6",
+        "label": "18.6 Years"
+      },
+      "trustScore": 85,
+      "raw": {
+        "objectClassName": "domain",
+        "handle": "1264983250_DOMAIN_COM-VRSN",
+        "ldhName": "GITHUB.COM",
+        "links": [
+          {
+            "value": "https://rdap.verisign.com/com/v1/domain/GITHUB.COM",
+            "rel": "self",
+            "href": "https://rdap.verisign.com/com/v1/domain/GITHUB.COM",
+            "type": "application/rdap+json"
+          },
+          {
+            "value": "https://rdap.markmonitor.com/rdap/domain/GITHUB.COM",
+            "rel": "related",
+            "href": "https://rdap.markmonitor.com/rdap/domain/GITHUB.COM",
+            "type": "application/rdap+json"
+          }
+        ],
+        "status": [
+          "client delete prohibited",
+          "client transfer prohibited",
+          "client update prohibited"
+        ],
+        "entities": [
+          {
+            "objectClassName": "entity",
+            "handle": "292",
+            "roles": [
+              "registrar"
+            ],
+            "links": [
+              {
+                "href": "http://www.markmonitor.com",
+                "type": "text/html",
+                "value": "https://rdap.markmonitor.com/rdap/",
+                "rel": "about"
+              }
+            ],
+            "publicIds": [
+              {
+                "type": "IANA Registrar ID",
+                "identifier": "292"
+              }
+            ],
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  "MarkMonitor Inc."
+                ]
+              ]
+            ],
+            "entities": [
+              {
+                "objectClassName": "entity",
+                "roles": [
+                  "abuse"
+                ],
+                "vcardArray": [
+                  "vcard",
+                  [
+                    [
+                      "version",
+                      {},
+                      "text",
+                      "4.0"
+                    ],
+                    [
+                      "fn",
+                      {},
+                      "text",
+                      ""
+                    ],
+                    [
+                      "tel",
+                      {
+                        "type": "voice"
+                      },
+                      "uri",
+                      "tel:+1.2086851750"
+                    ],
+                    [
+                      "email",
+                      {},
+                      "text",
+                      "abusecomplaints@markmonitor.com"
+                    ]
+                  ]
+                ]
+              }
+            ]
+          }
+        ],
+        "events": [
+          {
+            "eventAction": "registration",
+            "eventDate": "2007-10-09T18:20:50Z"
+          },
+          {
+            "eventAction": "expiration",
+            "eventDate": "2026-10-09T18:20:50Z"
+          },
+          {
+            "eventAction": "last changed",
+            "eventDate": "2024-09-07T09:16:32Z"
+          },
+          {
+            "eventAction": "last update of RDAP database",
+            "eventDate": "2026-05-06T11:47:52Z"
+          }
+        ],
+        "secureDNS": {
+          "delegationSigned": false
+        },
+        "nameservers": [
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "DNS1.P08.NSONE.NET"
+          },
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "DNS2.P08.NSONE.NET"
+          },
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "DNS3.P08.NSONE.NET"
+          },
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "DNS4.P08.NSONE.NET"
+          },
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "NS-1283.AWSDNS-32.ORG"
+          },
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "NS-1707.AWSDNS-21.CO.UK"
+          },
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "NS-421.AWSDNS-52.COM"
+          },
+          {
+            "objectClassName": "nameserver",
+            "ldhName": "NS-520.AWSDNS-01.NET"
+          }
+        ],
+        "rdapConformance": [
+          "rdap_level_0",
+          "icann_rdap_technical_implementation_guide_1",
+          "icann_rdap_response_profile_1"
+        ],
+        "notices": [
+          {
+            "title": "Terms of Service",
+            "description": [
+              "Service subject to Terms of Use."
+            ],
+            "links": [
+              {
+                "href": "https://www.verisign.com/domain-names/registration-data-access-protocol/terms-service/index.xhtml",
+                "type": "text/html",
+                "value": "https://rdap.verisign.com/com/v1/domain/github.com",
+                "rel": "terms-of-service"
+              }
+            ]
+          },
+          {
+            "title": "Status Codes",
+            "description": [
+              "For more information on domain status codes, please visit https://icann.org/epp"
+            ],
+            "links": [
+              {
+                "href": "https://icann.org/epp",
+                "type": "text/html"
+              }
+            ]
+          },
+          {
+            "title": "RDDS Inaccuracy Complaint Form",
+            "description": [
+              "URL of the ICANN RDDS Inaccuracy Complaint Form: https://icann.org/wicf"
+            ],
+            "links": [
+              {
+                "href": "https://icann.org/wicf",
+                "type": "text/html",
+                "value": "https://rdap.verisign.com/com/v1/domain/github.com",
+                "rel": "help"
+              }
+            ]
+          }
+        ]
+      },
+      "hosting": {
+        "ip": "20.207.73.82",
+        "provider": "Microsoft Corporation",
+        "org": "Microsoft Azure Cloud (centralindia)",
+        "country": "India",
+        "country_code": "IN",
+        "city": "Pune",
+        "region": "Maharashtra"
+      },
+      "tech": {
+        "stack": [
+          "github.com"
+        ],
+        "cms": "Custom / Not Detected",
+        "theme": "Unknown",
+        "database": "Unknown",
+        "frontend": "React",
+        "language": "Unknown",
+        "server": "github.com",
+        "poweredBy": "Hidden"
+      },
+      "ssl": {
+        "valid": true,
+        "issuer": "Sectigo Limited",
+        "valid_from": "May  5 00:00:00 2026 GMT",
+        "valid_to": "Aug  2 23:59:59 2026 GMT",
+        "protocol": "TLSv1.3",
+        "days_left": 88
+      },
+      "siteMeta": {
+        "title": "GitHub · Change is constant. GitHub keeps you ahead. · GitHubAmerican AirlinesDuolingoErnst and YoungFordInfoSysMercado LibreMercedes-BenzShopifyPhilipsSociété GénéraleSpotifyVodafoneAmerican AirlinesDuolingoErnst and YoungFordInfoSysMercado LibreMercedes-BenzShopifyPhilipsSociété GénéraleSpotifyVodafoneInstagramTikTokTwitch",
+        "description": "Join the world's most widely adopted, AI-powered developer platform where millions of developers, businesses, and the largest open source community build software that advances humanity.",
+        "keywords": "",
+        "h1": "Search code, repositories, users, issues, pull requests..."
+      },
+      "audit_time": "2026-05-06T11:48:00.348Z"
+    }
+  },
+  "userSettings": {
+    "1778141416727": {
+      "globalSerperApiKey": "eb8cfa419e28cdf088877384d847edfdbf8c956d",
+      "globalScrapingdogApiKey": "",
+      "globalSerpapiKey": "",
+      "globalProxyUrl": "",
+      "globalProxies": [],
+      "isRandomProxy": false,
+      "activeProxyIdx": null,
+      "serperQuotaActive": true,
+      "scrapingdogQuotaActive": true,
+      "lastUpdated": "2026-05-14T12:13:50.321Z"
+    }
+  }
+}

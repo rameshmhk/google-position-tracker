@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Project {
+  id         String    @id @default(cuid())
+  name       String
+  websiteUrl String
+  location   String?
+  frequency  String    @default("daily")
+  createdAt  DateTime  @default(now())
+  keywords   Keyword[]
+}
+
+model Keyword {
+  id             String        @id @default(cuid())
+  projectId      String
+  text           String
+  isMapsTracking Boolean       @default(false)
+  status         String        @default("active")
+  createdAt      DateTime      @default(now())
+  project        Project       @relation(fields: [projectId], references: [id])
+  rankings       RankHistory[]
+}
+
+model RankHistory {
+  id          String   @id @default(cuid())
+  keywordId   String
+  organicRank Int?
+  mapsRank    Int?
+  checkedAt   DateTime @default(now())
+  keyword     Keyword  @relation(fields: [keywordId], references: [id])
+}
+
+model AdClick {
+  id              String   @id @default(cuid())
+  websiteUrl      String
+  ipAddress       String?
+  userAgent       String?
+  deviceType      String?
+  browser         String?
+  os              String?
+  source          String?
+  campaignId      String?
+  campaignName    String?
+  gclid           String?
+  isSuspicious    Boolean  @default(false)
+  suspicionReason String?
+  clickedAt       DateTime @default(now())
+  formInteracted  Boolean  @default(false)
+  timeOnSite      Int?
+  sessionData     String?
+  pageLoadTime    Int?
+  isp             String?
+  city            String?
+  country         String?
+  lat             Float?
+  lon             Float?
+  pagesVisited    String?
+  exitPage        String?
+  actions         String?
+  adId            String?
+  adGroup         String?
+  adContent       String?
+  keyword         String?
+  isReturning     Boolean  @default(false)
+  visitCount      Int      @default(1)
+  revenue         Float?   @default(0)
+  orderId         String?
+  adPosition      String?
+  sessionEvents   SessionEvent[]
+}
+
+model SessionEvent {
+  id        String   @id @default(cuid())
+  clickId   String
+  click     AdClick  @relation(fields: [clickId], references: [id])
+  type      String   // 'move', 'scroll', 'click'
+  x         Int?
+  y         Int?
+  scrollP   Float?   // Scroll percentage
+  timestamp DateTime @default(now())
+}
