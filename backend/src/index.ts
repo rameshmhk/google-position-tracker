@@ -2087,6 +2087,47 @@ app.post('/api/projects/:id/keywords/bulk-defaults', authenticateToken, (req: an
   res.json({ success: true, updated: count });
 });
 
+app.post('/api/projects/:id/verify', authenticateToken, async (req: any, res: any) => {
+  const { id } = req.params;
+  const db = getDB();
+
+  // Find project
+  const index = db.projects.findIndex((p: any) => String(p.id) === String(id) && String(p.userId) === String(req.user.id));
+  
+  if (index !== -1) {
+    const project = db.projects[index];
+    try {
+      let targetUrl = project.url;
+      if (!targetUrl.startsWith('http://') && !targetUrl.startsWith('https://')) {
+        targetUrl = 'https://' + targetUrl;
+      }
+      
+      const response = await axios.get(targetUrl, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        },
+        timeout: 10000
+      });
+
+      const html = response.data;
+      if (html && (html.includes('tracker.js') || html.includes('rankinganywhere.com/api/track-click'))) {
+        db.projects[index].isVerified = true;
+        persistDB();
+        return res.json({ success: true, message: 'Domain Verified Successfully! Tracking code found.' });
+      } else {
+        return res.status(400).json({ success: false, error: 'Tracking code not found in the website HTML. Please ensure it is placed before </head>.' });
+      }
+
+    } catch (err: any) {
+      console.error(`[Verify] Error verifying ${project.url}:`, err.message);
+      return res.status(400).json({ success: false, error: `Could not reach your website to verify. Error: ${err.message}` });
+    }
+
+  } else {
+    res.status(404).json({ error: 'Project not found' });
+  }
+});
+
 app.put('/api/projects/:id', authenticateToken, (req: any, res: any) => {
   const { id } = req.params;
   console.log(`>>> [API] PUT /api/projects/${id} - Body:`, req.body);

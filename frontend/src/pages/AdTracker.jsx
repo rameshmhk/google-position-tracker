@@ -117,9 +117,18 @@ const AdTracker = () => {
         setSelectedProject(data.name);
         setShowCode(true); // Automatically show code after adding
         alert('🎉 Domain Added! Now copy the tracking code below and paste it on your website.');
+      } else {
+        const data = await res.json();
+        if (res.status === 401 || res.status === 403) {
+          alert('❌ Access Denied: Please Sign In to add a domain.');
+          navigate('/login');
+        } else {
+          alert('❌ Error: ' + (data.error || 'Failed to add domain'));
+        }
       }
     } catch (err) {
       console.error('Error adding project:', err);
+      alert('❌ Network Error: Could not reach the server.');
     }
   };
 

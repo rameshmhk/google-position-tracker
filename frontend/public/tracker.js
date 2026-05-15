@@ -1,7 +1,10 @@
 (function() {
     // --- CONFIGURATION ---
-    const API_BASE = 'http://localhost:5001';
-    const TRACK_URL = `${API_BASE}/api/track-click`;
+    // Extract base URL from window.RA_TRACKER_URL if provided, else fallback to current origin
+    const configuredTrackUrl = window.RA_TRACKER_URL || (window.location.origin + '/api/track-click');
+    const API_BASE = configuredTrackUrl.replace('/api/track-click', '');
+    
+    const TRACK_URL = configuredTrackUrl;
     const SYNC_URL = `${API_BASE}/api/session-events`;
 
     let currentClickId = null;
