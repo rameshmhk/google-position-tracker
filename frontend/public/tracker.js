@@ -1,10 +1,17 @@
 (function() {
     // --- CONFIGURATION ---
-    // Extract base URL from window.RA_TRACKER_URL if provided, else fallback to current origin
-    const configuredTrackUrl = window.RA_TRACKER_URL || (window.location.origin + '/api/track-click');
-    const API_BASE = configuredTrackUrl.replace('/api/track-click', '');
-    
-    const TRACK_URL = configuredTrackUrl;
+    // Try to auto-detect the tracker server URL from the script src itself
+    let detectedBase = 'https://rankinganywhere.com';
+    const scripts = document.getElementsByTagName('script');
+    for (let s of scripts) {
+        if (s.src && s.src.includes('tracker.js')) {
+            detectedBase = new URL(s.src).origin;
+            break;
+        }
+    }
+
+    const API_BASE = window.RA_TRACKER_URL ? window.RA_TRACKER_URL.replace('/api/track-click', '') : detectedBase;
+    const TRACK_URL = `${API_BASE}/api/track-click`;
     const SYNC_URL = `${API_BASE}/api/session-events`;
 
     let currentClickId = null;
