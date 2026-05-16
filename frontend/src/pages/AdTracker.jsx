@@ -57,19 +57,29 @@ const AdTracker = () => {
   }, [clickData]);
 
   useEffect(() => {
-    fetchTrackingData();
+    const token = localStorage.getItem('token');
+    if (!token) {
+      navigate('/login');
+      return;
+    }
+    fetchTrackingData(token);
     fetchProjects();
-  }, []);
+  }, [navigate]);
 
-  const fetchTrackingData = async () => {
+  const fetchTrackingData = async (token) => {
     try {
       setLoading(true);
-      const res = await fetch(`${API_BASE_URL}/api/track-data`);
+      const res = await fetch(`${API_BASE_URL}/api/track-data`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
       if (res.ok) {
         const data = await res.json();
         if (data.success) {
           setClickData(data.data);
         }
+      } else if (res.status === 401 || res.status === 403) {
+        localStorage.removeItem('token');
+        navigate('/login');
       }
     } catch (err) {
       console.error('Error fetching track data:', err);
@@ -1229,96 +1239,126 @@ const AdTracker = () => {
                 ) : sortedData.length === 0 ? (
                   <tr><td colSpan="7" style={{ padding: '30px', textAlign: 'center', color: '#64748b' }}>No clicks recorded for this period.</td></tr>
                 ) : (
-                  sortedData.map((click) => (
-                    <tr key={click.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                      <td style={tdStyle}>
-                        <div style={{ fontWeight: '600', color: '#0f172a' }}>{new Date(click.clickedAt).toLocaleDateString()}</div>
-                        <div style={{ fontSize: '11px', color: '#94a3b8', fontWeight: '500' }}>{new Date(click.clickedAt).toLocaleTimeString()}</div>
-                      </td>
-                      <td style={tdStyle}>
-                        <div 
-                          onClick={() => {
-                            if (click.isReturning) {
-                              navigate(`/gold-user/${click.ipAddress}`);
-                            } else {
-                              navigate(`/ip-story/${click.ipAddress}`);
-                            }
-                          }}
-                          className="ip-link"
-                          style={{ 
-                            fontWeight: '700', 
-                            color: '#1D2B44', 
-                            fontFamily: 'JetBrains Mono, monospace', 
-                            cursor: 'pointer',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: '4px',
-                            padding: '10px',
-                            background: click.isReturning ? 'rgba(255, 153, 0, 0.05)' : '#f8fafc',
-                            borderRadius: '12px',
-                            width: 'fit-content',
-                            transition: '0.2s',
-                            border: click.isReturning ? '1px solid #FF9900' : '1px solid #e2e8f0'
-                          }}
-                        >
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                            {click.ipAddress || 'Unknown'}
-                            {click.isReturning && (
-                              <span style={{ fontSize: '9px', background: '#FF9900', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontWeight: '900', animation: 'blink 1.5s infinite' }}>
-                                🌟 GOLD USER
-                              </span>
-                            )}
+                  (() => {
+                    // Group by IP and Date
+                    const grouped = [];
+                    const map = new Map();
+
+                    sortedData.forEach(click => {
+                      const dateKey = new Date(click.clickedAt).toLocaleDateString();
+                      const groupKey = `${click.ipAddress}_${dateKey}`;
+                      
+                      if (!map.has(groupKey)) {
+                        map.set(groupKey, { ...click, count: 1 });
+                        grouped.push(map.get(groupKey));
+                      } else {
+                        const existing = map.get(groupKey);
+                        existing.count++;
+                        // Update to latest timestamp/info if needed
+                        if (new Date(click.clickedAt) > new Date(existing.clickedAt)) {
+                           existing.clickedAt = click.clickedAt;
+                           existing.timeOnSite = click.timeOnSite;
+                           existing.formInteracted = click.formInteracted || existing.formInteracted;
+                        }
+                      }
+                    });
+
+                    return grouped.map((click) => (
+                      <tr key={click.id} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                        <td style={tdStyle}>
+                          <div style={{ fontWeight: '600', color: '#0f172a' }}>{new Date(click.clickedAt).toLocaleDateString()}</div>
+                          <div style={{ fontSize: '11px', color: '#94a3b8', fontWeight: '500' }}>Last: {new Date(click.clickedAt).toLocaleTimeString()}</div>
+                        </td>
+                        <td style={tdStyle}>
+                          <div 
+                            onClick={() => {
+                              if (click.revenue > 0 || click.orderId) {
+                                navigate(`/gold-user/${click.ipAddress}`);
+                              } else {
+                                navigate(`/ip-story/${click.ipAddress}`);
+                              }
+                            }}
+                            className="ip-link"
+                            style={{ 
+                              fontWeight: '700', 
+                              color: '#1D2B44', 
+                              fontFamily: 'JetBrains Mono, monospace', 
+                              cursor: 'pointer',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              gap: '4px',
+                              padding: '10px',
+                              background: (click.revenue > 0 || click.orderId) ? 'rgba(255, 153, 0, 0.05)' : '#f8fafc',
+                              borderRadius: '12px',
+                              width: 'fit-content',
+                              transition: '0.2s',
+                              border: (click.revenue > 0 || click.orderId) ? '1px solid #FF9900' : '1px solid #e2e8f0'
+                            }}
+                          >
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                              {click.ipAddress || 'Unknown'}
+                              {click.count > 1 && (
+                                <span style={{ background: '#3b82f6', color: '#fff', padding: '2px 8px', borderRadius: '100px', fontSize: '10px', fontWeight: '900' }}>
+                                  #{click.count}
+                                </span>
+                              )}
+                              {(click.revenue > 0 || click.orderId) && (
+                                <span style={{ fontSize: '9px', background: '#FF9900', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontWeight: '900', animation: 'blink 1.5s infinite' }}>
+                                  🌟 GOLD USER
+                                </span>
+                              )}
+                            </div>
+                            <div style={{ fontSize: '10px', color: '#64748b' }}>
+                              {click.visitCount > 1 ? `Visit #${click.visitCount}` : 'First Visit'}
+                            </div>
                           </div>
-                          <div style={{ fontSize: '10px', color: '#64748b' }}>
-                            {click.visitCount > 1 ? `Visit #${click.visitCount}` : 'First Visit'}
-                          </div>
-                        </div>
-                      </td>
-                      <td style={tdStyle}>
-                        <span style={{ 
-                          padding: '4px 10px', 
-                          borderRadius: '100px', 
-                          fontSize: '12px', 
-                          fontWeight: 'bold',
-                          background: click.source === 'google_ads' ? '#e0f2fe' : '#f1f5f9',
-                          color: click.source === 'google_ads' ? '#0284c7' : '#475569'
-                        }}>
-                          {click.source === 'google_ads' ? 'Google Ads' : click.source || 'Direct'}
-                        </span>
-                        {click.gclid && <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '4px' }}>GCLID Captured</div>}
-                      </td>
-                      <td style={tdStyle}>
-                        <div style={{ fontWeight: '800', color: '#1e293b' }}>{click.deviceModel || click.deviceType}</div>
-                        <div style={{ fontSize: '11px', color: '#64748b' }}>{click.browser} / {click.os}</div>
-                      </td>
-                      <td style={tdStyle}>
-                        {click.timeOnSite !== null ? (
-                          <span style={{ color: click.timeOnSite < 5 ? '#ef4444' : '#10b981', fontWeight: 'bold' }}>
-                            {click.timeOnSite}s {click.timeOnSite < 5 && '(Bounce)'}
+                        </td>
+                        <td style={tdStyle}>
+                          <span style={{ 
+                            padding: '4px 10px', 
+                            borderRadius: '100px', 
+                            fontSize: '12px', 
+                            fontWeight: 'bold',
+                            background: click.source === 'google_ads' ? '#e0f2fe' : '#f1f5f9',
+                            color: click.source === 'google_ads' ? '#0284c7' : '#475569'
+                          }}>
+                            {click.source === 'google_ads' ? 'Google Ads' : click.source || 'Direct'}
                           </span>
-                        ) : (
-                          <span style={{ color: '#94a3b8' }}>Tracking...</span>
-                        )}
-                      </td>
-                      <td style={tdStyle}>
-                        {click.formInteracted ? (
-                          <span style={{ color: '#10b981', fontWeight: 'bold' }}>✓ Yes</span>
-                        ) : (
-                          <span style={{ color: '#ef4444' }}>✗ No</span>
-                        )}
-                      </td>
-                      <td style={tdStyle}>
-                        {click.isSuspicious ? (
-                          <div style={{ color: '#ef4444', fontWeight: 'bold', fontSize: '13px' }}>
-                            ⚠️ Suspicious
-                            <div style={{ fontSize: '11px', fontWeight: 'normal', opacity: 0.8 }}>{click.suspicionReason}</div>
-                          </div>
-                        ) : (
-                          <span style={{ color: '#10b981', fontWeight: '500' }}>✓ Clean</span>
-                        )}
-                      </td>
-                    </tr>
-                  ))
+                          {click.gclid && <div style={{ fontSize: '10px', color: '#94a3b8', marginTop: '4px' }}>GCLID Captured</div>}
+                        </td>
+                        <td style={tdStyle}>
+                          <div style={{ fontWeight: '800', color: '#1e293b' }}>{click.deviceModel || click.deviceType}</div>
+                          <div style={{ fontSize: '11px', color: '#64748b' }}>{click.browser} / {click.os}</div>
+                        </td>
+                        <td style={tdStyle}>
+                          {click.timeOnSite !== null ? (
+                            <span style={{ color: click.timeOnSite < 5 ? '#ef4444' : '#10b981', fontWeight: 'bold' }}>
+                              {click.timeOnSite}s {click.timeOnSite < 5 && '(Bounce)'}
+                            </span>
+                          ) : (
+                            <span style={{ color: '#94a3b8' }}>Tracking...</span>
+                          )}
+                        </td>
+                        <td style={tdStyle}>
+                          {click.formInteracted ? (
+                            <span style={{ color: '#10b981', fontWeight: 'bold' }}>✓ Yes</span>
+                          ) : (
+                            <span style={{ color: '#ef4444' }}>✗ No</span>
+                          )}
+                        </td>
+                        <td style={tdStyle}>
+                          {click.isSuspicious ? (
+                            <div style={{ color: '#ef4444', fontWeight: 'bold', fontSize: '13px' }}>
+                              ⚠️ Suspicious
+                              <div style={{ fontSize: '11px', fontWeight: 'normal', opacity: 0.8 }}>{click.suspicionReason}</div>
+                            </div>
+                          ) : (
+                            <span style={{ color: '#10b981', fontWeight: '500' }}>✓ Clean</span>
+                          )}
+                        </td>
+                      </tr>
+                    ));
+                  })()
                 )}
               </tbody>
             </table>

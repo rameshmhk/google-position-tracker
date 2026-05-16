@@ -65,6 +65,12 @@ const Navbar = () => {
             transform: translateY(10px);
             transition: all 0.3s ease;
           }
+          .nav-dropdown-item:hover .dropdown-content {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+          }
           .dropdown-content li a {
             color: #1e293b !important;
             padding: 10px 20px;

@@ -17,7 +17,9 @@ const LiveTraffic = () => {
 
   const fetchTrackingData = async () => {
     try {
-      const res = await fetch(`${API_BASE_URL}/api/track-data`);
+      const token = localStorage.getItem('token');
+      if (!token) { window.location.href = '/login'; return; }
+      const res = await fetch(`${API_BASE_URL}/api/track-data`, { headers: { 'Authorization': `Bearer ${token}` } });
       if (res.ok) {
         const data = await res.json();
         if (data.success) {
@@ -31,7 +33,16 @@ const LiveTraffic = () => {
     }
   };
 
-  const activeUsers = clickData.filter(c => new Date(c.clickedAt) > new Date(Date.now() - 10 * 60 * 1000));
+  const rawActive = clickData.filter(c => new Date(c.clickedAt) > new Date(Date.now() - 10 * 60 * 1000));
+  
+  // Group by IP to show only unique active users
+  const activeUsersMap = new Map();
+  rawActive.forEach(u => {
+    if (!activeUsersMap.has(u.ipAddress) || new Date(u.clickedAt) > new Date(activeUsersMap.get(u.ipAddress).clickedAt)) {
+      activeUsersMap.set(u.ipAddress, u);
+    }
+  });
+  const activeUsers = Array.from(activeUsersMap.values()).sort((a,b) => new Date(b.clickedAt) - new Date(a.clickedAt));
   
   // Group by page
   const pageDistribution = activeUsers.reduce((acc, user) => {

@@ -297,15 +297,15 @@
       "defaultLng": 151.2100301,
       "pincode": "2010",
       "usePincode": false,
-      "scrapingStrategy": "standard",
+      "scrapingStrategy": "api_only",
       "preferredApi": "hybrid",
       "device": "desktop",
       "proxyUrl": "",
-      "lastChecked": "2026-05-07",
+      "lastChecked": "2026-05-14",
       "status": "active",
       "scheduleDay": "Friday",
-      "lastCheck": 1778125556235,
-      "isVerified": false
+      "lastCheck": 1778792028049,
+      "isVerified": true
     },
     {
       "id": "1778008201501",
@@ -324,11 +324,11 @@
       "preferredApi": "hybrid",
       "device": "desktop",
       "proxyUrl": "",
-      "lastChecked": "2026-05-07",
+      "lastChecked": "2026-05-14",
       "status": "active",
       "scheduleDay": "Friday",
-      "lastCheck": 1778125525870,
-      "isVerified": false
+      "lastCheck": 1778792464356,
+      "isVerified": true
     },
     {
       "id": "1778759774881",
@@ -415,6 +415,27 @@
       "lastChecked": null,
       "isVerified": false,
       "scheduleDay": "Friday"
+    },
+    {
+      "id": "1778820473381",
+      "userId": "1776349705175",
+      "name": "rankinganywhere.com",
+      "url": "rankinganywhere.com",
+      "targetRegion": "in",
+      "schedule": "instant",
+      "defaultLocation": "",
+      "defaultLat": 0,
+      "defaultLng": 0,
+      "pincode": "",
+      "usePincode": false,
+      "scrapingStrategy": "api_only",
+      "preferredApi": "hybrid",
+      "device": "desktop",
+      "proxyUrl": "",
+      "lastChecked": null,
+      "isVerified": true,
+      "scheduleDay": "Friday",
+      "status": "active"
     }
   ],
   "keywords": [
@@ -2927,7 +2948,7 @@
       "id": "bxmevb",
       "projectId": "1778007106199",
       "text": "business broker sydney",
-      "organic": 9,
+      "organic": 8,
       "maps": 1,
       "status": "active",
       "mapsStatus": "active",
@@ -2938,8 +2959,8 @@
       "activePriority": "city",
       "pincode": "2010",
       "usePincode": false,
-      "lastChecked": "2026-05-07",
-      "displayRank": "1//9 LL 1",
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//8 LL 1",
       "history": [
         {
           "date": "2026-05-05",
@@ -2955,6 +2976,11 @@
           "date": "2026-05-07",
           "organic": 9,
           "maps": 1
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 8,
+          "maps": 1
         }
       ],
       "source": "Serper",
@@ -2964,7 +2990,7 @@
       "id": "9z8it",
       "projectId": "1778007106199",
       "text": "business brokers canberra",
-      "organic": 7,
+      "organic": 9,
       "maps": 0,
       "status": "active",
       "mapsStatus": "active",
@@ -2975,8 +3001,8 @@
       "activePriority": "city",
       "pincode": "2010",
       "usePincode": false,
-      "lastChecked": "2026-05-07",
-      "displayRank": "1//7",
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//9",
       "foundUrl": "https://www.abbagroup.com.au/sell-business-canberra-act/",
       "source": "Serper",
       "history": [
@@ -2989,6 +3015,11 @@
           "date": "2026-05-07",
           "organic": 7,
           "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 9,
+          "maps": 0
         }
       ]
     },
@@ -2997,7 +3028,7 @@
       "projectId": "1778007106199",
       "text": "business brokers wollongong",
       "organic": 3,
-      "maps": 0,
+      "maps": 10,
       "status": "active",
       "mapsStatus": "active",
       "organicStatus": "active",
@@ -3007,8 +3038,8 @@
       "activePriority": "city",
       "pincode": "2010",
       "usePincode": false,
-      "lastChecked": "2026-05-07",
-      "displayRank": "1//3",
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//3 LL 10",
       "foundUrl": "https://www.abbagroup.com.au/sell-business-wollongong-nsw/",
       "source": "Serper",
       "history": [
@@ -3021,6 +3052,11 @@
           "date": "2026-05-07",
           "organic": 3,
           "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 3,
+          "maps": 10
         }
       ]
     },
@@ -3028,7 +3064,7 @@
       "id": "4h0zqq",
       "projectId": "1778007106199",
       "text": "business brokers newcastle",
-      "organic": 0,
+      "organic": 9,
       "maps": 0,
       "status": "active",
       "mapsStatus": "active",
@@ -3039,8 +3075,8 @@
       "activePriority": "city",
       "pincode": "2010",
       "usePincode": false,
-      "lastChecked": "2026-05-07",
-      "displayRank": "N/A",
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//9",
       "history": [
         {
           "date": "2026-05-06",
@@ -3051,16 +3087,21 @@
           "date": "2026-05-07",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 9,
+          "maps": 0
         }
       ],
-      "source": ""
+      "source": "Serper"
     },
     {
       "id": "ji2n7n",
       "projectId": "1778007106199",
       "text": "business broker",
       "organic": 7,
-      "maps": 0,
+      "maps": 1,
       "status": "active",
       "mapsStatus": "active",
       "organicStatus": "active",
@@ -3070,8 +3111,8 @@
       "activePriority": "city",
       "pincode": "2010",
       "usePincode": false,
-      "lastChecked": "2026-05-07",
-      "displayRank": "1//7",
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//7 LL 1",
       "history": [
         {
           "date": "2026-05-06",
@@ -3082,6 +3123,11 @@
           "date": "2026-05-07",
           "organic": 7,
           "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 7,
+          "maps": 1
         }
       ],
       "source": "Serper"
@@ -3090,8 +3136,8 @@
       "id": "q16syo",
       "projectId": "1778007106199",
       "text": "business brokers australia",
-      "organic": 5,
-      "maps": 0,
+      "organic": 3,
+      "maps": 1,
       "status": "active",
       "mapsStatus": "active",
       "organicStatus": "active",
@@ -3101,8 +3147,8 @@
       "activePriority": "city",
       "pincode": "2010",
       "usePincode": false,
-      "lastChecked": "2026-05-07",
-      "displayRank": "1//5",
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//3 LL 1",
       "history": [
         {
           "date": "2026-05-06",
@@ -3113,6 +3159,11 @@
           "date": "2026-05-07",
           "organic": 5,
           "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 3,
+          "maps": 1
         }
       ],
       "source": "Serper"
@@ -3121,6 +3172,42 @@
       "id": "0zkq37",
       "projectId": "1778007106199",
       "text": "business sale brokers",
+      "organic": 5,
+      "maps": 4,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Surry Hills, New South Wales, Australia",
+      "lat": -33.8845123,
+      "lng": 151.2100301,
+      "activePriority": "city",
+      "pincode": "2010",
+      "usePincode": false,
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//5 LL 4",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 3,
+          "maps": 3
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 5,
+          "maps": 4
+        }
+      ],
+      "source": "Serper"
+    },
+    {
+      "id": "pl1ser",
+      "projectId": "1778007106199",
+      "text": "sell a business",
       "organic": 0,
       "maps": 0,
       "status": "active",
@@ -3132,41 +3219,10 @@
       "activePriority": "city",
       "pincode": "2010",
       "usePincode": false,
-      "lastChecked": "2026-05-07",
+      "lastChecked": "2026-05-14",
       "displayRank": "N/A",
-      "history": [
-        {
-          "date": "2026-05-06",
-          "organic": 3,
-          "maps": 3
-        },
-        {
-          "date": "2026-05-07",
-          "organic": 0,
-          "maps": 0
-        }
-      ],
-      "source": ""
-    },
-    {
-      "id": "pl1ser",
-      "projectId": "1778007106199",
-      "text": "sell a business",
-      "organic": 2,
-      "maps": 0,
-      "status": "active",
-      "mapsStatus": "active",
-      "organicStatus": "active",
-      "location": "Surry Hills, New South Wales, Australia",
-      "lat": -33.8845123,
-      "lng": 151.2100301,
-      "activePriority": "city",
-      "pincode": "2010",
-      "usePincode": false,
-      "lastChecked": "2026-05-07",
-      "displayRank": "1//2",
       "foundUrl": "https://www.abbagroup.com.au/business-brokers-sydney-nsw/",
-      "source": "Serper",
+      "source": "",
       "history": [
         {
           "date": "2026-05-06",
@@ -3176,6 +3232,11 @@
         {
           "date": "2026-05-07",
           "organic": 2,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 0,
           "maps": 0
         }
       ]
@@ -3195,7 +3256,7 @@
       "activePriority": "city",
       "pincode": "2010",
       "usePincode": false,
-      "lastChecked": "2026-05-07",
+      "lastChecked": "2026-05-14",
       "displayRank": "N/A",
       "history": [
         {
@@ -3207,6 +3268,11 @@
           "date": "2026-05-07",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "source": "",
@@ -3216,7 +3282,7 @@
       "id": "tq4wan",
       "projectId": "1778007106199",
       "text": "sell your business",
-      "organic": 0,
+      "organic": 9,
       "maps": 0,
       "status": "active",
       "mapsStatus": "active",
@@ -3227,8 +3293,8 @@
       "activePriority": "city",
       "pincode": "2010",
       "usePincode": false,
-      "lastChecked": "2026-05-07",
-      "displayRank": "N/A",
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//9",
       "history": [
         {
           "date": "2026-05-06",
@@ -3239,17 +3305,22 @@
           "date": "2026-05-07",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 9,
+          "maps": 0
         }
       ],
-      "source": "",
+      "source": "Serper",
       "foundUrl": "https://www.abbagroup.com.au/business-sales/"
     },
     {
       "id": "zhp62",
       "projectId": "1778007106199",
       "text": "business brokerage",
-      "organic": 0,
-      "maps": 0,
+      "organic": 5,
+      "maps": 1,
       "status": "active",
       "mapsStatus": "active",
       "organicStatus": "active",
@@ -3259,10 +3330,10 @@
       "activePriority": "city",
       "pincode": "2010",
       "usePincode": false,
-      "lastChecked": "2026-05-07",
-      "displayRank": "N/A",
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//5 LL 1",
       "foundUrl": "https://www.abbagroup.com.au/",
-      "source": "",
+      "source": "Serper",
       "history": [
         {
           "date": "2026-05-06",
@@ -3273,6 +3344,11 @@
           "date": "2026-05-07",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 5,
+          "maps": 1
         }
       ]
     },
@@ -3280,8 +3356,8 @@
       "id": "8bjjd",
       "projectId": "1778007106199",
       "text": "business brokers",
-      "organic": 0,
-      "maps": 0,
+      "organic": 2,
+      "maps": 1,
       "status": "active",
       "mapsStatus": "active",
       "organicStatus": "active",
@@ -3291,8 +3367,8 @@
       "activePriority": "city",
       "pincode": "2010",
       "usePincode": false,
-      "lastChecked": "2026-05-07",
-      "displayRank": "N/A",
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//2 LL 1",
       "history": [
         {
           "date": "2026-05-06",
@@ -3303,9 +3379,14 @@
           "date": "2026-05-07",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 2,
+          "maps": 1
         }
       ],
-      "source": "",
+      "source": "Serper",
       "foundUrl": "https://www.abbagroup.com.au/"
     },
     {
@@ -3323,7 +3404,7 @@
       "activePriority": "city",
       "pincode": "3192",
       "usePincode": true,
-      "lastChecked": "2026-05-07",
+      "lastChecked": "2026-05-14",
       "displayRank": "1//1 LL 1",
       "history": [
         {
@@ -3333,6 +3414,11 @@
         },
         {
           "date": "2026-05-07",
+          "organic": 1,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-14",
           "organic": 1,
           "maps": 1
         }
@@ -3355,7 +3441,7 @@
       "activePriority": "city",
       "pincode": "3192",
       "usePincode": true,
-      "lastChecked": "2026-05-07",
+      "lastChecked": "2026-05-14",
       "displayRank": "1//1 LL 1",
       "history": [
         {
@@ -3367,6 +3453,11 @@
           "date": "2026-05-07",
           "organic": 1,
           "maps": 1
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 1,
+          "maps": 1
         }
       ],
       "source": "Serper",
@@ -3376,7 +3467,7 @@
       "id": "hwz0gm",
       "projectId": "1778008201501",
       "text": "djs melbourne",
-      "organic": 1,
+      "organic": 4,
       "maps": 1,
       "status": "active",
       "mapsStatus": "active",
@@ -3387,8 +3478,8 @@
       "activePriority": "city",
       "pincode": "3192",
       "usePincode": true,
-      "lastChecked": "2026-05-07",
-      "displayRank": "1//1 LL 1",
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//4 LL 1",
       "history": [
         {
           "date": "2026-05-06",
@@ -3398,6 +3489,11 @@
         {
           "date": "2026-05-07",
           "organic": 1,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 4,
           "maps": 1
         }
       ],
@@ -3419,7 +3515,7 @@
       "activePriority": "city",
       "pincode": "3192",
       "usePincode": true,
-      "lastChecked": "2026-05-07",
+      "lastChecked": "2026-05-14",
       "displayRank": "1//1 LL 1",
       "history": [
         {
@@ -3429,6 +3525,11 @@
         },
         {
           "date": "2026-05-07",
+          "organic": 1,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-14",
           "organic": 1,
           "maps": 1
         }
@@ -3440,8 +3541,8 @@
       "id": "3d9gf",
       "projectId": "1778008201501",
       "text": "wedding dj melbourne",
-      "organic": 0,
-      "maps": 0,
+      "organic": 2,
+      "maps": 1,
       "status": "active",
       "mapsStatus": "active",
       "organicStatus": "active",
@@ -3451,8 +3552,8 @@
       "activePriority": "city",
       "pincode": "3192",
       "usePincode": true,
-      "lastChecked": "2026-05-07",
-      "displayRank": "N/A",
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//2 LL 1",
       "history": [
         {
           "date": "2026-05-06",
@@ -3463,15 +3564,205 @@
           "date": "2026-05-07",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 2,
+          "maps": 1
         }
       ],
-      "source": "",
+      "source": "Serper",
       "foundUrl": ""
     },
     {
       "id": "kxq73",
       "projectId": "1778008201501",
       "text": "djs in melbourne",
+      "organic": 2,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//2 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 1,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 2,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "1yzw67",
+      "projectId": "1778008201501",
+      "text": "dj in melbourne",
+      "organic": 2,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//2 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 2,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "ibasxn",
+      "projectId": "1778008201501",
+      "text": "dj hire",
+      "organic": 7,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//7 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 4,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 7,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "85ea4p",
+      "projectId": "1778008201501",
+      "text": "dj near me",
+      "organic": 10,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//10 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 10,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "her829",
+      "projectId": "1778008201501",
+      "text": "djs near me",
+      "organic": 2,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//2 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 2,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "wwsly",
+      "projectId": "1778008201501",
+      "text": "melbourne dj hire",
       "organic": 1,
       "maps": 1,
       "status": "active",
@@ -3483,7 +3774,7 @@
       "activePriority": "city",
       "pincode": "3192",
       "usePincode": true,
-      "lastChecked": "2026-05-07",
+      "lastChecked": "2026-05-14",
       "displayRank": "1//1 LL 1",
       "history": [
         {
@@ -3493,6 +3784,11 @@
         },
         {
           "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-14",
           "organic": 1,
           "maps": 1
         }
@@ -3501,170 +3797,10 @@
       "foundUrl": ""
     },
     {
-      "id": "1yzw67",
-      "projectId": "1778008201501",
-      "text": "dj in melbourne",
-      "organic": 0,
-      "maps": 0,
-      "status": "active",
-      "mapsStatus": "active",
-      "organicStatus": "active",
-      "location": "Cheltenham, Victoria, Australia",
-      "lat": -37.9634181,
-      "lng": 145.0615668,
-      "activePriority": "city",
-      "pincode": "3192",
-      "usePincode": true,
-      "lastChecked": "2026-05-07",
-      "displayRank": "N/A",
-      "history": [
-        {
-          "date": "2026-05-06",
-          "organic": 0,
-          "maps": 0
-        },
-        {
-          "date": "2026-05-07",
-          "organic": 0,
-          "maps": 0
-        }
-      ],
-      "source": "",
-      "foundUrl": ""
-    },
-    {
-      "id": "ibasxn",
-      "projectId": "1778008201501",
-      "text": "dj hire",
-      "organic": 4,
-      "maps": 0,
-      "status": "active",
-      "mapsStatus": "active",
-      "organicStatus": "active",
-      "location": "Cheltenham, Victoria, Australia",
-      "lat": -37.9634181,
-      "lng": 145.0615668,
-      "activePriority": "city",
-      "pincode": "3192",
-      "usePincode": true,
-      "lastChecked": "2026-05-07",
-      "displayRank": "1//4",
-      "history": [
-        {
-          "date": "2026-05-06",
-          "organic": 0,
-          "maps": 0
-        },
-        {
-          "date": "2026-05-07",
-          "organic": 4,
-          "maps": 0
-        }
-      ],
-      "source": "Serper",
-      "foundUrl": ""
-    },
-    {
-      "id": "85ea4p",
-      "projectId": "1778008201501",
-      "text": "dj near me",
-      "organic": 0,
-      "maps": 0,
-      "status": "active",
-      "mapsStatus": "active",
-      "organicStatus": "active",
-      "location": "Cheltenham, Victoria, Australia",
-      "lat": -37.9634181,
-      "lng": 145.0615668,
-      "activePriority": "city",
-      "pincode": "3192",
-      "usePincode": true,
-      "lastChecked": "2026-05-07",
-      "displayRank": "N/A",
-      "history": [
-        {
-          "date": "2026-05-06",
-          "organic": 0,
-          "maps": 0
-        },
-        {
-          "date": "2026-05-07",
-          "organic": 0,
-          "maps": 0
-        }
-      ],
-      "source": "",
-      "foundUrl": ""
-    },
-    {
-      "id": "her829",
-      "projectId": "1778008201501",
-      "text": "djs near me",
-      "organic": 0,
-      "maps": 0,
-      "status": "active",
-      "mapsStatus": "active",
-      "organicStatus": "active",
-      "location": "Cheltenham, Victoria, Australia",
-      "lat": -37.9634181,
-      "lng": 145.0615668,
-      "activePriority": "city",
-      "pincode": "3192",
-      "usePincode": true,
-      "lastChecked": "2026-05-07",
-      "displayRank": "N/A",
-      "history": [
-        {
-          "date": "2026-05-06",
-          "organic": 0,
-          "maps": 0
-        },
-        {
-          "date": "2026-05-07",
-          "organic": 0,
-          "maps": 0
-        }
-      ],
-      "source": "",
-      "foundUrl": ""
-    },
-    {
-      "id": "wwsly",
-      "projectId": "1778008201501",
-      "text": "melbourne dj hire",
-      "organic": 0,
-      "maps": 0,
-      "status": "active",
-      "mapsStatus": "active",
-      "organicStatus": "active",
-      "location": "Cheltenham, Victoria, Australia",
-      "lat": -37.9634181,
-      "lng": 145.0615668,
-      "activePriority": "city",
-      "pincode": "3192",
-      "usePincode": true,
-      "lastChecked": "2026-05-07",
-      "displayRank": "N/A",
-      "history": [
-        {
-          "date": "2026-05-06",
-          "organic": 0,
-          "maps": 0
-        },
-        {
-          "date": "2026-05-07",
-          "organic": 0,
-          "maps": 0
-        }
-      ],
-      "source": "",
-      "foundUrl": ""
-    },
-    {
       "id": "ih6a0j",
       "projectId": "1778008201501",
       "text": "dj melbourne hire",
-      "organic": 4,
+      "organic": 1,
       "maps": 1,
       "status": "active",
       "mapsStatus": "active",
@@ -3675,8 +3811,8 @@
       "activePriority": "city",
       "pincode": "3192",
       "usePincode": true,
-      "lastChecked": "2026-05-07",
-      "displayRank": "1//4 LL 1",
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//1 LL 1",
       "history": [
         {
           "date": "2026-05-06",
@@ -3686,6 +3822,11 @@
         {
           "date": "2026-05-07",
           "organic": 4,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 1,
           "maps": 1
         }
       ],
@@ -3707,7 +3848,7 @@
       "activePriority": "city",
       "pincode": "3192",
       "usePincode": true,
-      "lastChecked": "2026-05-07",
+      "lastChecked": "2026-05-14",
       "displayRank": "1//1 LL 1",
       "history": [
         {
@@ -3717,6 +3858,11 @@
         },
         {
           "date": "2026-05-07",
+          "organic": 1,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-14",
           "organic": 1,
           "maps": 1
         }
@@ -3739,7 +3885,7 @@
       "activePriority": "city",
       "pincode": "3192",
       "usePincode": true,
-      "lastChecked": "2026-05-07",
+      "lastChecked": "2026-05-14",
       "displayRank": "1//1 LL 1",
       "history": [
         {
@@ -3751,6 +3897,11 @@
           "date": "2026-05-07",
           "organic": 1,
           "maps": 1
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 1,
+          "maps": 1
         }
       ],
       "source": "Serper",
@@ -3760,70 +3911,6 @@
       "id": "hb9x0v",
       "projectId": "1778008201501",
       "text": "dj service",
-      "organic": 0,
-      "maps": 0,
-      "status": "active",
-      "mapsStatus": "active",
-      "organicStatus": "active",
-      "location": "Cheltenham, Victoria, Australia",
-      "lat": -37.9634181,
-      "lng": 145.0615668,
-      "activePriority": "city",
-      "pincode": "3192",
-      "usePincode": true,
-      "lastChecked": "2026-05-07",
-      "displayRank": "N/A",
-      "history": [
-        {
-          "date": "2026-05-06",
-          "organic": 0,
-          "maps": 0
-        },
-        {
-          "date": "2026-05-07",
-          "organic": 0,
-          "maps": 0
-        }
-      ],
-      "source": "",
-      "foundUrl": ""
-    },
-    {
-      "id": "id1k9n",
-      "projectId": "1778008201501",
-      "text": "dj services",
-      "organic": 3,
-      "maps": 1,
-      "status": "active",
-      "mapsStatus": "active",
-      "organicStatus": "active",
-      "location": "Cheltenham, Victoria, Australia",
-      "lat": -37.9634181,
-      "lng": 145.0615668,
-      "activePriority": "city",
-      "pincode": "3192",
-      "usePincode": true,
-      "lastChecked": "2026-05-07",
-      "displayRank": "1//3 LL 1",
-      "history": [
-        {
-          "date": "2026-05-06",
-          "organic": 0,
-          "maps": 0
-        },
-        {
-          "date": "2026-05-07",
-          "organic": 3,
-          "maps": 1
-        }
-      ],
-      "source": "Serper",
-      "foundUrl": ""
-    },
-    {
-      "id": "oo098",
-      "projectId": "1778008201501",
-      "text": "best dj melbourne",
       "organic": 6,
       "maps": 1,
       "status": "active",
@@ -3835,8 +3922,82 @@
       "activePriority": "city",
       "pincode": "3192",
       "usePincode": true,
-      "lastChecked": "2026-05-07",
+      "lastChecked": "2026-05-14",
       "displayRank": "1//6 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 6,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "id1k9n",
+      "projectId": "1778008201501",
+      "text": "dj services",
+      "organic": 9,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//9 LL 1",
+      "history": [
+        {
+          "date": "2026-05-06",
+          "organic": 0,
+          "maps": 0
+        },
+        {
+          "date": "2026-05-07",
+          "organic": 3,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 9,
+          "maps": 1
+        }
+      ],
+      "source": "Serper",
+      "foundUrl": ""
+    },
+    {
+      "id": "oo098",
+      "projectId": "1778008201501",
+      "text": "best dj melbourne",
+      "organic": 10,
+      "maps": 1,
+      "status": "active",
+      "mapsStatus": "active",
+      "organicStatus": "active",
+      "location": "Cheltenham, Victoria, Australia",
+      "lat": -37.9634181,
+      "lng": 145.0615668,
+      "activePriority": "city",
+      "pincode": "3192",
+      "usePincode": true,
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//10 LL 1",
       "history": [
         {
           "date": "2026-05-06",
@@ -3847,6 +4008,11 @@
           "date": "2026-05-07",
           "organic": 6,
           "maps": 1
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 10,
+          "maps": 1
         }
       ],
       "source": "Serper",
@@ -3856,8 +4022,8 @@
       "id": "c1573g",
       "projectId": "1778008201501",
       "text": "best djs melbourne",
-      "organic": 0,
-      "maps": 0,
+      "organic": 9,
+      "maps": 1,
       "status": "active",
       "mapsStatus": "active",
       "organicStatus": "active",
@@ -3867,8 +4033,8 @@
       "activePriority": "city",
       "pincode": "3192",
       "usePincode": true,
-      "lastChecked": "2026-05-07",
-      "displayRank": "N/A",
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//9 LL 1",
       "history": [
         {
           "date": "2026-05-06",
@@ -3879,9 +4045,14 @@
           "date": "2026-05-07",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 9,
+          "maps": 1
         }
       ],
-      "source": "",
+      "source": "Serper",
       "foundUrl": "http://www.melbournedjhire.com/"
     },
     {
@@ -3899,7 +4070,7 @@
       "activePriority": "city",
       "pincode": "3192",
       "usePincode": true,
-      "lastChecked": "2026-05-07",
+      "lastChecked": "2026-05-14",
       "displayRank": "N/A",
       "history": [
         {
@@ -3911,6 +4082,11 @@
           "date": "2026-05-07",
           "organic": 0,
           "maps": 0
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 0,
+          "maps": 0
         }
       ],
       "source": "",
@@ -3920,7 +4096,7 @@
       "id": "6xin8l",
       "projectId": "1778008201501",
       "text": "wedding djs melbourne",
-      "organic": 9,
+      "organic": 10,
       "maps": 1,
       "status": "active",
       "mapsStatus": "active",
@@ -3931,8 +4107,8 @@
       "activePriority": "city",
       "pincode": "3192",
       "usePincode": true,
-      "lastChecked": "2026-05-07",
-      "displayRank": "1//9 LL 1",
+      "lastChecked": "2026-05-14",
+      "displayRank": "1//10 LL 1",
       "history": [
         {
           "date": "2026-05-06",
@@ -3942,6 +4118,11 @@
         {
           "date": "2026-05-07",
           "organic": 9,
+          "maps": 1
+        },
+        {
+          "date": "2026-05-14",
+          "organic": 10,
           "maps": 1
         }
       ],
@@ -5437,9 +5618,9 @@
         "KIM.NS.CLOUDFLARE.COM"
       ],
       "age": {
-        "days": 2,
+        "days": 11,
         "years": "0.0",
-        "label": "2 Days"
+        "label": "11 Days"
       },
       "trustScore": 45,
       "raw": {
@@ -5560,7 +5741,7 @@
           },
           {
             "eventAction": "last update of RDAP database",
-            "eventDate": "2026-05-05T12:30:51Z"
+            "eventDate": "2026-05-14T20:56:50Z"
           }
         ],
         "secureDNS": {
@@ -5625,7 +5806,7 @@
         ]
       },
       "hosting": {
-        "ip": "172.67.156.20",
+        "ip": "104.21.40.181",
         "provider": "Cloudflare, Inc.",
         "org": "Cloudflare, Inc.",
         "country": "Canada",
@@ -5652,15 +5833,15 @@
         "valid_from": "May  3 03:48:52 2026 GMT",
         "valid_to": "Aug  1 03:48:51 2026 GMT",
         "protocol": "TLSv1.3",
-        "days_left": 87
+        "days_left": 78
       },
       "siteMeta": {
-        "title": "Ranking Anywhere - Professional SEO Ranking & Audit Software",
+        "title": "Ranking Anywhere - Track Your Success",
         "description": "Ranking Anywhere provides hyper-accurate, real-time SEO intelligence and keyword tracking for global enterprises.",
         "keywords": "",
         "h1": ""
       },
-      "audit_time": "2026-05-05T12:30:58.330Z"
+      "audit_time": "2026-05-14T20:57:11.953Z"
     },
     "ahrefs.com": {
       "success": true,
@@ -6396,6 +6577,1185 @@
         "h1": "Search code, repositories, users, issues, pull requests..."
       },
       "audit_time": "2026-05-06T11:48:00.348Z"
+    },
+    "fresherslive.com.in": {
+      "success": true,
+      "domain": "fresherslive.com.in",
+      "status": [
+        "server transfer prohibited",
+        "client transfer prohibited",
+        "server hold",
+        "server update prohibited",
+        "pending delete",
+        "redemption period"
+      ],
+      "registrar": "Endurance International Group India Private Limited",
+      "contacts": {
+        "registrar": {
+          "objectClassName": "entity",
+          "handle": "801217",
+          "vcardArray": [
+            "vcard",
+            [
+              [
+                "version",
+                {},
+                "text",
+                "4.0"
+              ],
+              [
+                "fn",
+                {},
+                "text",
+                "Endurance International Group India Private Limited"
+              ],
+              [
+                "adr",
+                {
+                  "cc": "IN"
+                },
+                "text",
+                [
+                  "",
+                  "",
+                  "Unit No. 401, 4th Floor, IT Building 3, Nesco IT Park, Nesco Complex, Western Express Highway, Goregaon East, Mumbai Suburban",
+                  "Mumbai",
+                  "Maharashtra",
+                  "400063",
+                  ""
+                ]
+              ],
+              [
+                "tel",
+                {
+                  "type": "voice"
+                },
+                "uri",
+                "tel:+1.2013775952"
+              ],
+              [
+                "tel",
+                {
+                  "type": "fax"
+                },
+                "uri",
+                "tel:+1.2013775952"
+              ],
+              [
+                "email",
+                {},
+                "text",
+                "apac-tldadmin@endurance.com"
+              ]
+            ]
+          ],
+          "roles": [
+            "registrar"
+          ],
+          "publicIds": [
+            {
+              "type": "IANA Registrar ID",
+              "identifier": "801217"
+            }
+          ],
+          "entities": [
+            {
+              "objectClassName": "entity",
+              "vcardArray": [
+                "vcard",
+                [
+                  [
+                    "version",
+                    {},
+                    "text",
+                    "4.0"
+                  ],
+                  [
+                    "fn",
+                    {},
+                    "text",
+                    ""
+                  ],
+                  [
+                    "tel",
+                    {
+                      "type": "voice"
+                    },
+                    "uri",
+                    "tel:+1.2013775952"
+                  ],
+                  [
+                    "email",
+                    {},
+                    "text",
+                    "apac-tldadmin@endurance.com"
+                  ]
+                ]
+              ],
+              "roles": [
+                "abuse"
+              ],
+              "events": [
+                {
+                  "eventAction": "last update of RDAP database",
+                  "eventDate": "2026-05-14T20:57:50.030Z"
+                }
+              ]
+            }
+          ],
+          "links": [
+            {
+              "rel": "about",
+              "href": "https://rdap.nixiregistry.in/rdap/entity/801217",
+              "type": "application/rdap+json"
+            }
+          ],
+          "events": [
+            {
+              "eventAction": "last update of RDAP database",
+              "eventDate": "2026-05-14T20:57:50.030Z"
+            }
+          ]
+        },
+        "registrant": {
+          "name": "Privacy Protection Service",
+          "organization": "Data Protected",
+          "street": "Redacted for Privacy",
+          "city": "Not Disclosed",
+          "state": "N/A",
+          "zip": "N/A",
+          "country": "US",
+          "phone": "REDACTED",
+          "email": "REDACTED (GDPR)"
+        },
+        "admin": {
+          "name": "Privacy Protection Service",
+          "organization": "Data Protected",
+          "street": "Redacted for Privacy",
+          "city": "Not Disclosed",
+          "state": "N/A",
+          "zip": "N/A",
+          "country": "US",
+          "phone": "REDACTED",
+          "email": "REDACTED (GDPR)"
+        },
+        "tech": {
+          "name": "Privacy Protection Service",
+          "organization": "Data Protected",
+          "street": "Redacted for Privacy",
+          "city": "Not Disclosed",
+          "state": "N/A",
+          "zip": "N/A",
+          "country": "US",
+          "phone": "REDACTED",
+          "email": "REDACTED (GDPR)"
+        }
+      },
+      "dates": {
+        "created": "2025-04-01T11:26:35.037Z",
+        "expires": "2026-04-01T11:26:35.037Z",
+        "updated": "2026-05-13T12:09:14.686Z"
+      },
+      "nameservers": [
+        "dns5.parkpage.foundationapi.com",
+        "dns6.parkpage.foundationapi.com"
+      ],
+      "age": {
+        "days": 408,
+        "years": "1.1",
+        "label": "1.1 Years"
+      },
+      "trustScore": 45,
+      "raw": {
+        "rdapConformance": [
+          "rdap_level_0",
+          "icann_rdap_response_profile_1",
+          "icann_rdap_technical_implementation_guide_1",
+          "redacted"
+        ],
+        "notices": [
+          {
+            "title": "Terms of Service",
+            "description": [
+              "The WHOIS information provided in this page has been redacted",
+              "in compliance with ICANN's Temporary Specification for gTLD",
+              "Registration Data.",
+              "",
+              "The data in this record is provided by Tucows Registry for informational",
+              "purposes only, and it does not guarantee its accuracy. Tucows Registry is",
+              "authoritative for whois information in top-level domains it operates",
+              "under contract with the Internet Corporation for Assigned Names and",
+              "Numbers. Whois information from other top-level domains is provided by",
+              "a third-party under license to Tucows Registry.",
+              "",
+              "This service is intended only for query-based access. By using this",
+              "service, you agree that you will use any data presented only for lawful",
+              "purposes and that, under no circumstances will you use (a) data",
+              "acquired for the purpose of allowing, enabling, or otherwise supporting",
+              "the transmission by e-mail, telephone, facsimile or other",
+              "communications mechanism of mass  unsolicited, commercial advertising",
+              "or solicitations to entities other than your existing  customers; or",
+              "(b) this service to enable high volume, automated, electronic processes",
+              "that send queries or data to the systems of any Registrar or any",
+              "Registry except as reasonably necessary to register domain names or",
+              "modify existing domain name registrations.",
+              "",
+              "Tucows Registry reserves the right to modify these terms at any time. By",
+              "submitting this query, you agree to abide by this policy. All rights",
+              "reserved."
+            ],
+            "links": [
+              {
+                "value": "https://rdap.nixiregistry.in/rdap/domain/fresherslive.com.in",
+                "rel": "terms-of-service",
+                "href": "https://rdap.nixiregistry.in/",
+                "type": "text/html"
+              }
+            ]
+          },
+          {
+            "title": "Status Codes",
+            "description": [
+              "For more information on domain status codes, please visit https://icann.org/epp"
+            ],
+            "links": [
+              {
+                "value": "https://rdap.nixiregistry.in/rdap/domain/fresherslive.com.in",
+                "rel": "glossary",
+                "href": "https://icann.org/epp",
+                "type": "text/html"
+              }
+            ]
+          },
+          {
+            "title": "RDDS Inaccuracy Complaint Form",
+            "description": [
+              "URL of the ICANN RDDS Inaccuracy Complaint Form: https://icann.org/wicf"
+            ],
+            "links": [
+              {
+                "value": "https://rdap.nixiregistry.in/rdap/domain/fresherslive.com.in",
+                "rel": "help",
+                "href": "https://icann.org/wicf",
+                "type": "text/html"
+              }
+            ]
+          }
+        ],
+        "redacted": [
+          {
+            "name": {
+              "type": "Registry Registrant ID"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].handle",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='email')]",
+            "replacementPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='email')][3]",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Name"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='fn')][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Street"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='adr')][3][:3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant City"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='adr')][3][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Postal Code"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[0]=='adr')][3][5]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Phone"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Phone Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Fax"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registrant Fax Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='registrant')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registry Admin ID"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].handle",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='email')]",
+            "replacementPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='email')][3]",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Name"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='fn')][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Street"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='adr')][3][:3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin City"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='adr')][3][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Postal Code"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[0]=='adr')][3][5]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Phone"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Phone Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Fax"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Admin Fax Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='administrative')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registry Tech ID"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].handle",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='email')]",
+            "replacementPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='email')][3]",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Name"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='fn')][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Street"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='adr')][3][:3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech City"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='adr')][3][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Postal Code"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[0]=='adr')][3][5]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Phone"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Phone Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Fax"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Tech Fax Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='technical')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Registry Billing ID"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].handle",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Email"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='email')]",
+            "replacementPath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='email')][3]",
+            "pathLang": "jsonpath",
+            "method": "replacementValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Name"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='fn')][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Street"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='adr')][3][:3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing City"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='adr')][3][3]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Postal Code"
+            },
+            "postPath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[0]=='adr')][3][5]",
+            "pathLang": "jsonpath",
+            "method": "emptyValue",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Phone"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Phone Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[1].type=='voice')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Fax"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          },
+          {
+            "name": {
+              "type": "Billing Fax Ext"
+            },
+            "prePath": "$.entities[?(@.roles[0]=='billing')].vcardArray[1][?(@[1].type=='fax')]",
+            "pathLang": "jsonpath",
+            "method": "removal",
+            "reason": {
+              "description": "Server Policy"
+            }
+          }
+        ],
+        "objectClassName": "domain",
+        "handle": "D37B74C2C8C02402A9AFA537A2096CED0-IN",
+        "ldhName": "fresherslive.com.in",
+        "unicodeName": "fresherslive.com.in",
+        "nameservers": [
+          {
+            "objectClassName": "nameserver",
+            "handle": "HED3F3184DBE2496C907EB3B4A04F3E69-IN",
+            "ldhName": "dns5.parkpage.foundationapi.com",
+            "unicodeName": "dns5.parkpage.foundationapi.com",
+            "status": [
+              "associated"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-14T20:57:50.030Z"
+              }
+            ]
+          },
+          {
+            "objectClassName": "nameserver",
+            "handle": "HE1222AE1F89543689F325E5E9C079787-IN",
+            "ldhName": "dns6.parkpage.foundationapi.com",
+            "unicodeName": "dns6.parkpage.foundationapi.com",
+            "status": [
+              "associated"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-14T20:57:50.030Z"
+              }
+            ]
+          }
+        ],
+        "secureDNS": {
+          "delegationSigned": false
+        },
+        "entities": [
+          {
+            "remarks": [
+              {
+                "title": "REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Some of the data in this object has been removed"
+                ]
+              },
+              {
+                "title": "EMAIL REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name."
+                ]
+              }
+            ],
+            "objectClassName": "entity",
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "adr",
+                  {
+                    "cc": "IN"
+                  },
+                  "text",
+                  [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "Haryana",
+                    "",
+                    ""
+                  ]
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "roles": [
+              "registrant"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-14T20:57:50.030Z"
+              }
+            ]
+          },
+          {
+            "remarks": [
+              {
+                "title": "REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Some of the data in this object has been removed"
+                ]
+              },
+              {
+                "title": "EMAIL REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name."
+                ]
+              }
+            ],
+            "objectClassName": "entity",
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "adr",
+                  {},
+                  "text",
+                  [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "roles": [
+              "administrative"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-14T20:57:50.030Z"
+              }
+            ]
+          },
+          {
+            "remarks": [
+              {
+                "title": "REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Some of the data in this object has been removed"
+                ]
+              },
+              {
+                "title": "EMAIL REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name."
+                ]
+              }
+            ],
+            "objectClassName": "entity",
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "adr",
+                  {},
+                  "text",
+                  [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "roles": [
+              "technical"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-14T20:57:50.030Z"
+              }
+            ]
+          },
+          {
+            "remarks": [
+              {
+                "title": "REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Some of the data in this object has been removed"
+                ]
+              },
+              {
+                "title": "EMAIL REDACTED FOR PRIVACY",
+                "type": "object redacted due to authorization",
+                "description": [
+                  "Please query the RDDS service of the Registrar of Record identified in this output for information on how to contact the Registrant, Admin, or Tech contact of the queried domain name."
+                ]
+              }
+            ],
+            "objectClassName": "entity",
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "adr",
+                  {},
+                  "text",
+                  [
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    ""
+                  ]
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  ""
+                ]
+              ]
+            ],
+            "roles": [
+              "billing"
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-14T20:57:50.030Z"
+              }
+            ]
+          },
+          {
+            "objectClassName": "entity",
+            "handle": "801217",
+            "vcardArray": [
+              "vcard",
+              [
+                [
+                  "version",
+                  {},
+                  "text",
+                  "4.0"
+                ],
+                [
+                  "fn",
+                  {},
+                  "text",
+                  "Endurance International Group India Private Limited"
+                ],
+                [
+                  "adr",
+                  {
+                    "cc": "IN"
+                  },
+                  "text",
+                  [
+                    "",
+                    "",
+                    "Unit No. 401, 4th Floor, IT Building 3, Nesco IT Park, Nesco Complex, Western Express Highway, Goregaon East, Mumbai Suburban",
+                    "Mumbai",
+                    "Maharashtra",
+                    "400063",
+                    ""
+                  ]
+                ],
+                [
+                  "tel",
+                  {
+                    "type": "voice"
+                  },
+                  "uri",
+                  "tel:+1.2013775952"
+                ],
+                [
+                  "tel",
+                  {
+                    "type": "fax"
+                  },
+                  "uri",
+                  "tel:+1.2013775952"
+                ],
+                [
+                  "email",
+                  {},
+                  "text",
+                  "apac-tldadmin@endurance.com"
+                ]
+              ]
+            ],
+            "roles": [
+              "registrar"
+            ],
+            "publicIds": [
+              {
+                "type": "IANA Registrar ID",
+                "identifier": "801217"
+              }
+            ],
+            "entities": [
+              {
+                "objectClassName": "entity",
+                "vcardArray": [
+                  "vcard",
+                  [
+                    [
+                      "version",
+                      {},
+                      "text",
+                      "4.0"
+                    ],
+                    [
+                      "fn",
+                      {},
+                      "text",
+                      ""
+                    ],
+                    [
+                      "tel",
+                      {
+                        "type": "voice"
+                      },
+                      "uri",
+                      "tel:+1.2013775952"
+                    ],
+                    [
+                      "email",
+                      {},
+                      "text",
+                      "apac-tldadmin@endurance.com"
+                    ]
+                  ]
+                ],
+                "roles": [
+                  "abuse"
+                ],
+                "events": [
+                  {
+                    "eventAction": "last update of RDAP database",
+                    "eventDate": "2026-05-14T20:57:50.030Z"
+                  }
+                ]
+              }
+            ],
+            "links": [
+              {
+                "rel": "about",
+                "href": "https://rdap.nixiregistry.in/rdap/entity/801217",
+                "type": "application/rdap+json"
+              }
+            ],
+            "events": [
+              {
+                "eventAction": "last update of RDAP database",
+                "eventDate": "2026-05-14T20:57:50.030Z"
+              }
+            ]
+          }
+        ],
+        "status": [
+          "server transfer prohibited",
+          "client transfer prohibited",
+          "server hold",
+          "server update prohibited",
+          "pending delete",
+          "redemption period"
+        ],
+        "links": [
+          {
+            "value": "https://rdap.nixiregistry.in/rdap/domain/fresherslive.com.in",
+            "rel": "self",
+            "href": "https://rdap.nixiregistry.in/rdap/domain/fresherslive.com.in",
+            "type": "application/rdap+json"
+          }
+        ],
+        "events": [
+          {
+            "eventAction": "registration",
+            "eventActor": "endurance_digi",
+            "eventDate": "2025-04-01T11:26:35.037Z"
+          },
+          {
+            "eventAction": "expiration",
+            "eventDate": "2026-04-01T11:26:35.037Z"
+          },
+          {
+            "eventAction": "last changed",
+            "eventDate": "2026-05-13T12:09:14.686Z"
+          },
+          {
+            "eventAction": "last update of RDAP database",
+            "eventDate": "2026-05-14T20:57:50.030Z"
+          }
+        ]
+      },
+      "hosting": {
+        "ip": "fresherslive.com.in",
+        "provider": "Unknown",
+        "city": "Unknown",
+        "country": "Unknown"
+      },
+      "tech": {
+        "stack": [],
+        "cms": "Unknown",
+        "theme": "Unknown",
+        "database": "Unknown",
+        "frontend": "Unknown",
+        "language": "Unknown",
+        "server": "Unknown",
+        "poweredBy": "Unknown"
+      },
+      "ssl": {
+        "valid": false,
+        "message": "Connection failed"
+      },
+      "siteMeta": {
+        "title": "",
+        "description": "",
+        "h1": "",
+        "keywords": ""
+      },
+      "audit_time": "2026-05-14T20:58:07.525Z"
     }
   },
   "userSettings": {
@@ -6412,7 +7772,7 @@
       "lastUpdated": "2026-05-14T12:13:50.321Z"
     },
     "1776349705175": {
-      "globalSerperApiKey": "",
+      "globalSerperApiKey": "eb8cfa419e28cdf088877384d847edfdbf8c956d",
       "globalScrapingdogApiKey": "",
       "globalSerpapiKey": "",
       "globalProxyUrl": "",
@@ -6421,7 +7781,7 @@
       "activeProxyIdx": null,
       "serperQuotaActive": true,
       "scrapingdogQuotaActive": true,
-      "lastUpdated": "2026-05-16T10:52:12.380Z"
+      "lastUpdated": "2026-05-14T20:52:31.255Z"
     }
   }
 }

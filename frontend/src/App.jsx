@@ -42,6 +42,7 @@ import PlatformAnalytics from './pages/PlatformAnalytics';
 import SourceIntel from './pages/SourceIntel';
 import AdPositionIntel from './pages/AdPositionIntel';
 import LiveSessionMirror from './pages/LiveSessionMirror';
+import ScrollToTop from './components/ScrollToTop';
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -55,9 +56,11 @@ const ProtectedRoute = ({ children }) => {
 
 const App = () => {
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route path="/" element={<Home />} />
+    <>
+      <ScrollToTop />
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/terms" element={<Terms />} />
@@ -131,6 +134,7 @@ const App = () => {
       {/* Fallback */}
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
+    </>
   );
 };
 

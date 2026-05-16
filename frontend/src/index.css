@@ -1332,7 +1332,7 @@ tr:hover .action-icon-btn {
 .landing-page, .info-page, .auth-page {
   background: var(--bg-dark);
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Navbar */

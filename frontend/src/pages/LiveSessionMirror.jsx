@@ -29,7 +29,9 @@ const LiveSessionMirror = () => {
 
   const fetchSessionDetails = async () => {
     try {
-      const res = await fetch(`${API_BASE_URL}/api/track-data`);
+      const token = localStorage.getItem('token');
+      if (!token) { window.location.href = '/login'; return; }
+      const res = await fetch(`${API_BASE_URL}/api/track-data`, { headers: { 'Authorization': `Bearer ${token}` } });
       const data = await res.json();
       if (data.success) {
         const found = data.data.find(c => c.id === clickId);
@@ -40,12 +42,22 @@ const LiveSessionMirror = () => {
 
   const fetchAllActiveUsers = async () => {
     try {
-      const res = await fetch(`${API_BASE_URL}/api/track-data`);
+      const token = localStorage.getItem('token');
+      if (!token) { window.location.href = '/login'; return; }
+      const res = await fetch(`${API_BASE_URL}/api/track-data`, { headers: { 'Authorization': `Bearer ${token}` } });
       const data = await res.json();
       if (data.success) {
         // Filter users active in last 15 minutes
         const active = data.data.filter(c => new Date(c.clickedAt) > new Date(Date.now() - 15 * 60 * 1000));
-        setAllActiveUsers(active);
+        
+        // Group by IP to show only the latest session for each unique visitor
+        const ipMap = new Map();
+        active.forEach(user => {
+            if (!ipMap.has(user.ipAddress) || new Date(user.clickedAt) > new Date(ipMap.get(user.ipAddress).clickedAt)) {
+                ipMap.set(user.ipAddress, user);
+            }
+        });
+        setAllActiveUsers(Array.from(ipMap.values()));
       }
     } catch (e) { console.error(e); }
   };
@@ -113,43 +125,53 @@ const LiveSessionMirror = () => {
                {allActiveUsers.length === 0 ? (
                  <div style={{ padding: '20px', textAlign: 'center', color: '#475569', fontSize: '12px' }}>No other active sessions.</div>
                ) : (
-                 allActiveUsers.map(user => (
-                   <div 
-                     key={user.id}
-                     onClick={() => navigate(`/live-session/${user.id}`)}
-                     style={{ 
-                       padding: '15px', 
-                       background: user.id === clickId ? 'rgba(59, 130, 246, 0.15)' : 'rgba(255,255,255,0.03)', 
-                       borderRadius: '16px', 
-                       border: '1px solid',
-                       borderColor: user.id === clickId ? 'rgba(59, 130, 246, 0.3)' : 'rgba(255,255,255,0.05)',
-                       cursor: 'pointer',
-                       transition: 'all 0.3s ease',
-                       boxShadow: user.id === clickId ? '0 10px 20px rgba(0,0,0,0.2)' : 'none'
-                     }}
-                     onMouseEnter={(e) => {
-                       if (user.id !== clickId) {
-                         e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
-                         e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)';
-                       }
-                     }}
-                     onMouseLeave={(e) => {
-                       if (user.id !== clickId) {
-                         e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
-                         e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)';
-                       }
-                     }}
-                   >
-                     <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-                       <span style={{ fontSize: '18px' }}>{user.deviceType === 'Mobile' ? '📱' : '💻'}</span>
-                       <span style={{ fontSize: '14px', fontWeight: '800', color: user.id === clickId ? '#3b82f6' : '#fff' }}>{user.ipAddress}</span>
-                     </div>
-                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#64748b' }}>
-                       <span style={{ maxWidth: '140px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>📍 {user.city}, {user.country}</span>
-                       <span style={{ fontWeight: 'bold' }}>{new Date(user.clickedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-                     </div>
-                   </div>
-                 ))
+                  (() => {
+                    const ipMap = new Map();
+                    allActiveUsers.forEach(user => {
+                        if (!ipMap.has(user.ipAddress) || new Date(user.clickedAt) > new Date(ipMap.get(user.ipAddress).clickedAt)) {
+                            ipMap.set(user.ipAddress, user);
+                        }
+                    });
+                    const uniqueUsers = Array.from(ipMap.values()).sort((a,b) => new Date(b.clickedAt) - new Date(a.clickedAt));
+
+                    return uniqueUsers.map(user => (
+                      <div 
+                        key={user.id}
+                        onClick={() => navigate(`/live-session/${user.id}`)}
+                        style={{ 
+                          padding: '15px', 
+                          background: user.id === clickId ? 'rgba(59, 130, 246, 0.15)' : 'rgba(255,255,255,0.03)', 
+                          borderRadius: '16px', 
+                          border: '1px solid',
+                          borderColor: user.id === clickId ? 'rgba(59, 130, 246, 0.3)' : 'rgba(255,255,255,0.05)',
+                          cursor: 'pointer',
+                          transition: 'all 0.3s ease',
+                          boxShadow: user.id === clickId ? '0 10px 20px rgba(0,0,0,0.2)' : 'none'
+                        }}
+                        onMouseEnter={(e) => {
+                          if (user.id !== clickId) {
+                            e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)';
+                          }
+                        }}
+                        onMouseLeave={(e) => {
+                          if (user.id !== clickId) {
+                            e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
+                            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)';
+                          }
+                        }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
+                          <span style={{ fontSize: '18px' }}>{user.deviceType === 'Mobile' ? '📱' : '💻'}</span>
+                          <span style={{ fontSize: '14px', fontWeight: '800', color: user.id === clickId ? '#3b82f6' : '#fff' }}>{user.ipAddress}</span>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#64748b' }}>
+                          <span style={{ maxWidth: '140px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>📍 {user.city}, {user.country}</span>
+                          <span style={{ fontWeight: 'bold' }}>{new Date(user.clickedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                        </div>
+                      </div>
+                    ));
+                  })()
                )}
             </div>
           </div>

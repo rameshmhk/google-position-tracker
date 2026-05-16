@@ -202,6 +202,20 @@ app.use((req: any, res: any, next: any) => {
 });
 app.use(express.json({ type: ['application/json', 'text/plain'] }));
 
+// Authentication Middleware
+const authenticateToken = (req: any, res: any, next: any) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (!token) return res.status(401).json({ error: "Unauthorized: Missing token" });
+
+  jwt.verify(token, JWT_SECRET, (err: any, user: any) => {
+    if (err) return res.status(403).json({ error: "Forbidden: Invalid token" });
+    req.user = user;
+    next();
+  });
+};
+
 // --- NEW TRACKING & SEEDING ROUTES (PRIORITY) ---
 app.get('/api/seed-tracking', async (req: any, res: any) => {
   console.log('>>> [API] Received request for /api/seed-tracking');
@@ -351,17 +365,60 @@ app.get('/api/locations/search', async (req: any, res: any) => {
   }
 });
 
-app.get('/api/track-data', async (req: any, res: any) => {
+app.get('/api/track-data', authenticateToken, async (req: any, res: any) => {
   console.log('>>> [API] Received request for /api/track-data');
+  try {
+    const dbJson = getDB();
+    const userProjects = dbJson.projects.filter((p: any) => String(p.userId) === String(req.user.id));
+    const userDomains = userProjects.map((p: any) => {
+        try { return p.url.replace(/^https?:\/\//, '').replace(/\/$/, '').toLowerCase(); } catch(e) { return ''; }
+    }).filter(Boolean);
+
+    if (userDomains.length === 0) {
+      return res.json({ success: true, data: [] });
+    }
+
+    const sqlite3 = (await import('sqlite3')).default;
+    const db = new sqlite3.Database(SQLITE_DB_PATH);
+    
+    db.all(`SELECT * FROM AdClick ORDER BY clickedAt DESC LIMIT 500`, [], (err, rows) => {
+      if (err) {
+        res.status(500).json({ success: false, error: err.message });
+      } else {
+        // Strict Data Isolation: Only return clicks matching the user's verified projects
+        const filteredRows = rows.filter((r: any) => {
+          if (!r.websiteUrl) return false;
+          try {
+            const rowDomain = r.websiteUrl.replace(/^https?:\/\//, '').replace(/\/$/, '').toLowerCase();
+            return userDomains.some((domain: string) => rowDomain.includes(domain) || domain.includes(rowDomain));
+          } catch(e) { return false; }
+        });
+
+        const data = filteredRows.map((r: any) => ({
+          ...r,
+          isReturning: !!r.isReturning,
+          isSuspicious: !!r.isSuspicious,
+          formInteracted: !!r.formInteracted
+        }));
+        res.json({ success: true, data });
+      }
+      db.close();
+    });
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+app.get('/api/global-spam', authenticateToken, async (req: any, res: any) => {
   try {
     const sqlite3 = (await import('sqlite3')).default;
     const db = new sqlite3.Database(SQLITE_DB_PATH);
     
-    db.all(`SELECT * FROM AdClick ORDER BY clickedAt DESC LIMIT 200`, [], (err, rows) => {
+    // Global Spam View for TrueCaller (Cross-Tenant)
+    db.all(`SELECT * FROM AdClick WHERE isSuspicious = 1 ORDER BY clickedAt DESC LIMIT 1000`, [], (err, rows) => {
       if (err) {
         res.status(500).json({ success: false, error: err.message });
       } else {
-        // Convert SQL boolean (0/1) back to JS boolean if needed
         const data = rows.map((r: any) => ({
           ...r,
           isReturning: !!r.isReturning,
@@ -369,6 +426,46 @@ app.get('/api/track-data', async (req: any, res: any) => {
           formInteracted: !!r.formInteracted
         }));
         res.json({ success: true, data });
+      }
+      db.close();
+    });
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Delete a single click record
+app.delete('/api/track-data/:id', authenticateToken, async (req: any, res: any) => {
+  try {
+    const sqlite3 = (await import('sqlite3')).default;
+    const db = new sqlite3.Database(SQLITE_DB_PATH);
+    const { id } = req.params;
+
+    db.run(`DELETE FROM AdClick WHERE id = ?`, [id], function(err) {
+      if (err) {
+        res.status(500).json({ success: false, error: err.message });
+      } else {
+        res.json({ success: true, message: 'Record deleted', deletedCount: this.changes });
+      }
+      db.close();
+    });
+  } catch (err: any) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// Clear ALL Ads data (Bulk Delete)
+app.delete('/api/track-data/clear/ads', authenticateToken, async (req: any, res: any) => {
+  try {
+    const sqlite3 = (await import('sqlite3')).default;
+    const db = new sqlite3.Database(SQLITE_DB_PATH);
+    
+    // Deletes only records where source is 'ad' or has a gclid
+    db.run(`DELETE FROM AdClick WHERE source = 'ad' OR gclid IS NOT NULL`, [], function(err) {
+      if (err) {
+        res.status(500).json({ success: false, error: err.message });
+      } else {
+        res.json({ success: true, message: 'All Ads data cleared', deletedCount: this.changes });
       }
       db.close();
     });
@@ -971,19 +1068,7 @@ app.get('/api/ip-info', async (req: any, res: any) => {
   }
 });
 
-// Authentication Middleware
-const authenticateToken = (req: any, res: any, next: any) => {
-  const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
 
-  if (!token) return res.status(401).json({ error: "Unauthorized: Missing token" });
-
-  jwt.verify(token, JWT_SECRET, (err: any, user: any) => {
-    if (err) return res.status(403).json({ error: "Forbidden: Invalid token" });
-    req.user = user;
-    next();
-  });
-};
 
 // --- PUBLIC SEO AUDIT TOOL ---
 app.post('/api/audit', async (req: any, res: any) => {
@@ -1706,7 +1791,7 @@ const loadDB = () => {
     mapsStatus: k.mapsStatus || 'active'
   }));
 
-  // Migration: Ensure settings has all fields
+  // Migration: Ensure settings has all fields without overwriting existing ones
   db.settings = {
     globalSerperApiKey: '',
     globalScrapingdogApiKey: '',
@@ -1716,7 +1801,7 @@ const loadDB = () => {
     isRandomProxy: false,
     activeProxyIdx: null,
     serperQuotaActive: true,
-    ...db.settings
+    ...(db.settings || {})
   };
 
   // Migration: Ensure all projects have verification status
@@ -3180,7 +3265,7 @@ app.post('/api/session-events', async (req: any, res: any) => {
   } catch (err: any) { res.status(500).json({ success: false, message: err.message }); }
 });
 
-app.get('/api/session-events/:clickId', async (req: any, res: any) => {
+app.get('/api/session-events/:clickId', authenticateToken, async (req: any, res: any) => {
   try {
     const { clickId } = req.params;
     const sqlite3 = (await import('sqlite3')).default;
@@ -3239,6 +3324,7 @@ app.post('/api/track-click', async (req: any, res: any) => {
 
     let isSuspicious = false;
     let suspicionReason: string | null = null;
+    const isAdTraffic = (source === 'ad' || !!gclid);
     
     if (!userAgent) {
       isSuspicious = true;
@@ -3271,7 +3357,9 @@ app.post('/api/track-click', async (req: any, res: any) => {
 
         // VPN/Data Center Keywords
         const dcKeywords = ['DigitalOcean', 'Amazon', 'AWS', 'Google Cloud', 'Microsoft Azure', 'Hetzner', 'OVH', 'Linode', 'Choopa', 'Vultr', 'Hosting', 'Data Center', 'VPN', 'Proxy'];
-        if (isp && dcKeywords.some(kw => isp.toLowerCase().includes(kw.toLowerCase()))) {
+        const isAdTraffic = (source === 'ad' || !!gclid);
+        
+        if (isAdTraffic && isp && dcKeywords.some(kw => isp.toLowerCase().includes(kw.toLowerCase()))) {
           isSuspicious = true;
           suspicionReason = `VPN/Proxy Detected (Data Center: ${isp})`;
         }
@@ -3311,21 +3399,40 @@ app.post('/api/track-click', async (req: any, res: any) => {
       }
     }
 
-    // New Click Logging
+    // Advanced Fraud Detection Logic (Ad Bounce Spammers)
+    const previousVisit: any = await new Promise((resolve) => {
+      db.get(`SELECT * FROM AdClick WHERE ipAddress = ? ORDER BY clickedAt DESC LIMIT 1`, [cleanIp], (err, row) => resolve(row));
+    });
+
+    const isAdClick = (source === 'ad' || !!gclid);
+
+    if (!isSuspicious && isAdClick && previousVisit) {
+      const prevWasAd = (previousVisit.source === 'ad' || previousVisit.gclid);
+      const prevNoActivity = (!previousVisit.formInteracted && (!previousVisit.timeOnSite || previousVisit.timeOnSite < 15));
+      
+      // If previous visit was also an ad click and they bounced, and they are clicking an ad AGAIN -> SPAM
+      if (prevWasAd && prevNoActivity) {
+         isSuspicious = true;
+         suspicionReason = 'Repeated Ad Clicks (Previous Bounce / No Activity)';
+      }
+    }
+
     const clicksToday = await new Promise<number>((resolve) => {
       db.get(`SELECT COUNT(*) as count FROM AdClick WHERE ipAddress = ? AND clickedAt >= date('now')`, [cleanIp], (err, row: any) => {
         resolve(row?.count || 0);
       });
     });
 
-    if (clicksToday >= 3 && !isSuspicious) {
+    if (!isSuspicious && isAdClick && clicksToday >= 10) {
       isSuspicious = true;
-      suspicionReason = 'High Frequency IP (Multiple clicks today)';
+      suspicionReason = 'Abnormally High Frequency IP';
     }
 
-    const previousVisit: any = await new Promise((resolve) => {
-      db.get(`SELECT * FROM AdClick WHERE ipAddress = ? ORDER BY clickedAt DESC LIMIT 1`, [cleanIp], (err, row) => resolve(row));
-    });
+    // FINAL ENFORCEMENT: Only AD traffic can be suspicious. Organic/Direct is ALWAYS clean.
+    if (!isAdClick) {
+      isSuspicious = false;
+      suspicionReason = null;
+    }
 
     const isReturning = !!previousVisit;
     const visitCount = previousVisit ? (previousVisit.visitCount + 1) : 1;

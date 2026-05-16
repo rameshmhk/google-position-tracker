@@ -15,13 +15,20 @@ const TrueCaller = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetchReputations();
-    }, []);
+        const token = localStorage.getItem('token');
+        if (!token) {
+            navigate('/login');
+            return;
+        }
+        fetchReputations(token);
+    }, [navigate]);
 
-    const fetchReputations = async () => {
+    const fetchReputations = async (token) => {
         try {
             setLoading(true);
-            const res = await fetch(`${API_BASE_URL}/api/track-data`);
+            const res = await fetch(`${API_BASE_URL}/api/global-spam`, {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
             if (res.ok) {
                 const data = await res.json();
                 if (data.success) {
